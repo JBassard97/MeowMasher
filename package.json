@@ -1,0 +1,17 @@
+{
+  "name": "meowmasher",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "sass src/scss:src/css",
+    "watch": "sass --watch src/scss:src/css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "sass": "^1.93.2"
+  }
+}

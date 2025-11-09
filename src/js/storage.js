@@ -1,0 +1,29 @@
+export const storage = {
+  // --- Existing getters ---
+  getMewnits: () => Number(localStorage.getItem("mewnits")) || 0,
+  getClickPower: () => Number(localStorage.getItem("clickPower")) || 1,
+  getUpgradeOwned: (id) =>
+    Number(localStorage.getItem(`upgrade_${id}_owned`)) || 0,
+  getSubUpgradeOwned: (id) => localStorage.getItem(`subUpgrade_${id}_owned`),
+  getUpgradeMultiplier: (id) =>
+    Number(localStorage.getItem(`upgrade_${id}_multiplier`)) || 1,
+
+  // --- Existing setters ---
+  setMewnits: (value) => localStorage.setItem("mewnits", value),
+  setClickPower: (value) => localStorage.setItem("clickPower", value),
+  setUpgradeOwned: (id, value) =>
+    localStorage.setItem(`upgrade_${id}_owned`, value),
+  setSubUpgradeOwned: (id) =>
+    localStorage.setItem(`subUpgrade_${id}_owned`, "true"),
+  setUpgradeMultiplier: (id, value) =>
+    localStorage.setItem(`upgrade_${id}_multiplier`, value),
+
+  // --- Lifetime Mewnits ---
+  getLifetimeMewnits: () =>
+    Number(localStorage.getItem("lifetimeMewnits")) || 0,
+  addLifetimeMewnits: (amount) => {
+    const current = Number(localStorage.getItem("lifetimeMewnits")) || 0;
+    localStorage.setItem("lifetimeMewnits", current + amount);
+  },
+  resetLifetimeMewnits: () => localStorage.setItem("lifetimeMewnits", 0),
+};

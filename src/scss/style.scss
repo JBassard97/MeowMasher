@@ -1,0 +1,305 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: black;
+  color: white;
+
+  display: flex;
+  flex-direction: column; // stack header, main, footer vertically
+
+  header {
+    flex: 0 0 auto; // only as tall as its content
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+    border: 1px solid white;
+
+    h1 {
+      font-weight: 900;
+      text-transform: uppercase;
+      background-image: url("../assets/images/calico.png");
+      background-size: cover;
+      background-position: center;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    #settings-icon {
+      cursor: pointer;
+      width: 50px;
+      height: 50px;
+
+      svg {
+        width: 100%;
+        height: 100%;
+        transition: fill 0.3s ease;
+        &:hover {
+          fill: rgb(135, 226, 248);
+        }
+      }
+    }
+  }
+
+  main {
+    flex: 1 1 auto; // fills all remaining vertical space between header and footer
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch; // ensure children stretch to full height
+    min-height: 0; // allows children to shrink properly
+
+    #left-side,
+    #right-side {
+      width: 50%;
+      border: 1px solid white;
+      height: 100%;
+      display: flex;
+      flex-direction: column; // stack children vertically
+      min-height: 0; // allows children like .clicker-area to shrink/fill properly
+    }
+
+    #left-side {
+      #stats {
+        border: 1px solid white;
+        text-align: center;
+
+        p {
+          margin: 0;
+          font-size: 0.8rem;
+        }
+
+        .counter-display {
+          font-size: 1.6rem;
+          font-weight: bold;
+        }
+      }
+
+      .clicker-area {
+        flex: 1 1 auto; // fill remaining vertical space
+        min-height: 0; // ensures it does not overflow parent
+        display: flex;
+        flex-direction: column;
+        background-image: url("../assets/images/yoink.jpg");
+        background-size: cover;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+
+        #clicker {
+          cursor: pointer;
+          width: 50%;
+          max-height: 300px;
+          transform: translateY(5rem);
+          transition: all 0.1s ease;
+          img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+          }
+          &:active {
+            transform: translateY(4.5rem);
+            scale: 1.05;
+          }
+        }
+      }
+    }
+
+    #right-side {
+      .sub-upgrades {
+        border: 1px solid white;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px; // optional spacing between items
+        height: 250px;
+        overflow-y: auto; // scroll vertically when overflowing
+        padding: 6px;
+        box-sizing: border-box;
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #222;
+          border-radius: 4px;
+        }
+
+        .sub-upgrade {
+          strong {
+            font-size: 12px;
+            text-decoration: underline;
+          }
+          p {
+            margin: 0;
+          }
+          cursor: pointer;
+          flex: 0 0 calc(25% - 6px); // 4 per row (adjust as needed)
+          min-height: 50px;
+          max-height: fit-content;
+          min-width: 70px;
+          max-width: calc(25% - 6px);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          border: 1px solid orange;
+          font-size: 10px;
+          text-align: center;
+          flex-grow: 1;
+        }
+      }
+
+      .upgrades {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto; // fills remaining space under .sub-upgrades
+        min-height: 0; // allows proper scrolling
+        overflow-y: auto; // scroll only this section
+        overflow-x: hidden;
+        border: 1px solid white;
+
+        .upgrade {
+          cursor: pointer;
+          width: 100%;
+          height: 100px;
+          justify-content: space-between;
+          border: 1px solid limegreen;
+          font-size: 12px;
+          flex: 0 0 auto; // fixed height per item
+          transition: all 0.2s ease;
+          text-align: center;
+          display: flex;
+          align-items: center;
+
+          img {
+            height: 80%;
+            margin-left: 1rem;
+            max-width: 90px;
+            position: relative;
+            display: block;
+          }
+
+          strong {
+            text-decoration: underline;
+            font-size: 1rem;
+          }
+
+          p {
+            margin: 0;
+          }
+
+          .owned-number {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-right: 1rem;
+          }
+        }
+
+        &::-webkit-scrollbar {
+          width: 8px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #222;
+          border-radius: 4px;
+        }
+      }
+
+      .sub-upgrade:hover,
+      .upgrade:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
+  footer {
+    flex: 0 0 auto;
+    text-align: center;
+    border-top: 1px solid white;
+    font-size: 0.8rem;
+    color: lightgray;
+    padding: 0.5rem 0;
+  }
+
+  .dialog-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .dialog-overlay.active {
+    display: flex;
+  }
+
+  .dialog-content {
+    background-color: #2a2a2a;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .dialog-content h2 {
+    margin-top: 0;
+    color: lightgray;
+    text-align: center;
+  }
+
+  .dialog-body {
+    margin: 20px 0;
+  }
+
+  .dialog-button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: lightgray;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .dialog-button:hover {
+    background-color: #555;
+  }
+
+  #reset-game {
+    background-color: #d9534f;
+  }
+
+  #reset-game:hover {
+    background-color: #c9302c;
+  }
+
+  /* 🔒 Prevent text/image selection or dragging inside upgrades */
+  .upgrade,
+  .upgrade *,
+  .sub-upgrade,
+  .sub-upgrade * {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  .upgrade img,
+  .sub-upgrade img {
+    pointer-events: none;
+    -webkit-user-drag: none;
+  }
+}
+
+

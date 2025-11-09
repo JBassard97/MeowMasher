@@ -1,0 +1,318 @@
+@charset "UTF-8";
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+html header,
+body header {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  border: 1px solid white;
+}
+html header h1,
+body header h1 {
+  font-weight: 900;
+  text-transform: uppercase;
+  background-image: url("../assets/images/calico.png");
+  background-size: cover;
+  background-position: center;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+html header #settings-icon,
+body header #settings-icon {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+}
+html header #settings-icon svg,
+body header #settings-icon svg {
+  width: 100%;
+  height: 100%;
+  transition: fill 0.3s ease;
+}
+html header #settings-icon svg:hover,
+body header #settings-icon svg:hover {
+  fill: rgb(135, 226, 248);
+}
+html main,
+body main {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: stretch;
+  min-height: 0;
+}
+html main #left-side,
+html main #right-side,
+body main #left-side,
+body main #right-side {
+  width: 50%;
+  border: 1px solid white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+html main #left-side #stats,
+body main #left-side #stats {
+  border: 1px solid white;
+  text-align: center;
+}
+html main #left-side #stats p,
+body main #left-side #stats p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+html main #left-side #stats .counter-display,
+body main #left-side #stats .counter-display {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+html main #left-side .clicker-area,
+body main #left-side .clicker-area {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background-image: url("../assets/images/yoink.jpg");
+  background-size: cover;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+html main #left-side .clicker-area #clicker,
+body main #left-side .clicker-area #clicker {
+  cursor: pointer;
+  width: 50%;
+  max-height: 300px;
+  transform: translateY(5rem);
+  transition: all 0.1s ease;
+}
+html main #left-side .clicker-area #clicker img,
+body main #left-side .clicker-area #clicker img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+html main #left-side .clicker-area #clicker:active,
+body main #left-side .clicker-area #clicker:active {
+  transform: translateY(4.5rem);
+  scale: 1.05;
+}
+html main #right-side .sub-upgrades,
+body main #right-side .sub-upgrades {
+  border: 1px solid white;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  height: 250px;
+  overflow-y: auto;
+  padding: 6px;
+  box-sizing: border-box;
+}
+html main #right-side .sub-upgrades::-webkit-scrollbar,
+body main #right-side .sub-upgrades::-webkit-scrollbar {
+  width: 8px;
+}
+html main #right-side .sub-upgrades::-webkit-scrollbar-thumb,
+body main #right-side .sub-upgrades::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 4px;
+}
+html main #right-side .sub-upgrades .sub-upgrade strong,
+body main #right-side .sub-upgrades .sub-upgrade strong {
+  font-size: 12px;
+  text-decoration: underline;
+}
+html main #right-side .sub-upgrades .sub-upgrade p,
+body main #right-side .sub-upgrades .sub-upgrade p {
+  margin: 0;
+}
+html main #right-side .sub-upgrades .sub-upgrade,
+body main #right-side .sub-upgrades .sub-upgrade {
+  cursor: pointer;
+  flex: 0 0 calc(25% - 6px);
+  min-height: 50px;
+  max-height: fit-content;
+  min-width: 70px;
+  max-width: calc(25% - 6px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid orange;
+  font-size: 10px;
+  text-align: center;
+  flex-grow: 1;
+}
+html main #right-side .upgrades,
+body main #right-side .upgrades {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 1px solid white;
+}
+html main #right-side .upgrades .upgrade,
+body main #right-side .upgrades .upgrade {
+  cursor: pointer;
+  width: 100%;
+  height: 100px;
+  justify-content: space-between;
+  border: 1px solid limegreen;
+  font-size: 12px;
+  flex: 0 0 auto;
+  transition: all 0.2s ease;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+html main #right-side .upgrades .upgrade img,
+body main #right-side .upgrades .upgrade img {
+  height: 80%;
+  margin-left: 1rem;
+  max-width: 90px;
+  position: relative;
+  display: block;
+}
+html main #right-side .upgrades .upgrade strong,
+body main #right-side .upgrades .upgrade strong {
+  text-decoration: underline;
+  font-size: 1rem;
+}
+html main #right-side .upgrades .upgrade p,
+body main #right-side .upgrades .upgrade p {
+  margin: 0;
+}
+html main #right-side .upgrades .upgrade .owned-number,
+body main #right-side .upgrades .upgrade .owned-number {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+html main #right-side .upgrades::-webkit-scrollbar,
+body main #right-side .upgrades::-webkit-scrollbar {
+  width: 8px;
+}
+html main #right-side .upgrades::-webkit-scrollbar-thumb,
+body main #right-side .upgrades::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 4px;
+}
+html main #right-side .sub-upgrade:hover,
+html main #right-side .upgrade:hover,
+body main #right-side .sub-upgrade:hover,
+body main #right-side .upgrade:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+html footer,
+body footer {
+  flex: 0 0 auto;
+  text-align: center;
+  border-top: 1px solid white;
+  font-size: 0.8rem;
+  color: lightgray;
+  padding: 0.5rem 0;
+}
+html .dialog-overlay,
+body .dialog-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+html .dialog-overlay.active,
+body .dialog-overlay.active {
+  display: flex;
+}
+html .dialog-content,
+body .dialog-content {
+  background-color: #2a2a2a;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+html .dialog-content h2,
+body .dialog-content h2 {
+  margin-top: 0;
+  color: lightgray;
+  text-align: center;
+}
+html .dialog-body,
+body .dialog-body {
+  margin: 20px 0;
+}
+html .dialog-button,
+body .dialog-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #444;
+  color: lightgray;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+html .dialog-button:hover,
+body .dialog-button:hover {
+  background-color: #555;
+}
+html #reset-game,
+body #reset-game {
+  background-color: #d9534f;
+}
+html #reset-game:hover,
+body #reset-game:hover {
+  background-color: #c9302c;
+}
+html,
+body {
+  /* 🔒 Prevent text/image selection or dragging inside upgrades */
+}
+html .upgrade,
+html .upgrade *,
+html .sub-upgrade,
+html .sub-upgrade *,
+body .upgrade,
+body .upgrade *,
+body .sub-upgrade,
+body .sub-upgrade * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+html .upgrade img,
+html .sub-upgrade img,
+body .upgrade img,
+body .sub-upgrade img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/*# sourceMappingURL=style.css.map */

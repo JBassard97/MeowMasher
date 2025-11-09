@@ -1,0 +1,289 @@
+[
+  {
+    "id": 0,
+    "name": "Tiny Whiskers",
+    "cost": 100,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 1,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 1,
+    "name": "Toe Beans",
+    "cost": 500,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 1,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 2,
+    "name": "Sharp Claws",
+    "cost": 10000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 10,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 3,
+    "name": "Striped Fur",
+    "cost": 100000,
+    "bonus": 3,
+    "type": "clickPowerMultiplier",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 25,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 4,
+    "name": "Pink Bow",
+    "cost": 10000000,
+    "bonus": 5,
+    "type": "clickPowerMultiplier",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 50,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 5,
+    "name": "Belled Collar",
+    "cost": 100000000,
+    "bonus": 10,
+    "type": "clickPowerMultiplier",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 100,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 6,
+    "name": "Slit Pupils",
+    "cost": 1000000000,
+    "bonus": 20,
+    "type": "clickPowerMultiplier",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 150,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 7,
+    "name": "Ear Tufts",
+    "cost": 10000000000,
+    "bonus": 20,
+    "type": "clickPowerMultiplier",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 200,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 1000,
+    "name": "Head Scritches",
+    "cost": 1000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 1001,
+    "name": "Laser Pointer",
+    "cost": 5000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 1002,
+    "name": "Wand Toy",
+    "cost": 50000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 1003,
+    "name": "Sun Patch",
+    "cost": 5000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 1004,
+    "name": "Dental Surgery",
+    "cost": 500000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 1005,
+    "name": "Night Vision",
+    "cost": 50000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 150
+  },
+  {
+    "id": 2000,
+    "name": "Automatic Fountian",
+    "cost": 11000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 2001,
+    "name": "Milk",
+    "cost": 55000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 2002,
+    "name": "Long Tail",
+    "cost": 550000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 2003,
+    "name": "Pink Nose",
+    "cost": 55000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 2004,
+    "name": "Big Stretches",
+    "cost": 5500000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 2005,
+    "name": "Granny's Lap",
+    "cost": 550000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 150
+  },
+  {
+    "id": 3000,
+    "name": "Heated Bed",
+    "cost": 120000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 3001,
+    "name": "Zoomies",
+    "cost": 600000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 3002,
+    "name": "Meow",
+    "cost": 6000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 3003,
+    "name": "Aloof Attitude",
+    "cost": 600000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 3004,
+    "name": "Under the Bed",
+    "cost": 60000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 3005,
+    "name": "On the Bed",
+    "cost": 6000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 150
+  },
+  {
+    "id": 4000,
+    "name": "Feather Wand",
+    "cost": 1300000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 4,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 4001,
+    "name": "Cat Tunnel",
+    "cost": 6500000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 4,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 4002,
+    "name": "Feather Wand",
+    "cost": 65000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 4,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 4003,
+    "name": "Feather Wand",
+    "cost": 6500000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 4,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 4004,
+    "name": "Wall Scratches",
+    "cost": 650000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 4,
+    "unlockRequirement": 100
+  }
+]

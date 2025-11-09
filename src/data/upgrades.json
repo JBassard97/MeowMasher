@@ -1,0 +1,72 @@
+[
+  {
+    "id": 0,
+    "name": "(Dry) Cat Food",
+    "baseCost": 15,
+    "rate": 1,
+    "image": "./src/assets/images/upgrades/drycatfood.png"
+  },
+  {
+    "id": 1,
+    "name": "(Wet) Cat Food",
+    "baseCost": 100,
+    "rate": 4,
+    "image": "./src/assets/images/upgrades/wetcatfood.png"
+  },
+  {
+    "id": 2,
+    "name": "Water Bowl",
+    "baseCost": 1100,
+    "rate": 8,
+    "image": "./src/assets/images/upgrades/waterbowl.png"
+  },
+  {
+    "id": 3,
+    "name": "Mouse Toy",
+    "baseCost": 12000,
+    "rate": 47,
+    "image": "./src/assets/images/upgrades/mousetoy.png"
+  },
+  {
+    "id": 4,
+    "name": "Scratching Post",
+    "baseCost": 130000,
+    "rate": 260,
+    "image": "./src/assets/images/upgrades/scratchingpost.png"
+  },
+  {
+    "id": 5,
+    "name": "Litter Box",
+    "baseCost": 1400000,
+    "rate": 1430,
+    "image": "./src/assets/images/upgrades/litterbox.png"
+  },
+  {
+    "id": 6,
+    "name": "Cat Tree",
+    "baseCost": 20000000,
+    "rate": 11000,
+    "image": "./src/assets/images/upgrades/cattree.png"
+  },
+  {
+    "id": 7,
+    "name": "Yogurt Tubes",
+    "baseCost": 330000000,
+    "rate": 75000,
+    "image": "./src/assets/images/upgrades/churu.png"
+  },
+  {
+    "id": 8,
+    "name": "Catnip",
+    "baseCost": 5000000000,
+    "rate": 1000000,
+    "image": "./src/assets/images/upgrades/catnip.png"
+  },
+  {
+    "id": 9,
+    "name": "Cardboard Box",
+    "baseCost": 75000000000,
+    "rate": 14000000,
+    "image": "./src/assets/images/upgrades/box.png"
+  }
+]

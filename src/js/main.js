@@ -68,9 +68,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       <img src="${u.image || "src/assets/images/placeholder.png"}" alt="${
         u.name
       }" style="height: 100%" />
-        <div>
+        <div class="upgrade-info">
         <strong>${u.name}</strong>
-        <p>Cost: ${cost.toLocaleString()} Mewnits</p>
+        <p>${cost.toLocaleString()} Mewnits</p>
         <p>+${effectiveRate.toLocaleString()} Mew/S</p>
         </div>
         <p class="owned-number">${u.owned}</p>
@@ -143,6 +143,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     updateAffordability();
+    updateSubUpgradeAffordability(); // 🧩 ensure visuals are correct
   }
 
   // --- Purchase functions ---
@@ -152,6 +153,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     count -= cost;
     u.owned++;
     counterDisplay.textContent = count.toLocaleString();
+    updateSubUpgradeAffordability(); // 🧩 reflect spending immediately
     saveAndUpdate();
     renderUpgrades();
     renderSubUpgrades();
@@ -199,6 +201,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     storage.setSubUpgradeOwned(u.id);
     storage.setMewnits(count);
     counterDisplay.textContent = count.toLocaleString();
+    updateSubUpgradeAffordability(); // 🧩 reflect spending immediately
 
     updateAutoRate();
     updateDisplayStats();
@@ -215,6 +218,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     storage.addLifetimeMewnits(increment);
     rotateCat();
     counterDisplay.textContent = count.toLocaleString();
+    updateSubUpgradeAffordability(); // 🧩 reflect new affordability instantly
     saveAndUpdate();
   });
 
@@ -245,6 +249,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     clickRateDisplay.textContent = clickPower;
   }
 
+  function updateSubUpgradeAffordability() {
+    const sortedSubs = [...subUpgrades].sort((a, b) => a.cost - b.cost);
+    const subDivs = subUpgradesContainer.querySelectorAll(".sub-upgrade");
+
+    sortedSubs
+      .filter((u) => !storage.getSubUpgradeOwned(u.id))
+      .forEach((u, i) => {
+        const div = subDivs[i];
+        if (!div) return;
+
+        const affordable = count >= u.cost;
+        div.style.opacity = affordable ? "1" : "0.4";
+        div.style.cursor = affordable ? "pointer" : "default";
+        div.style.pointerEvents = affordable ? "auto" : "none";
+      });
+  }
+
   function updateAffordability() {
     const upgradeDivs = upgradesContainer.querySelectorAll(".upgrade");
     upgrades.forEach((u, i) => {
@@ -256,18 +277,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       div.style.pointerEvents = affordable ? "auto" : "none";
     });
 
-    const sortedSubs = [...subUpgrades].sort((a, b) => a.cost - b.cost);
-    const subDivs = subUpgradesContainer.querySelectorAll(".sub-upgrade");
-
-    sortedSubs
-      .filter((u) => !storage.getSubUpgradeOwned(u.id))
-      .forEach((u, i) => {
-        const div = subDivs[i];
-        if (!div) return;
-        const affordable = count >= u.cost;
-        div.style.opacity = affordable ? "1" : "0.4";
-        div.style.cursor = affordable ? "pointer" : "default";
-      });
+    updateSubUpgradeAffordability();
   }
 
   // --- Auto increment cycle ---
@@ -275,7 +285,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (autoInterval) clearInterval(autoInterval);
 
     if (autoRate > 0) {
-      // run the first tick immediately so it never pauses after purchases
       const runTick = () => {
         const prev = count;
         count += autoRate;
@@ -286,12 +295,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         updateDisplayStats();
         updateAffordability();
+        updateSubUpgradeAffordability(); // 🧩 reflect auto-earned Mewnits
       };
 
-      // ⏩ Run one instantly (fixes the “pause”)
-      runTick();
-
-      // 🔁 Then continue once per second
+      runTick(); // ⏩ Run immediately
       autoInterval = setInterval(runTick, 1000);
     }
   }

@@ -1,6 +1,11 @@
 @charset "UTF-8";
 html,
 body {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
   margin: 0;
   padding: 0;
   width: 100vw;
@@ -9,6 +14,7 @@ body {
   box-sizing: border-box;
   background-color: black;
   color: white;
+  font-family: "Finger Paint", cursive;
   display: flex;
   flex-direction: column;
 }
@@ -31,6 +37,7 @@ body header h1 {
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
+  font-size: 2rem;
 }
 html header #settings-icon,
 body header #settings-icon {
@@ -71,6 +78,7 @@ html main #left-side #stats,
 body main #left-side #stats {
   border: 1px solid white;
   text-align: center;
+  padding: 0.5rem;
 }
 html main #left-side #stats p,
 body main #left-side #stats p {
@@ -80,7 +88,18 @@ body main #left-side #stats p {
 html main #left-side #stats .counter-display,
 body main #left-side #stats .counter-display {
   font-size: 1.6rem;
+  line-height: 1;
   font-weight: bold;
+}
+html main #left-side #stats .counter-display-mewnits,
+body main #left-side #stats .counter-display-mewnits {
+  line-height: 1;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+html main #left-side #stats .click-rate-display,
+body main #left-side #stats .click-rate-display {
+  line-height: 0.5rem;
 }
 html main #left-side .clicker-area,
 body main #left-side .clicker-area {
@@ -91,16 +110,15 @@ body main #left-side .clicker-area {
   background-image: url("../assets/images/yoink.jpg");
   background-size: cover;
   position: relative;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   overflow: hidden;
 }
 html main #left-side .clicker-area #clicker,
 body main #left-side .clicker-area #clicker {
   cursor: pointer;
-  width: 50%;
-  max-height: 300px;
-  transform: translateY(5rem);
+  width: 60%;
+  height: auto;
   transition: all 0.1s ease;
 }
 html main #left-side .clicker-area #clicker img,
@@ -111,7 +129,6 @@ body main #left-side .clicker-area #clicker img {
 }
 html main #left-side .clicker-area #clicker:active,
 body main #left-side .clicker-area #clicker:active {
-  transform: translateY(4.5rem);
   scale: 1.05;
 }
 html main #right-side .sub-upgrades,
@@ -120,7 +137,7 @@ body main #right-side .sub-upgrades {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  height: 250px;
+  height: 300px;
   overflow-y: auto;
   padding: 6px;
   box-sizing: border-box;
@@ -146,11 +163,11 @@ body main #right-side .sub-upgrades .sub-upgrade p {
 html main #right-side .sub-upgrades .sub-upgrade,
 body main #right-side .sub-upgrades .sub-upgrade {
   cursor: pointer;
-  flex: 0 0 calc(25% - 6px);
+  flex: 0 0 calc(50% - 6px);
   min-height: 50px;
   max-height: fit-content;
   min-width: 70px;
-  max-width: calc(25% - 6px);
+  max-width: calc(50% - 6px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -158,6 +175,8 @@ body main #right-side .sub-upgrades .sub-upgrade {
   font-size: 10px;
   text-align: center;
   flex-grow: 1;
+  line-height: 1;
+  padding: 0.25rem 0;
 }
 html main #right-side .upgrades,
 body main #right-side .upgrades {
@@ -173,38 +192,51 @@ html main #right-side .upgrades .upgrade,
 body main #right-side .upgrades .upgrade {
   cursor: pointer;
   width: 100%;
-  height: 100px;
-  justify-content: space-between;
+  min-height: 120px;
+  height: fit-content;
   border: 1px solid limegreen;
   font-size: 12px;
   flex: 0 0 auto;
   transition: all 0.2s ease;
   text-align: center;
   display: flex;
+  justify-content: space-evenly;
   align-items: center;
+  position: relative;
 }
 html main #right-side .upgrades .upgrade img,
 body main #right-side .upgrades .upgrade img {
-  height: 80%;
-  margin-left: 1rem;
-  max-width: 90px;
+  max-height: 80px;
+  max-width: 80px;
   position: relative;
   display: block;
 }
-html main #right-side .upgrades .upgrade strong,
-body main #right-side .upgrades .upgrade strong {
+html main #right-side .upgrades .upgrade .upgrade-info,
+body main #right-side .upgrades .upgrade .upgrade-info {
+  max-width: 50%;
+  text-align: left;
+}
+html main #right-side .upgrades .upgrade .upgrade-info strong,
+body main #right-side .upgrades .upgrade .upgrade-info strong {
   text-decoration: underline;
   font-size: 1rem;
 }
-html main #right-side .upgrades .upgrade p,
-body main #right-side .upgrades .upgrade p {
+html main #right-side .upgrades .upgrade .upgrade-info p,
+body main #right-side .upgrades .upgrade .upgrade-info p {
   margin: 0;
+  line-height: 1;
 }
 html main #right-side .upgrades .upgrade .owned-number,
 body main #right-side .upgrades .upgrade .owned-number {
-  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  font-size: 1.5rem;
   font-weight: bold;
-  margin-right: 1rem;
+  position: absolute;
+  top: 0;
+  left: 5px;
+  line-height: 1;
+  font-style: italic;
 }
 html main #right-side .upgrades::-webkit-scrollbar,
 body main #right-side .upgrades::-webkit-scrollbar {

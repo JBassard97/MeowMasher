@@ -11,3 +11,4 @@
     - Increase the Mew/S output of Upgrades
     - Unlocked via Upgrade amount requirement (ex: 50, 100, 150...)
     - id's start at 1000
+

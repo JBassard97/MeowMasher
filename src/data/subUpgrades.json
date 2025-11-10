@@ -243,7 +243,7 @@
   },
   {
     "id": 4000,
-    "name": "Feather Wand",
+    "name": "Soft Pillow",
     "cost": 1300000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -261,7 +261,7 @@
   },
   {
     "id": 4002,
-    "name": "Feather Wand",
+    "name": "9 Lives",
     "cost": 65000000,
     "bonus": 2,
     "type": "upgradeMultiplier",

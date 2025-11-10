@@ -1,6 +1,6 @@
 import { createCatRotator } from "./catRotation.js";
 import { storage } from "./storage.js";
-const mode = "";
+const mode = "dev";
 const devBonus = 500000;
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -53,6 +53,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     requestAnimationFrame(update);
   }
 
+  // --- Thousand Fingers Helper ---
+  // --- Thousand Fingers Helper ---
+  function updateThousandFingersBonus() {
+    const tf = subUpgrades.find((u) => u.type === "thousandFingers");
+    if (!tf || !storage.getSubUpgradeOwned(tf.id)) return;
+
+    // Count all non-(Dry) Cat Food upgrades owned
+    const nonDryOwned = upgrades
+      .filter((u) => u.name !== "(Dry) Cat Food" && u.owned > 0)
+      .reduce((sum, u) => sum + u.owned, 0);
+
+    const totalBonus = nonDryOwned * tf.bonus;
+
+    // Apply bonus to click power
+    clickPower = storage.getClickPower() + totalBonus;
+
+    // Apply bonus ONLY to (Dry) Cat Food's extraBonus for auto rate
+    upgrades.forEach((u) => {
+      if (u.name === "(Dry) Cat Food") {
+        u.extraBonus = totalBonus;
+      }
+    });
+  }
+
   // --- Rendering functions ---
   function renderUpgrades() {
     upgradesContainer.innerHTML = "";
@@ -60,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const cost = Math.floor(u.baseCost * Math.pow(1.15, u.owned));
       const affordable = count >= cost;
       const multiplier = u.multiplier || 1;
-      const effectiveRate = u.rate * multiplier;
+      const effectiveRate = u.rate * multiplier + (u.extraBonus || 0); // ← add extraBonus here
 
       const div = document.createElement("div");
       div.className = "upgrade";
@@ -68,13 +92,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       <img src="${u.image || "src/assets/images/placeholder.png"}" alt="${
         u.name
       }" style="height: 100%" />
-        <div class="upgrade-info">
+      <div class="upgrade-info">
         <strong>${u.name}</strong>
         <p>${cost.toLocaleString()} Mewnits</p>
         <p>+${effectiveRate.toLocaleString()} Mew/S</p>
-        </div>
-        <p class="owned-number">${u.owned}</p>
-      `;
+      </div>
+      <p class="owned-number">${u.owned}</p>
+    `;
 
       div.style.opacity = affordable ? "1" : "0.4";
       div.style.pointerEvents = affordable ? "auto" : "none";
@@ -130,20 +154,23 @@ document.addEventListener("DOMContentLoaded", async () => {
         description = `${u.bonus}x ${
           targetUpgrade?.name || "Unknown"
         } Production`;
+      } else if (u.type === "thousandFingers") {
+        div.style.borderColor = "gold";
+        description = `+1 Click Power & Dry Cat Food per non-Dry upgrade owned`;
       }
 
       div.innerHTML = `
-      <strong>${u.name}</strong>
-      <p>${u.cost.toLocaleString()} Mewnits</p>
-      <p>${description}</p>
-    `;
+        <strong>${u.name}</strong>
+        <p>${u.cost.toLocaleString()} Mewnits</p>
+        <p>${description}</p>
+      `;
 
       div.addEventListener("click", () => buySubUpgrade(u, div));
       subUpgradesContainer.appendChild(div);
     });
 
     updateAffordability();
-    updateSubUpgradeAffordability(); // 🧩 ensure visuals are correct
+    updateSubUpgradeAffordability();
   }
 
   // --- Purchase functions ---
@@ -153,8 +180,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     count -= cost;
     u.owned++;
     counterDisplay.textContent = count.toLocaleString();
-    updateSubUpgradeAffordability(); // 🧩 reflect spending immediately
+    updateSubUpgradeAffordability();
     saveAndUpdate();
+    updateThousandFingersBonus();
     renderUpgrades();
     renderSubUpgrades();
   }
@@ -196,17 +224,20 @@ document.addEventListener("DOMContentLoaded", async () => {
           targetUpgrade.multiplier
         );
       }
+    } else if (u.type === "thousandFingers") {
+      storage.setSubUpgradeOwned(u.id);
+      updateThousandFingersBonus();
     }
 
     storage.setSubUpgradeOwned(u.id);
     storage.setMewnits(count);
     counterDisplay.textContent = count.toLocaleString();
-    updateSubUpgradeAffordability(); // 🧩 reflect spending immediately
+    updateSubUpgradeAffordability();
 
     updateAutoRate();
     updateDisplayStats();
     renderUpgrades();
-    startAutoIncrement(); // 🧠 ensure lifetime updates immediately
+    startAutoIncrement();
 
     if (div && div.parentNode) div.parentNode.removeChild(div);
   }
@@ -218,7 +249,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     storage.addLifetimeMewnits(increment);
     rotateCat();
     counterDisplay.textContent = count.toLocaleString();
-    updateSubUpgradeAffordability(); // 🧩 reflect new affordability instantly
+    updateSubUpgradeAffordability();
     saveAndUpdate();
   });
 
@@ -226,7 +257,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   function updateAutoRate() {
     autoRate = upgrades.reduce((sum, u) => {
       const multiplier = u.multiplier || 1;
-      return sum + u.owned * u.rate * multiplier;
+      const extra = u.extraBonus || 0;
+      return sum + u.owned * (u.rate * multiplier + extra);
     }, 0);
   }
 
@@ -235,12 +267,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     upgrades.forEach((u) => {
       storage.setUpgradeOwned(u.id, u.owned);
     });
+
     const oldRate = autoRate;
     updateAutoRate();
+    updateThousandFingersBonus();
     updateDisplayStats();
     updateAffordability();
 
-    // 🧩 Restart the auto increment if rate just changed
     if (autoRate !== oldRate) startAutoIncrement();
   }
 
@@ -295,16 +328,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         updateDisplayStats();
         updateAffordability();
-        updateSubUpgradeAffordability(); // 🧩 reflect auto-earned Mewnits
+        updateSubUpgradeAffordability();
       };
 
-      runTick(); // ⏩ Run immediately
+      runTick();
       autoInterval = setInterval(runTick, 1000);
     }
   }
 
   // --- Init ---
   updateAutoRate();
+  updateThousandFingersBonus();
   counterDisplay.textContent = count.toLocaleString();
   updateDisplayStats();
   renderUpgrades();

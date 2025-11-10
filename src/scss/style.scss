@@ -24,7 +24,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 1rem;
-    border: 1px solid white;
+    border-bottom: 1px solid gray;
 
     h1 {
       font-weight: 900;
@@ -35,7 +35,7 @@ body {
       color: transparent;
       -webkit-background-clip: text;
       background-clip: text;
-      font-size: 2rem;
+      font-size: clamp(1rem, 6vw, 2.5rem);
     }
 
     #settings-icon {
@@ -64,7 +64,7 @@ body {
     #left-side,
     #right-side {
       width: 50%;
-      border: 1px solid white;
+      // border: 1px solid white;
       height: 100%;
       display: flex;
       flex-direction: column; // stack children vertically
@@ -73,9 +73,10 @@ body {
 
     #left-side {
       #stats {
-        border: 1px solid white;
+        // border: 1px solid white;
         text-align: center;
         padding: 0.5rem;
+        z-index: 5;
 
         p {
           margin: 0;
@@ -110,6 +111,7 @@ body {
         justify-content: flex-end;
         align-items: center;
         overflow: hidden;
+        padding-bottom: 1rem;
 
         #clicker {
           cursor: pointer;
@@ -132,7 +134,7 @@ body {
 
     #right-side {
       .sub-upgrades {
-        border: 1px solid white;
+        border: 1px solid gray;
         display: flex;
         flex-wrap: wrap;
         gap: 6px; // optional spacing between items
@@ -181,7 +183,7 @@ body {
         min-height: 0; // allows proper scrolling
         overflow-y: auto; // scroll only this section
         overflow-x: hidden;
-        border: 1px solid white;
+        border: 1px solid gray;
 
         .upgrade {
           cursor: pointer;
@@ -252,7 +254,7 @@ body {
   footer {
     flex: 0 0 auto;
     text-align: center;
-    border-top: 1px solid white;
+    border-top: 1px solid gray;
     font-size: 0.8rem;
     color: lightgray;
     padding: 0.5rem 0;

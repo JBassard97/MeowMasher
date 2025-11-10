@@ -31,10 +31,10 @@
   },
   {
     "id": 3,
-    "name": "Striped Fur",
+    "name": "Thousand Fingers",
     "cost": 100000,
-    "bonus": 3,
-    "type": "clickPowerMultiplier",
+    "bonus": 1,
+    "type": "thousandFingers",
     "targetUpgradeId": 0,
     "unlockRequirement": 25,
     "alsoUpgradeMultiplier": true
@@ -284,6 +284,105 @@
     "bonus": 2,
     "type": "upgradeMultiplier",
     "targetUpgradeId": 4,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 5000,
+    "name": "Gentle Purr",
+    "cost": 14000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 5,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 5001,
+    "name": "Wall Scratches",
+    "cost": 70000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 5,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 5002,
+    "name": "Wall Scratches",
+    "cost": 700000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 5,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 5003,
+    "name": "Wall Scratches",
+    "cost": 70000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 5,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 5004,
+    "name": "Wall Scratches",
+    "cost": 7000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 5,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 5005,
+    "name": "Wall Scratches",
+    "cost": 700000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 5,
+    "unlockRequirement": 150
+  },
+  {
+    "id": 6000,
+    "name": "Wall Scratches",
+    "cost": 200000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 6,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 6001,
+    "name": "Wall Scratches",
+    "cost": 1000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 6,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 6002,
+    "name": "Wall Scratches",
+    "cost": 10000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 6,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 6003,
+    "name": "Wall Scratches",
+    "cost": 1000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 6,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 6004,
+    "name": "Wall Scratches",
+    "cost": 100000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 6,
     "unlockRequirement": 100
   }
 ]

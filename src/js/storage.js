@@ -26,4 +26,10 @@ export const storage = {
     localStorage.setItem("lifetimeMewnits", current + amount);
   },
   resetLifetimeMewnits: () => localStorage.setItem("lifetimeMewnits", 0),
+
+  // --- Thousand Fingers Bonus ---
+  getThousandFingersBonus: () =>
+    Number(localStorage.getItem("thousandFingersBonus")) || 0,
+  setThousandFingersBonus: (value) =>
+    localStorage.setItem("thousandFingersBonus", value),
 };

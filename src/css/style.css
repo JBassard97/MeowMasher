@@ -25,7 +25,7 @@ body header {
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
-  border: 1px solid white;
+  border-bottom: 1px solid gray;
 }
 html header h1,
 body header h1 {
@@ -37,7 +37,7 @@ body header h1 {
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  font-size: 2rem;
+  font-size: clamp(1rem, 6vw, 2.5rem);
 }
 html header #settings-icon,
 body header #settings-icon {
@@ -68,7 +68,6 @@ html main #right-side,
 body main #left-side,
 body main #right-side {
   width: 50%;
-  border: 1px solid white;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -76,9 +75,9 @@ body main #right-side {
 }
 html main #left-side #stats,
 body main #left-side #stats {
-  border: 1px solid white;
   text-align: center;
   padding: 0.5rem;
+  z-index: 5;
 }
 html main #left-side #stats p,
 body main #left-side #stats p {
@@ -113,6 +112,7 @@ body main #left-side .clicker-area {
   justify-content: flex-end;
   align-items: center;
   overflow: hidden;
+  padding-bottom: 1rem;
 }
 html main #left-side .clicker-area #clicker,
 body main #left-side .clicker-area #clicker {
@@ -133,7 +133,7 @@ body main #left-side .clicker-area #clicker:active {
 }
 html main #right-side .sub-upgrades,
 body main #right-side .sub-upgrades {
-  border: 1px solid white;
+  border: 1px solid gray;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -186,7 +186,7 @@ body main #right-side .upgrades {
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  border: 1px solid white;
+  border: 1px solid gray;
 }
 html main #right-side .upgrades .upgrade,
 body main #right-side .upgrades .upgrade {
@@ -257,7 +257,7 @@ html footer,
 body footer {
   flex: 0 0 auto;
   text-align: center;
-  border-top: 1px solid white;
+  border-top: 1px solid gray;
   font-size: 0.8rem;
   color: lightgray;
   padding: 0.5rem 0;

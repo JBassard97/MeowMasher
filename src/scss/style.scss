@@ -138,8 +138,9 @@ body {
       .sub-upgrades {
         border: 1px solid gray;
         display: flex;
+        justify-content: space-evenly;
+        
         flex-wrap: wrap;
-        gap: 6px; // optional spacing between items
         height: 300px;
         overflow-y: auto; // scroll vertically when overflowing
         padding: 6px;
@@ -176,6 +177,7 @@ body {
           flex-grow: 1;
           line-height: 1;
           padding: 0.5rem;
+          margin-bottom: 0.25rem;
         }
       }
 

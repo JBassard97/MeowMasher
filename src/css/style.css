@@ -137,8 +137,8 @@ html main #right-side .sub-upgrades,
 body main #right-side .sub-upgrades {
   border: 1px solid gray;
   display: flex;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  gap: 6px;
   height: 300px;
   overflow-y: auto;
   padding: 6px;
@@ -180,6 +180,7 @@ body main #right-side .sub-upgrades .sub-upgrade {
   flex-grow: 1;
   line-height: 1;
   padding: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 html main #right-side .upgrades,
 body main #right-side .upgrades {

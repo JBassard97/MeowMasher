@@ -20,7 +20,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // --- Persistent State ---
   let count = storage.getMewnits();
-  let clickPower = storage.getClickPower();
+  let baseClickPower = storage.getClickPower(); // 🧩 permanent click power
+  let clickPower = baseClickPower; // effective (includes bonuses)
   let autoRate = 0;
   let autoInterval = null;
   let animationFrame = null;
@@ -55,34 +56,34 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // --- Thousand Fingers Helper ---
   function updateThousandFingersBonus() {
-    // Find all owned Thousand Fingers-type sub-upgrades
     const ownedTFs = subUpgrades.filter(
       (u) => u.type === "thousandFingers" && storage.getSubUpgradeOwned(u.id)
     );
 
-    if (!ownedTFs.length) return;
+    // no TF upgrades → revert to base power
+    if (!ownedTFs.length) {
+      clickPower = baseClickPower;
+      upgrades.forEach((u) => {
+        if (u.name === "(Dry) Cat Food") u.extraBonus = 0;
+      });
+      return;
+    }
 
-    // Count all non-(Dry) Cat Food upgrades owned
     const nonDryOwned = upgrades
       .filter((u) => u.name !== "(Dry) Cat Food" && u.owned > 0)
       .reduce((sum, u) => sum + u.owned, 0);
 
-    // Base bonus is first TF bonus (original Thousand Fingers)
     let totalBonus = nonDryOwned;
 
     ownedTFs.forEach((tf) => {
-      // If it has a bonus multiplier (like Million Fingers), multiply
-      if (tf.bonus && tf.id !== 1) {
-        totalBonus *= tf.bonus; // Million Fingers multiplies the count
-      } else {
-        totalBonus *= tf.bonus; // normal Thousand Fingers
-      }
+      if (tf.bonus && tf.id !== 1) totalBonus *= tf.bonus;
+      else totalBonus *= tf.bonus;
     });
 
-    // Apply bonus to click power
-    clickPower = storage.getClickPower() + totalBonus;
+    // 🧠 Add TF bonus on top of base only
+    clickPower = baseClickPower + totalBonus;
 
-    // Apply bonus ONLY to (Dry) Cat Food's extraBonus for auto rate
+    // 🐾 Apply TF bonus to Dry Cat Food only
     upgrades.forEach((u) => {
       if (u.name === "(Dry) Cat Food") {
         u.extraBonus = totalBonus;
@@ -97,7 +98,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const cost = Math.floor(u.baseCost * Math.pow(1.15, u.owned));
       const affordable = count >= cost;
       const multiplier = u.multiplier || 1;
-      const effectiveRate = u.rate * multiplier + (u.extraBonus || 0); // ← add extraBonus here
+      const effectiveRate = u.rate * multiplier + (u.extraBonus || 0);
 
       const div = document.createElement("div");
       div.className = "upgrade";
@@ -107,8 +108,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       }" style="height: 100%" />
       <div class="upgrade-info">
         <strong>${u.name}</strong>
-        <p>${cost.toLocaleString()} Mewnits</p>
-        <p>+${effectiveRate.toLocaleString()} Mew/S</p>
+        <div>
+        <p><b>${cost.toLocaleString()}</b> <span style="font-size:0.6rem">Mewnits</span></p>
+        <p><b>+${effectiveRate.toLocaleString()}</b> <span style="font-size:0.6rem">Mew/S</span></p>
+        </div>
       </div>
       <p class="owned-number">${u.owned}</p>
     `;
@@ -154,32 +157,33 @@ document.addEventListener("DOMContentLoaded", async () => {
       );
 
       if (u.type === "clickPowerAdder") {
-        div.style.borderColor = "cyan";
-        description = `+${u.bonus} Click Power`;
+        div.style.borderColor = "hotpink";
+        description = `<b>+${u.bonus}</b> Click Power`;
       } else if (u.type === "clickPowerMultiplier") {
-        div.style.borderColor = "cyan";
         if (u.alsoUpgradeMultiplier && targetUpgrade) {
-          description = `${u.bonus}x Click Power & ${u.bonus}x ${targetUpgrade.name}`;
+          div.style.borderColor = "cyan";
+          description = `<b>${u.bonus}x</b> Click Power & <b>${u.bonus}x</b> ${targetUpgrade.name}`;
         } else {
-          description = `${u.bonus}x Click Power`;
+          div.style.borderColor = "limegreen";
+          description = `<b>${u.bonus}x</b> Click Power`;
         }
       } else if (u.type === "upgradeMultiplier") {
         div.style.borderColor = "magenta";
-        description = `${u.bonus}x ${
+        description = `<b>${u.bonus}x</b> ${
           targetUpgrade?.name || "Unknown"
         } Production`;
       } else if (u.type === "thousandFingers") {
         div.style.borderColor = "gold";
         if (u.name !== "Thousand Fingers") {
-          description = `${u.bonus}x Thousand Fingers Effect`;
+          description = `<b>${u.bonus}x</b> Thousand Fingers Effect`;
         } else {
-          description = `+1 Click Power & Dry Cat Food per non-Dry upgrade owned`;
+          description = `<b>+1</b> Click Power & Dry Cat Food per non-Dry upgrade owned`;
         }
       }
 
       div.innerHTML = `
         <strong>${u.name}</strong>
-        <p>${u.cost.toLocaleString()} Mewnits</p>
+        <p><b>${u.cost.toLocaleString()}</b> <span style="font-size:0.5rem">Mewnits</span></p>
         <p>${description}</p>
       `;
 
@@ -213,11 +217,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     count -= u.cost;
 
     if (u.type === "clickPowerAdder") {
-      clickPower += u.bonus;
-      storage.setClickPower(clickPower);
+      baseClickPower += u.bonus; // 🧩 only modify base power
+      storage.setClickPower(baseClickPower);
+      updateThousandFingersBonus();
     } else if (u.type === "clickPowerMultiplier") {
-      clickPower *= u.bonus;
-      storage.setClickPower(clickPower);
+      baseClickPower *= u.bonus;
+      storage.setClickPower(baseClickPower);
+      updateThousandFingersBonus();
 
       if (u.targetUpgradeId !== undefined && u.alsoUpgradeMultiplier) {
         const targetUpgrade = upgrades.find(
@@ -245,7 +251,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (u.type === "thousandFingers") {
       storage.setSubUpgradeOwned(u.id);
       updateThousandFingersBonus();
-      // ✅ Immediately recalc everything using the new TF bonus
       updateAutoRate();
       updateDisplayStats();
       startAutoIncrement();
@@ -301,7 +306,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function updateDisplayStats() {
     rateDisplay.textContent = autoRate.toLocaleString();
-    clickRateDisplay.textContent = clickPower;
+    clickRateDisplay.textContent = clickPower.toLocaleString();
   }
 
   function updateSubUpgradeAffordability() {
@@ -312,7 +317,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       const u = subUpgrades.find((s) => s.id === id);
       if (!u) return;
 
-      // Check unlock conditions
       let unlocked = true;
       if (
         u.unlockRequirement !== undefined &&
@@ -332,9 +336,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         unlocked = false;
       }
 
-      // Affordable only if enough Mewnits AND unlocked
       const affordable = unlocked && count >= u.cost;
-
       div.style.opacity = affordable ? "1" : "0.4";
       div.style.cursor = affordable ? "pointer" : "default";
       div.style.pointerEvents = affordable ? "auto" : "none";

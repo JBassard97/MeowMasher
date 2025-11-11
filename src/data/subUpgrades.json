@@ -465,5 +465,45 @@
     "type": "upgradeMultiplier",
     "targetUpgradeId": 8,
     "unlockRequirement": 50
+  },
+  {
+    "id": 100000,
+    "name": "1 Mewnit/S Reward",
+    "cost": 300,
+    "bonus": 1,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 1
+  },
+  {
+    "id": 1000001,
+    "name": "10 Mewnits/S Reward",
+    "cost": 3000,
+    "bonus": 2,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 10
+  },
+  {
+    "id": 100002,
+    "name": "100 Mewnits/S Reward",
+    "cost": 30000,
+    "bonus": 3,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 100
+  },
+  {
+    "id": 100003,
+    "name": "1000 Mewnits/S Reward",
+    "cost": 300000,
+    "bonus": 5,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 1000
+  },
+  {
+    "id": 100004,
+    "name": "10000 Mewnits/S Reward",
+    "cost": 3000000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 10000
   }
 ]

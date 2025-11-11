@@ -1,14 +1,20 @@
 # subUpgrades:
 
-## clickPower
+## JSON Map
 
-    - Increases click power by a hard number
-    - Unlocked via Mew/S requirement
-    - id's start at 0
+### Tiered Sub-Upgrades
 
-## upgradeMultiplier
+    - 0-999 = Tiered Sub-Upgrades for Upgrade id 0
+    - 1000-1999 = Tiered Sub-Upgrades for Upgrade id 1
+    - 2000-2999 = Tiered Sub-Upgrades for Upgrade id 2
+    - 3000-3999 = Tiered Sub-Upgrades for Upgrade id 3
+    - 4000-4999 = Tiered Sub-Upgrades for Upgrade id 4
+    - 5000-5999 = Tiered Sub-Upgrades for Upgrade id 5
+    - 6000-6999 = Tiered Sub-Upgrades for Upgrade id 6
+    - 7000-7999 = Tiered Sub-Upgrades for Upgrade id 7
+    - 8000-8999 = Tiered Sub-Upgrades for Upgrade id 8
+    - 9000-9999 = Tiered Sub-Upgrades for Upgrade id 9
 
-    - Increase the Mew/S output of Upgrades
-    - Unlocked via Upgrade amount requirement (ex: 50, 100, 150...)
-    - id's start at 1000
+### Unlocked based on Mew/S
 
+    -100000-109999 = Unlocked based on Mew/S and upgrade clickPower

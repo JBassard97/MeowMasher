@@ -38,6 +38,8 @@ body header h1 {
   -webkit-background-clip: text;
   background-clip: text;
   font-size: clamp(1rem, 6vw, 2.5rem);
+  padding: 0;
+  margin: 1rem;
 }
 html header #settings-icon,
 body header #settings-icon {
@@ -167,16 +169,17 @@ body main #right-side .sub-upgrades .sub-upgrade {
   min-height: 50px;
   max-height: fit-content;
   min-width: 70px;
-  max-width: calc(50% - 6px);
+  max-width: 40%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  border: 1px solid orange;
+  justify-content: space-between;
+  border: 1px solid transparent;
+  border-radius: 10px;
   font-size: 10px;
   text-align: center;
   flex-grow: 1;
   line-height: 1;
-  padding: 0.25rem 0;
+  padding: 0.5rem;
 }
 html main #right-side .upgrades,
 body main #right-side .upgrades {
@@ -213,16 +216,29 @@ body main #right-side .upgrades .upgrade img {
 }
 html main #right-side .upgrades .upgrade .upgrade-info,
 body main #right-side .upgrades .upgrade .upgrade-info {
-  max-width: 50%;
+  width: 50%;
+  height: 100%;
   text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 html main #right-side .upgrades .upgrade .upgrade-info strong,
 body main #right-side .upgrades .upgrade .upgrade-info strong {
+  padding-top: 0.2rem;
   text-decoration: underline;
-  font-size: 1rem;
+  font-size: 0.95rem;
 }
-html main #right-side .upgrades .upgrade .upgrade-info p,
-body main #right-side .upgrades .upgrade .upgrade-info p {
+html main #right-side .upgrades .upgrade .upgrade-info div,
+body main #right-side .upgrades .upgrade .upgrade-info div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-bottom: 1.25rem;
+}
+html main #right-side .upgrades .upgrade .upgrade-info div p,
+body main #right-side .upgrades .upgrade .upgrade-info div p {
   margin: 0;
   line-height: 1;
 }
@@ -287,32 +303,6 @@ body .dialog-content {
   max-width: 400px;
   width: 90%;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-html .dialog-content h2,
-body .dialog-content h2 {
-  margin-top: 0;
-  color: lightgray;
-  text-align: center;
-}
-html .dialog-body,
-body .dialog-body {
-  margin: 20px 0;
-}
-html .dialog-button,
-body .dialog-button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 5px;
-  background-color: #444;
-  color: lightgray;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-html .dialog-button:hover,
-body .dialog-button:hover {
-  background-color: #555;
 }
 html #reset-game,
 body #reset-game {

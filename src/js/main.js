@@ -1,6 +1,6 @@
 import { createCatRotator } from "./catRotation.js";
 import { storage } from "./storage.js";
-const mode = "dev";
+const mode = "";
 const devBonus = 500000;
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -54,17 +54,30 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // --- Thousand Fingers Helper ---
-  // --- Thousand Fingers Helper ---
   function updateThousandFingersBonus() {
-    const tf = subUpgrades.find((u) => u.type === "thousandFingers");
-    if (!tf || !storage.getSubUpgradeOwned(tf.id)) return;
+    // Find all owned Thousand Fingers-type sub-upgrades
+    const ownedTFs = subUpgrades.filter(
+      (u) => u.type === "thousandFingers" && storage.getSubUpgradeOwned(u.id)
+    );
+
+    if (!ownedTFs.length) return;
 
     // Count all non-(Dry) Cat Food upgrades owned
     const nonDryOwned = upgrades
       .filter((u) => u.name !== "(Dry) Cat Food" && u.owned > 0)
       .reduce((sum, u) => sum + u.owned, 0);
 
-    const totalBonus = nonDryOwned * tf.bonus;
+    // Base bonus is first TF bonus (original Thousand Fingers)
+    let totalBonus = nonDryOwned;
+
+    ownedTFs.forEach((tf) => {
+      // If it has a bonus multiplier (like Million Fingers), multiply
+      if (tf.bonus && tf.id !== 1) {
+        totalBonus *= tf.bonus; // Million Fingers multiplies the count
+      } else {
+        totalBonus *= tf.bonus; // normal Thousand Fingers
+      }
+    });
 
     // Apply bonus to click power
     clickPower = storage.getClickPower() + totalBonus;
@@ -133,6 +146,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       const div = document.createElement("div");
       div.className = "sub-upgrade";
+      div.setAttribute("data-id", u.id);
 
       let description = "";
       const targetUpgrade = upgrades.find(
@@ -156,7 +170,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         } Production`;
       } else if (u.type === "thousandFingers") {
         div.style.borderColor = "gold";
-        description = `+1 Click Power & Dry Cat Food per non-Dry upgrade owned`;
+        if (u.name !== "Thousand Fingers") {
+          description = `${u.bonus}x Thousand Fingers Effect`;
+        } else {
+          description = `+1 Click Power & Dry Cat Food per non-Dry upgrade owned`;
+        }
       }
 
       div.innerHTML = `
@@ -180,9 +198,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     count -= cost;
     u.owned++;
     counterDisplay.textContent = count.toLocaleString();
+    updateThousandFingersBonus();
     updateSubUpgradeAffordability();
     saveAndUpdate();
-    updateThousandFingersBonus();
     renderUpgrades();
     renderSubUpgrades();
   }
@@ -227,6 +245,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (u.type === "thousandFingers") {
       storage.setSubUpgradeOwned(u.id);
       updateThousandFingersBonus();
+      // ✅ Immediately recalc everything using the new TF bonus
+      updateAutoRate();
+      updateDisplayStats();
+      startAutoIncrement();
     }
 
     storage.setSubUpgradeOwned(u.id);
@@ -283,20 +305,40 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function updateSubUpgradeAffordability() {
-    const sortedSubs = [...subUpgrades].sort((a, b) => a.cost - b.cost);
     const subDivs = subUpgradesContainer.querySelectorAll(".sub-upgrade");
 
-    sortedSubs
-      .filter((u) => !storage.getSubUpgradeOwned(u.id))
-      .forEach((u, i) => {
-        const div = subDivs[i];
-        if (!div) return;
+    subDivs.forEach((div) => {
+      const id = parseInt(div.getAttribute("data-id"), 10);
+      const u = subUpgrades.find((s) => s.id === id);
+      if (!u) return;
 
-        const affordable = count >= u.cost;
-        div.style.opacity = affordable ? "1" : "0.4";
-        div.style.cursor = affordable ? "pointer" : "default";
-        div.style.pointerEvents = affordable ? "auto" : "none";
-      });
+      // Check unlock conditions
+      let unlocked = true;
+      if (
+        u.unlockRequirement !== undefined &&
+        u.targetUpgradeId !== undefined
+      ) {
+        const targetUpgrade = upgrades.find(
+          (upgrade) => upgrade.id === u.targetUpgradeId
+        );
+        if (!targetUpgrade || targetUpgrade.owned < u.unlockRequirement)
+          unlocked = false;
+      }
+
+      if (
+        u.unlockRateRequirement !== undefined &&
+        autoRate < u.unlockRateRequirement
+      ) {
+        unlocked = false;
+      }
+
+      // Affordable only if enough Mewnits AND unlocked
+      const affordable = unlocked && count >= u.cost;
+
+      div.style.opacity = affordable ? "1" : "0.4";
+      div.style.cursor = affordable ? "pointer" : "default";
+      div.style.pointerEvents = affordable ? "auto" : "none";
+    });
   }
 
   function updateAffordability() {
@@ -337,8 +379,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // --- Init ---
-  updateAutoRate();
   updateThousandFingersBonus();
+  updateAutoRate();
   counterDisplay.textContent = count.toLocaleString();
   updateDisplayStats();
   renderUpgrades();

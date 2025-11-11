@@ -41,47 +41,47 @@
   },
   {
     "id": 4,
-    "name": "Pink Bow",
+    "name": "Million Fingers",
     "cost": 10000000,
     "bonus": 5,
-    "type": "clickPowerMultiplier",
+    "type": "thousandFingers",
     "targetUpgradeId": 0,
     "unlockRequirement": 50,
     "alsoUpgradeMultiplier": true
   },
   {
     "id": 5,
-    "name": "Belled Collar",
+    "name": "Billion Fingers",
     "cost": 100000000,
     "bonus": 10,
-    "type": "clickPowerMultiplier",
+    "type": "thousandFingers",
     "targetUpgradeId": 0,
     "unlockRequirement": 100,
     "alsoUpgradeMultiplier": true
   },
   {
     "id": 6,
-    "name": "Slit Pupils",
+    "name": "Trillion Fingers",
     "cost": 1000000000,
     "bonus": 20,
-    "type": "clickPowerMultiplier",
+    "type": "thousandFingers",
     "targetUpgradeId": 0,
     "unlockRequirement": 150,
     "alsoUpgradeMultiplier": true
   },
   {
     "id": 7,
-    "name": "Ear Tufts",
+    "name": " Quadrillion Fingers",
     "cost": 10000000000,
     "bonus": 20,
-    "type": "clickPowerMultiplier",
+    "type": "thousandFingers",
     "targetUpgradeId": 0,
     "unlockRequirement": 200,
     "alsoUpgradeMultiplier": true
   },
   {
     "id": 1000,
-    "name": "Head Scritches",
+    "name": "Wet Food Upgrade",
     "cost": 1000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -287,8 +287,17 @@
     "unlockRequirement": 100
   },
   {
+    "id": 4005,
+    "name": "Wall Scratches",
+    "cost": 65000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 4,
+    "unlockRequirement": 150
+  },
+  {
     "id": 5000,
-    "name": "Gentle Purr",
+    "name": "Bank 1",
     "cost": 14000000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -342,7 +351,7 @@
   },
   {
     "id": 6000,
-    "name": "Wall Scratches",
+    "name": "Temple 1",
     "cost": 200000000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -384,5 +393,77 @@
     "type": "upgradeMultiplier",
     "targetUpgradeId": 6,
     "unlockRequirement": 100
+  },
+  {
+    "id": 7000,
+    "name": "Wizard Tower 1",
+    "cost": 3300000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 7,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 7001,
+    "name": "Wizard Tower 2",
+    "cost": 16500000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 7,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 7002,
+    "name": "Wizard Tower 3",
+    "cost": 165000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 7,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 7003,
+    "name": "Wizard Tower 4",
+    "cost": 16500000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 7,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 8000,
+    "name": "Shipment 1",
+    "cost": 51000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 8,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 8001,
+    "name": "Shipment 2",
+    "cost": 255000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 8,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 8002,
+    "name": "Shipment 3",
+    "cost": 2550000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 8,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 8003,
+    "name": "Shipment 4",
+    "cost": 255000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 8,
+    "unlockRequirement": 50
   }
 ]

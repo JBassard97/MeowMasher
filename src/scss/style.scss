@@ -119,15 +119,25 @@ body {
           cursor: pointer;
           width: 60%;
           height: auto;
-          // transform: translateY(5rem);
+          display: flex; // make sure it wraps the image properly
+          justify-content: center;
+          align-items: center;
+          background-color: rgba(
+            0,
+            0,
+            0,
+            0.001
+          ); // invisible but ensures a full tap area
           transition: all 0.1s ease;
+
           img {
             width: 100%;
             max-height: 300px;
             object-fit: contain;
+            pointer-events: none; // 👈 ensures clicks go to the parent div, not the image
           }
+
           &:active {
-            // transform: translateY(4.5rem);
             scale: 1.05;
           }
         }
@@ -139,7 +149,7 @@ body {
         border: 1px solid gray;
         display: flex;
         justify-content: space-evenly;
-        
+
         flex-wrap: wrap;
         height: 300px;
         overflow-y: auto; // scroll vertically when overflowing

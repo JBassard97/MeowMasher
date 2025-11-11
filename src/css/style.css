@@ -121,6 +121,10 @@ body main #left-side .clicker-area #clicker {
   cursor: pointer;
   width: 60%;
   height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.001);
   transition: all 0.1s ease;
 }
 html main #left-side .clicker-area #clicker img,
@@ -128,6 +132,7 @@ body main #left-side .clicker-area #clicker img {
   width: 100%;
   max-height: 300px;
   object-fit: contain;
+  pointer-events: none;
 }
 html main #left-side .clicker-area #clicker:active,
 body main #left-side .clicker-area #clicker:active {

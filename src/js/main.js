@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const counterDisplay = document.getElementById("counter");
   const rateDisplay = document.getElementById("rate");
   const clickRateDisplay = document.getElementById("click-rate");
-  const clickerButton = document.getElementById("clicker");
+  // const clickerButton = document.getElementById("clicker");
+  const clickerButton = document.querySelector(".clicker-area");
   const clickerImg = clickerButton.querySelector("img");
   const upgradesContainer = document.querySelector(".upgrades");
   const subUpgradesContainer = document.querySelector(".sub-upgrades");
@@ -66,6 +67,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       upgrades.forEach((u) => {
         if (u.name === "Pats") u.extraBonus = 0;
       });
+
+      storage.setThousandFingersBonus(0);
       return;
     }
 
@@ -89,6 +92,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         u.extraBonus = totalBonus;
       }
     });
+
+    storage.setThousandFingersBonus(totalBonus);
   }
 
   // --- Rendering functions ---

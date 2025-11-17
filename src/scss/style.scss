@@ -109,6 +109,7 @@ body {
       }
 
       .clicker-area {
+        cursor: pointer;
         flex: 1 1 auto; // fill remaining vertical space
         min-height: 0; // ensures it does not overflow parent
         display: flex;
@@ -122,7 +123,6 @@ body {
         padding-bottom: 1rem;
 
         #clicker {
-          cursor: pointer;
           width: 60%;
           height: auto;
           display: flex; // make sure it wraps the image properly
@@ -303,6 +303,7 @@ body {
     padding: 0.5rem 0;
   }
 
+  // Don't touch
   .dialog-overlay {
     display: none;
     position: fixed;
@@ -316,17 +317,22 @@ body {
     align-items: center;
   }
 
+  // Don't Touch
   .dialog-overlay.active {
     display: flex;
   }
 
   .dialog-content {
     background-color: #2a2a2a;
-    padding: 30px;
+    padding: 1rem;
     border-radius: 10px;
+    border: 1px solid pink;
     max-width: 500px;
     width: 90%;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     h2,
     h3,
@@ -335,12 +341,18 @@ body {
       padding: 0;
     }
 
-    h2 {
-      margin-bottom: 1rem;
+    h1 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
       text-decoration: underline;
+      margin-top: 0.5rem;
     }
 
     button {
+      margin-top: 1rem;
       &:hover {
         cursor: pointer;
       }

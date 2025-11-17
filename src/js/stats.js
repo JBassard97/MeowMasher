@@ -6,8 +6,6 @@ const statsDialog = document.getElementById("stats-dialog");
 const closeStatsDialog = document.getElementById("close-stats-dialog");
 
 statsIcon.addEventListener("click", () => {
-  document.getElementById("stats-lifetime-mewnits-display").textContent =
-    storage.getLifetimeMewnits() || "0";
   statsDialog.classList.add("active");
 });
 
@@ -24,9 +22,20 @@ statsDialog.addEventListener("click", (e) => {
 
 setInterval(() => {
   if (statsDialog.classList.contains("active")) {
+    // Mewnits
     document.getElementById("stats-lifetime-mewnits-display").textContent =
       storage.getLifetimeMewnits().toLocaleString() || "0";
     document.getElementById("stats-current-mewnits-display").textContent =
       storage.getMewnits().toLocaleString() || "0";
+    // Clicks
+    document.getElementById(
+      "stats-current-clickpower-display"
+    ).textContent = `${storage.getClickPower().toLocaleString() || "1"} ${
+      storage.getThousandFingersBonus()
+        ? `(+${storage
+            .getThousandFingersBonus()
+            .toLocaleString()} from Thousand Pats)`
+        : ""
+    }`;
   }
 }, 1000);

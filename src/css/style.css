@@ -41,20 +41,31 @@ body header h1 {
   padding: 0;
   margin: 1rem;
 }
-html header #settings-icon,
-body header #settings-icon {
+html header .header-icons,
+body header .header-icons {
+  display: flex;
+  gap: 1rem;
+}
+html header .header-icons #settings-icon,
+html header .header-icons #stats-icon,
+body header .header-icons #settings-icon,
+body header .header-icons #stats-icon {
   cursor: pointer;
   width: 50px;
   height: 50px;
 }
-html header #settings-icon svg,
-body header #settings-icon svg {
+html header .header-icons #settings-icon svg,
+html header .header-icons #stats-icon svg,
+body header .header-icons #settings-icon svg,
+body header .header-icons #stats-icon svg {
   width: 100%;
   height: 100%;
   transition: fill 0.3s ease;
 }
-html header #settings-icon svg:hover,
-body header #settings-icon svg:hover {
+html header .header-icons #settings-icon svg:hover,
+html header .header-icons #stats-icon svg:hover,
+body header .header-icons #settings-icon svg:hover,
+body header .header-icons #stats-icon svg:hover {
   fill: rgb(135, 226, 248);
 }
 html main,
@@ -313,9 +324,27 @@ body .dialog-content {
   background-color: #2a2a2a;
   padding: 30px;
   border-radius: 10px;
-  max-width: 400px;
+  max-width: 500px;
   width: 90%;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+html .dialog-content h2,
+html .dialog-content h3,
+html .dialog-content p,
+body .dialog-content h2,
+body .dialog-content h3,
+body .dialog-content p {
+  margin: 0;
+  padding: 0;
+}
+html .dialog-content h2,
+body .dialog-content h2 {
+  margin-bottom: 1rem;
+  text-decoration: underline;
+}
+html .dialog-content button:hover,
+body .dialog-content button:hover {
+  cursor: pointer;
 }
 html #reset-game,
 body #reset-game {

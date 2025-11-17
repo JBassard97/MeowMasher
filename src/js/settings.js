@@ -1,7 +1,7 @@
 // --- Settings Dialog ---
 const settingsIcon = document.getElementById("settings-icon");
 const settingsDialog = document.getElementById("settings-dialog");
-const closeDialog = document.getElementById("close-dialog");
+const closeDialog = document.getElementById("close-settings-dialog");
 const resetGame = document.getElementById("reset-game");
 
 settingsIcon.addEventListener("click", () => {

@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "name": "Tiny Whiskers",
+    "name": "Gentle Pets",
     "cost": 100,
     "bonus": 2,
     "type": "clickPowerMultiplier",
@@ -11,7 +11,7 @@
   },
   {
     "id": 1,
-    "name": "Toe Beans",
+    "name": "Neck Scritches",
     "cost": 500,
     "bonus": 2,
     "type": "clickPowerMultiplier",
@@ -21,7 +21,7 @@
   },
   {
     "id": 2,
-    "name": "Sharp Claws",
+    "name": "Back Scratches",
     "cost": 10000,
     "bonus": 2,
     "type": "clickPowerMultiplier",
@@ -31,7 +31,7 @@
   },
   {
     "id": 3,
-    "name": "Thousand Fingers",
+    "name": "Thousand Pats",
     "cost": 100000,
     "bonus": 1,
     "type": "thousandFingers",
@@ -41,7 +41,7 @@
   },
   {
     "id": 4,
-    "name": "Million Fingers",
+    "name": "Million Pats",
     "cost": 10000000,
     "bonus": 5,
     "type": "thousandFingers",
@@ -51,7 +51,7 @@
   },
   {
     "id": 5,
-    "name": "Billion Fingers",
+    "name": "Billion Pats",
     "cost": 100000000,
     "bonus": 10,
     "type": "thousandFingers",
@@ -61,7 +61,7 @@
   },
   {
     "id": 6,
-    "name": "Trillion Fingers",
+    "name": "Trillion Pats",
     "cost": 1000000000,
     "bonus": 20,
     "type": "thousandFingers",
@@ -71,7 +71,7 @@
   },
   {
     "id": 7,
-    "name": " Quadrillion Fingers",
+    "name": " Quadrillion Pats",
     "cost": 10000000000,
     "bonus": 20,
     "type": "thousandFingers",
@@ -492,7 +492,7 @@
   },
   {
     "id": 100003,
-    "name": "1000 Mewnits/S Reward",
+    "name": "1,000 Mewnits/S Reward",
     "cost": 300000,
     "bonus": 5,
     "type": "clickPowerAdder",
@@ -500,7 +500,7 @@
   },
   {
     "id": 100004,
-    "name": "10000 Mewnits/S Reward",
+    "name": "10,000 Mewnits/S Reward",
     "cost": 3000000,
     "bonus": 2,
     "type": "clickPowerMultiplier",

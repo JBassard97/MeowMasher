@@ -40,17 +40,23 @@ body {
       margin: 1rem;
     }
 
-    #settings-icon {
-      cursor: pointer;
-      width: 50px;
-      height: 50px;
+    .header-icons {
+      display: flex;
+      gap: 1rem;
 
-      svg {
-        width: 100%;
-        height: 100%;
-        transition: fill 0.3s ease;
-        &:hover {
-          fill: rgb(135, 226, 248);
+      #settings-icon,
+      #stats-icon {
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+
+        svg {
+          width: 100%;
+          height: 100%;
+          transition: fill 0.3s ease;
+          &:hover {
+            fill: rgb(135, 226, 248);
+          }
         }
       }
     }
@@ -318,9 +324,27 @@ body {
     background-color: #2a2a2a;
     padding: 30px;
     border-radius: 10px;
-    max-width: 400px;
+    max-width: 500px;
     width: 90%;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+    h2,
+    h3,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+      text-decoration: underline;
+    }
+
+    button {
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 
   #reset-game {

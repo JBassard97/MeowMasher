@@ -1,6 +1,6 @@
 import { createCatRotator } from "./catRotation.js";
 import { storage } from "./storage.js";
-const mode = "";
+const mode = "dev";
 const devBonus = 500000;
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -64,16 +64,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (!ownedTFs.length) {
       clickPower = baseClickPower;
       upgrades.forEach((u) => {
-        if (u.name === "(Dry) Cat Food") u.extraBonus = 0;
+        if (u.name === "Pats") u.extraBonus = 0;
       });
       return;
     }
 
-    const nonDryOwned = upgrades
-      .filter((u) => u.name !== "(Dry) Cat Food" && u.owned > 0)
+    const nonPatsOwned = upgrades
+      .filter((u) => u.name !== "Pats" && u.owned > 0)
       .reduce((sum, u) => sum + u.owned, 0);
 
-    let totalBonus = nonDryOwned;
+    let totalBonus = nonPatsOwned;
 
     ownedTFs.forEach((tf) => {
       if (tf.bonus && tf.id !== 1) totalBonus *= tf.bonus;
@@ -83,9 +83,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     // 🧠 Add TF bonus on top of base only
     clickPower = baseClickPower + totalBonus;
 
-    // 🐾 Apply TF bonus to Dry Cat Food only
+    // 🐾 Apply TF bonus to Pats only
     upgrades.forEach((u) => {
-      if (u.name === "(Dry) Cat Food") {
+      if (u.name === "Pats") {
         u.extraBonus = totalBonus;
       }
     });
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (u.name !== "Thousand Fingers") {
           description = `<b>${u.bonus}x</b> Thousand Fingers Effect`;
         } else {
-          description = `<b>+1</b> Click Power & Dry Cat Food per non-Dry upgrade owned`;
+          description = `<b>+1</b> Click Power & <b>+1</b> Pats Per Non-Pats Upgrade Owned`;
         }
       }
 

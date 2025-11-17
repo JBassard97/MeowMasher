@@ -1,59 +1,59 @@
 [
   {
     "id": 0,
-    "name": "(Dry) Cat Food",
+    "name": "Pats",
     "baseCost": 15,
     "rate": 1,
-    "image": "./src/assets/images/upgrades/drycatfood.png"
+    "image": "./src/assets/images/upgrades/pats.png"
   },
   {
     "id": 1,
-    "name": "(Wet) Cat Food",
+    "name": "(Dry) Cat Food",
     "baseCost": 100,
     "rate": 4,
-    "image": "./src/assets/images/upgrades/wetcatfood.png"
+    "image": "./src/assets/images/upgrades/drycatfood.png"
   },
   {
     "id": 2,
-    "name": "Water Bowl",
+    "name": "(Wet) Cat Food",
     "baseCost": 1100,
     "rate": 8,
-    "image": "./src/assets/images/upgrades/waterbowl.png"
+    "image": "./src/assets/images/upgrades/wetcatfood.png"
   },
   {
     "id": 3,
-    "name": "Mouse Toy",
+    "name": "Water Bowl",
     "baseCost": 12000,
     "rate": 47,
-    "image": "./src/assets/images/upgrades/mousetoy.png"
+    "image": "./src/assets/images/upgrades/waterbowl.png"
   },
   {
     "id": 4,
-    "name": "Scratching Post",
+    "name": "Mouse Toy",
     "baseCost": 130000,
     "rate": 260,
-    "image": "./src/assets/images/upgrades/scratchingpost.png"
+    "image": "./src/assets/images/upgrades/mousetoy.png"
   },
   {
     "id": 5,
-    "name": "Litter Box",
+    "name": "Scratching Post",
     "baseCost": 1400000,
     "rate": 1430,
-    "image": "./src/assets/images/upgrades/litterbox.png"
+    "image": "./src/assets/images/upgrades/scratchingpost.png"
   },
   {
     "id": 6,
-    "name": "Cat Tree",
+    "name": "Litter Box",
     "baseCost": 20000000,
     "rate": 11000,
-    "image": "./src/assets/images/upgrades/cattree.png"
+    "image": "./src/assets/images/upgrades/litterbox.png"
   },
   {
     "id": 7,
-    "name": "Yogurt Tubes",
+    "name": "Cat Tree",
     "baseCost": 330000000,
     "rate": 75000,
-    "image": "./src/assets/images/upgrades/churu.png"
+    "image": "./src/assets/images/upgrades/cattree.png"
   },
   {
     "id": 8,

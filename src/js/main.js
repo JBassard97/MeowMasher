@@ -1,13 +1,12 @@
 import { createCatRotator } from "./catRotation.js";
 import { storage } from "./storage.js";
-const mode = "dev";
-const devBonus = 500000;
+const mode = "prod";
+const devBonus = 500;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const counterDisplay = document.getElementById("counter");
   const rateDisplay = document.getElementById("rate");
   const clickRateDisplay = document.getElementById("click-rate");
-  // const clickerButton = document.getElementById("clicker");
   const clickerButton = document.querySelector(".clicker-area");
   const clickerImg = clickerButton.querySelector("img");
   const upgradesContainer = document.querySelector(".upgrades");
@@ -152,6 +151,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (autoRate < u.unlockRateRequirement) return;
       }
 
+      if (u.unlockClickedMewnitsRequirement !== undefined) {
+        if (
+          storage.getLifetimeClickMewnits() < u.unlockClickedMewnitsRequirement
+        )
+          return;
+      }
+
       const div = document.createElement("div");
       div.className = "sub-upgrade";
       div.setAttribute("data-id", u.id);
@@ -179,11 +185,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         } Production`;
       } else if (u.type === "thousandFingers") {
         div.style.borderColor = "gold";
+        div.style.boxShadow = "0 0 10px gold";
         if (u.name !== "Thousand Fingers") {
-          description = `<b>${u.bonus}x</b> Thousand Fingers Effect`;
+          description = `<b>${u.bonus}x</b> Thousand Pats Bonus`;
         } else {
           description = `<b>+1</b> Click Power & <b>+1</b> Pats Per Non-Pats Upgrade Owned`;
         }
+      } else if (u.type === "percentOfMpsClickAdder") {
+        div.style.borderColor = "cornflowerblue";
+        description = `<b>+${u.bonus}%</b> of Mew/S added to Click Power`;
       }
 
       div.innerHTML = `
@@ -259,6 +269,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       updateAutoRate();
       updateDisplayStats();
       startAutoIncrement();
+    } else if (u.type === "percentOfMpsClickAdder") {
+      // Convert percent (1%) into multiplier (0.01)
+      const percent = u.bonus / 100;
+
+      storage.setPercentOfMpsClickAdder(percent);
+
+      // Apply to click power instantly
+      const mps = storage.getMewnitsPerSecond();
+      baseClickPower += Math.floor(mps * percent);
+      storage.setClickPower(baseClickPower);
+
+      updateThousandFingersBonus();
     }
 
     storage.setSubUpgradeOwned(u.id);
@@ -279,6 +301,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const increment = clickPower + (mode === "dev" ? devBonus : 0);
     count += increment;
     storage.addLifetimeMewnits(increment);
+    storage.addLifetimeClickMewnits(increment);
+    storage.addLifetimeClicks(); // Adds 1 by default
     rotateCat();
     counterDisplay.textContent = count.toLocaleString();
     updateSubUpgradeAffordability();
@@ -341,6 +365,13 @@ document.addEventListener("DOMContentLoaded", async () => {
         unlocked = false;
       }
 
+      if (
+        u.unlockClickedMewnitsRequirement !== undefined &&
+        storage.getLifetimeClickMewnits() < u.unlockClickedMewnitsRequirement
+      ) {
+        unlocked = false;
+      }
+
       const affordable = unlocked && count >= u.cost;
       div.style.opacity = affordable ? "1" : "0.4";
       div.style.cursor = affordable ? "pointer" : "default";
@@ -372,6 +403,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         count += autoRate;
 
         animateCounter(counterDisplay, prev, count, 1000);
+        storage.setMewnitsPerSecond(autoRate);
         storage.setMewnits(count);
         storage.addLifetimeMewnits(autoRate);
 

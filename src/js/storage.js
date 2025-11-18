@@ -27,9 +27,39 @@ export const storage = {
   },
   resetLifetimeMewnits: () => localStorage.setItem("lifetimeMewnits", 0),
 
+  // --- Lifetime Clicks ---
+  getLifetimeClicks: () => Number(localStorage.getItem("lifetimeClicks")) || 0,
+  addLifetimeClicks: (amount = 1) => {
+    const current = Number(localStorage.getItem("lifetimeClicks")) || 0;
+    localStorage.setItem("lifetimeClicks", current + amount);
+  },
+  resetLifetimeClicks: () => localStorage.setItem("lifetimeClicks", 0),
+
   // --- Thousand Fingers Bonus ---
   getThousandFingersBonus: () =>
     Number(localStorage.getItem("thousandFingersBonus")) || 0,
   setThousandFingersBonus: (value) =>
     localStorage.setItem("thousandFingersBonus", value),
+
+  // --- Lifetime Click-Generated Mewnits ---
+  getLifetimeClickMewnits: () =>
+    Number(localStorage.getItem("lifetimeClickMewnits")) || 0,
+  addLifetimeClickMewnits: (amount) => {
+    const current = Number(localStorage.getItem("lifetimeClickMewnits")) || 0;
+    localStorage.setItem("lifetimeClickMewnits", current + amount);
+  },
+  resetLifetimeClickMewnits: () =>
+    localStorage.setItem("lifetimeClickMewnits", 0),
+
+  // --- Percent-of-MPS-to-Click bonus ---
+  getPercentOfMpsClickAdder: () =>
+    Number(localStorage.getItem("percentOfMpsClickAdder")) || 0,
+  setPercentOfMpsClickAdder: (value) =>
+    localStorage.setItem("percentOfMpsClickAdder", value),
+
+  // --- Stored Mewnits Per Second ---
+  getMewnitsPerSecond: () =>
+    Number(localStorage.getItem("mewnitsPerSecond")) || 0,
+  setMewnitsPerSecond: (value) =>
+    localStorage.setItem("mewnitsPerSecond", value),
 };

@@ -28,6 +28,11 @@ setInterval(() => {
     document.getElementById("stats-current-mewnits-display").textContent =
       storage.getMewnits().toLocaleString() || "0";
     // Clicks
+    document.getElementById("stats-lifetime-clicks-display").textContent =
+      storage.getLifetimeClicks().toLocaleString() || "0";
+    document.getElementById(
+      "stats-lifetime-clicks-mewnits-display"
+    ).textContent = storage.getLifetimeClickMewnits().toLocaleString() || "0";
     document.getElementById(
       "stats-current-clickpower-display"
     ).textContent = `${storage.getClickPower().toLocaleString() || "1"} ${
@@ -37,5 +42,8 @@ setInterval(() => {
             .toLocaleString()} from Thousand Pats)`
         : ""
     }`;
+    // Active Bonuses
+    document.getElementById("stats-thousand-pats-display").textContent =
+      storage.getThousandFingersBonus().toLocaleString() || "0";
   }
 }, 1000);

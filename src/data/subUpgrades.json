@@ -729,5 +729,13 @@
     "bonus": 3,
     "type": "clickPowerMultiplier",
     "unlockRateRequirement": 1000000000000
+  },
+  {
+    "id": 200000,
+    "name": "1,000 Hand-Made Mewnits Reward",
+    "cost": 50000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 1000
   }
 ]

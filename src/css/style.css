@@ -127,6 +127,11 @@ body main #left-side .clicker-area {
   align-items: center;
   overflow: hidden;
   padding-bottom: 1rem;
+  transition: all 0.1s ease;
+}
+html main #left-side .clicker-area:active img,
+body main #left-side .clicker-area:active img {
+  scale: 1.05;
 }
 html main #left-side .clicker-area #clicker,
 body main #left-side .clicker-area #clicker {
@@ -144,10 +149,7 @@ body main #left-side .clicker-area #clicker img {
   max-height: 300px;
   object-fit: contain;
   pointer-events: none;
-}
-html main #left-side .clicker-area #clicker:active,
-body main #left-side .clicker-area #clicker:active {
-  scale: 1.05;
+  transition: all 0.1s ease;
 }
 html main #right-side .sub-upgrades,
 body main #right-side .sub-upgrades {
@@ -179,7 +181,7 @@ body main #right-side .sub-upgrades .sub-upgrade {
   align-items: center;
   min-height: auto;
   padding: 0.5rem;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   border-radius: 10px;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.03);
@@ -187,6 +189,7 @@ body main #right-side .sub-upgrades .sub-upgrade {
   font-size: 10px;
   text-align: center;
   line-height: 1.2;
+  box-shadow: 0 0 3px transparent;
 }
 html main #right-side .sub-upgrades .sub-upgrade strong,
 body main #right-side .sub-upgrades .sub-upgrade strong {
@@ -324,7 +327,6 @@ body .dialog-content {
   background-color: #2a2a2a;
   padding: 1rem;
   border-radius: 10px;
-  border: 1px solid pink;
   max-width: 500px;
   width: 90%;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
@@ -358,6 +360,12 @@ body .dialog-content button {
 html .dialog-content button:hover,
 body .dialog-content button:hover {
   cursor: pointer;
+}
+html .dialog-content .dialog-body,
+body .dialog-content .dialog-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 html #reset-game,
 body #reset-game {

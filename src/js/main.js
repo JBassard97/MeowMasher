@@ -1,129 +1,200 @@
 import { createCatRotator } from "./catRotation.js";
 import { storage } from "./storage.js";
-const mode = "prod";
-const devBonus = 500;
+
+const mode = "vegeta";
+const devBonus = 5000;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const counterDisplay = document.getElementById("counter");
-  const rateDisplay = document.getElementById("rate");
-  const clickRateDisplay = document.getElementById("click-rate");
-  const clickerButton = document.querySelector(".clicker-area");
-  const clickerImg = clickerButton.querySelector("img");
-  const upgradesContainer = document.querySelector(".upgrades");
-  const subUpgradesContainer = document.querySelector(".sub-upgrades");
+  const $ = (sel) => document.querySelector(sel);
 
-  // --- Load data from JSON ---
+  const counterDisplay = $("#counter");
+  const rateDisplay = $("#rate");
+  const clickRateDisplay = $("#click-rate");
+  const clickerButton = $(".clicker-area");
+  const clickerImg = clickerButton.querySelector("img");
+  const upgradesContainer = $(".upgrades");
+  const subUpgradesContainer = $(".sub-upgrades");
+
+  // Load data
   const [upgrades, subUpgrades] = await Promise.all([
-    fetch("src/data/upgrades.json").then((res) => res.json()),
-    fetch("src/data/subUpgrades.json").then((res) => res.json()),
+    fetch("src/data/upgrades.json").then((r) => r.json()),
+    fetch("src/data/subUpgrades.json").then((r) => r.json()),
   ]);
 
-  // --- Persistent State ---
+  // State
   let count = storage.getMewnits();
-  let baseClickPower = storage.getClickPower(); // 🧩 permanent click power
-  let clickPower = baseClickPower; // effective (includes bonuses)
+  let baseClickPower = storage.getClickPower();
   let autoRate = 0;
+  let clickPower = 0;
   let autoInterval = null;
   let animationFrame = null;
 
-  // --- Cat rotation setup ---
+  // Dynamic border/glow styles for each sub-upgrade type
+  const SUB_UPGRADE_STYLES = {
+    clickPowerAdder: {
+      border: "2px solid rgba(120, 200, 255, 0.7)",
+      boxShadow: "0 0 8px rgba(120, 200, 255, 0.5)",
+      backgroundColor: "rgba(120, 200, 255, 0.1)",
+    },
+    clickPowerMultiplier: {
+      border: "2px solid rgba(255, 80, 217, 0.7)",
+      boxShadow: "0 0 8px rgba(255, 180, 217, 0.5)",
+      backgroundColor: "rgba(255, 180, 217, 0.1)",
+    },
+    upgradeMultiplier: {
+      border: "2px solid rgba(180, 255, 120, 0.7)",
+      boxShadow: "0 0 8px rgba(180, 255, 120, 0.5)",
+      backgroundColor: "rgba(180, 255, 120, 0.1)",
+    },
+    thousandFingers: {
+      border: "2px solid rgba(255, 232, 131, 0.8)",
+      boxShadow: "0 0 8px rgba(255, 232, 131, 0.6)",
+      backgroundColor: "rgba(255, 232, 131, 0.1)",
+    },
+    percentOfMpsClickAdder: {
+      border: "2px solid rgba(227, 47, 80, 0.8)",
+      boxShadow: "0 0 8px rgba(227, 47, 80, 0.6)",
+      backgroundColor: "rgba(227, 47, 80, 0.1)",
+    },
+  };
+
   const rotateCat = createCatRotator(clickerImg);
 
-  // --- Load owned upgrades ---
+  // Restore upgrade data
   upgrades.forEach((u) => {
     u.owned = storage.getUpgradeOwned(u.id);
     u.multiplier = storage.getUpgradeMultiplier(u.id);
+    u.extraBonus = 0;
   });
 
-  // --- Helper: Animate Counter ---
+  // -----------------------------
+  // Animated Counter
+  // -----------------------------
   function animateCounter(display, start, end, duration = 1000) {
     if (animationFrame) cancelAnimationFrame(animationFrame);
-
     const startTime = performance.now();
+
     function update(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const value = Math.floor(start + (end - start) * progress);
-      display.textContent = value.toLocaleString();
-      if (progress < 1) {
-        animationFrame = requestAnimationFrame(update);
-      } else {
-        animationFrame = null;
-      }
+      let p = Math.min((now - startTime) / duration, 1);
+      display.textContent = Math.floor(
+        start + (end - start) * p
+      ).toLocaleString();
+      if (p < 1) animationFrame = requestAnimationFrame(update);
     }
+
     requestAnimationFrame(update);
   }
 
-  // --- Thousand Fingers Helper ---
-  function updateThousandFingersBonus() {
+  // -----------------------------
+  // Thousand Fingers
+  // -----------------------------
+  function computeThousandFingers() {
     const ownedTFs = subUpgrades.filter(
       (u) => u.type === "thousandFingers" && storage.getSubUpgradeOwned(u.id)
     );
 
-    // no TF upgrades → revert to base power
     if (!ownedTFs.length) {
-      clickPower = baseClickPower;
-      upgrades.forEach((u) => {
-        if (u.name === "Pats") u.extraBonus = 0;
-      });
-
+      upgrades.forEach((u) => (u.extraBonus = 0));
       storage.setThousandFingersBonus(0);
-      return;
+      return 0;
     }
 
     const nonPatsOwned = upgrades
-      .filter((u) => u.name !== "Pats" && u.owned > 0)
+      .filter((u) => u.name !== "Pats")
       .reduce((sum, u) => sum + u.owned, 0);
 
-    let totalBonus = nonPatsOwned;
+    let total = nonPatsOwned;
+    ownedTFs.forEach((tf) => (total *= tf.bonus));
 
-    ownedTFs.forEach((tf) => {
-      if (tf.bonus && tf.id !== 1) totalBonus *= tf.bonus;
-      else totalBonus *= tf.bonus;
-    });
-
-    // 🧠 Add TF bonus on top of base only
-    clickPower = baseClickPower + totalBonus;
-
-    // 🐾 Apply TF bonus to Pats only
     upgrades.forEach((u) => {
-      if (u.name === "Pats") {
-        u.extraBonus = totalBonus;
-      }
+      u.extraBonus = u.name === "Pats" ? total : 0;
     });
 
-    storage.setThousandFingersBonus(totalBonus);
+    storage.setThousandFingersBonus(total);
+    return total;
   }
 
-  // --- Rendering functions ---
+  // -----------------------------
+  // Full Click Power Recalc
+  // -----------------------------
+  function updateClickPower() {
+    const tf = computeThousandFingers();
+    const percent = storage.getPercentOfMpsClickAdder(); // e.g. 0.01
+    const mpsBonus = Math.floor(autoRate * percent);
+
+    clickPower = baseClickPower + tf + mpsBonus;
+
+    if (mode === "dev") clickPower += devBonus;
+
+    clickRateDisplay.textContent = clickPower.toLocaleString();
+  }
+
+  // -----------------------------
+  // Auto Mewnits / second
+  // -----------------------------
+  function updateAutoRate() {
+    autoRate = upgrades.reduce(
+      (sum, u) =>
+        sum + u.owned * (u.rate * (u.multiplier || 1) + (u.extraBonus || 0)),
+      0
+    );
+
+    storage.setMewnitsPerSecond(autoRate);
+    rateDisplay.textContent = autoRate.toLocaleString();
+  }
+
+  function startAutoIncrement() {
+    if (autoInterval) clearInterval(autoInterval);
+    if (autoRate <= 0) return;
+
+    const tick = () => {
+      const prev = count;
+      count += autoRate;
+
+      animateCounter(counterDisplay, prev, count);
+      storage.setMewnits(count);
+      storage.addLifetimeMewnits(autoRate);
+
+      updateAutoRate();
+      updateClickPower();
+      updateAffordability();
+    };
+
+    tick();
+    autoInterval = setInterval(tick, 1000);
+  }
+
+  // -----------------------------
+  // Rendering
+  // -----------------------------
   function renderUpgrades() {
     upgradesContainer.innerHTML = "";
+
     upgrades.forEach((u) => {
       const cost = Math.floor(u.baseCost * Math.pow(1.15, u.owned));
-      const affordable = count >= cost;
-      const multiplier = u.multiplier || 1;
-      const effectiveRate = u.rate * multiplier + (u.extraBonus || 0);
+      const afford = count >= cost;
+      const effRate = u.rate * (u.multiplier || 1) + (u.extraBonus || 0);
 
       const div = document.createElement("div");
       div.className = "upgrade";
+      div.style.opacity = afford ? "1" : "0.4";
+      div.style.pointerEvents = afford ? "auto" : "none";
+
       div.innerHTML = `
-      <img src="${u.image || "src/assets/images/placeholder.png"}" alt="${
-        u.name
-      }" style="height: 100%" />
-      <div class="upgrade-info">
-        <strong>${u.name}</strong>
-        <div>
-        <p><b>${cost.toLocaleString()}</b> <span style="font-size:0.6rem">Mewnits</span></p>
-        <p><b>+${effectiveRate.toLocaleString()}</b> <span style="font-size:0.6rem">Mew/S</span></p>
+        <img src="${
+          u.image || "src/assets/images/placeholder.png"
+        }" style="height:100%" />
+        <div class="upgrade-info">
+          <strong>${u.name}</strong>
+          <div>
+            <p><b>${cost.toLocaleString()}</b> <span style="font-size:0.6rem">Mewnits</span></p>
+            <p><b>+${effRate.toLocaleString()}</b> <span style="font-size:0.6rem">Mew/S</span></p>
+          </div>
         </div>
-      </div>
-      <p class="owned-number">${u.owned}</p>
-    `;
+        <p class="owned-number">${u.owned}</p>
+      `;
 
-      div.style.opacity = affordable ? "1" : "0.4";
-      div.style.pointerEvents = affordable ? "auto" : "none";
-
-      div.addEventListener("click", () => buyUpgrade(u, cost));
+      div.onclick = () => buyUpgrade(u, cost);
       upgradesContainer.appendChild(div);
     });
   }
@@ -131,297 +202,176 @@ document.addEventListener("DOMContentLoaded", async () => {
   function renderSubUpgrades() {
     subUpgradesContainer.innerHTML = "";
 
-    const sortedSubs = [...subUpgrades].sort((a, b) => a.cost - b.cost);
+    [...subUpgrades]
+      .filter((u) => !storage.getSubUpgradeOwned(u.id))
+      .sort((a, b) => a.cost - b.cost)
+      .forEach((u) => {
+        if (!isSubUnlocked(u)) return;
 
-    sortedSubs.forEach((u) => {
-      const owned = storage.getSubUpgradeOwned(u.id);
-      if (owned) return;
+        const div = document.createElement("div");
+        div.className = "sub-upgrade";
+        div.dataset.id = u.id;
 
-      if (
-        u.unlockRequirement !== undefined &&
-        u.targetUpgradeId !== undefined
-      ) {
-        const targetUpgrade = upgrades.find(
-          (upgrade) => upgrade.id === u.targetUpgradeId
-        );
-        if (targetUpgrade && targetUpgrade.owned < u.unlockRequirement) return;
-      }
-
-      if (u.unlockRateRequirement !== undefined) {
-        if (autoRate < u.unlockRateRequirement) return;
-      }
-
-      if (u.unlockClickedMewnitsRequirement !== undefined) {
-        if (
-          storage.getLifetimeClickMewnits() < u.unlockClickedMewnitsRequirement
-        )
-          return;
-      }
-
-      const div = document.createElement("div");
-      div.className = "sub-upgrade";
-      div.setAttribute("data-id", u.id);
-
-      let description = "";
-      const targetUpgrade = upgrades.find(
-        (upgrade) => upgrade.id === u.targetUpgradeId
-      );
-
-      if (u.type === "clickPowerAdder") {
-        div.style.borderColor = "hotpink";
-        description = `<b>+${u.bonus}</b> Click Power`;
-      } else if (u.type === "clickPowerMultiplier") {
-        if (u.alsoUpgradeMultiplier && targetUpgrade) {
-          div.style.borderColor = "cyan";
-          description = `<b>${u.bonus}x</b> Click Power & <b>${u.bonus}x</b> ${targetUpgrade.name}`;
-        } else {
-          div.style.borderColor = "limegreen";
-          description = `<b>${u.bonus}x</b> Click Power`;
+        // Apply dynamic border/glow based on type
+        const style = SUB_UPGRADE_STYLES[u.type];
+        if (style) {
+          Object.assign(div.style, style);
         }
-      } else if (u.type === "upgradeMultiplier") {
-        div.style.borderColor = "magenta";
-        description = `<b>${u.bonus}x</b> ${
-          targetUpgrade?.name || "Unknown"
-        } Production`;
-      } else if (u.type === "thousandFingers") {
-        div.style.borderColor = "gold";
-        div.style.boxShadow = "0 0 10px gold";
-        if (u.name !== "Thousand Fingers") {
-          description = `<b>${u.bonus}x</b> Thousand Pats Bonus`;
-        } else {
-          description = `<b>+1</b> Click Power & <b>+1</b> Pats Per Non-Pats Upgrade Owned`;
-        }
-      } else if (u.type === "percentOfMpsClickAdder") {
-        div.style.borderColor = "cornflowerblue";
-        description = `<b>+${u.bonus}%</b> of Mew/S added to Click Power`;
-      }
 
-      div.innerHTML = `
-        <strong>${u.name}</strong>
-        <p><b>${u.cost.toLocaleString()}</b> <span style="font-size:0.5rem">Mewnits</span></p>
-        <p>${description}</p>
-      `;
+        div.innerHTML = `
+          <strong>${u.name}</strong>
+          <p><b>${u.cost.toLocaleString()}</b> <span style="font-size:0.5rem">Mewnits</span></p>
+          <p>${describeSub(u, upgrades)}</p>
+        `;
 
-      div.addEventListener("click", () => buySubUpgrade(u, div));
-      subUpgradesContainer.appendChild(div);
-    });
+        div.onclick = () => buySubUpgrade(u, div);
+        subUpgradesContainer.appendChild(div);
+      });
 
     updateAffordability();
-    updateSubUpgradeAffordability();
   }
 
-  // --- Purchase functions ---
+  function isSubUnlocked(u) {
+    if (u.targetUpgradeId !== undefined) {
+      const t = upgrades.find((x) => x.id === u.targetUpgradeId);
+      if (!t || t.owned < u.unlockRequirement) return false;
+    }
+    if (u.unlockRateRequirement && autoRate < u.unlockRateRequirement)
+      return false;
+    if (
+      u.unlockClickedMewnitsRequirement &&
+      storage.getLifetimeClickMewnits() < u.unlockClickedMewnitsRequirement
+    )
+      return false;
+
+    return true;
+  }
+
+  function describeSub(u, upgrades) {
+    const t = upgrades.find((x) => x.id === u.targetUpgradeId);
+    switch (u.type) {
+      case "clickPowerAdder":
+        return `+${u.bonus} Base Click Power`;
+      case "clickPowerMultiplier":
+        if (u.alsoUpgradeMultiplier && t) {
+          return `${u.bonus}× Base Click Power & ${u.bonus}× ${t.name}`;
+        }
+        return `${u.bonus}× Base Click Power`;
+      case "upgradeMultiplier":
+        return `${u.bonus}x ${t?.name || "Upgrade"}`;
+      case "thousandFingers":
+        return u.name !== "Thousand Pats"
+          ? `${u.bonus}x Thousand Pats Bonus`
+          : `+1 Click Power & +1 Pats Per Non-Pats Upgrade`;
+      case "percentOfMpsClickAdder":
+        return `+${u.bonus}% of Mew/S added to Click Power`;
+      default:
+        return "";
+    }
+  }
+
+  // -----------------------------
+  // Purchases
+  // -----------------------------
   function buyUpgrade(u, cost) {
     if (count < cost) return;
-    if (animationFrame) cancelAnimationFrame(animationFrame);
     count -= cost;
+
     u.owned++;
-    counterDisplay.textContent = count.toLocaleString();
-    updateThousandFingersBonus();
-    updateSubUpgradeAffordability();
-    saveAndUpdate();
+    storage.setUpgradeOwned(u.id, u.owned);
+
+    updateAutoRate();
+    updateClickPower();
+    saveMewnits();
     renderUpgrades();
     renderSubUpgrades();
+    startAutoIncrement();
   }
 
   function buySubUpgrade(u, div) {
-    const owned = storage.getSubUpgradeOwned(u.id);
-    if (owned || count < u.cost) return;
+    if (count < u.cost) return;
 
-    if (animationFrame) cancelAnimationFrame(animationFrame);
     count -= u.cost;
+    storage.setSubUpgradeOwned(u.id);
 
+    // Apply upgrade effect
     if (u.type === "clickPowerAdder") {
-      baseClickPower += u.bonus; // 🧩 only modify base power
+      baseClickPower += u.bonus;
       storage.setClickPower(baseClickPower);
-      updateThousandFingersBonus();
     } else if (u.type === "clickPowerMultiplier") {
       baseClickPower *= u.bonus;
       storage.setClickPower(baseClickPower);
-      updateThousandFingersBonus();
 
       if (u.targetUpgradeId !== undefined && u.alsoUpgradeMultiplier) {
-        const targetUpgrade = upgrades.find(
-          (upgrade) => upgrade.id === u.targetUpgradeId
-        );
-        if (targetUpgrade) {
-          targetUpgrade.multiplier = (targetUpgrade.multiplier || 1) * u.bonus;
-          storage.setUpgradeMultiplier(
-            targetUpgrade.id,
-            targetUpgrade.multiplier
-          );
-        }
+        const t = upgrades.find((x) => x.id === u.targetUpgradeId);
+        t.multiplier *= u.bonus;
+        storage.setUpgradeMultiplier(t.id, t.multiplier);
       }
     } else if (u.type === "upgradeMultiplier") {
-      const targetUpgrade = upgrades.find(
-        (upgrade) => upgrade.id === u.targetUpgradeId
-      );
-      if (targetUpgrade) {
-        targetUpgrade.multiplier = (targetUpgrade.multiplier || 1) * u.bonus;
-        storage.setUpgradeMultiplier(
-          targetUpgrade.id,
-          targetUpgrade.multiplier
-        );
-      }
-    } else if (u.type === "thousandFingers") {
-      storage.setSubUpgradeOwned(u.id);
-      updateThousandFingersBonus();
-      updateAutoRate();
-      updateDisplayStats();
-      startAutoIncrement();
+      const t = upgrades.find((x) => x.id === u.targetUpgradeId);
+      t.multiplier *= u.bonus;
+      storage.setUpgradeMultiplier(t.id, t.multiplier);
     } else if (u.type === "percentOfMpsClickAdder") {
-      // Convert percent (1%) into multiplier (0.01)
-      const percent = u.bonus / 100;
-
-      storage.setPercentOfMpsClickAdder(percent);
-
-      // Apply to click power instantly
-      const mps = storage.getMewnitsPerSecond();
-      baseClickPower += Math.floor(mps * percent);
-      storage.setClickPower(baseClickPower);
-
-      updateThousandFingersBonus();
+      storage.setPercentOfMpsClickAdder(u.bonus / 100);
     }
 
-    storage.setSubUpgradeOwned(u.id);
-    storage.setMewnits(count);
-    counterDisplay.textContent = count.toLocaleString();
-    updateSubUpgradeAffordability();
-
     updateAutoRate();
-    updateDisplayStats();
+    updateClickPower();
+    saveMewnits();
     renderUpgrades();
+    renderSubUpgrades();
     startAutoIncrement();
 
-    if (div && div.parentNode) div.parentNode.removeChild(div);
+    div.remove();
   }
 
-  // --- Click logic ---
-  clickerButton.addEventListener("click", () => {
-    const increment = clickPower + (mode === "dev" ? devBonus : 0);
-    count += increment;
-    storage.addLifetimeMewnits(increment);
-    storage.addLifetimeClickMewnits(increment);
-    storage.addLifetimeClicks(); // Adds 1 by default
+  // -----------------------------
+  // Click
+  // -----------------------------
+  clickerButton.onclick = () => {
+    count += clickPower;
     rotateCat();
+
+    storage.addLifetimeMewnits(clickPower);
+    storage.addLifetimeClicks();
+    storage.addLifetimeClickMewnits(clickPower);
+
     counterDisplay.textContent = count.toLocaleString();
-    updateSubUpgradeAffordability();
-    saveAndUpdate();
-  });
-
-  // --- Helpers ---
-  function updateAutoRate() {
-    autoRate = upgrades.reduce((sum, u) => {
-      const multiplier = u.multiplier || 1;
-      const extra = u.extraBonus || 0;
-      return sum + u.owned * (u.rate * multiplier + extra);
-    }, 0);
-  }
-
-  function saveAndUpdate() {
-    storage.setMewnits(count);
-    upgrades.forEach((u) => {
-      storage.setUpgradeOwned(u.id, u.owned);
-    });
-
-    const oldRate = autoRate;
-    updateAutoRate();
-    updateThousandFingersBonus();
-    updateDisplayStats();
+    saveMewnits();
     updateAffordability();
+  };
 
-    if (autoRate !== oldRate) startAutoIncrement();
-  }
-
-  function updateDisplayStats() {
-    rateDisplay.textContent = autoRate.toLocaleString();
-    clickRateDisplay.textContent = clickPower.toLocaleString();
-  }
-
-  function updateSubUpgradeAffordability() {
-    const subDivs = subUpgradesContainer.querySelectorAll(".sub-upgrade");
-
-    subDivs.forEach((div) => {
-      const id = parseInt(div.getAttribute("data-id"), 10);
-      const u = subUpgrades.find((s) => s.id === id);
-      if (!u) return;
-
-      let unlocked = true;
-      if (
-        u.unlockRequirement !== undefined &&
-        u.targetUpgradeId !== undefined
-      ) {
-        const targetUpgrade = upgrades.find(
-          (upgrade) => upgrade.id === u.targetUpgradeId
-        );
-        if (!targetUpgrade || targetUpgrade.owned < u.unlockRequirement)
-          unlocked = false;
-      }
-
-      if (
-        u.unlockRateRequirement !== undefined &&
-        autoRate < u.unlockRateRequirement
-      ) {
-        unlocked = false;
-      }
-
-      if (
-        u.unlockClickedMewnitsRequirement !== undefined &&
-        storage.getLifetimeClickMewnits() < u.unlockClickedMewnitsRequirement
-      ) {
-        unlocked = false;
-      }
-
-      const affordable = unlocked && count >= u.cost;
-      div.style.opacity = affordable ? "1" : "0.4";
-      div.style.cursor = affordable ? "pointer" : "default";
-      div.style.pointerEvents = affordable ? "auto" : "none";
-    });
-  }
-
+  // -----------------------------
+  // Helpers
+  // -----------------------------
   function updateAffordability() {
-    const upgradeDivs = upgradesContainer.querySelectorAll(".upgrade");
-    upgrades.forEach((u, i) => {
-      const div = upgradeDivs[i];
-      if (!div) return;
+    upgradesContainer.querySelectorAll(".upgrade").forEach((div, i) => {
+      const u = upgrades[i];
       const cost = Math.floor(u.baseCost * Math.pow(1.15, u.owned));
-      const affordable = count >= cost;
-      div.style.opacity = affordable ? "1" : "0.4";
-      div.style.pointerEvents = affordable ? "auto" : "none";
+      const afford = count >= cost;
+      div.style.opacity = afford ? "1" : "0.4";
+      div.style.pointerEvents = afford ? "auto" : "none";
     });
 
-    updateSubUpgradeAffordability();
+    subUpgradesContainer.querySelectorAll(".sub-upgrade").forEach((div) => {
+      const u = subUpgrades.find((x) => x.id == div.dataset.id);
+      const afford = count >= u.cost && isSubUnlocked(u);
+      div.style.opacity = afford ? "1" : "0.4";
+      div.style.pointerEvents = afford ? "auto" : "none";
+    });
   }
 
-  // --- Auto increment cycle ---
-  function startAutoIncrement() {
-    if (autoInterval) clearInterval(autoInterval);
-
-    if (autoRate > 0) {
-      const runTick = () => {
-        const prev = count;
-        count += autoRate;
-
-        animateCounter(counterDisplay, prev, count, 1000);
-        storage.setMewnitsPerSecond(autoRate);
-        storage.setMewnits(count);
-        storage.addLifetimeMewnits(autoRate);
-
-        updateDisplayStats();
-        updateAffordability();
-        updateSubUpgradeAffordability();
-      };
-
-      runTick();
-      autoInterval = setInterval(runTick, 1000);
-    }
+  function saveMewnits() {
+    storage.setMewnits(count);
+    counterDisplay.textContent = count.toLocaleString();
   }
 
-  // --- Init ---
-  updateThousandFingersBonus();
+  // -----------------------------
+  // INIT
+  // -----------------------------
   updateAutoRate();
-  counterDisplay.textContent = count.toLocaleString();
-  updateDisplayStats();
+  updateClickPower();
+  saveMewnits();
   renderUpgrades();
   renderSubUpgrades();
   startAutoIncrement();

@@ -199,7 +199,7 @@ body main #right-side .sub-upgrades .sub-upgrade strong {
 }
 html main #right-side .sub-upgrades .sub-upgrade p,
 body main #right-side .sub-upgrades .sub-upgrade p {
-  margin: 0;
+  margin: 5px 0;
   word-break: break-word;
 }
 html main #right-side .sub-upgrades .sub-upgrade:hover,

@@ -32,9 +32,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Dynamic border/glow styles for each sub-upgrade type
   const SUB_UPGRADE_STYLES = {
     clickPowerAdder: {
-      border: "2px solid rgba(120, 200, 255, 0.7)",
-      boxShadow: "0 0 8px rgba(120, 200, 255, 0.5)",
-      backgroundColor: "rgba(120, 200, 255, 0.1)",
+      border: "2px solid rgba(180, 255, 120, 0.7)",
+      boxShadow: "0 0 8px rgba(180, 255, 120, 0.5)",
+      backgroundColor: "rgba(180, 255, 120, 0.1)",
     },
     clickPowerMultiplier: {
       border: "2px solid rgba(255, 80, 217, 0.7)",
@@ -42,9 +42,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       backgroundColor: "rgba(255, 180, 217, 0.1)",
     },
     upgradeMultiplier: {
-      border: "2px solid rgba(180, 255, 120, 0.7)",
-      boxShadow: "0 0 8px rgba(180, 255, 120, 0.5)",
-      backgroundColor: "rgba(180, 255, 120, 0.1)",
+      border: "2px solid rgba(120, 200, 255, 0.7)",
+      boxShadow: "0 0 8px rgba(120, 200, 255, 0.5)",
+      backgroundColor: "rgba(120, 200, 255, 0.1)",
     },
     thousandFingers: {
       border: "2px solid rgba(255, 232, 131, 0.8)",

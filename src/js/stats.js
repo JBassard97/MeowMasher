@@ -21,29 +21,62 @@ statsDialog.addEventListener("click", (e) => {
 });
 
 setInterval(() => {
-  if (statsDialog.classList.contains("active")) {
-    // Mewnits
-    document.getElementById("stats-lifetime-mewnits-display").textContent =
-      storage.getLifetimeMewnits().toLocaleString() || "0";
-    document.getElementById("stats-current-mewnits-display").textContent =
-      storage.getMewnits().toLocaleString() || "0";
-    // Clicks
-    document.getElementById("stats-lifetime-clicks-display").textContent =
-      storage.getLifetimeClicks().toLocaleString() || "0";
+  if (statsDialog && statsDialog.classList.contains("active")) {
+    // --- numeric values first ---
+    const base = Number(storage.getClickPower() || 1);
+    const tf = storage.getThousandFingersBonus
+      ? Number(storage.getThousandFingersBonus() || 0)
+      : 0;
+    const percent = storage.getPercentOfMpsClickAdder
+      ? Number(storage.getPercentOfMpsClickAdder() || 0)
+      : 0;
+    const mps = Number(storage.getMewnitsPerSecond() || 0);
+    const mpsBonus = Math.floor(mps * percent);
+
+    const totalClickPower = base + tf + mpsBonus;
+
+    // --- display basic stats ---
+    document.getElementById("stats-lifetime-mewnits-display").textContent = (
+      storage.getLifetimeMewnits() || 0
+    ).toLocaleString();
+
+    document.getElementById("stats-current-mewnits-display").textContent = (
+      storage.getMewnits() || 0
+    ).toLocaleString();
+
+    document.getElementById("stats-mps-display").textContent =
+      mps.toLocaleString();
+
+    document.getElementById("stats-lifetime-clicks-display").textContent = (
+      storage.getLifetimeClicks() || 0
+    ).toString();
+
     document.getElementById(
       "stats-lifetime-clicks-mewnits-display"
-    ).textContent = storage.getLifetimeClickMewnits().toLocaleString() || "0";
+    ).textContent = (storage.getLifetimeClickMewnits() || 0).toLocaleString();
+
+    document.getElementById("stats-base-click-power-display").textContent =
+      base.toLocaleString();
+
+    // --- build breakdown text ---
+    const baseText = `(+${base.toLocaleString()} Base Click Power)`;
+    const tfText = tf ? ` (+${tf.toLocaleString()} from Thousand Pats)` : "";
+    const mpsText = percent
+      ? ` (+${mpsBonus.toLocaleString()} from MPS Click Boost)`
+      : "";
+
+    // --- final display (total + breakdown) ---
     document.getElementById(
       "stats-current-clickpower-display"
-    ).textContent = `${storage.getClickPower().toLocaleString() || "1"} ${
-      storage.getThousandFingersBonus()
-        ? `(+${storage
-            .getThousandFingersBonus()
-            .toLocaleString()} from Thousand Pats)`
-        : ""
-    }`;
-    // Active Bonuses
+    ).textContent = `${totalClickPower.toLocaleString()} ${baseText}${tfText}${mpsText}`;
+
+    // --- active bonuses ---
     document.getElementById("stats-thousand-pats-display").textContent =
-      storage.getThousandFingersBonus().toLocaleString() || "0";
+      tf.toLocaleString();
+
+    document.getElementById("stats-mps-click-boost-display").textContent =
+      percent
+        ? `${mpsBonus.toLocaleString()} (${Math.floor(percent * 100)}%)`
+        : "0";
   }
 }, 1000);

@@ -153,12 +153,12 @@ body main #left-side .clicker-area #clicker img {
 }
 html main #right-side .sub-upgrades,
 body main #right-side .sub-upgrades {
-  border: 1px solid gray;
+  border-left: 1px solid gray;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 6px;
   align-items: stretch;
-  height: 400px;
+  height: 50rem;
   overflow-y: auto;
   padding: 6px;
   box-sizing: border-box;
@@ -268,6 +268,7 @@ html main #right-side .upgrades .upgrade .upgrade-info div p,
 body main #right-side .upgrades .upgrade .upgrade-info div p {
   margin: 0;
   line-height: 1;
+  overflow-wrap: anywhere;
 }
 html main #right-side .upgrades .upgrade .owned-number,
 body main #right-side .upgrades .upgrade .owned-number {
@@ -277,7 +278,7 @@ body main #right-side .upgrades .upgrade .owned-number {
   font-weight: bold;
   position: absolute;
   top: 0;
-  left: 5px;
+  left: 3px;
   line-height: 1;
   font-style: italic;
 }
@@ -398,6 +399,23 @@ body .upgrade img,
 body .sub-upgrade img {
   pointer-events: none;
   -webkit-user-drag: none;
+}
+html .rainbow-text,
+body .rainbow-text {
+  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, green 42.8571428571%, blue 57.1428571429%, indigo 71.4285714286%, violet 85.7142857143%, red 100%);
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowFlow 20s linear infinite alternate;
+}
+
+@keyframes rainbowFlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 400% 0%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

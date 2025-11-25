@@ -1,8 +1,8 @@
 import { createCatRotator } from "./catRotation.js";
 import { storage } from "./storage.js";
 
-const mode = "dev";
-const devBonus = 5000000;
+const mode = "de9v";
+const devBonus = 5000000000;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const $ = (sel) => document.querySelector(sel);

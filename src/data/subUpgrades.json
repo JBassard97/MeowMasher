@@ -745,5 +745,45 @@
     "bonus": 1,
     "type": "percentOfMpsClickAdder",
     "unlockClickedMewnitsRequirement": 100000
+  },
+  {
+    "id": 200002,
+    "name": "10 Million Mewnits Clicked Reward",
+    "cost": 500000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 10000000
+  },
+  {
+    "id": 200003,
+    "name": "1 Billion Mewnits Clicked Reward",
+    "cost": 50000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 1000000000
+  },
+  {
+    "id": 200004,
+    "name": "100 Billion Mewnits Clicked Reward",
+    "cost": 5000000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 100000000000
+  },
+  {
+    "id": 200005,
+    "name": "10 Trillion Mewnits Clicked Reward",
+    "cost": 500000000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 10000000000000
+  },
+  {
+    "id": 200006,
+    "name": "1 Quadrillion Mewnits Clicked Reward",
+    "cost": 50000000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 1000000000000000
   }
 ]

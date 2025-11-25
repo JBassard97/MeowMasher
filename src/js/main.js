@@ -1,8 +1,8 @@
 import { createCatRotator } from "./catRotation.js";
 import { storage } from "./storage.js";
 
-const mode = "vegeta";
-const devBonus = 5000;
+const mode = "dev";
+const devBonus = 5000000;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const $ = (sel) => document.querySelector(sel);
@@ -312,7 +312,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       t.multiplier *= u.bonus;
       storage.setUpgradeMultiplier(t.id, t.multiplier);
     } else if (u.type === "percentOfMpsClickAdder") {
-      storage.setPercentOfMpsClickAdder(u.bonus / 100);
+      const current = storage.getPercentOfMpsClickAdder();
+      storage.setPercentOfMpsClickAdder(current + u.bonus / 100);
     }
 
     updateAutoRate();
@@ -328,7 +329,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   // -----------------------------
   // Click
   // -----------------------------
-  clickerButton.onclick = () => {
+  clickerButton.onclick = (e) => {
+    const rect = clickerButton.getBoundingClientRect();
+
+    const clickX = e.clientX - rect.left;
+    const clickY = e.clientY - rect.top;
+
+    spawnClickPopup(clickX, clickY, clickPower);
+
     count += clickPower;
     rotateCat();
 
@@ -364,6 +372,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   function saveMewnits() {
     storage.setMewnits(count);
     counterDisplay.textContent = count.toLocaleString();
+  }
+
+  function spawnClickPopup(x, y, value) {
+    const el = document.createElement("div");
+    el.className = "click-popup";
+    el.textContent = "+" + value.toLocaleString();
+
+    el.style.left = x + "px";
+    el.style.top = y + "px";
+
+    clickerButton.appendChild(el);
+
+    // Remove after animation
+    setTimeout(() => el.remove(), 600);
   }
 
   // -----------------------------

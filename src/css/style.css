@@ -26,12 +26,13 @@ body header {
   align-items: center;
   padding: 0 1rem;
   border-bottom: 1px solid gray;
+  background-color: black;
 }
 html header h1,
 body header h1 {
   font-weight: 900;
   text-transform: uppercase;
-  background-image: url("../assets/images/calico.png");
+  background-image: url("../assets/images/neonleopard.jpg");
   background-size: cover;
   background-position: center;
   color: transparent;
@@ -102,7 +103,6 @@ body main #left-side #stats .counter-display {
   font-size: 1.6rem;
   line-height: 1;
   font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(101, 253, 116, 0.9);
 }
 html main #left-side #stats .counter-display-mewnits,
 body main #left-side #stats .counter-display-mewnits {
@@ -151,6 +151,29 @@ body main #left-side .clicker-area #clicker img {
   object-fit: contain;
   pointer-events: none;
   transition: all 0.1s ease;
+}
+html main #left-side .clicker-area .click-popup,
+body main #left-side .clicker-area .click-popup {
+  position: absolute;
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  pointer-events: none;
+  user-select: none;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  animation: clickPopupFade 0.6s ease-out forwards;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+@keyframes clickPopupFade {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -100%) scale(1.4);
+    opacity: 0;
+  }
 }
 html main #right-side .sub-upgrades,
 body main #right-side .sub-upgrades {

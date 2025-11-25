@@ -526,8 +526,8 @@
     "id": 100007,
     "name": "75,000 Mewnits/S Reward",
     "cost": 22500000,
-    "bonus": 5,
-    "type": "clickPowerAdder",
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
     "unlockRateRequirement": 75000
   },
   {
@@ -550,8 +550,8 @@
     "id": 100010,
     "name": "500,000 Mewnits/S Reward",
     "cost": 150000000,
-    "bonus": 5,
-    "type": "clickPowerAdder",
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
     "unlockRateRequirement": 500000
   },
   {
@@ -582,8 +582,8 @@
     "id": 100014,
     "name": "5,000,000 Mewnits/S Reward",
     "cost": 1500000000,
-    "bonus": 10,
-    "type": "clickPowerAdder",
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
     "unlockRateRequirement": 5000000
   },
   {
@@ -598,7 +598,7 @@
     "id": 100016,
     "name": "25,000,000 Mewnits/S Reward",
     "cost": 7500000000,
-    "bonus": 10,
+    "bonus": 50,
     "type": "clickPowerAdder",
     "unlockRateRequirement": 25000000
   },
@@ -606,7 +606,7 @@
     "id": 100017,
     "name": "50,000,000 Mewnits/S Reward",
     "cost": 15000000000,
-    "bonus": 10,
+    "bonus": 50,
     "type": "clickPowerAdder",
     "unlockRateRequirement": 50000000
   },
@@ -614,7 +614,7 @@
     "id": 100018,
     "name": "75,000,000 Mewnits/S Reward",
     "cost": 22500000000,
-    "bonus": 10,
+    "bonus": 50,
     "type": "clickPowerAdder",
     "unlockRateRequirement": 75000000
   },
@@ -737,5 +737,13 @@
     "bonus": 1,
     "type": "percentOfMpsClickAdder",
     "unlockClickedMewnitsRequirement": 1000
+  },
+  {
+    "id": 200001,
+    "name": "100,000 Mewnits Clicked Reward",
+    "cost": 5000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 100000
   }
 ]

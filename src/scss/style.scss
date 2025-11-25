@@ -25,11 +25,12 @@ body {
     align-items: center;
     padding: 0 1rem;
     border-bottom: 1px solid gray;
+    background-color: black;
 
     h1 {
       font-weight: 900;
       text-transform: uppercase;
-      background-image: url("../assets/images/calico.png");
+      background-image: url("../assets/images/neonleopard.jpg");
       background-size: cover;
       background-position: center;
       color: transparent;
@@ -95,7 +96,7 @@ body {
           font-size: 1.6rem;
           line-height: 1;
           font-weight: bold;
-          text-shadow: 2px 2px 4px rgba(101, 253, 116, 0.9);
+          // text-shadow: 2px 2px 4px rgba(101, 253, 116, 0.9);
         }
 
         .counter-display-mewnits {
@@ -149,6 +150,30 @@ body {
             object-fit: contain;
             pointer-events: none; // 👈 ensures clicks go to the parent div, not the image
             transition: all 0.1s ease;
+          }
+        }
+
+        .click-popup {
+          position: absolute;
+          font-size: 25px;
+          font-weight: bold;
+          color: white;
+          pointer-events: none;
+          user-select: none;
+          transform: translate(-50%, -50%);
+          opacity: 1;
+          animation: clickPopupFade 0.6s ease-out forwards;
+          text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes clickPopupFade {
+          0% {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+          }
+          100% {
+            transform: translate(-50%, -100%) scale(1.4);
+            opacity: 0;
           }
         }
       }

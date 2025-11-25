@@ -19,6 +19,12 @@
 
     -100000-109999 = Unlocked based on Mew/S and upgrade clickPower
 
+### Unlocked based on Mew Clicked
+
+[https://cookieclicker.fandom.com/wiki/Upgrades#Clicking_Upgrades]
+
+    -200000-209999 = Unlocked based on Mew Clicked and upgrade clickPower
+
 # Upgrades
 
     - Pats [Always First]

@@ -801,5 +801,21 @@
     "bonus": 1,
     "type": "percentOfMpsClickAdder",
     "unlockClickedMewnitsRequirement": 10000000000000000000
+  },
+  {
+    "id": 200009,
+    "name": "1 Sexillion Mewnits Clicked Reward",
+    "cost": 50000000000000000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 1000000000000000000
+  },
+  {
+    "id": 200010,
+    "name": "100 Sexillion Mewnits Clicked Reward",
+    "cost": 5000000000000000000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 100000000000000000000000
   }
 ]

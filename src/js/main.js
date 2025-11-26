@@ -58,6 +58,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     },
   };
 
+  const upgradeGradient = [
+    "rgb(13,242,250)",
+    "rgb(25,230,249)",
+    "rgb(38,217,248)",
+    "rgb(51,204,248)",
+    "rgb(64,191,247)",
+    "rgb(77,179,246)",
+    "rgb(89,166,245)",
+    "rgb(102,153,244)",
+    "rgb(115,140,243)",
+    "rgb(128,128,243)",
+    "rgb(140,115,242)",
+    "rgb(153,102,241)",
+    "rgb(166,89,240)",
+    "rgb(179,77,239)",
+    "rgb(191,64,238)",
+    "rgb(204,51,237)",
+    "rgb(217,38,237)",
+    "rgb(230,25,236)",
+    "rgb(242,13,235)",
+    "rgb(255,0,234)",
+  ];
+
   const rotateCat = createCatRotator(clickerImg);
 
   // Restore upgrade data
@@ -170,7 +193,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   function renderUpgrades() {
     upgradesContainer.innerHTML = "";
 
-    upgrades.forEach((u) => {
+    upgrades.forEach((u, i) => {
       const cost = Math.floor(u.baseCost * Math.pow(1.15, u.owned));
       const afford = count >= cost;
       const effRate = u.rate * (u.multiplier || 1) + (u.extraBonus || 0);
@@ -179,6 +202,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       div.className = "upgrade";
       div.style.opacity = afford ? "1" : "0.4";
       div.style.pointerEvents = afford ? "auto" : "none";
+      div.style.borderColor = upgradeGradient[i];
 
       div.innerHTML = `
         <img src="${

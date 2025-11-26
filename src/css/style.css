@@ -164,7 +164,7 @@ body main #left-side .clicker-area .click-popup {
   transform: translate(-50%, -50%);
   opacity: 1;
   animation: clickPopupFade 0.4s ease-out forwards;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 8px rgb(255, 255, 255);
 }
 @keyframes clickPopupFade {
   0% {
@@ -242,6 +242,7 @@ body main #right-side .upgrades {
   overflow-y: auto;
   overflow-x: hidden;
   border: 1px solid gray;
+  border-left: none;
   border-right: none;
 }
 html main #right-side .upgrades .upgrade,

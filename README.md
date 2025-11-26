@@ -11,9 +11,9 @@
     - 4000-4999 = Tiered Sub-Upgrades for Upgrade id 4
     - 5000-5999 = Tiered Sub-Upgrades for Upgrade id 5
     - 6000-6999 = Tiered Sub-Upgrades for Upgrade id 6
-    - 7000-7999 = Tiered Sub-Upgrades for Upgrade id 7
-    - 8000-8999 = Tiered Sub-Upgrades for Upgrade id 8
-    - 9000-9999 = Tiered Sub-Upgrades for Upgrade id 9
+    - 7000-7999 = Tiered Sub-Upgrades for Upgrade id 7 (Crinkle Ball)
+    - 8000-8999 = Tiered Sub-Upgrades for Upgrade id 8 (Wand Toy)
+    - 9000-9999 = Tiered Sub-Upgrades for Upgrade id 9 (Laser Pointer/Alchemy Lab)
 
 ### Unlocked based on Mew/S
 

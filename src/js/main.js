@@ -203,6 +203,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       div.style.opacity = afford ? "1" : "0.4";
       div.style.pointerEvents = afford ? "auto" : "none";
       div.style.borderColor = upgradeGradient[i];
+      div.style.boxShadow = `inset 0 -15px 10px -10px ${upgradeGradient[i]}`;
 
       div.innerHTML = `
         <img src="${
@@ -409,7 +410,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     clickerButton.appendChild(el);
 
     // Remove after animation
-    setTimeout(() => el.remove(), 600);
+    setTimeout(() => el.remove(), 800);
   }
 
   // -----------------------------

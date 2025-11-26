@@ -164,7 +164,7 @@ body {
           transform: translate(-50%, -50%);
           opacity: 1;
           animation: clickPopupFade 0.4s ease-out forwards;
-          text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+          text-shadow: 0 0 8px rgba(255, 255, 255, 1);
         }
 
         @keyframes clickPopupFade {
@@ -246,6 +246,7 @@ body {
         overflow-y: auto; // scroll only this section
         overflow-x: hidden;
         border: 1px solid gray;
+        border-left: none;
         border-right: none;
 
         .upgrade {

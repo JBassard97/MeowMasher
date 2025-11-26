@@ -467,6 +467,123 @@
     "unlockRequirement": 50
   },
   {
+    "id": 9000,
+    "name": "Alchemy 1",
+    "cost": 750000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 9001,
+    "name": "Alchemy 2",
+    "cost": 3750000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 9002,
+    "name": "Alchemy 3",
+    "cost": 375000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 9003,
+    "name": "Alchemy 4",
+    "cost": 37500000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 9004,
+    "name": "Alchemy 5",
+    "cost": 3750000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 9005,
+    "name": "Alchemy 6",
+    "cost": 375000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 150
+  },
+  {
+    "id": 9006,
+    "name": "Alchemy 7",
+    "cost": 375000000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 200
+  },
+  {
+    "id": 10000,
+    "name": "Portal 1",
+    "cost": 10000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 10,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 10001,
+    "name": "Portal 2",
+    "cost": 50000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 10,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 10002,
+    "name": "Portal 3",
+    "cost": 500000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 10,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 10003,
+    "name": "Portal 4",
+    "cost": 50000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 10,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 10004,
+    "name": "Portal 5",
+    "cost": 5000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 10,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 10005,
+    "name": "Portal 6",
+    "cost": 500000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 10,
+    "unlockRequirement": 150
+  },
+  {
     "id": 100000,
     "name": "1 Mewnit/S Reward",
     "cost": 300,

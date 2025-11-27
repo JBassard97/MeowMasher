@@ -1,7 +1,7 @@
 // effects/goldenPawprint.js
 
 export function startGoldenPawprintSpawner(clickerButton, onClick) {
-  // Spawn every 9 minutes
+  // Spawn every 5 minutes
   const SPAWN_INTERVAL = 5 * 60 * 1000; // 9 min
   const LIFETIME = 9000; // 9 seconds
 
@@ -15,10 +15,10 @@ export function startGoldenPawprintSpawner(clickerButton, onClick) {
     el.style.position = "absolute";
     el.style.left = Math.random() * (rect.width - 60) + "px";
     el.style.top = Math.random() * (rect.height - 60) + "px";
-    el.style.width = "70px";
+    el.style.width = "75px";
     el.style.pointerEvents = "auto";
     el.style.cursor = "pointer";
-    el.style.zIndex = 9999;
+    el.style.zIndex = 10;
 
     clickerButton.appendChild(el);
 
@@ -36,6 +36,6 @@ export function startGoldenPawprintSpawner(clickerButton, onClick) {
   }
 
   // Start interval
-  //   spawnGoldenPawprint(); // optional immediate first spawn
+  // spawnGoldenPawprint(); // optional immediate first spawn
   setInterval(spawnGoldenPawprint, SPAWN_INTERVAL);
 }

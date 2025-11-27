@@ -9,6 +9,7 @@ import {
 } from "./effects/upgradeStyles.js";
 import { storage } from "./logic/storage.js";
 import { setupClickHandler } from "./logic/handleClick.js";
+import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
 
 const mode = "de9v";
 const devBonus = 5000000000;
@@ -32,11 +33,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // State
   let count = storage.getMewnits();
+  let baseAutoRate = 0;
   let baseClickPower = storage.getClickPower();
   let autoRate = 0;
   let clickPower = 0;
   let autoInterval = null;
   let animationFrame = null;
+
+  let goldenPawActive = false;
+  let goldenPawMpsMultiplier = 2; // Temporary multiplier
 
   // Restore upgrade data
   upgrades.forEach((u) => {
@@ -46,12 +51,26 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   startGoldenPawprintSpawner(clickerButton, () => {
-    // Reward on click
+    // ? Give Immediate Mewnits Reward on click
     // Example: give 30 seconds worth of autoRate
-    const bonus = autoRate * 60;
-    count += bonus;
-    storage.setMewnits(count);
-    animateCounter(counterDisplay, count - bonus, count, 400);
+    // const bonus = autoRate * 60;
+    // count += bonus;
+    // storage.setMewnits(count);
+    // animateCounter(counterDisplay, count - bonus, count, 400);
+
+    // ? Apply MPS Multiplier for 10 seconds
+    goldenPawActive = true;
+    toggleGoldenPawMode(true, "mps");
+    updateAutoRate();
+    startAutoIncrement();
+
+    // Remove after 30 seconds
+    setTimeout(() => {
+      goldenPawActive = false;
+      toggleGoldenPawMode(false, "mps");
+      updateAutoRate();
+      startAutoIncrement();
+    }, 1000 * 30);
   });
 
   // -----------------------------
@@ -60,7 +79,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   function updateClickPower() {
     const tf = computeThousandFingers(upgrades, subUpgrades);
     const percent = storage.getPercentOfMpsClickAdder(); // e.g. 0.01
-    const mpsBonus = Math.floor(autoRate * percent);
+
+    // Use baseAutoRate, not the multiplied autoRate
+    const mpsBonus = Math.floor(baseAutoRate * percent);
 
     clickPower = baseClickPower + tf + mpsBonus;
 
@@ -73,11 +94,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Auto Mewnits / second
   // -----------------------------
   function updateAutoRate() {
-    autoRate = upgrades.reduce(
+    // Compute base rate only from upgrades
+    baseAutoRate = upgrades.reduce(
       (sum, u) =>
         sum + u.owned * (u.rate * (u.multiplier || 1) + (u.extraBonus || 0)),
       0
     );
+
+    // Apply golden pawprint multiplier only to autoRate
+    autoRate = goldenPawActive
+      ? Math.floor(baseAutoRate * goldenPawMpsMultiplier)
+      : baseAutoRate;
 
     storage.setMewnitsPerSecond(autoRate);
     rateDisplay.textContent = autoRate.toLocaleString();

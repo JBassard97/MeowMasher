@@ -50,24 +50,39 @@ body header .header-icons {
 }
 html header .header-icons #settings-icon,
 html header .header-icons #stats-icon,
+html header .header-icons #achievements-icon,
 body header .header-icons #settings-icon,
-body header .header-icons #stats-icon {
+body header .header-icons #stats-icon,
+body header .header-icons #achievements-icon {
   cursor: pointer;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 html header .header-icons #settings-icon svg,
 html header .header-icons #stats-icon svg,
+html header .header-icons #achievements-icon svg,
 body header .header-icons #settings-icon svg,
-body header .header-icons #stats-icon svg {
+body header .header-icons #stats-icon svg,
+body header .header-icons #achievements-icon svg {
   width: 100%;
   height: 100%;
   transition: fill 0.3s ease;
 }
 html header .header-icons #settings-icon svg:hover,
 html header .header-icons #stats-icon svg:hover,
+html header .header-icons #achievements-icon svg:hover,
 body header .header-icons #settings-icon svg:hover,
-body header .header-icons #stats-icon svg:hover {
+body header .header-icons #stats-icon svg:hover,
+body header .header-icons #achievements-icon svg:hover {
+  fill: rgb(135, 226, 248);
+  stroke: rgb(135, 226, 248);
+}
+html header .header-icons #settings-icon svg:hover g path,
+html header .header-icons #stats-icon svg:hover g path,
+html header .header-icons #achievements-icon svg:hover g path,
+body header .header-icons #settings-icon svg:hover g path,
+body header .header-icons #stats-icon svg:hover g path,
+body header .header-icons #achievements-icon svg:hover g path {
   fill: rgb(135, 226, 248);
 }
 html main,
@@ -130,7 +145,7 @@ body main #left-side .clicker-area {
   align-items: center;
   overflow: hidden;
   padding-bottom: 1rem;
-  transition: all 0.1s ease;
+  transition: all 0.5s ease-in-out;
   box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.856);
 }
 html main #left-side .clicker-area:active #clicker,
@@ -212,7 +227,7 @@ body main #right-side .sub-upgrades {
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
   align-items: stretch;
-  height: 750px;
+  height: 850px;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 8px 8px;
@@ -392,6 +407,7 @@ body .dialog-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 9000;
 }
 html .dialog-content h2,
 html .dialog-content h3,

@@ -38,7 +38,7 @@ body header h1 {
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  font-size: clamp(1rem, 6vw, 2.5rem);
+  font-size: 30px;
   padding: 0;
   margin: 1rem;
 }
@@ -91,6 +91,7 @@ html main #left-side #stats,
 body main #left-side #stats {
   text-align: center;
   padding: 0.5rem;
+  padding-bottom: 1rem;
   z-index: 5;
 }
 html main #left-side #stats p,
@@ -129,7 +130,7 @@ body main #left-side .clicker-area {
   overflow: hidden;
   padding-bottom: 1rem;
   transition: all 0.1s ease;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.856);
+  box-shadow: 0 0 20px 2px rgba(255, 255, 255, 0.856);
 }
 html main #left-side .clicker-area:active img,
 body main #left-side .clicker-area:active img {
@@ -163,7 +164,7 @@ body main #left-side .clicker-area .click-popup {
   user-select: none;
   transform: translate(-50%, -50%);
   opacity: 1;
-  animation: clickPopupFade 0.4s ease-out forwards;
+  animation: clickPopupFade 1s ease-out forwards;
   text-shadow: 0 0 8px rgb(255, 255, 255);
 }
 @keyframes clickPopupFade {
@@ -173,7 +174,7 @@ body main #left-side .clicker-area .click-popup {
   }
   100% {
     transform: translate(-50%, -200%) scale(1.4);
-    opacity: 0;
+    opacity: 0.2;
   }
 }
 html main #right-side .sub-upgrades,
@@ -181,11 +182,11 @@ body main #right-side .sub-upgrades {
   border-left: 1px solid gray;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 6px;
+  gap: 8px;
   align-items: stretch;
   height: 750px;
   overflow-y: auto;
-  padding: 6px;
+  padding: 8px 8px;
   box-sizing: border-box;
 }
 html main #right-side .sub-upgrades::-webkit-scrollbar,
@@ -214,7 +215,7 @@ body main #right-side .sub-upgrades .sub-upgrade {
   font-size: 10px;
   text-align: center;
   line-height: 1.2;
-  box-shadow: 0 0 3px transparent;
+  box-shadow: 0 0 3px 10px transparent;
 }
 html main #right-side .sub-upgrades .sub-upgrade strong,
 body main #right-side .sub-upgrades .sub-upgrade strong {
@@ -251,7 +252,7 @@ body main #right-side .upgrades .upgrade {
   width: 100%;
   min-height: 120px;
   height: fit-content;
-  border-bottom: 3px solid gray;
+  border-bottom: 1px solid gray;
   font-size: 12px;
   flex: 0 0 auto;
   transition: all 0.2s ease;

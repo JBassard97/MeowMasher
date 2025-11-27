@@ -33,32 +33,32 @@ document.addEventListener("DOMContentLoaded", async () => {
   const SUB_UPGRADE_STYLES = {
     clickPowerAdder: {
       border: "2px solid rgba(180, 255, 120, 0.7)",
-      boxShadow: "0 0 8px rgba(180, 255, 120, 0.5)",
-      backgroundColor: "rgba(180, 255, 120, 0.1)",
+      boxShadow: "0 0 6px 2px rgba(180, 255, 120, 0.5)",
+      backgroundColor: "rgba(180, 255, 120, 0.05)",
     },
     clickPowerMultiplier: {
       border: "2px solid rgba(255, 80, 217, 0.7)",
-      boxShadow: "0 0 8px rgba(255, 180, 217, 0.5)",
-      backgroundColor: "rgba(255, 180, 217, 0.1)",
+      boxShadow: "0 0 6px 2px rgba(255, 180, 217, 0.5)",
+      backgroundColor: "rgba(255, 180, 217, 0.05)",
     },
     upgradeMultiplier: {
       border: "2px solid rgba(120, 200, 255, 0.7)",
-      boxShadow: "0 0 8px rgba(120, 200, 255, 0.5)",
-      backgroundColor: "rgba(120, 200, 255, 0.1)",
+      boxShadow: "0 0 6px 2px rgba(120, 200, 255, 0.5)",
+      backgroundColor: "rgba(120, 200, 255, 0.05)",
     },
     thousandFingers: {
       border: "2px solid rgba(255, 232, 131, 0.8)",
-      boxShadow: "0 0 8px rgba(255, 232, 131, 0.6)",
-      backgroundColor: "rgba(255, 232, 131, 0.1)",
+      boxShadow: "0 0 6px 2px rgba(255, 232, 131, 0.6)",
+      backgroundColor: "rgba(255, 232, 131, 0.05)",
     },
     percentOfMpsClickAdder: {
       border: "2px solid rgba(227, 47, 80, 0.8)",
-      boxShadow: "0 0 8px rgba(227, 47, 80, 0.6)",
-      backgroundColor: "rgba(227, 47, 80, 0.1)",
+      boxShadow: "0 0 6px 2px rgba(227, 47, 80, 0.6)",
+      backgroundColor: "rgba(227, 47, 80, 0.05)",
     },
   };
 
-  const upgradeGradient = [
+  const UPGRADE_GRADIENT = [
     "rgb(13,242,250)",
     "rgb(25,230,249)",
     "rgb(38,217,248)",
@@ -202,12 +202,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       div.className = "upgrade";
       div.style.opacity = afford ? "1" : "0.4";
       div.style.pointerEvents = afford ? "auto" : "none";
-      div.style.borderColor = upgradeGradient[i];
-      div.style.boxShadow = `inset 0 -15px 10px -10px ${upgradeGradient[i]}`;
+      div.style.borderColor = UPGRADE_GRADIENT[i];
+      div.style.boxShadow = `inset 0 -10px 8px -10px ${UPGRADE_GRADIENT[i]}`;
 
       div.innerHTML = `
         <img src="${
-          u.image || "src/assets/images/placeholder.png"
+          u.image || "src/assets/images/neonstripes.jpg"
         }" style="height:100%" />
         <div class="upgrade-info">
           <strong>${u.name}</strong>

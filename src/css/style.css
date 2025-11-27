@@ -131,10 +131,10 @@ body main #left-side .clicker-area {
   overflow: hidden;
   padding-bottom: 1rem;
   transition: all 0.1s ease;
-  box-shadow: 0 0 20px 2px rgba(255, 255, 255, 0.856);
+  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.856);
 }
-html main #left-side .clicker-area:active img,
-body main #left-side .clicker-area:active img {
+html main #left-side .clicker-area:active #clicker,
+body main #left-side .clicker-area:active #clicker {
   scale: 1.05;
 }
 html main #left-side .clicker-area #clicker,
@@ -165,7 +165,7 @@ body main #left-side .clicker-area .click-popup {
   user-select: none;
   transform: translate(-50%, -50%);
   opacity: 1;
-  animation: clickPopupFade 1s ease-out forwards;
+  animation: clickPopupFade 1.5s ease-out forwards;
   text-shadow: 0 0 8px rgb(255, 255, 255);
 }
 @keyframes clickPopupFade {
@@ -174,8 +174,35 @@ body main #left-side .clicker-area .click-popup {
     opacity: 1;
   }
   100% {
-    transform: translate(-50%, -200%) scale(1.4);
-    opacity: 0.2;
+    transform: translate(-50%, -400%) scale(1.4);
+    opacity: 0.1;
+  }
+}
+html main #left-side .clicker-area .golden-pawprint,
+body main #left-side .clicker-area .golden-pawprint {
+  position: absolute;
+  opacity: 1;
+  scale: 1;
+  transition: all 1s ease;
+  animation: goldenSpawn 1s ease-out, goldenWobble 0.5s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+@keyframes goldenSpawn {
+  from {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+@keyframes goldenWobble {
+  0% {
+    transform: rotate(-6deg);
+  }
+  100% {
+    transform: rotate(6deg);
   }
 }
 html main #right-side .sub-upgrades,

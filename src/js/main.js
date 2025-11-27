@@ -1,8 +1,14 @@
-import { createCatRotator } from "./catRotation.js";
-import { describeSub } from "./describeSub.js";
-import { spawnClickPopup } from "./clickPopup.js";
-import { SUB_UPGRADE_STYLES, UPGRADE_GRADIENT } from "./upgradeStyles.js";
-import { storage } from "./storage.js";
+// import { createCatRotator } from "./effects/catRotation.js";
+import { startGoldenPawprintSpawner } from "./golden/goldenPawprint.js";
+import { computeThousandFingers } from "./bonuses/thousandFingers.js";
+import { describeSub } from "./logic/describeSub.js";
+import { animateCounter } from "./effects/animateCounter.js";
+import {
+  SUB_UPGRADE_STYLES,
+  UPGRADE_GRADIENT,
+} from "./effects/upgradeStyles.js";
+import { storage } from "./logic/storage.js";
+import { setupClickHandler } from "./logic/handleClick.js";
 
 const mode = "de9v";
 const devBonus = 5000000000;
@@ -32,8 +38,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   let autoInterval = null;
   let animationFrame = null;
 
-  const rotateCat = createCatRotator(clickerImg);
-
   // Restore upgrade data
   upgrades.forEach((u) => {
     u.owned = storage.getUpgradeOwned(u.id);
@@ -41,58 +45,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     u.extraBonus = 0;
   });
 
-  // -----------------------------
-  // Animated Counter
-  // -----------------------------
-  function animateCounter(display, start, end, duration = 1000) {
-    if (animationFrame) cancelAnimationFrame(animationFrame);
-    const startTime = performance.now();
-
-    function update(now) {
-      let p = Math.min((now - startTime) / duration, 1);
-      display.textContent = Math.floor(
-        start + (end - start) * p
-      ).toLocaleString();
-      if (p < 1) animationFrame = requestAnimationFrame(update);
-    }
-
-    requestAnimationFrame(update);
-  }
-
-  // -----------------------------
-  // Thousand Fingers
-  // -----------------------------
-  function computeThousandFingers() {
-    const ownedTFs = subUpgrades.filter(
-      (u) => u.type === "thousandFingers" && storage.getSubUpgradeOwned(u.id)
-    );
-
-    if (!ownedTFs.length) {
-      upgrades.forEach((u) => (u.extraBonus = 0));
-      storage.setThousandFingersBonus(0);
-      return 0;
-    }
-
-    const nonPatsOwned = upgrades
-      .filter((u) => u.name !== "Pats")
-      .reduce((sum, u) => sum + u.owned, 0);
-
-    let total = nonPatsOwned;
-    ownedTFs.forEach((tf) => (total *= tf.bonus));
-
-    upgrades.forEach((u) => {
-      u.extraBonus = u.name === "Pats" ? total : 0;
-    });
-
-    storage.setThousandFingersBonus(total);
-    return total;
-  }
+  startGoldenPawprintSpawner(clickerButton, () => {
+    // Reward on click
+    // Example: give 30 seconds worth of autoRate
+    const bonus = autoRate * 60;
+    count += bonus;
+    storage.setMewnits(count);
+    animateCounter(counterDisplay, count - bonus, count, 400);
+  });
 
   // -----------------------------
   // Full Click Power Recalc
   // -----------------------------
   function updateClickPower() {
-    const tf = computeThousandFingers();
+    const tf = computeThousandFingers(upgrades, subUpgrades);
     const percent = storage.getPercentOfMpsClickAdder(); // e.g. 0.01
     const mpsBonus = Math.floor(autoRate * percent);
 
@@ -125,7 +91,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const prev = count;
       count += autoRate;
 
-      animateCounter(counterDisplay, prev, count);
+      animateCounter(counterDisplay, prev, count, 1000, animationFrame);
       storage.setMewnits(count);
       storage.addLifetimeMewnits(autoRate);
 
@@ -279,28 +245,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     div.remove();
   }
 
-  // -----------------------------
-  // Click
-  // -----------------------------
-  clickerButton.onclick = (e) => {
-    const rect = clickerButton.getBoundingClientRect();
-
-    const clickX = e.clientX - rect.left;
-    const clickY = e.clientY - rect.top;
-
-    spawnClickPopup(clickX, clickY, clickPower, clickerButton);
-
-    count += clickPower;
-    rotateCat();
-
-    storage.addLifetimeMewnits(clickPower);
-    storage.addLifetimeClicks();
-    storage.addLifetimeClickMewnits(clickPower);
-
-    counterDisplay.textContent = count.toLocaleString();
-    saveMewnits();
-    updateAffordability();
-  };
+  setupClickHandler({
+    clickerButton,
+    clickerImg,
+    getClickPower: () => clickPower,
+    incrementCount: (amount) => {
+      count += amount;
+    },
+    saveMewnits,
+    updateAffordability,
+    storage,
+  });
 
   // -----------------------------
   // Helpers

@@ -1,4 +1,4 @@
-import { storage } from "./storage.js";
+import { storage } from "../logic/storage.js";
 
 // --- Stats Dialog ---
 const statsIcon = document.getElementById("stats-icon");

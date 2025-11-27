@@ -849,7 +849,7 @@
   },
   {
     "id": 200000,
-    "name": "1,000 Hand-Made Mewnits Reward",
+    "name": "1,000 Mewnits Clicked Reward",
     "cost": 50000,
     "bonus": 1,
     "type": "percentOfMpsClickAdder",

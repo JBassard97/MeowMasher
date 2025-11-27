@@ -1,5 +1,5 @@
 export function createCatRotator(clickerImg) {
-  const numberOfCatImages = 19;
+  const numberOfCatImages = 23;
   let catImages = [];
 
   for (let i = 0; i < numberOfCatImages; i++) {

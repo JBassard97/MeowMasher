@@ -1,4 +1,7 @@
 import { createCatRotator } from "./catRotation.js";
+import { describeSub } from "./describeSub.js";
+import { spawnClickPopup } from "./clickPopup.js";
+import { SUB_UPGRADE_STYLES, UPGRADE_GRADIENT } from "./upgradeStyles.js";
 import { storage } from "./storage.js";
 
 const mode = "de9v";
@@ -28,58 +31,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   let clickPower = 0;
   let autoInterval = null;
   let animationFrame = null;
-
-  // Dynamic border/glow styles for each sub-upgrade type
-  const SUB_UPGRADE_STYLES = {
-    clickPowerAdder: {
-      border: "2px solid rgba(180, 255, 120, 0.7)",
-      boxShadow: "0 0 6px 2px rgba(180, 255, 120, 0.5)",
-      backgroundColor: "rgba(180, 255, 120, 0.05)",
-    },
-    clickPowerMultiplier: {
-      border: "2px solid rgba(255, 80, 217, 0.7)",
-      boxShadow: "0 0 6px 2px rgba(255, 180, 217, 0.5)",
-      backgroundColor: "rgba(255, 180, 217, 0.05)",
-    },
-    upgradeMultiplier: {
-      border: "2px solid rgba(120, 200, 255, 0.7)",
-      boxShadow: "0 0 6px 2px rgba(120, 200, 255, 0.5)",
-      backgroundColor: "rgba(120, 200, 255, 0.05)",
-    },
-    thousandFingers: {
-      border: "2px solid rgba(255, 232, 131, 0.8)",
-      boxShadow: "0 0 6px 2px rgba(255, 232, 131, 0.6)",
-      backgroundColor: "rgba(255, 232, 131, 0.05)",
-    },
-    percentOfMpsClickAdder: {
-      border: "2px solid rgba(227, 47, 80, 0.8)",
-      boxShadow: "0 0 6px 2px rgba(227, 47, 80, 0.6)",
-      backgroundColor: "rgba(227, 47, 80, 0.05)",
-    },
-  };
-
-  const UPGRADE_GRADIENT = [
-    "rgb(13,242,250)",
-    "rgb(25,230,249)",
-    "rgb(38,217,248)",
-    "rgb(51,204,248)",
-    "rgb(64,191,247)",
-    "rgb(77,179,246)",
-    "rgb(89,166,245)",
-    "rgb(102,153,244)",
-    "rgb(115,140,243)",
-    "rgb(128,128,243)",
-    "rgb(140,115,242)",
-    "rgb(153,102,241)",
-    "rgb(166,89,240)",
-    "rgb(179,77,239)",
-    "rgb(191,64,238)",
-    "rgb(204,51,237)",
-    "rgb(217,38,237)",
-    "rgb(230,25,236)",
-    "rgb(242,13,235)",
-    "rgb(255,0,234)",
-  ];
 
   const rotateCat = createCatRotator(clickerImg);
 
@@ -272,29 +223,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     return true;
   }
 
-  function describeSub(u, upgrades) {
-    const t = upgrades.find((x) => x.id === u.targetUpgradeId);
-    switch (u.type) {
-      case "clickPowerAdder":
-        return `+${u.bonus} Base Click Power`;
-      case "clickPowerMultiplier":
-        if (u.alsoUpgradeMultiplier && t) {
-          return `${u.bonus}× Base Click Power & ${u.bonus}× ${t.name}`;
-        }
-        return `${u.bonus}× Base Click Power`;
-      case "upgradeMultiplier":
-        return `${u.bonus}x ${t?.name || "Upgrade"}`;
-      case "thousandFingers":
-        return u.name !== "Thousand Pats"
-          ? `${u.bonus}x Thousand Pats Bonus`
-          : `+1 Click Power & +1 Pats Per Non-Pats Upgrade`;
-      case "percentOfMpsClickAdder":
-        return `+${u.bonus}% of Mew/S added to Click Power`;
-      default:
-        return "";
-    }
-  }
-
   // -----------------------------
   // Purchases
   // -----------------------------
@@ -360,7 +288,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
 
-    spawnClickPopup(clickX, clickY, clickPower);
+    spawnClickPopup(clickX, clickY, clickPower, clickerButton);
 
     count += clickPower;
     rotateCat();
@@ -397,20 +325,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   function saveMewnits() {
     storage.setMewnits(count);
     counterDisplay.textContent = count.toLocaleString();
-  }
-
-  function spawnClickPopup(x, y, value) {
-    const el = document.createElement("div");
-    el.className = "click-popup";
-    el.textContent = "+" + value.toLocaleString();
-
-    el.style.left = x + "px";
-    el.style.top = y + "px";
-
-    clickerButton.appendChild(el);
-
-    // Remove after animation
-    setTimeout(() => el.remove(), 800);
   }
 
   // -----------------------------

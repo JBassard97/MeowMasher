@@ -41,6 +41,7 @@ body header h1 {
   font-size: 30px;
   padding: 0;
   margin: 1rem;
+  line-height: 1;
 }
 html header .header-icons,
 body header .header-icons {
@@ -221,12 +222,11 @@ html main #right-side .sub-upgrades .sub-upgrade strong,
 body main #right-side .sub-upgrades .sub-upgrade strong {
   font-size: 12px;
   text-decoration: underline;
-  margin-bottom: 2px;
 }
 html main #right-side .sub-upgrades .sub-upgrade p,
 body main #right-side .sub-upgrades .sub-upgrade p {
-  margin: 5px 0;
   word-break: break-word;
+  margin-bottom: 0;
 }
 html main #right-side .sub-upgrades .sub-upgrade:hover,
 body main #right-side .sub-upgrades .sub-upgrade:hover {
@@ -277,12 +277,14 @@ body main #right-side .upgrades .upgrade .upgrade-info {
   text-align: left;
   display: flex;
   flex-direction: column;
+  padding-top: 5px;
 }
 html main #right-side .upgrades .upgrade .upgrade-info strong,
 body main #right-side .upgrades .upgrade .upgrade-info strong {
-  padding-top: 0.2rem;
+  margin-top: 0.2rem;
   text-decoration: underline;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  line-height: 1.2;
 }
 html main #right-side .upgrades .upgrade .upgrade-info div,
 body main #right-side .upgrades .upgrade .upgrade-info div {

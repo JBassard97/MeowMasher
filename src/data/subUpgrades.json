@@ -675,7 +675,7 @@
     "id": 100011,
     "name": "750,000 Mewnits/S Reward",
     "cost": 225000000,
-    "bonus": 5,
+    "bonus": 20,
     "type": "clickPowerAdder",
     "unlockRateRequirement": 750000
   },
@@ -691,7 +691,7 @@
     "id": 100013,
     "name": "2,500,000 Mewnits/S Reward",
     "cost": 750000000,
-    "bonus": 10,
+    "bonus": 20,
     "type": "clickPowerAdder",
     "unlockRateRequirement": 2500000
   },

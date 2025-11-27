@@ -191,6 +191,7 @@ body {
         align-items: stretch; // ensures equal height in each row
         height: 750px;
         overflow-y: auto;
+        overflow-x: hidden;
         padding: 8px 8px;
         box-sizing: border-box;
 

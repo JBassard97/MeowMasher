@@ -1,4 +1,4 @@
-export function describeSub(u, upgrades) {
+export function describeSubBonus(u, upgrades) {
   const t = upgrades.find((x) => x.id === u.targetUpgradeId);
   switch (u.type) {
     case "clickPowerAdder":

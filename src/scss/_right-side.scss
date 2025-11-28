@@ -1,0 +1,164 @@
+#right-side {
+  /* 🔒 Prevent text/image selection or dragging inside upgrades */
+  .upgrade,
+  .upgrade *,
+  .sub-upgrade,
+  .sub-upgrade * {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  .upgrade img,
+  .sub-upgrade img {
+    pointer-events: none;
+    -webkit-user-drag: none;
+  }
+  .sub-upgrades {
+    border-left: 1px solid darkslategrey;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); // 2 per row
+    gap: 8px;
+    align-items: stretch; // ensures equal height in each row
+    height: 850px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px 8px;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #222;
+      border-radius: 4px;
+    }
+
+    .sub-upgrade {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      min-height: auto;
+      padding: 0.5rem;
+      border: 2px solid transparent;
+      border-radius: 10px;
+      box-sizing: border-box;
+      background: rgba(255, 255, 255, 0.03);
+      transition: all 0.15s ease;
+      font-size: 10px;
+      text-align: center;
+      line-height: 1.2;
+      box-shadow: 0 0 3px 10px transparent;
+
+      strong {
+        font-size: 12px;
+        text-decoration: underline;
+      }
+
+      p {
+        word-break: break-word;
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        border-color: #666;
+        background: rgba(255, 255, 255, 0.06);
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  .upgrades {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto; // fills remaining space under .sub-upgrades
+    min-height: 0; // allows proper scrolling
+    overflow-y: auto; // scroll only this section
+    overflow-x: hidden;
+    border: 1px solid darkslategray;
+    border-left: none;
+    border-right: none;
+
+    .upgrade {
+      cursor: pointer;
+      width: 100%;
+      min-height: 120px;
+      height: fit-content;
+      border-bottom: 1px solid gray;
+      font-size: 12px;
+      flex: 0 0 auto; // fixed height per item
+      transition: all 0.2s ease;
+      text-align: center;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      position: relative;
+
+      img {
+        max-height: 80px;
+        max-width: 80px;
+        position: relative;
+        display: block;
+        padding-top: 7px;
+      }
+      .upgrade-info {
+        width: 50%;
+        height: 100%;
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        padding-top: 5px;
+
+        strong {
+          margin-top: 0.2rem;
+          text-decoration: underline;
+          font-size: 0.9rem;
+          line-height: 1.2;
+        }
+
+        div {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 0.5rem;
+          padding-bottom: 1.25rem;
+
+          p {
+            margin: 0;
+            line-height: 1;
+            overflow-wrap: anywhere;
+          }
+        }
+      }
+
+      .owned-number {
+        margin: 0;
+        padding: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+        position: absolute;
+        top: 0;
+        left: 7px;
+        line-height: 1;
+        font-style: italic;
+      }
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #222;
+      border-radius: 4px;
+    }
+  }
+
+  .sub-upgrade:hover,
+  .upgrade:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}

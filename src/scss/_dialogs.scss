@@ -1,0 +1,154 @@
+// Don't touch
+.dialog-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+// Don't Touch
+.dialog-overlay.active {
+  display: flex;
+}
+
+.dialog-content {
+  background-color: #2a2a2a;
+  padding: 1rem;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 90%;
+  min-height: 10%;
+  max-height: 70%;
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  z-index: 9000;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #222;
+    border-radius: 4px;
+  }
+
+  h2,
+  h3,
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  h3 {
+    text-decoration: underline;
+    margin-top: 0.5rem;
+  }
+
+  button {
+    margin-top: 1rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .dialog-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+
+    h2 {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
+.owned-ratio {
+  text-align: center;
+  margin: 0;
+  h3 {
+    font-style: italic;
+    line-height: 1;
+    margin: 0;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+  }
+}
+
+.owned-subupgrades {
+  // border: 1px solid red;
+  width: 100%;
+  .owned-subupgrade {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid gray;
+    border-radius: 20px;
+    width: 100%;
+    margin: 0 0 1rem 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+
+    strong {
+      text-decoration: underline;
+      line-height: 1;
+      background: lightgray;
+      color: #2a2a2a;
+      padding: 5px 5px 5px 10px;
+    }
+    ul {
+      margin: 0;
+      padding: 0.5rem 0 0.75rem 1.5rem;
+      font-size: 12px;
+    }
+    #id {
+      position: absolute;
+      bottom: 0;
+      right: 9px;
+      color: lightblue;
+      font-size: 10px;
+      font-style: italic;
+    }
+  }
+}
+
+#reset-game {
+  background-color: #d9534f;
+}
+
+#reset-game:hover {
+  background-color: #c9302c;
+}
+
+.rainbow-text {
+  background: repeating-linear-gradient(
+    90deg,
+    red 0%,
+    orange calc(100% / 7 * 1),
+    yellow calc(100% / 7 * 2),
+    green calc(100% / 7 * 3),
+    blue calc(100% / 7 * 4),
+    indigo calc(100% / 7 * 5),
+    violet calc(100% / 7 * 6),
+    red 100%
+  );
+
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowFlow 20s linear infinite alternate;
+}

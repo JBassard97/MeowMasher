@@ -36,6 +36,6 @@ export function startGoldenPawprintSpawner(clickerButton, onClick) {
   }
 
   // Start interval
-  // spawnGoldenPawprint(); // optional immediate first spawn
+  spawnGoldenPawprint(); // optional immediate first spawn
   setInterval(spawnGoldenPawprint, SPAWN_INTERVAL);
 }

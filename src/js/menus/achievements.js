@@ -1,4 +1,4 @@
-import { describeSub } from "../logic/describeSub.js";
+import { describeSubBonus } from "../logic/describeSubBonus.js";
 import { describeSubUnlock } from "../logic/describeSubUnlock.js";
 // --- Achievements Dialog ---
 const achievementsIcon = document.getElementById("achievements-icon");
@@ -80,7 +80,7 @@ function renderOwnedSubUpgrades() {
       <strong>${u.name}</strong>
       <ul>
         <li>Cost: <b>${u.cost.toLocaleString()}</b></li>
-        <li>Bonus: <b>${describeSub(u, allUpgrades)}</b></li>
+        <li>Bonus: <b>${describeSubBonus(u, allUpgrades)}</b></li>
         <li>Unlock Requirement: <b>${describeSubUnlock(u, allUpgrades)}</b></li>
         <span id="id">ID: ${u.id}</span>
       </ul>

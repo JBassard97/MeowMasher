@@ -1,7 +1,7 @@
 // import { createCatRotator } from "./effects/catRotation.js";
 import { startGoldenPawprintSpawner } from "./golden/goldenPawprint.js";
 import { computeThousandFingers } from "./bonuses/thousandFingers.js";
-import { describeSub } from "./logic/describeSub.js";
+import { describeSubBonus } from "./logic/describeSubBonus.js";
 import { animateCounter } from "./effects/animateCounter.js";
 import {
   SUB_UPGRADE_STYLES,
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // ? Apply MPS Multiplier for 10 seconds
     goldenPawActive = true;
-    toggleGoldenPawMode(true, "mps");
+    toggleGoldenPawMode(true, "mps", 30);
     updateAutoRate();
     startAutoIncrement();
 
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         div.innerHTML = `
           <strong>${u.name}</strong>
           <p><b>${u.cost.toLocaleString()}</b> <span style="font-size:0.5rem">Mewnits</span></p>
-          <p>${describeSub(u, upgrades)}</p>
+          <p>${describeSubBonus(u, upgrades)}</p>
         `;
 
         div.onclick = () => buySubUpgrade(u, div);

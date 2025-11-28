@@ -1,33 +1,60 @@
-export function toggleGoldenPawMode(isInGoldenPawMode, modeType) {
-  const clickerArea = document.querySelector(".clicker-area");
-  if (isInGoldenPawMode) {
-    clickerArea.style.border = "2px solid gold";
-    clickerArea.style.boxShadow =
-      "0 0 12px 4px rgba(255, 215, 0, 0.8), 0 0 12px 4px rgba(255, 215, 0, 0.4) inset";
+let goldenInterval = null;
 
-    switch (modeType) {
-      case "mps":
-        document.querySelector(".rate-display").style.color = "lightgreen";
-        document.getElementById("bonus-display").textContent =
-          "2x Mewnits/S for 30 Seconds";
-        document.getElementById("bonus-display").style.display = "block";
-        break;
-      default:
-        break;
-    }
-  } else {
+export function toggleGoldenPawMode(
+  isInGoldenPawMode,
+  modeType = "mps",
+  seconds = 30
+) {
+  const clickerArea = document.querySelector(".clicker-area");
+  const bonusDisplay = document.getElementById("bonus-display");
+  const rateDisplay = document.querySelector(".rate-display");
+
+  // ----- Turning OFF -----
+  if (!isInGoldenPawMode) {
+    if (goldenInterval) clearInterval(goldenInterval);
+    goldenInterval = null;
+
     clickerArea.style.border = "none";
-    clickerArea.style.boxShadow = "0 0 5px 2px rgba(255, 255, 255, 0.856)";
-    switch (modeType) {
-      case "mps":
-        document.querySelector(".rate-display").style.color = "white";
-        document.getElementById("bonus-display").textContent = "";
-        document.getElementById("bonus-display").style.display = "none";
-        break;
-      default:
-        break;
+    clickerArea.style.boxShadow = "0 0 5px 2px rgba(255,255,255,0.85)";
+
+    if (modeType === "mps") {
+      rateDisplay.style.color = "white";
+      bonusDisplay.textContent = "";
+      bonusDisplay.style.display = "none";
     }
+
+    return;
   }
 
-  return;
+  // ----- Turning ON -----
+  clickerArea.style.border = "2px solid gold";
+  clickerArea.style.boxShadow =
+    "0 0 12px 4px rgba(255,215,0,0.8), 0 0 12px 4px rgba(255,215,0,0.4) inset";
+
+  if (modeType === "mps") {
+    rateDisplay.style.color = "lightgreen";
+
+    // Start display
+    bonusDisplay.style.display = "block";
+    bonusDisplay.textContent = `2x Mewnits/S for ${seconds} Seconds`;
+
+    // Clear existing interval first
+    if (goldenInterval) clearInterval(goldenInterval);
+
+    let remaining = seconds;
+
+    goldenInterval = setInterval(() => {
+      remaining--;
+
+      bonusDisplay.textContent = `2x Mewnits/S for ${remaining} Seconds`;
+
+      if (remaining <= 0) {
+        clearInterval(goldenInterval);
+        goldenInterval = null;
+
+        // Turn mode OFF automatically
+        toggleGoldenPawMode(false, "mps");
+      }
+    }, 1000);
+  }
 }

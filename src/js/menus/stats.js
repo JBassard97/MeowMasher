@@ -48,7 +48,7 @@ setInterval(() => {
       mps.toLocaleString();
 
     document.getElementById("stats-lifetime-clicks-display").textContent = (
-      storage.getLifetimeClicks() || 0
+      storage.getLifetimeClicks().toLocaleString() || 0
     ).toString();
 
     document.getElementById(

@@ -415,7 +415,8 @@ body {
     border-radius: 10px;
     max-width: 600px;
     width: 90%;
-    height: 90%;
+    height: 70%;
+    
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
@@ -484,10 +485,34 @@ body {
     width: 100%;
     .owned-subupgrade {
       display: flex;
-      border: 1px solid pink;
+      flex-direction: column;
+      border: 2px solid gray;
+      border-radius: 20px;
       width: 100%;
-      padding: 5px;
+      margin: 0 0 1rem 0;
       box-sizing: border-box;
+      overflow: hidden;
+      position: relative;
+
+      strong {
+        text-decoration: underline;
+        line-height: 1;
+        background: lightgray;
+        color: #2a2a2a;
+        padding: 5px 5px 5px 10px;
+      }
+      ul {
+        margin: 0;
+        padding: 0.25rem 0 0.5rem 1.5rem;
+        font-size: 12px;
+      }
+      #id {
+        position: absolute;
+        bottom: 0;
+        right: 9px;
+        color: lightblue;
+        font-size: 12px;
+      }
     }
   }
 

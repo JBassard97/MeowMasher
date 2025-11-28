@@ -1,3 +1,5 @@
+import { describeSub } from "../logic/describeSub.js";
+import { describeSubUnlock } from "../logic/describeSubUnlock.js";
 // --- Achievements Dialog ---
 const achievementsIcon = document.getElementById("achievements-icon");
 const achievementsDialog = document.getElementById("achievements-dialog");
@@ -5,14 +7,26 @@ const closeDialog = document.getElementById("close-achievements-dialog");
 const ownedSubUpgradesContainer =
   achievementsDialog.querySelector(".owned-subupgrades");
 
-// Load the sub-upgrade data ONCE
+// Load both JSON data files ONCE
 let allSubUpgrades = [];
-fetch("src/data/subUpgrades.json")
-  .then((r) => r.json())
-  .then((json) => (allSubUpgrades = json));
+let allUpgrades = [];
+let dataLoaded = false;
 
+Promise.all([
+  fetch("src/data/subUpgrades.json").then((r) => r.json()),
+  fetch("src/data/upgrades.json").then((r) => r.json()),
+]).then(([subs, ups]) => {
+  allSubUpgrades = subs;
+  allUpgrades = ups;
+  dataLoaded = true;
+});
+
+// ----------------------------------
+// DIALOG EVENT LISTENERS
+// ----------------------------------
 achievementsIcon.addEventListener("click", () => {
-  renderOwnedSubUpgrades(); // ⬅️ populate before showing
+  if (!dataLoaded) return; // prevents race condition
+  renderOwnedSubUpgrades();
   achievementsDialog.classList.add("active");
 });
 
@@ -27,42 +41,49 @@ achievementsDialog.addEventListener("click", (e) => {
   }
 });
 
-// -------------------------------
+// ----------------------------------
 // RENDER OWNED SUB-UPGRADES
-// -------------------------------
+// ----------------------------------
 function renderOwnedSubUpgrades() {
-  if (!allSubUpgrades.length) return;
+  if (!dataLoaded) return;
 
-  ownedSubUpgradesContainer.innerHTML = ""; // Clear previous content
+  ownedSubUpgradesContainer.innerHTML = "";
 
-  // Filter only the owned sub-upgrades
+  // Find owned sub-upgrades
   const owned = allSubUpgrades.filter(
     (u) => localStorage.getItem(`subUpgrade_${u.id}_owned`) === "true"
   );
 
   if (owned.length === 0) {
-    ownedSubUpgradesContainer.innerHTML = `<p class="no-owned">No sub-upgrades owned yet!</p>`;
+    ownedSubUpgradesContainer.innerHTML = `
+      <p class="no-owned">No sub-upgrades owned yet!</p>
+    `;
     return;
   }
+
+  // OWNED RATIO
+  const percent = Math.floor((owned.length / allSubUpgrades.length) * 100);
 
   const ownedRatioEl = document.createElement("h4");
   ownedRatioEl.className = "owned-ratio";
   ownedRatioEl.innerHTML = `
-    <h3>
-      ${owned.length}/${allSubUpgrades.length} (${Math.floor(
-    (owned.length / allSubUpgrades.length) * 100
-  )}%)
-    </h3>
+    <h3>${owned.length}/${allSubUpgrades.length} (${percent}%)</h3>
   `;
   ownedSubUpgradesContainer.appendChild(ownedRatioEl);
 
-  // Generate a nice list
+  // LIST EACH OWNED SUB-UPGRADE
   owned.forEach((u) => {
     const div = document.createElement("div");
     div.className = "owned-subupgrade";
 
     div.innerHTML = `
       <strong>${u.name}</strong>
+      <ul>
+        <li>Cost: <b>${u.cost.toLocaleString()}</b></li>
+        <li>Bonus: <b>${describeSub(u, allUpgrades)}</b></li>
+        <li>Unlock Requirement: <b>${describeSubUnlock(u, allUpgrades)}</b></li>
+        <span id="id">ID: ${u.id}</span>
+      </ul>
     `;
 
     ownedSubUpgradesContainer.appendChild(div);

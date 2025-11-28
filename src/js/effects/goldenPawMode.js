@@ -8,6 +8,9 @@ export function toggleGoldenPawMode(isInGoldenPawMode, modeType) {
     switch (modeType) {
       case "mps":
         document.querySelector(".rate-display").style.color = "lightgreen";
+        document.getElementById("bonus-display").textContent =
+          "2x Mewnits/S for 30 Seconds";
+        document.getElementById("bonus-display").style.display = "block";
         break;
       default:
         break;
@@ -18,6 +21,8 @@ export function toggleGoldenPawMode(isInGoldenPawMode, modeType) {
     switch (modeType) {
       case "mps":
         document.querySelector(".rate-display").style.color = "white";
+        document.getElementById("bonus-display").textContent = "";
+        document.getElementById("bonus-display").style.display = "none";
         break;
       default:
         break;

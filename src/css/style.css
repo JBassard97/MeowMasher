@@ -152,6 +152,16 @@ html main #left-side .clicker-area:active #clicker,
 body main #left-side .clicker-area:active #clicker {
   scale: 1.05;
 }
+html main #left-side .clicker-area #bonus-display,
+body main #left-side .clicker-area #bonus-display {
+  text-align: center;
+  position: absolute;
+  margin: 0.5rem;
+  top: 0px;
+  font-size: 20px;
+  font-weight: bold;
+  display: none;
+}
 html main #left-side .clicker-area #clicker,
 body main #left-side .clicker-area #clicker {
   width: 60%;
@@ -401,13 +411,24 @@ body .dialog-content {
   background-color: #2a2a2a;
   padding: 1rem;
   border-radius: 10px;
-  max-width: 500px;
+  max-width: 600px;
   width: 90%;
+  height: 90%;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: auto;
   z-index: 9000;
+}
+html .dialog-content::-webkit-scrollbar,
+body .dialog-content::-webkit-scrollbar {
+  width: 8px;
+}
+html .dialog-content::-webkit-scrollbar-thumb,
+body .dialog-content::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 4px;
 }
 html .dialog-content h2,
 html .dialog-content h3,
@@ -441,6 +462,37 @@ body .dialog-content .dialog-body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  width: 100%;
+}
+html .dialog-content .dialog-body h2,
+body .dialog-content .dialog-body h2 {
+  width: 100%;
+  text-align: center;
+}
+html .owned-ratio,
+body .owned-ratio {
+  text-align: center;
+  margin: 0;
+}
+html .owned-ratio h3,
+body .owned-ratio h3 {
+  font-style: italic;
+  line-height: 1;
+  margin: 0;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+}
+html .owned-subupgrades,
+body .owned-subupgrades {
+  width: 100%;
+}
+html .owned-subupgrades .owned-subupgrade,
+body .owned-subupgrades .owned-subupgrade {
+  display: flex;
+  border: 1px solid pink;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
 }
 html #reset-game,
 body #reset-game {

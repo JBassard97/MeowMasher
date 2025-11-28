@@ -140,6 +140,18 @@ body {
           }
         }
 
+        #bonus-display {
+          // border: 1px solid rgb(0, 255, 140);
+          text-align: center;
+          position: absolute;
+          margin: 0.5rem;
+          top: 0px;
+          font-size: 20px;
+          font-weight: bold;
+          display: none;
+          // animation: rainbowFlow 5s linear infinite;
+        }
+
         #clicker {
           width: 60%;
           height: auto;
@@ -401,13 +413,23 @@ body {
     background-color: #2a2a2a;
     padding: 1rem;
     border-radius: 10px;
-    max-width: 500px;
+    max-width: 600px;
     width: 90%;
+    height: 90%;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: auto;
     z-index: 9000;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #222;
+      border-radius: 4px;
+    }
 
     h2,
     h3,
@@ -437,6 +459,35 @@ body {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      width: 100%;
+
+      h2 {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  }
+  .owned-ratio {
+    text-align: center;
+    margin: 0;
+    h3 {
+      font-style: italic;
+      line-height: 1;
+      margin: 0;
+      margin-bottom: 0.5rem;
+      text-decoration: none;
+    }
+  }
+
+  .owned-subupgrades {
+    // border: 1px solid red;
+    width: 100%;
+    .owned-subupgrade {
+      display: flex;
+      border: 1px solid pink;
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
     }
   }
 

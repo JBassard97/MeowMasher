@@ -3,7 +3,8 @@ let goldenInterval = null;
 export function toggleGoldenPawMode(
   isInGoldenPawMode,
   modeType = "mps",
-  seconds = 30
+  seconds = 30,
+  value
 ) {
   const clickerArea = document.querySelector(".clicker-area");
   const bonusDisplay = document.getElementById("bonus-display");
@@ -19,9 +20,10 @@ export function toggleGoldenPawMode(
 
     if (modeType === "mps") {
       rateDisplay.style.color = "white";
-      bonusDisplay.textContent = "";
-      bonusDisplay.style.display = "none";
     }
+
+    bonusDisplay.textContent = "";
+    bonusDisplay.style.display = "none";
 
     return;
   }
@@ -31,14 +33,15 @@ export function toggleGoldenPawMode(
   clickerArea.style.boxShadow =
     "0 0 12px 4px rgba(255,215,0,0.8), 0 0 12px 4px rgba(255,215,0,0.4) inset";
 
+  // ======================
+  //      MPS MODE
+  // ======================
   if (modeType === "mps") {
     rateDisplay.style.color = "lightgreen";
 
-    // Start display
     bonusDisplay.style.display = "block";
     bonusDisplay.textContent = `2x Mewnits/S for ${seconds} Seconds`;
 
-    // Clear existing interval first
     if (goldenInterval) clearInterval(goldenInterval);
 
     let remaining = seconds;
@@ -51,10 +54,29 @@ export function toggleGoldenPawMode(
       if (remaining <= 0) {
         clearInterval(goldenInterval);
         goldenInterval = null;
-
-        // Turn mode OFF automatically
         toggleGoldenPawMode(false, "mps");
       }
     }, 1000);
+
+    return;
+  }
+
+  // ======================
+  //      MEW MODE
+  // ======================
+  if (modeType === "mew") {
+    // Show reward instantly
+    bonusDisplay.style.display = "block";
+    bonusDisplay.textContent = `+${value.toLocaleString()} Mewnits`;
+
+    // Clear any existing timer
+    if (goldenInterval) clearInterval(goldenInterval);
+
+    // Hide after 1 second
+    goldenInterval = setTimeout(() => {
+      toggleGoldenPawMode(false, "mew");
+    }, 1000);
+
+    return;
   }
 }

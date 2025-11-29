@@ -51,26 +51,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   startGoldenPawprintSpawner(clickerButton, () => {
-    // ? Give Immediate Mewnits Reward on click
-    // Example: give 30 seconds worth of autoRate
-    // const bonus = autoRate * 60;
-    // count += bonus;
-    // storage.setMewnits(count);
-    // animateCounter(counterDisplay, count - bonus, count, 400);
+    // Weight configuration
+    const reward = chooseWeighted({
+      mps: 1, // equal chance by default
+      mew: 2, // equal chance
+    });
 
-    // ? Apply MPS Multiplier for 10 seconds
-    goldenPawActive = true;
-    toggleGoldenPawMode(true, "mps", 30);
-    updateAutoRate();
-    startAutoIncrement();
-
-    // Remove after 30 seconds
-    setTimeout(() => {
-      goldenPawActive = false;
-      toggleGoldenPawMode(false, "mps");
+    if (reward === "mps") {
+      // --- Apply 30s MPS Boost ---
+      goldenPawActive = true;
+      toggleGoldenPawMode(true, "mps", 30);
       updateAutoRate();
       startAutoIncrement();
-    }, 1000 * 30);
+
+      setTimeout(() => {
+        goldenPawActive = false;
+        toggleGoldenPawMode(false, "mps");
+        updateAutoRate();
+        startAutoIncrement();
+      }, 1000 * 30);
+    } else if (reward === "mew") {
+      // --- Immediate Mewnits payout ---
+      const bonus = autoRate * 60; // e.g. 60 seconds worth
+      toggleGoldenPawMode(true, "mew", 1, bonus);
+      const prev = count;
+      count += bonus;
+      storage.setMewnits(count);
+      animateCounter(counterDisplay, prev, count, 400);
+    }
   });
 
   // -----------------------------
@@ -188,9 +196,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         div.innerHTML = `
-          <strong>${u.name}</strong>
+          <strong style="background-color:${style.strongBackground}">${u.name}</strong>
+          <div>
           <p><b>${u.cost.toLocaleString()}</b> <span style="font-size:0.5rem">Mewnits</span></p>
           <p>${describeSubBonus(u, upgrades)}</p>
+          </div>
         `;
 
         div.onclick = () => buySubUpgrade(u, div);
@@ -319,3 +329,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderSubUpgrades();
   startAutoIncrement();
 });
+
+function chooseWeighted(weights) {
+  const entries = Object.entries(weights); // [ ["mps",2], ["mew",1] ]
+  const total = entries.reduce((sum, [, w]) => sum + w, 0);
+
+  let r = Math.random() * total;
+
+  for (const [key, weight] of entries) {
+    if ((r -= weight) <= 0) return key;
+  }
+}

@@ -180,12 +180,10 @@ header .header-icons #achievements-icon svg:hover g path {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  min-height: auto;
-  padding: 0.5rem;
+  min-height: 100px;
+  height: auto;
   border: 2px solid transparent;
-  border-radius: 10px;
+  border-radius: 12px;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.03);
   transition: all 0.15s ease;
@@ -197,10 +195,23 @@ header .header-icons #achievements-icon svg:hover g path {
 #right-side .sub-upgrades .sub-upgrade strong {
   font-size: 12px;
   text-decoration: underline;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  width: 100%;
 }
-#right-side .sub-upgrades .sub-upgrade p {
+#right-side .sub-upgrades .sub-upgrade div {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+#right-side .sub-upgrades .sub-upgrade div p {
   word-break: break-word;
-  margin-bottom: 0;
+  margin: 0;
+  padding: 0;
 }
 #right-side .sub-upgrades .sub-upgrade:hover {
   border-color: #666;

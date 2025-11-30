@@ -18,6 +18,7 @@
 ### Unlocked based on Mew/S
 
     -100000-109999 = Unlocked based on Mew/S and upgrade clickPower
+    -300000-399999 = Cat Unlocking Sub-Upgrades, Mew/S based Unlock
 
 ### Unlocked based on Mew Clicked
 

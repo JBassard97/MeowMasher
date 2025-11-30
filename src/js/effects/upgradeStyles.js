@@ -3,40 +3,65 @@
 export const SUB_UPGRADE_STYLES = {
   clickPowerAdder: {
     border: "2px solid rgba(180, 255, 120, 0.7)",
-    strongBackground: "linear-gradient(to bottom, rgba(180, 255, 120, 0.7), rgba(180, 255, 120, 0.05))",
+    strongBackground:
+      "linear-gradient(to bottom, rgba(180, 255, 120, 0.7), rgba(180, 255, 120, 0.05))",
     boxShadow: "0 0 6px 2px rgba(180, 255, 120, 0.5)",
     backgroundColor: "rgba(180, 255, 120, 0.05)",
   },
 
   clickPowerMultiplier: {
     border: "2px solid rgba(255, 80, 217, 0.7)",
-    strongBackground: "linear-gradient(to bottom, rgba(255, 80, 217, 0.7), rgba(255, 180, 217, 0.05))",
+    strongBackground:
+      "linear-gradient(to bottom, rgba(255, 80, 217, 0.7), rgba(255, 180, 217, 0.05))",
     boxShadow: "0 0 6px 2px rgba(255, 180, 217, 0.5)",
     backgroundColor: "rgba(255, 180, 217, 0.05)",
   },
 
   upgradeMultiplier: {
     border: "2px solid rgba(120, 200, 255, 0.7)",
-    strongBackground: "linear-gradient(to bottom, rgba(120, 200, 255, 0.7), rgba(120, 200, 255, 0.05))",
+    strongBackground:
+      "linear-gradient(to bottom, rgba(120, 200, 255, 0.7), rgba(120, 200, 255, 0.05))",
     boxShadow: "0 0 6px 2px rgba(120, 200, 255, 0.5)",
     backgroundColor: "rgba(120, 200, 255, 0.05)",
   },
 
   thousandFingers: {
     border: "2px solid rgba(255, 232, 131, 0.8)",
-    strongBackground: "linear-gradient(to bottom, rgba(255, 232, 131, 0.8), rgba(255, 232, 131, 0.05))",
+    strongBackground:
+      "linear-gradient(to bottom, rgba(255, 232, 131, 0.8), rgba(255, 232, 131, 0.05))",
     boxShadow: "0 0 6px 2px rgba(255, 232, 131, 0.6)",
     backgroundColor: "rgba(255, 232, 131, 0.05)",
   },
 
   percentOfMpsClickAdder: {
     border: "2px solid rgba(227, 47, 80, 0.8)",
-    strongBackground: "linear-gradient(to bottom, rgba(227, 47, 80, 0.8), rgba(227, 47, 80, 0.05))",
+    strongBackground:
+      "linear-gradient(to bottom, rgba(227, 47, 80, 0.8), rgba(227, 47, 80, 0.05))",
     boxShadow: "0 0 6px 2px rgba(227, 47, 80, 0.6)",
     backgroundColor: "rgba(227, 47, 80, 0.05)",
   },
-};
 
+  catAdopt: {
+    border: "2px solid rgba(255, 0, 255, 0.75)",
+
+    strongBackground:
+      "linear-gradient(to bottom, \
+      rgba(255, 0, 0, 0.7), \
+      rgba(255, 165, 0, 0.7), \
+      rgba(255, 255, 0, 0.7), \
+      rgba(0, 255, 0, 0.7), \
+      rgba(0, 127, 255, 0.7), \
+      rgba(139, 0, 255, 0.7), \
+      rgba(255, 0, 255, 0.05) \
+    )",
+
+    boxShadow:
+      "0 0 6px 3px rgba(255, 0, 255, 0.6), \
+     0 0 12px 4px rgba(0, 255, 255, 0.4)",
+
+    backgroundColor: "rgba(255, 0, 255, 0.05)",
+  },
+};
 
 export const UPGRADE_GRADIENT = [
   "rgb(13,242,250)",

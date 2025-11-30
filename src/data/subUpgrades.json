@@ -934,5 +934,45 @@
     "bonus": 1,
     "type": "percentOfMpsClickAdder",
     "unlockClickedMewnitsRequirement": 100000000000000000000000
+  },
+  {
+    "id": 300000,
+    "name": "ADOPT Daisy!",
+    "cost": 999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9
+  },
+  {
+    "id": 300001,
+    "name": "ADOPT Rick!",
+    "cost": 9999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99
+  },
+  {
+    "id": 300002,
+    "name": "ADOPT Comet!",
+    "cost": 99999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999
+  },
+  {
+    "id": 300003,
+    "name": "ADOPT Taco!",
+    "cost": 999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999
+  },
+  {
+    "id": 300004,
+    "name": "ADOPT Beatrice!",
+    "cost": 9999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999
   }
 ]

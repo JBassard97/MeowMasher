@@ -239,7 +239,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     u.owned++;
     storage.setUpgradeOwned(u.id, u.owned);
 
-    changeTabIcon(u.image);
+    changeTabIcon(u.image); // ! Easter Egg
 
     updateAutoRate();
     updateClickPower();
@@ -275,6 +275,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (u.type === "percentOfMpsClickAdder") {
       const current = storage.getPercentOfMpsClickAdder();
       storage.setPercentOfMpsClickAdder(current + u.bonus / 100);
+    } else if (u.type === "catAdopt") {
+      storage.addAdoptedCatsNumber();
     }
 
     updateAutoRate();

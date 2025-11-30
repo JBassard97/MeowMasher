@@ -171,7 +171,6 @@ header .header-icons #achievements-icon svg:hover g path {
   margin: 0;
   width: 100%;
   font-style: italic;
-  z-index: 6;
   position: relative;
   box-sizing: border-box;
   border-top: 1px solid darkslategray;

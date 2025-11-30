@@ -64,10 +64,19 @@ export const storage = {
     localStorage.setItem("mewnitsPerSecond", value),
 
   // --- Settings Dialogue ---
-
   getIsUiFlipped: () =>
     JSON.parse(localStorage.getItem("isUiFlipped") ?? "false"),
-
   setIsUiFlipped: (value) =>
     localStorage.setItem("isUiFlipped", JSON.stringify(value)),
+
+  // --- Cat Unlocking ---
+  getAdoptedCatsNumber: () =>
+    JSON.parse(localStorage.getItem("adoptedCatsAmount")) || 0,
+
+  initAdoptedCatsNumber: () => localStorage.setItem("adoptedCatsAmount", 1),
+
+  addAdoptedCatsNumber: () => {
+    const current = JSON.parse(localStorage.getItem("adoptedCatsAmount")) || 1;
+    localStorage.setItem("adoptedCatsAmount", JSON.stringify(current + 1));
+  },
 };

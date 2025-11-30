@@ -1,10 +1,10 @@
 {
   "name": "meowmasher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "git-add-minor":"npm version minor && git add . ",
+    "git-add-minor": "npm version minor && git add . ",
     "build-css": "sass src/scss:src/css",
     "watch": "sass --watch src/scss:src/css"
   },

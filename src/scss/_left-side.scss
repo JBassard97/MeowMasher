@@ -67,11 +67,14 @@
 
     #owned-cats {
       position: absolute;
-      bottom: 2%;
-      right: 10%;
+      bottom: 0;
+      right: 5px;
       color: black;
       font-weight: bold;
       font-size: 20px;
+      display: flex;
+      align-items: center;
+      font-size: 15px;
     }
 
     #clicker {

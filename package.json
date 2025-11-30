@@ -8,7 +8,7 @@
     "build-css": "sass src/scss:src/css",
     "watch": "sass --watch src/scss:src/css"
   },
-  "keywords": [],
+  "keywords": ["game"],
   "author": "",
   "license": "ISC",
   "type": "commonjs",

@@ -104,6 +104,14 @@ header .header-icons #achievements-icon svg:hover g path {
   font-weight: bold;
   display: none;
 }
+#left-side .clicker-area #owned-cats {
+  position: absolute;
+  bottom: 2%;
+  right: 10%;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+}
 #left-side .clicker-area #clicker {
   width: 60%;
   height: auto;

@@ -277,6 +277,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       storage.setPercentOfMpsClickAdder(current + u.bonus / 100);
     } else if (u.type === "catAdopt") {
       storage.addAdoptedCatsNumber();
+      updateOwnedCatsDisplay();
     }
 
     updateAutoRate();
@@ -321,6 +322,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
+  function updateOwnedCatsDisplay() {
+    document.getElementById("owned-cats-number").textContent =
+      storage.getAdoptedCatsNumber();
+  }
+
   function saveMewnits() {
     storage.setMewnits(count);
     counterDisplay.textContent = count.toLocaleString();
@@ -335,6 +341,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderUpgrades();
   renderSubUpgrades();
   startAutoIncrement();
+  updateOwnedCatsDisplay();
 });
 
 function chooseWeighted(weights) {

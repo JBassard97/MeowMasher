@@ -6,7 +6,7 @@ header {
   align-items: center;
   padding: 0 1rem;
   border-bottom: 1px solid darkslategray;
-  background-color: black;
+  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2196078431), rgba(208, 208, 208, 0.0392156863));
 }
 header h1 {
   font-weight: 900;
@@ -57,6 +57,7 @@ header .header-icons #achievements-icon svg:hover g path {
   padding: 0.5rem;
   padding-bottom: 1rem;
   z-index: 5;
+  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2196078431), rgba(208, 208, 208, 0.0392156863));
 }
 #left-side #stats p {
   margin: 0;
@@ -163,7 +164,7 @@ header .header-icons #achievements-icon svg:hover g path {
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
   align-items: stretch;
-  height: 850px;
+  height: 950px;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 8px 8px;
@@ -180,7 +181,6 @@ header .header-icons #achievements-icon svg:hover g path {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  min-height: 100px;
   height: auto;
   border: 2px solid transparent;
   border-radius: 12px;
@@ -198,6 +198,7 @@ header .header-icons #achievements-icon svg:hover g path {
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding: 0.5rem;
+  padding-bottom: 0.75rem;
   box-sizing: border-box;
   width: 100%;
 }
@@ -211,7 +212,7 @@ header .header-icons #achievements-icon svg:hover g path {
 #right-side .sub-upgrades .sub-upgrade div p {
   word-break: break-word;
   margin: 0;
-  padding: 0;
+  padding: 0.5rem;
 }
 #right-side .sub-upgrades .sub-upgrade:hover {
   border-color: #666;
@@ -243,6 +244,7 @@ header .header-icons #achievements-icon svg:hover g path {
   justify-content: space-evenly;
   align-items: center;
   position: relative;
+  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2196078431), rgba(208, 208, 208, 0.0392156863));
 }
 #right-side .upgrades .upgrade img {
   max-height: 80px;
@@ -361,14 +363,25 @@ header .header-icons #achievements-icon svg:hover g path {
   cursor: pointer;
 }
 .dialog-content .dialog-body {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
   width: 100%;
 }
 .dialog-content .dialog-body h2 {
   width: 100%;
   text-align: center;
+}
+.dialog-content .dialog-body .all-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.dialog-content .dialog-body .all-settings * {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.dialog-content .dialog-body .all-settings * * {
+  margin: 0;
+  padding: 0;
 }
 
 .owned-ratio {
@@ -421,7 +434,6 @@ header .header-icons #achievements-icon svg:hover g path {
 #reset-game {
   background-color: #d9534f;
 }
-
 #reset-game:hover {
   background-color: #c9302c;
 }
@@ -440,6 +452,7 @@ footer {
   font-size: 0.8rem;
   color: lightgray;
   padding: 0.5rem 0;
+  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2196078431), rgba(208, 208, 208, 0.0392156863));
 }
 
 @keyframes clickPopupFade {
@@ -501,6 +514,7 @@ html main,
 body main {
   flex: 1 1 auto;
   display: flex;
+  flex-direction: row;
   justify-content: space-evenly;
   align-items: stretch;
   min-height: 0;

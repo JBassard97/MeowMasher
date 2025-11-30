@@ -10,6 +10,7 @@ import {
 import { storage } from "./logic/storage.js";
 import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
+import { changeTabIcon } from "./easter-eggs/changeTabIcon.js";
 
 const mode = "de9v";
 const devBonus = 5000000000;
@@ -196,7 +197,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         div.innerHTML = `
-          <strong style="background-color:${style.strongBackground}">${u.name}</strong>
+          <strong style="background:${style.strongBackground}">${
+          u.name
+        }</strong>
           <div>
           <p><b>${u.cost.toLocaleString()}</b> <span style="font-size:0.5rem">Mewnits</span></p>
           <p>${describeSubBonus(u, upgrades)}</p>
@@ -235,6 +238,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     u.owned++;
     storage.setUpgradeOwned(u.id, u.owned);
+
+    changeTabIcon(u.image);
 
     updateAutoRate();
     updateClickPower();

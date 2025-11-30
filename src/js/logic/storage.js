@@ -62,4 +62,12 @@ export const storage = {
     Number(localStorage.getItem("mewnitsPerSecond")) || 0,
   setMewnitsPerSecond: (value) =>
     localStorage.setItem("mewnitsPerSecond", value),
+
+  // --- Settings Dialogue ---
+
+  getIsUiFlipped: () =>
+    JSON.parse(localStorage.getItem("isUiFlipped") ?? "false"),
+
+  setIsUiFlipped: (value) =>
+    localStorage.setItem("isUiFlipped", JSON.stringify(value)),
 };

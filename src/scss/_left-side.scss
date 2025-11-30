@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 #left-side {
   #stats {
     // border: 1px solid white;
@@ -5,6 +7,7 @@
     padding: 0.5rem;
     padding-bottom: 1rem;
     z-index: 5;
+    background-image: $softGlowFromTop;
 
     p {
       margin: 0;

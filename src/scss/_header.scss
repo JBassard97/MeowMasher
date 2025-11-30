@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 header {
   flex: 0 0 auto; // only as tall as its content
   display: flex;
@@ -5,7 +7,8 @@ header {
   align-items: center;
   padding: 0 1rem;
   border-bottom: 1px solid darkslategray;
-  background-color: black;
+  // background-color: black;
+  background-image: $softGlowFromTop;
 
   h1 {
     font-weight: 900;

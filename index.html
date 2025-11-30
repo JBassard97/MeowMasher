@@ -11,6 +11,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="src/css/style.css" />
+    <link
+      id="tab-icon-link"
+      rel="icon"
+      href="src/assets/images/upgrades/pats.png"
+    />
   </head>
   <body>
     <header>
@@ -194,8 +199,16 @@
       <div class="dialog-content">
         <h1>Settings</h1>
         <div class="dialog-body">
-          <button id="reset-game" class="dialog-button">Reset Game</button>
-          <p class="warning-text">This will delete all your progress!</p>
+          <div class="all-settings">
+            <div class="flip-ui">
+              <p>Flip the left and right sides</p>
+              <input id="flip-ui" type="checkbox" />
+            </div>
+            <div class="reset-game">
+              <p class="warning-text">This will delete all your progress</p>
+              <button id="reset-game" class="dialog-button">Reset Game</button>
+            </div>
+          </div>
         </div>
         <button id="close-settings-dialog" class="dialog-button">Close</button>
       </div>

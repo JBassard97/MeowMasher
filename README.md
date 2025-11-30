@@ -1,3 +1,5 @@
+./ci-cd/release.sh "commit message" minor
+
 # subUpgrades:
 
 ## JSON Map

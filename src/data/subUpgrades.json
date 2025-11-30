@@ -974,5 +974,245 @@
     "bonus": 1,
     "type": "catAdopt",
     "unlockRateRequirement": 99999
+  },
+  {
+    "id": 300005,
+    "name": "ADOPT Nimbus!",
+    "cost": 99999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999
+  },
+  {
+    "id": 300006,
+    "name": "ADOPT Pixel!",
+    "cost": 999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999
+  },
+  {
+    "id": 300007,
+    "name": "ADOPT Mochi!",
+    "cost": 9999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999
+  },
+  {
+    "id": 300008,
+    "name": "ADOPT Gizmo!",
+    "cost": 99999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999
+  },
+  {
+    "id": 300009,
+    "name": "ADOPT Whiskers!",
+    "cost": 999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999
+  },
+  {
+    "id": 300010,
+    "name": "ADOPT Stardust!",
+    "cost": 9999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999
+  },
+  {
+    "id": 300011,
+    "name": "ADOPT Pudding!",
+    "cost": 99999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999
+  },
+  {
+    "id": 300012,
+    "name": "ADOPT Ember!",
+    "cost": 999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999
+  },
+  {
+    "id": 300013,
+    "name": "ADOPT Socks!",
+    "cost": 9999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999
+  },
+  {
+    "id": 300014,
+    "name": "ADOPT Noodle!",
+    "cost": 99999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999
+  },
+  {
+    "id": 300015,
+    "name": "ADOPT Orbit!",
+    "cost": 999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999
+  },
+  {
+    "id": 300016,
+    "name": "ADOPT Pretzel!",
+    "cost": 9999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999
+  },
+  {
+    "id": 300017,
+    "name": "ADOPT Mango!",
+    "cost": 99999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999999
+  },
+  {
+    "id": 300018,
+    "name": "ADOPT Pebbles!",
+    "cost": 999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999999
+  },
+  {
+    "id": 300019,
+    "name": "ADOPT Marshmallow!",
+    "cost": 9999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999999
+  },
+  {
+    "id": 300020,
+    "name": "ADOPT Sprinkles!",
+    "cost": 99999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999999999
+  },
+  {
+    "id": 300021,
+    "name": "ADOPT Shadow!",
+    "cost": 999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999999999
+  },
+  {
+    "id": 300022,
+    "name": "ADOPT Tater Tot!",
+    "cost": 9999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999999999
+  },
+  {
+    "id": 300023,
+    "name": "ADOPT Juniper!",
+    "cost": 99999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999999999999
+  },
+  {
+    "id": 300024,
+    "name": "ADOPT Clover!",
+    "cost": 999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999999999999
+  },
+  {
+    "id": 300025,
+    "name": "ADOPT Blizzard!",
+    "cost": 9999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999999999999
+  },
+  {
+    "id": 300026,
+    "name": "ADOPT Pumpkin!",
+    "cost": 99999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999999999999999
+  },
+  {
+    "id": 300027,
+    "name": "ADOPT Echo!",
+    "cost": 999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999999999999999
+  },
+  {
+    "id": 300028,
+    "name": "ADOPT Fizz!",
+    "cost": 9999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999999999999999
+  },
+  {
+    "id": 300029,
+    "name": "ADOPT Nova!",
+    "cost": 99999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999999999999999999
+  },
+  {
+    "id": 300030,
+    "name": "ADOPT Goose!",
+    "cost": 999999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999999999999999999
+  },
+  {
+    "id": 300031,
+    "name": "ADOPT Lumen!",
+    "cost": 9999999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999999999999999999
+  },
+  {
+    "id": 300032,
+    "name": "ADOPT Velvet!",
+    "cost": 99999999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999999999999999999999
+  },
+  {
+    "id": 300033,
+    "name": "ADOPT Quartz!",
+    "cost": 999999999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999999999999999999999
+  },
+  {
+    "id": 300034,
+    "name": "ADOPT Snowball!",
+    "cost": 9999999999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999999999999999999999
   }
 ]

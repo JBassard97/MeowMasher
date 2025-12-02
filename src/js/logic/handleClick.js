@@ -1,6 +1,7 @@
 // handleClick.js
 import { spawnClickPopup } from "../effects/clickPopup.js";
 import { createCatRotator } from "../effects/catRotation.js";
+import { AudioList } from "../audio/audio.js";
 
 export function setupClickHandler({
   clickerButton,
@@ -23,6 +24,7 @@ export function setupClickHandler({
 
     spawnClickPopup(clickX, clickY, clickPower, clickerButton);
     rotateCat();
+    AudioList.Meow();
 
     // update counts
     incrementCount(clickPower);

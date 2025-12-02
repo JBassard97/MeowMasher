@@ -200,7 +200,12 @@
     </main>
 
     <footer>
+      <script type="module">
+        import pkg from "./package.json" with { type: "json" };
+        document.getElementById("version-number").textContent = pkg.version;
+      </script>
       <p>© 2025 Meow Masher</p>
+      <p>v<span id="version-number">1.0.0</span></p>
     </footer>
 
     <!-- STATS -->

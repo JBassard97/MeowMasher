@@ -108,7 +108,7 @@ header .header-icons #achievements-icon svg:hover g path {
   width: fit-content;
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: -10px;
   font-size: 20px;
   border-radius: 20px;
   padding: 0.5rem 1rem;
@@ -516,8 +516,10 @@ footer {
   text-align: center;
   font-size: 0.8rem;
   color: lightgray;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
   background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.1529411765), rgba(208, 208, 208, 0.0392156863));
+  display: flex;
+  justify-content: space-between;
 }
 
 @keyframes clickPopupFade {

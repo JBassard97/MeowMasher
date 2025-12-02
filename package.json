@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "git-add-minor": "npm version minor && git add . ",
     "build-css": "sass src/scss:src/css",
     "watch": "sass --watch src/scss:src/css"
   },
   "keywords": [
-    "game"
+    "game",
+    "clicker",
+    "javascript",
+    "sass"
   ],
   "author": "",
   "license": "ISC",

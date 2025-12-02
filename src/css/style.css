@@ -104,21 +104,43 @@ header .header-icons #achievements-icon svg:hover g path {
   font-weight: bold;
   display: none;
 }
-#left-side .clicker-area #owned-cats {
+#left-side .clicker-area .clicker-details {
+  width: fit-content;
   position: absolute;
-  bottom: 2px;
-  right: 5px;
-  color: black;
-  font-weight: bold;
+  bottom: 0;
+  right: 0;
   font-size: 20px;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  background-color: black;
+  scale: 0.6;
+  opacity: 0.6;
+}
+#left-side .clicker-area .clicker-details::after {
+  content: "";
+  border-radius: inherit;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.1529411765), rgba(208, 208, 208, 0.0392156863));
+}
+#left-side .clicker-area .clicker-details #owned-cats,
+#left-side .clicker-area .clicker-details .living-rooms {
+  color: lightgray;
+  font-weight: bold;
   display: flex;
   align-items: center;
   font-size: 15px;
   gap: 0.25rem;
 }
-#left-side .clicker-area #owned-cats #owned-cats-number {
-  font-size: 20px;
+#left-side .clicker-area .clicker-details #owned-cats #owned-cats-number,
+#left-side .clicker-area .clicker-details #owned-cats #living-rooms-number,
+#left-side .clicker-area .clicker-details .living-rooms #owned-cats-number,
+#left-side .clicker-area .clicker-details .living-rooms #living-rooms-number {
   line-height: 1;
+  font-size: 20px;
 }
 #left-side .clicker-area #clicker {
   width: 60%;

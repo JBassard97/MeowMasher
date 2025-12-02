@@ -32,7 +32,7 @@ closeDialog.addEventListener("click", () => {
 
 resetGame.addEventListener("click", () => {
   localStorage.clear();
-  window.location.reload();
+  location.reload();
 });
 
 settingsDialog.addEventListener("click", (e) => {

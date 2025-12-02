@@ -1,4 +1,3 @@
-// import { createCatRotator } from "./effects/catRotation.js";
 import { startGoldenPawprintSpawner } from "./golden/goldenPawprint.js";
 import { computeThousandFingers } from "./bonuses/thousandFingers.js";
 import { describeSubBonus } from "./logic/describeSubBonus.js";
@@ -11,9 +10,11 @@ import { storage } from "./logic/storage.js";
 import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
 import { changeTabIcon } from "./easter-eggs/changeTabIcon.js";
+import { chooseWeighted } from "./logic/chooseWeighted.js";
+import { setLivingRoom } from "./effects/setLivingRoom.js";
 
-const mode = "de9v";
-const devBonus = 5000000000;
+const mode = "dev";
+const devBonus = 50000000000;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const $ = (sel) => document.querySelector(sel);
@@ -43,6 +44,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let goldenPawActive = false;
   let goldenPawMpsMultiplier = 2; // Temporary multiplier
+
+  let numberOfCats = storage.getAdoptedCatsNumber();
 
   // Restore upgrade data
   upgrades.forEach((u) => {
@@ -81,6 +84,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       animateCounter(counterDisplay, prev, count, 400);
     }
   });
+
+  // -----------------------------
+  // Living Room Init
+  // -----------------------------
 
   // -----------------------------
   // Full Click Power Recalc
@@ -225,6 +232,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       storage.getLifetimeClickMewnits() < u.unlockClickedMewnitsRequirement
     )
       return false;
+    if (
+      u.adoptedCatsRequirement &&
+      storage.getAdoptedCatsNumber() < u.adoptedCatsRequirement
+    )
+      return false;
 
     return true;
   }
@@ -278,6 +290,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (u.type === "catAdopt") {
       storage.addAdoptedCatsNumber();
       updateOwnedCatsDisplay();
+    } else if (u.type === "livingRoom") {
+      storage.addLivingRoomIndex();
+      storage.addNumberOfLivingRooms();
+      setLivingRoom();
     }
 
     updateAutoRate();
@@ -335,6 +351,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // -----------------------------
   // INIT
   // -----------------------------
+  setLivingRoom();
   updateAutoRate();
   updateClickPower();
   saveMewnits();
@@ -343,14 +360,3 @@ document.addEventListener("DOMContentLoaded", async () => {
   startAutoIncrement();
   updateOwnedCatsDisplay();
 });
-
-function chooseWeighted(weights) {
-  const entries = Object.entries(weights); // [ ["mps",2], ["mew",1] ]
-  const total = entries.reduce((sum, [, w]) => sum + w, 0);
-
-  let r = Math.random() * total;
-
-  for (const [key, weight] of entries) {
-    if ((r -= weight) <= 0) return key;
-  }
-}

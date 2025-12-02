@@ -1214,5 +1214,26 @@
     "bonus": 1,
     "type": "catAdopt",
     "unlockRateRequirement": 99999999999999999999999999999999999
+  },
+  {
+    "id": 400000,
+    "name": "New Living Room!",
+    "cost": 50000,
+    "type": "livingRoom",
+    "adoptedCatsRequirement": 3
+  },
+  {
+    "id": 400001,
+    "name": "New Living Room!",
+    "cost": 50000000,
+    "type": "livingRoom",
+    "adoptedCatsRequirement": 6
+  },
+  {
+    "id": 400002,
+    "name": "New Living Room!",
+    "cost": 50000000000,
+    "type": "livingRoom",
+    "adoptedCatsRequirement": 9
   }
 ]

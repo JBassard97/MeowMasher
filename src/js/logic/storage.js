@@ -71,12 +71,25 @@ export const storage = {
 
   // --- Cat Unlocking ---
   getAdoptedCatsNumber: () =>
-    JSON.parse(localStorage.getItem("adoptedCatsAmount")) || 0,
-
+    JSON.parse(localStorage.getItem("adoptedCatsAmount")) || 1,
   initAdoptedCatsNumber: () => localStorage.setItem("adoptedCatsAmount", 1),
-
   addAdoptedCatsNumber: () => {
     const current = JSON.parse(localStorage.getItem("adoptedCatsAmount")) || 1;
     localStorage.setItem("adoptedCatsAmount", JSON.stringify(current + 1));
+  },
+
+  // --- Living Rooms ---
+  getLivingRoomIndex: () =>
+    Number(localStorage.getItem("livingRoomIndex")) || 0,
+  addLivingRoomIndex: () => {
+    const currentIndex = Number(localStorage.getItem("livingRoomIndex")) || 0;
+    localStorage.setItem("livingRoomIndex", String(currentIndex + 1));
+  },
+
+  getNumberOfLivingRooms: () =>
+    Number(localStorage.getItem("livingRoomAmount")) || 1,
+  addNumberOfLivingRooms: () => {
+    const currentNumber = Number(localStorage.getItem("livingRoomAmount")) || 1;
+    localStorage.setItem("livingRoomAmount", String(currentNumber + 1));
   },
 };

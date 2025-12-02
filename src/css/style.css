@@ -82,7 +82,7 @@ header .header-icons #achievements-icon svg:hover g path {
   min-height: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("../assets/images/yoink.jpg");
+  background-image: url("../assets/images/living-rooms/0.jpg");
   background-size: cover;
   position: relative;
   justify-content: flex-end;
@@ -106,7 +106,7 @@ header .header-icons #achievements-icon svg:hover g path {
 }
 #left-side .clicker-area #owned-cats {
   position: absolute;
-  bottom: 0;
+  bottom: 2px;
   right: 5px;
   color: black;
   font-weight: bold;
@@ -114,6 +114,11 @@ header .header-icons #achievements-icon svg:hover g path {
   display: flex;
   align-items: center;
   font-size: 15px;
+  gap: 0.25rem;
+}
+#left-side .clicker-area #owned-cats #owned-cats-number {
+  font-size: 20px;
+  line-height: 1;
 }
 #left-side .clicker-area #clicker {
   width: 60%;

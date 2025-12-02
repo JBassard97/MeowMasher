@@ -61,6 +61,20 @@ export const SUB_UPGRADE_STYLES = {
 
     backgroundColor: "rgba(255, 0, 255, 0.05)",
   },
+
+  livingRoom: {
+    border: "2px solid rgba(255, 165, 0, 0.8)",
+
+    strongBackground:
+      "linear-gradient(to bottom, \
+      rgba(255, 200, 100, 0.8), \
+      rgba(255, 165, 0, 0.15) \
+    )",
+
+    boxShadow: "0 0 6px 2px rgba(255, 165, 0, 0.6)",
+
+    backgroundColor: "rgba(255, 165, 0, 0.05)",
+  },
 };
 
 export const UPGRADE_GRADIENT = [

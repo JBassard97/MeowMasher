@@ -1,3 +1,5 @@
+import { storage } from "./storage.js";
+
 export function describeSubBonus(u, upgrades) {
   const t = upgrades.find((x) => x.id === u.targetUpgradeId);
   switch (u.type) {
@@ -16,7 +18,11 @@ export function describeSubBonus(u, upgrades) {
         : `+1 Click Power & +1 Pats Per Non-Pats Upgrade`;
     case "percentOfMpsClickAdder":
       return `+${u.bonus}% of Mew/S added to Click Power`;
+    case "livingRoom":
+      return `It's time to move${u.id !== 400000 ? " again" : ""}!`;
+    case "catAdopt":
+      return "Every cat deserves a home";
     default:
-      return "";
+      return "Oops case not handled in describeSubBonus.js";
   }
 }

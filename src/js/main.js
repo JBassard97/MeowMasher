@@ -13,7 +13,7 @@ import { changeTabIcon } from "./easter-eggs/changeTabIcon.js";
 import { chooseWeighted } from "./logic/chooseWeighted.js";
 import { setLivingRoom } from "./effects/setLivingRoom.js";
 
-const mode = "dev";
+const mode = "defjdklas;v";
 const devBonus = 50000000000;
 
 document.addEventListener("DOMContentLoaded", async () => {

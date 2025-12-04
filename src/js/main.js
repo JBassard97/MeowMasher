@@ -12,6 +12,7 @@ import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
 import { changeTabIcon } from "./easter-eggs/changeTabIcon.js";
 import { chooseWeighted } from "./logic/chooseWeighted.js";
 import { setLivingRoom } from "./effects/setLivingRoom.js";
+import { AudioList } from "./audio/audio.js";
 
 const mode = "dev00";
 const devBonus = 50000000000;
@@ -252,6 +253,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     storage.setUpgradeOwned(u.id, u.owned);
 
     changeTabIcon(u.image); // ! Easter Egg
+    AudioList.Click(); // ? Audio Effect
 
     updateAutoRate();
     updateClickPower();
@@ -295,6 +297,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       storage.addNumberOfLivingRooms();
       setLivingRoom();
     }
+
+    AudioList.Click(); // ? Audio Effect
 
     updateAutoRate();
     updateClickPower();

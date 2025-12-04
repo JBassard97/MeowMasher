@@ -4,10 +4,13 @@ const meowSources = [
   "src/assets/sounds/mario-meow.mp3",
 ];
 
+const meowVolume = 0.4;
+
 // Preload all audio objects
 const meowAudios = meowSources.map((src) => {
   const audio = new Audio(src);
   audio.preload = "auto";
+  audio.volume = meowVolume;
   return audio;
 });
 
@@ -22,6 +25,15 @@ export const AudioList = {
 
     // Play!
     randomAudio.play().catch((err) => {
+      console.error("Audio play error:", err);
+    });
+  },
+
+  Click() {
+    const clickAudio = new Audio("src/assets/sounds/mouseclick.mp3");
+    clickAudio.preload = "auto";
+    clickAudio.currentTime = 0;
+    clickAudio.play().catch((err) => {
       console.error("Audio play error:", err);
     });
   },

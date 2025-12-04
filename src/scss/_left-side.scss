@@ -40,13 +40,14 @@
     flex-direction: column;
     background-image: url("../assets/images/living-rooms/0.jpg");
     background-size: cover;
+    background-position: center;
     position: relative;
     justify-content: flex-end;
     align-items: center;
     overflow: hidden;
     padding-bottom: 1rem;
     transition: all 0.5s ease-in-out;
-    box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.856);
+    box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.6);
     &:active {
       #clicker {
         scale: 1.05;
@@ -68,8 +69,8 @@
     .clicker-details {
       width: fit-content;
       position: absolute;
-      bottom: 0;
-      right: -10px;
+      bottom: -5px;
+      right: -5px;
       font-size: 20px;
       border-radius: 20px;
       padding: 0.5rem 1rem;

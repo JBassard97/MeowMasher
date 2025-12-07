@@ -30,6 +30,48 @@
   </head>
   <body>
     <header>
+      <button id="install-pwa-btn" style="display: none">
+        Install Meow Masher
+      </button>
+      <script>
+        let deferredPrompt;
+
+        const installBtn = document.getElementById("install-pwa-btn");
+
+        window.addEventListener("beforeinstallprompt", (e) => {
+          // Prevent Chrome from showing the default prompt
+          e.preventDefault();
+
+          // Save the event so we can trigger it later
+          deferredPrompt = e;
+
+          // Show the install button
+          installBtn.style.display = "block";
+        });
+
+        installBtn.addEventListener("click", async () => {
+          if (!deferredPrompt) return;
+
+          // Show the install prompt
+          deferredPrompt.prompt();
+
+          // Wait for the user's choice
+          const choiceResult = await deferredPrompt.userChoice;
+
+          if (choiceResult.outcome === "accepted") {
+            console.log("User accepted the install prompt");
+          } else {
+            console.log("User dismissed the install prompt");
+          }
+
+          // Hide the button again
+          installBtn.style.display = "none";
+
+          // Clear the saved prompt
+          deferredPrompt = null;
+        });
+      </script>
+
       <h1>Meow Masher</h1>
       <div class="header-icons">
         <div id="achievements-icon">

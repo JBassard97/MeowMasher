@@ -522,6 +522,19 @@ footer {
   display: flex;
   justify-content: space-between;
 }
+footer a {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  text-decoration: none;
+}
+footer a svg {
+  width: 15px;
+  height: 15px;
+}
+footer a svg * {
+  fill: gray;
+}
 
 @keyframes clickPopupFade {
   0% {
@@ -558,6 +571,13 @@ footer {
   100% {
     transform: rotate(6deg);
   }
+}
+@font-face {
+  font-family: "Finger Paint";
+  src: url("../assets/fonts//FingerPaint-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 html,
 body {

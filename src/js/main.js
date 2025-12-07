@@ -9,7 +9,6 @@ import {
 import { storage } from "./logic/storage.js";
 import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
-import { changeTabIcon } from "./easter-eggs/changeTabIcon.js";
 import { chooseWeighted } from "./logic/chooseWeighted.js";
 import { setLivingRoom } from "./effects/setLivingRoom.js";
 import { AudioList } from "./audio/audio.js";
@@ -252,7 +251,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     u.owned++;
     storage.setUpgradeOwned(u.id, u.owned);
 
-    changeTabIcon(u.image); // ! Easter Egg
     AudioList.Click(); // ? Audio Effect
 
     updateAutoRate();

@@ -12,10 +12,19 @@
     />
     <link rel="stylesheet" href="src/css/style.css" />
     <link rel="icon" href="./favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/png" href="./favicon-96x96.png" sizes="96x96" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="./favicon-96x96.png"
+      sizes="96x96"
+    />
     <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <link rel="shortcut icon" href="./favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="./apple-touch-icon.png"
+    />
     <meta name="apple-mobile-web-app-title" content="Meow Masher" />
     <link rel="manifest" href="./site.webmanifest" />
   </head>
@@ -131,7 +140,7 @@
         <div class="clicker-area">
           <p id="bonus-display" class="rainbow-text">Bonus</p>
           <div id="clicker">
-            <img src="./src/assets/images/0.png" alt="cat" />
+            <img src="./src/assets/images/clickable-cats/0.png" alt="cat" />
           </div>
           <div class="clicker-details">
             <div id="owned-cats">
@@ -358,7 +367,7 @@
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker
-            .register("/MeowMasher/sw.js")
+            .register("/MeowMasher/sw.js", { scope: "/MeowMasher/" })
             .then((reg) => console.log("SW registered:", reg.scope))
             .catch((err) => console.error("SW error:", err));
         });

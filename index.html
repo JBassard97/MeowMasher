@@ -30,9 +30,20 @@
   </head>
   <body>
     <header>
-      <button id="install-pwa-btn" style="display: none">
-        Install Meow Masher
-      </button>
+      <h1>Meow Masher</h1>
+
+      <div
+        id="install-pwa-btn"
+        style="
+          display: none; /* Leave as none */
+          border: 2px solid fuchsia;
+          color: aqua;
+          border-radius: 20px;
+          padding: 0.5rem;
+        "
+      >
+        Install
+      </div>
       <script>
         let deferredPrompt;
 
@@ -72,7 +83,6 @@
         });
       </script>
 
-      <h1>Meow Masher</h1>
       <div class="header-icons">
         <div id="achievements-icon">
           <svg

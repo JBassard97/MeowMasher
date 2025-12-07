@@ -11,13 +11,6 @@ header {
   background-image: $softGlowFromTop;
   position: relative;
 
-  #install-pwa-btn {
-    position: absolute;
-    top: 2px;
-    right: 5px;
-    height: 10px;
-  }
-
   h1 {
     background-image: url("../assets/images/neonleopard.jpg");
     background-size: cover;
@@ -32,6 +25,12 @@ header {
     padding: 0;
     margin: 1rem;
     line-height: 1;
+  }
+
+  div#install-pwa-btn {
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .header-icons {

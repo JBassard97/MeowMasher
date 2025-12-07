@@ -365,12 +365,10 @@
 
     <script>
       if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker
-            .register("/MeowMasher/sw.js", { scope: "/MeowMasher/" })
-            .then((reg) => console.log("SW registered:", reg.scope))
-            .catch((err) => console.error("SW error:", err));
-        });
+        navigator.serviceWorker
+          .register("/MeowMasher/sw.js", { scope: "/MeowMasher/" })
+          .then((reg) => console.log("SW registered:", reg.scope))
+          .catch((err) => console.error("SW error:", err));
       }
     </script>
   </body>

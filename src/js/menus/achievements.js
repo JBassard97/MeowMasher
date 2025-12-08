@@ -69,7 +69,7 @@ function renderOwnedSubUpgrades() {
   ownedRatioEl.innerHTML = `
     <h3>${owned.length}/${allSubUpgrades.length} (${percent}%)</h3>
   `;
-  ownedSubUpgradesContainer.appendChild(ownedRatioEl);
+  document.querySelector(".owned-ratio").appendChild(ownedRatioEl);
 
   // LIST EACH OWNED SUB-UPGRADE
   owned.forEach((u) => {

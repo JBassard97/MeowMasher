@@ -106,13 +106,17 @@
 .owned-subupgrades {
   // border: 1px solid red;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: space-evenly;
   .owned-subupgrade {
     display: flex;
     flex-direction: column;
     border: 2px solid gray;
     border-radius: 20px;
-    width: 100%;
-    margin: 0 0 1rem 0;
+    width: 48%;
+    // margin: 0 0 1rem 0;
     box-sizing: border-box;
     overflow: hidden;
     position: relative;
@@ -126,7 +130,7 @@
     }
     ul {
       margin: 0;
-      padding: 0.5rem 0 0.75rem 1.5rem;
+      padding: 0.5rem 0.25rem 0.75rem 1.5rem;
       font-size: 12px;
     }
     #id {

@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "font-face";
 @use "header";
 @use "left-side";
 @use "right-side";
@@ -6,13 +7,7 @@
 @use "footer";
 @use "animations";
 
-@font-face {
-  font-family: "Finger Paint";
-  src: url("../assets/fonts//FingerPaint-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+
 
 html,
 body {

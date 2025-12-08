@@ -1,4 +1,11 @@
 @charset "UTF-8";
+@font-face {
+  font-family: "Finger Paint";
+  src: url("../assets/fonts/BitcountPropSingle.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 header {
   flex: 0 0 auto;
   display: flex;
@@ -95,7 +102,7 @@ header .header-icons #achievements-icon svg:hover g path {
   overflow: hidden;
   padding-bottom: 1rem;
   transition: all 0.5s ease-in-out;
-  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.4);
 }
 #left-side .clicker-area:active #clicker {
   scale: 1.05;
@@ -468,14 +475,17 @@ header .header-icons #achievements-icon svg:hover g path {
 
 .owned-subupgrades {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: space-evenly;
 }
 .owned-subupgrades .owned-subupgrade {
   display: flex;
   flex-direction: column;
   border: 2px solid gray;
   border-radius: 20px;
-  width: 100%;
-  margin: 0 0 1rem 0;
+  width: 48%;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
@@ -489,7 +499,7 @@ header .header-icons #achievements-icon svg:hover g path {
 }
 .owned-subupgrades .owned-subupgrade ul {
   margin: 0;
-  padding: 0.5rem 0 0.75rem 1.5rem;
+  padding: 0.5rem 0.25rem 0.75rem 1.5rem;
   font-size: 12px;
 }
 .owned-subupgrades .owned-subupgrade #id {
@@ -575,13 +585,6 @@ footer a svg * {
   100% {
     transform: rotate(6deg);
   }
-}
-@font-face {
-  font-family: "Finger Paint";
-  src: url("../assets/fonts//FingerPaint-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
 html,
 body {

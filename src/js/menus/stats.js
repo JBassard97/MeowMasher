@@ -70,6 +70,10 @@ setInterval(() => {
       "stats-current-clickpower-display"
     ).textContent = `${totalClickPower.toLocaleString()} ${baseText}${tfText}${mpsText}`;
 
+    // --- golden pawprints clicked ---
+    document.getElementById("stats-clicked-golden-display").textContent =
+      storage.getNumberofGoldenPawClicks().toLocaleString();
+
     // --- active bonuses ---
     document.getElementById("stats-thousand-pats-display").textContent =
       tf.toLocaleString();

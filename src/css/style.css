@@ -119,14 +119,12 @@ header .header-icons #achievements-icon svg:hover g path {
 #left-side .clicker-area .clicker-details {
   width: fit-content;
   position: absolute;
-  bottom: -5px;
-  right: -5px;
-  font-size: 20px;
+  bottom: 5px;
+  right: 5px;
   border-radius: 20px;
-  padding: 0.5rem 1rem;
+  padding: 0.4rem;
   background-color: black;
-  scale: 0.6;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 #left-side .clicker-area .clicker-details::after {
   content: "";
@@ -139,20 +137,39 @@ header .header-icons #achievements-icon svg:hover g path {
   background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.1529411765), rgba(208, 208, 208, 0.0392156863));
 }
 #left-side .clicker-area .clicker-details #owned-cats,
-#left-side .clicker-area .clicker-details .living-rooms {
+#left-side .clicker-area .clicker-details .living-rooms,
+#left-side .clicker-area .clicker-details .golden-paws-clicked {
   color: lightgray;
   font-weight: bold;
   display: flex;
   align-items: center;
-  font-size: 15px;
-  gap: 0.25rem;
+  font-size: 10px;
+  gap: 0.2rem;
+}
+#left-side .clicker-area .clicker-details #owned-cats svg,
+#left-side .clicker-area .clicker-details .living-rooms svg,
+#left-side .clicker-area .clicker-details .golden-paws-clicked svg {
+  width: 15px;
+  height: 15px;
+  padding-bottom: 4px;
+}
+#left-side .clicker-area .clicker-details #owned-cats .golden-paw-icon,
+#left-side .clicker-area .clicker-details .living-rooms .golden-paw-icon,
+#left-side .clicker-area .clicker-details .golden-paws-clicked .golden-paw-icon {
+  padding-bottom: 3px;
+  scale: 1.5;
 }
 #left-side .clicker-area .clicker-details #owned-cats #owned-cats-number,
 #left-side .clicker-area .clicker-details #owned-cats #living-rooms-number,
+#left-side .clicker-area .clicker-details #owned-cats #golden-paws-clicked-number,
 #left-side .clicker-area .clicker-details .living-rooms #owned-cats-number,
-#left-side .clicker-area .clicker-details .living-rooms #living-rooms-number {
-  line-height: 1;
-  font-size: 20px;
+#left-side .clicker-area .clicker-details .living-rooms #living-rooms-number,
+#left-side .clicker-area .clicker-details .living-rooms #golden-paws-clicked-number,
+#left-side .clicker-area .clicker-details .golden-paws-clicked #owned-cats-number,
+#left-side .clicker-area .clicker-details .golden-paws-clicked #living-rooms-number,
+#left-side .clicker-area .clicker-details .golden-paws-clicked #golden-paws-clicked-number {
+  line-height: 0;
+  font-size: 15px;
 }
 #left-side .clicker-area #clicker {
   width: 60%;

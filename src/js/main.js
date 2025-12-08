@@ -45,8 +45,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   let goldenPawActive = false;
   let goldenPawMpsMultiplier = 2; // Temporary multiplier
 
-  let numberOfCats = storage.getAdoptedCatsNumber();
-
   // Restore upgrade data
   upgrades.forEach((u) => {
     u.owned = storage.getUpgradeOwned(u.id);

@@ -1,4 +1,5 @@
 // effects/goldenPawprint.js
+import { storage } from "../logic/storage.js";
 
 export function startGoldenPawprintSpawner(clickerButton, onClick) {
   // Spawn every 5 minutes
@@ -31,11 +32,19 @@ export function startGoldenPawprintSpawner(clickerButton, onClick) {
     el.onclick = () => {
       clearTimeout(timeout);
       if (onClick) onClick(); // give reward
+      storage.addGoldenPawClick();
+      updateGoldenPawprintClicksDisplay();
       el.remove();
     };
   }
 
   // Start interval
-  // spawnGoldenPawprint(); // optional immediate first spawn
+  updateGoldenPawprintClicksDisplay();
+  spawnGoldenPawprint(); // optional immediate first spawn
   setInterval(spawnGoldenPawprint, SPAWN_INTERVAL);
+}
+
+function updateGoldenPawprintClicksDisplay() {
+  const display = document.getElementById("golden-paws-clicked-number");
+  display.textContent = storage.getNumberofGoldenPawClicks().toLocaleString();
 }

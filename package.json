@@ -5,13 +5,23 @@
   "main": "index.js",
   "scripts": {
     "build-css": "sass src/scss:src/css",
-    "watch": "sass --watch src/scss:src/css"
+    "sass-watch": "sass --watch src/scss:src/css"
   },
   "keywords": [
     "game",
     "clicker",
     "javascript",
-    "sass"
+    "sass",
+    "counter",
+    "upgrades",
+    "addicting",
+    "addictive",
+    "stats",
+    "bonuses",
+    "cats",
+    "meow",
+    "meowmasher",
+    "fun"
   ],
   "author": "",
   "license": "ISC",

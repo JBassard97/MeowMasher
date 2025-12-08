@@ -69,14 +69,12 @@
     .clicker-details {
       width: fit-content;
       position: absolute;
-      bottom: -5px;
-      right: -5px;
-      font-size: 20px;
+      bottom: 5px;
+      right: 5px;
       border-radius: 20px;
-      padding: 0.5rem 1rem;
+      padding: 0.4rem;
       background-color: black;
-      scale: 0.6;
-      opacity: 0.6;
+      opacity: 0.5;
       &::after {
         content: "";
         border-radius: inherit;
@@ -89,17 +87,28 @@
       }
 
       #owned-cats,
-      .living-rooms {
+      .living-rooms,
+      .golden-paws-clicked {
         color: lightgray;
         font-weight: bold;
         display: flex;
         align-items: center;
-        font-size: 15px;
-        gap: 0.25rem;
+        font-size: 10px;
+        gap: 0.2rem;
+        svg {
+          width: 15px;
+          height: 15px;
+          padding-bottom: 4px;
+        }
+        .golden-paw-icon {
+          padding-bottom: 3px;
+          scale: 1.5;
+        }
         #owned-cats-number,
-        #living-rooms-number {
-          line-height: 1;
-          font-size: 20px;
+        #living-rooms-number,
+        #golden-paws-clicked-number {
+          line-height: 0;
+          font-size: 15px;
         }
       }
     }

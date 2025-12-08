@@ -92,4 +92,12 @@ export const storage = {
     const currentNumber = Number(localStorage.getItem("livingRoomAmount")) || 1;
     localStorage.setItem("livingRoomAmount", String(currentNumber + 1));
   },
+
+  // --- Golden Pawprint ---
+  getNumberofGoldenPawClicks: () =>
+    Number(localStorage.getItem("goldenPawClicks")) || 0,
+  addGoldenPawClick: () => {
+    const current = Number(localStorage.getItem("goldenPawClicks")) || 0;
+    localStorage.setItem("goldenPawClicks", String(current + 1));
+  },
 };

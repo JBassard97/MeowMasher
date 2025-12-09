@@ -37,3 +37,18 @@
     transform: rotate(6deg);
   }
 }
+
+@keyframes clickFlash {
+  0% {
+    color: gray;
+    fill: gray;
+  }
+  30% {
+    color: lightblue;
+    fill: lightblue;
+  }
+  100% {
+    color: lightblue;
+    fill: lightblue;
+  }
+}

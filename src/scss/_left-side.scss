@@ -19,6 +19,9 @@
       line-height: 1;
       font-weight: bold;
       // text-shadow: 2px 2px 4px rgba(101, 253, 116, 0.9);
+      #counter {
+        word-break: break-all;
+      }
     }
 
     .counter-display-mewnits {

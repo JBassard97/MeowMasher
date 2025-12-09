@@ -1,3 +1,5 @@
+@use "animations";
+
 // Don't touch
 .dialog-overlay {
   display: none;
@@ -88,6 +90,111 @@
         }
       }
     }
+
+    .stats-section {
+      // border: 1px solid hotpink;
+      p {
+        width: fit-content;
+        color: rgba(0, 179, 255, 0.8);
+        list-style: circle;
+        margin-left: 1rem;
+        position: relative;
+        span {
+          color: whitesmoke;
+          .details {
+            color: rgba(211, 211, 211, 0.639);
+          }
+        }
+      }
+
+      p::before {
+        content: "•";
+        color: rgba(0, 179, 255, 0.8);
+        position: absolute;
+        left: -10px;
+      }
+
+      .clicks-header {
+        margin-top: 0;
+        color: lightblue;
+        position: relative;
+        width: fit-content;
+        animation: clickFlash 1s infinite;
+        &:hover {
+          cursor: pointer; // lil easter egg
+        }
+
+        svg {
+          transform: translateY(4px) translateX(-7px);
+
+          * {
+            fill: lightblue;
+            position: absolute;
+            animation: clickFlash 1s infinite;
+          }
+        }
+      }
+
+      .money-header {
+        width: fit-content;
+        position: relative;
+
+        /* vertical money gradient */
+        background: linear-gradient(
+          180deg,
+          #1fae53 0%,
+          #32ff7e 50%,
+          #1fae53 100%
+        );
+
+        /* must be taller to allow vertical movement */
+        background-size: 100% 300%;
+
+        -webkit-background-clip: text;
+        color: transparent;
+
+        /* glow */
+        text-shadow: 0 0 6px rgba(33, 196, 93, 0.5);
+
+        animation: moneyShine 2.2s ease-in-out infinite;
+      }
+
+      /* animated underline, also vertical */
+      .money-header::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 4px;
+        height: 2px;
+        width: 100%;
+        border-radius: 20px;
+
+        background: linear-gradient(
+          180deg,
+          transparent,
+          rgba(50, 255, 126, 0.8),
+          transparent
+        );
+
+        background-size: 100% 300%;
+
+        animation: moneyShine 2.2s ease-in-out infinite;
+        animation-delay: 0.1s;
+      }
+
+      /* vertical movement top → bottom → top */
+      @keyframes moneyShine {
+        0% {
+          background-position: 0% 0%;
+        }
+        50% {
+          background-position: 0% 100%;
+        }
+        100% {
+          background-position: 0% 0%;
+        }
+      }
+    }
   }
 }
 
@@ -149,23 +256,4 @@
   &:hover {
     background-color: #c9302c;
   }
-}
-
-.rainbow-text {
-  background: repeating-linear-gradient(
-    90deg,
-    red 0%,
-    orange calc(100% / 7 * 1),
-    yellow calc(100% / 7 * 2),
-    green calc(100% / 7 * 3),
-    blue calc(100% / 7 * 4),
-    indigo calc(100% / 7 * 5),
-    violet calc(100% / 7 * 6),
-    red 100%
-  );
-
-  background-size: 400% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: rainbowFlow 20s linear infinite alternate;
 }

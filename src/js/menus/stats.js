@@ -68,7 +68,7 @@ setInterval(() => {
     // --- final display (total + breakdown) ---
     document.getElementById(
       "stats-current-clickpower-display"
-    ).textContent = `${totalClickPower.toLocaleString()} ${baseText}${tfText}${mpsText}`;
+    ).innerHTML = `${totalClickPower.toLocaleString()} <span class="details">${baseText}${tfText}${mpsText}</span>`;
 
     // --- golden pawprints clicked ---
     document.getElementById("stats-clicked-golden-display").textContent =

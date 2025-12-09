@@ -1,4 +1,68 @@
 @charset "UTF-8";
+.rainbow-text,
+.rainbow-header {
+  width: fit-content;
+  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, green 42.8571428571%, blue 57.1428571429%, indigo 71.4285714286%, violet 85.7142857143%, red 100%);
+  background-size: 400% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+  animation: rainbowFlow 20s linear infinite alternate;
+  position: relative;
+}
+
+.rainbow-header::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  border-radius: 20px;
+  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, green 42.8571428571%, blue 57.1428571429%, indigo 71.4285714286%, violet 85.7142857143%, red 100%);
+  background-size: 400% 100%;
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  animation: rainbowFlow 20s linear infinite alternate;
+  animation-delay: 0.2s;
+}
+
+.rainbow-text::after,
+.header::after::after {
+  content: "";
+  width: 100%;
+  height: 2px;
+  border-radius: 20px;
+  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, green 42.8571428571%, blue 57.1428571429%, indigo 71.4285714286%, violet 85.7142857143%, red 100%);
+  background-size: 400% 100%;
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  animation: rainbowFlow 20s linear infinite alternate;
+  animation-delay: 0.1s;
+}
+
+/* Golden glow with a tight, subtle ebbing animation */
+.golden {
+  color: #ffd966;
+  text-shadow: 0 0 4px rgba(255, 214, 102, 0.9), 0 0 8px rgba(255, 165, 0, 0.6);
+  animation: goldenEbb 2s infinite ease-in-out;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes goldenEbb {
+  0% {
+    text-shadow: 0 0 6px rgb(255, 214, 102), 0 0 12px rgba(255, 165, 0, 0.75);
+    filter: brightness(1.05);
+  }
+  50% {
+    text-shadow: 0 0 2px rgba(255, 214, 102, 0.35), 0 0 4px rgba(255, 165, 0, 0.25);
+    filter: brightness(0.92);
+  }
+  100% {
+    text-shadow: 0 0 6px rgb(255, 214, 102), 0 0 12px rgba(255, 165, 0, 0.75);
+    filter: brightness(1);
+  }
+}
 @font-face {
   font-family: "Finger Paint";
   src: url("../assets/fonts/BitcountPropSingle.ttf") format("truetype");
@@ -12,7 +76,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.1529411765), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
   position: relative;
 }
 header h1 {
@@ -68,7 +132,7 @@ header .header-icons #achievements-icon svg:hover g path {
   padding: 0.5rem;
   padding-bottom: 1rem;
   z-index: 5;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.1529411765), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
 }
 #left-side #stats p {
   margin: 0;
@@ -78,6 +142,9 @@ header .header-icons #achievements-icon svg:hover g path {
   font-size: 1.6rem;
   line-height: 1;
   font-weight: bold;
+}
+#left-side #stats .counter-display #counter {
+  word-break: break-all;
 }
 #left-side #stats .counter-display-mewnits {
   line-height: 1;
@@ -134,7 +201,7 @@ header .header-icons #achievements-icon svg:hover g path {
   position: absolute;
   top: 0;
   left: 0;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.1529411765), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
 }
 #left-side .clicker-area .clicker-details #owned-cats,
 #left-side .clicker-area .clicker-details .living-rooms,
@@ -252,7 +319,7 @@ header .header-icons #achievements-icon svg:hover g path {
   height: 100%;
   left: 0;
   top: 0;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.1529411765), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
 }
 #right-side .sub-upgrades {
   display: grid;
@@ -338,7 +405,7 @@ header .header-icons #achievements-icon svg:hover g path {
   justify-content: space-evenly;
   align-items: center;
   position: relative;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.1529411765), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
 }
 #right-side .upgrades .upgrade img {
   height: 80px;
@@ -397,6 +464,56 @@ header .header-icons #achievements-icon svg:hover g path {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+@keyframes clickPopupFade {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -400%) scale(1.4);
+    opacity: 0.1;
+  }
+}
+@keyframes rainbowFlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 400% 0%;
+  }
+}
+@keyframes goldenSpawn {
+  from {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+@keyframes goldenWobble {
+  0% {
+    transform: rotate(-6deg);
+  }
+  100% {
+    transform: rotate(6deg);
+  }
+}
+@keyframes clickFlash {
+  0% {
+    color: gray;
+    fill: gray;
+  }
+  30% {
+    color: lightblue;
+    fill: lightblue;
+  }
+  100% {
+    color: lightblue;
+    fill: lightblue;
+  }
+}
 .dialog-overlay {
   display: none;
   position: fixed;
@@ -477,6 +594,86 @@ header .header-icons #achievements-icon svg:hover g path {
   margin: 0;
   padding: 0;
 }
+.dialog-content .dialog-body .stats-section p {
+  width: fit-content;
+  color: rgba(0, 179, 255, 0.8);
+  list-style: circle;
+  margin-left: 1rem;
+  position: relative;
+}
+.dialog-content .dialog-body .stats-section p span {
+  color: whitesmoke;
+}
+.dialog-content .dialog-body .stats-section p span .details {
+  color: rgba(211, 211, 211, 0.639);
+}
+.dialog-content .dialog-body .stats-section p::before {
+  content: "•";
+  color: rgba(0, 179, 255, 0.8);
+  position: absolute;
+  left: -10px;
+}
+.dialog-content .dialog-body .stats-section .clicks-header {
+  margin-top: 0;
+  color: lightblue;
+  position: relative;
+  width: fit-content;
+  animation: clickFlash 1s infinite;
+}
+.dialog-content .dialog-body .stats-section .clicks-header:hover {
+  cursor: pointer;
+}
+.dialog-content .dialog-body .stats-section .clicks-header svg {
+  transform: translateY(4px) translateX(-7px);
+}
+.dialog-content .dialog-body .stats-section .clicks-header svg * {
+  fill: lightblue;
+  position: absolute;
+  animation: clickFlash 1s infinite;
+}
+.dialog-content .dialog-body .stats-section .money-header {
+  width: fit-content;
+  position: relative;
+  /* vertical money gradient */
+  background: linear-gradient(180deg, #1fae53 0%, #32ff7e 50%, #1fae53 100%);
+  /* must be taller to allow vertical movement */
+  background-size: 100% 300%;
+  -webkit-background-clip: text;
+  color: transparent;
+  /* glow */
+  text-shadow: 0 0 6px rgba(33, 196, 93, 0.5);
+  animation: moneyShine 2.2s ease-in-out infinite;
+}
+.dialog-content .dialog-body .stats-section {
+  /* animated underline, also vertical */
+}
+.dialog-content .dialog-body .stats-section .money-header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  height: 2px;
+  width: 100%;
+  border-radius: 20px;
+  background: linear-gradient(180deg, transparent, rgba(50, 255, 126, 0.8), transparent);
+  background-size: 100% 300%;
+  animation: moneyShine 2.2s ease-in-out infinite;
+  animation-delay: 0.1s;
+}
+.dialog-content .dialog-body .stats-section {
+  /* vertical movement top → bottom → top */
+}
+@keyframes moneyShine {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
 
 .owned-ratio {
   text-align: center;
@@ -535,21 +732,13 @@ header .header-icons #achievements-icon svg:hover g path {
   background-color: #c9302c;
 }
 
-.rainbow-text {
-  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, green 42.8571428571%, blue 57.1428571429%, indigo 71.4285714286%, violet 85.7142857143%, red 100%);
-  background-size: 400% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: rainbowFlow 20s linear infinite alternate;
-}
-
 footer {
   flex: 0 0 auto;
   text-align: center;
   font-size: 0.8rem;
   color: lightgray;
   padding: 0.5rem 1rem;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.1529411765), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
   display: flex;
   justify-content: space-between;
 }
@@ -567,42 +756,6 @@ footer a svg * {
   fill: gray;
 }
 
-@keyframes clickPopupFade {
-  0% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -400%) scale(1.4);
-    opacity: 0.1;
-  }
-}
-@keyframes rainbowFlow {
-  0% {
-    background-position: 0% 0%;
-  }
-  100% {
-    background-position: 400% 0%;
-  }
-}
-@keyframes goldenSpawn {
-  from {
-    transform: scale(0) rotate(0deg);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1) rotate(0deg);
-    opacity: 1;
-  }
-}
-@keyframes goldenWobble {
-  0% {
-    transform: rotate(-6deg);
-  }
-  100% {
-    transform: rotate(6deg);
-  }
-}
 html,
 body {
   user-select: none;

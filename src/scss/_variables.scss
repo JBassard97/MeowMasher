@@ -24,6 +24,7 @@ $rainbowBackground: repeating-linear-gradient(
   line-height: 1;
   animation: rainbowFlow 20s linear infinite alternate;
   position: relative;
+  font-weight: bold;
 }
 
 .rainbow-header::after {

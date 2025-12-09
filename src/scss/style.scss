@@ -7,8 +7,6 @@
 @use "footer";
 @use "animations";
 
-
-
 html,
 body {
   user-select: none;
@@ -28,7 +26,6 @@ body {
 
   display: flex;
   flex-direction: column; // stack header, main, footer vertically
-
   main {
     flex: 1 1 auto; // fills all remaining vertical space between header and footer
     display: flex;

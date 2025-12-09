@@ -467,17 +467,36 @@
       </div>
     </div>
     <!-- SETTINGS -->
-    <div id="settings-dialog" class="dialog-overlay">
+    <div id="settings-dialog" class="dialog-overlay active">
       <div class="dialog-content">
         <h1>Settings</h1>
         <div class="dialog-body">
           <div class="all-settings">
+            <h3 class="settings-header">Video</h3>
             <div class="flip-ui">
-              <p>Flip the left and right sides</p>
+              <p>Flip the left and right sides:</p>
               <input id="flip-ui" type="checkbox" />
             </div>
+            <div class="set-font">
+              <p>Set the game's font:</p>
+              <select id="font-select">
+                <option value="Finger Paint">Finger Paint</option>
+                <option value="BitcountPropSingle">BitcountPropSingle</option>
+                <option value="Bebas Neue">Bebas Neue</option>
+              </select>
+            </div>
+            <div class="color-blind-mode">
+              <p>Toggle Color-Blind Mode:</p>
+              <input id="color-blind-mode" type="checkbox" />
+            </div>
+            <h3 class="settings-header">Audio</h3>
+            <h3 class="settings-header">General</h3>
+            <div class="reload-data">
+              <p>Reload game data to match latest version:</p>
+              <button onclick="location.reload()">Reload Data</button>
+            </div>
             <div class="reset-game">
-              <p class="warning-text">This will delete all your progress</p>
+              <p class="warning-text">This will delete all your progress:</p>
               <button id="reset-game" class="dialog-button">Reset Game</button>
             </div>
           </div>

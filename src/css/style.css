@@ -9,6 +9,7 @@
   line-height: 1;
   animation: rainbowFlow 20s linear infinite alternate;
   position: relative;
+  font-weight: bold;
 }
 
 .rainbow-header::after {
@@ -65,9 +66,20 @@
 }
 @font-face {
   font-family: "Finger Paint";
+  src: url("../assets/fonts/FingerPaint.ttf") format("truetype");
+  font-weight: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BitcountPropSingle";
   src: url("../assets/fonts/BitcountPropSingle.ttf") format("truetype");
   font-weight: normal;
-  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../assets/fonts/BebasNeue.ttf") format("truetype");
+  font-weight: normal;
   font-display: swap;
 }
 header {
@@ -329,7 +341,7 @@ header .header-icons #achievements-icon svg:hover g path {
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
   align-items: stretch;
-  height: 1000px;
+  height: 1100px;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 8px 8px;
@@ -740,7 +752,7 @@ footer {
   text-align: center;
   font-size: 0.8rem;
   color: lightgray;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
   background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
   display: flex;
   justify-content: space-between;

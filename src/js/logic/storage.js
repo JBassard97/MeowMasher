@@ -68,6 +68,12 @@ export const storage = {
     JSON.parse(localStorage.getItem("isUiFlipped") ?? "false"),
   setIsUiFlipped: (value) =>
     localStorage.setItem("isUiFlipped", JSON.stringify(value)),
+  getIsInColorblindMode: () =>
+    JSON.parse(localStorage.getItem("isInColorblindMode") ?? "false"),
+  setIsInColorblindMode: (value) =>
+    localStorage.setItem("isInColorblindMode", JSON.stringify(value)),
+  getCurrentFont: () => localStorage.getItem("currentFont") || "Finger Paint",
+  setCurrentFont: (fontName) => localStorage.setItem("currentFont", fontName),
 
   // --- Cat Unlocking ---
   getAdoptedCatsNumber: () =>

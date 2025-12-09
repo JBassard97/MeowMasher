@@ -46,9 +46,8 @@ const ASSETS_TO_CACHE = [
   ...livingRoomImages,
   ...upgradeImages,
   "/MeowMasher/src/assets/images/goldenPawprint.svg",
-  "/MeowMasher/src/assets/images/calico.png",
+  "/MeowMasher/src/assets/images/tigerstripes.jpg",
   "/MeowMasher/src/assets/images/neonleopard.jpg",
-  "/MeowMasher/src/assets/images/neonstripes.jpg",
   "/MeowMasher/src/assets/fonts/FingerPaint.ttf",
   "/MeowMasher/src/assets/fonts/BitcountPropSingle.ttf",
   "/MeowMasher/src/assets/sounds/mouseclick.mp3",
@@ -74,6 +73,7 @@ const ASSETS_TO_CACHE = [
   "/MeowMasher/src/js/menus/achievements.js",
   "/MeowMasher/src/js/menus/settings.js",
   "/MeowMasher/src/js/menus/stats.js",
+  "/MeowMasher/src/js/easter-eggs/changeHeaderImage.js",
 ];
 
 // ---------------------------

@@ -40,7 +40,7 @@ export function startGoldenPawprintSpawner(clickerButton, onClick) {
 
   // Start interval
   updateGoldenPawprintClicksDisplay();
-  spawnGoldenPawprint(); // ! DEV optional immediate first spawn
+  // spawnGoldenPawprint(); // ! DEV optional immediate first spawn
   setInterval(spawnGoldenPawprint, SPAWN_INTERVAL);
 }
 

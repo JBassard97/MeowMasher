@@ -79,7 +79,7 @@ header {
   background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
   position: relative;
 }
-header h1 {
+header h1, header .image-header {
   background-image: url("../assets/images/neonleopard.jpg");
   background-size: cover;
   background-position: center;
@@ -92,6 +92,9 @@ header h1 {
   padding: 0;
   margin: 1rem;
   line-height: 1;
+}
+header h1:hover, header .image-header:hover {
+  cursor: pointer;
 }
 header div#install-pwa-btn:hover {
   cursor: pointer;

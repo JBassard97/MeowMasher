@@ -7,6 +7,7 @@ const achievementsDialog = document.getElementById("achievements-dialog");
 const closeDialog = document.getElementById("close-achievements-dialog");
 const ownedSubUpgradesContainer =
   achievementsDialog.querySelector(".owned-subupgrades");
+const ownedRatioEl = document.querySelector(".owned-ratio");
 
 // Load both JSON data files ONCE
 let allSubUpgrades = [];
@@ -47,7 +48,7 @@ achievementsDialog.addEventListener("click", (e) => {
 // ----------------------------------
 function renderOwnedSubUpgrades() {
   if (!dataLoaded) return;
-
+  ownedRatioEl.textContent = "";
   ownedSubUpgradesContainer.innerHTML = "";
 
   // Find owned sub-upgrades
@@ -65,15 +66,10 @@ function renderOwnedSubUpgrades() {
   // OWNED RATIO
   const percent = Math.floor((owned.length / allSubUpgrades.length) * 100);
 
-  const ownedRatioEl = document.createElement("h4");
-  ownedRatioEl.className = "owned-ratio";
-  ownedRatioEl.innerHTML = `
-    <h3>${owned.length}/${allSubUpgrades.length} (${percent}%)</h3>
-  `;
-  document.querySelector(".owned-ratio").appendChild(ownedRatioEl);
+  ownedRatioEl.textContent = `${owned.length}/${allSubUpgrades.length} (${percent}%)`;
 
   // LIST EACH OWNED SUB-UPGRADE
-  owned.forEach((u) => {
+  owned.forEach((u, i) => {
     const div = document.createElement("div");
     div.className = "owned-subupgrade";
 
@@ -81,6 +77,7 @@ function renderOwnedSubUpgrades() {
     if (style) {
       Object.assign(div.style, style);
     }
+    div.style.animationDelay = `${i * 0.1}s`;
 
     div.innerHTML = `
       <strong>${u.name}</strong>

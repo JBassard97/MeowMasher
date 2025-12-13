@@ -1,5 +1,6 @@
 import { describeSubBonus } from "../logic/describeSubBonus.js";
 import { describeSubUnlock } from "../logic/describeSubUnlock.js";
+import { SUB_UPGRADE_STYLES } from "../effects/upgradeStyles.js";
 // --- Achievements Dialog ---
 const achievementsIcon = document.getElementById("achievements-icon");
 const achievementsDialog = document.getElementById("achievements-dialog");
@@ -76,12 +77,23 @@ function renderOwnedSubUpgrades() {
     const div = document.createElement("div");
     div.className = "owned-subupgrade";
 
+    const style = SUB_UPGRADE_STYLES[u.type];
+    if (style) {
+      Object.assign(div.style, style);
+    }
+
     div.innerHTML = `
       <strong>${u.name}</strong>
       <ul>
-        <li>Cost: <b>${u.cost.toLocaleString()}</b></li>
-        <li>Bonus: <b>${describeSubBonus(u, allUpgrades)}</b></li>
-        <li>Unlock Requirement: <b>${describeSubUnlock(u, allUpgrades)}</b></li>
+        <li style="color:salmon">Cost: <b>${u.cost.toLocaleString()}</b></li>
+        <li style="color:lightgreen">Bonus: <b>${describeSubBonus(
+          u,
+          allUpgrades
+        )}</b></li>
+        <li style="color:lightblue">Unlock Requirement: <b>${describeSubUnlock(
+          u,
+          allUpgrades
+        )}</b></li>
         <span id="id">ID: ${u.id}</span>
       </ul>
     `;

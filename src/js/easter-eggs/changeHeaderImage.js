@@ -3,7 +3,8 @@ const imageHeaderTargets = document.querySelectorAll(".image-header-target");
 
 const images = [
   "src/assets/images/neonleopard.jpg",
-    "src/assets/images/tigerstripes.jpg",
+  "src/assets/images/tigerstripes.jpg",
+  "src/assets/images/legopattern.jpg",
 ];
 
 let index = 0;

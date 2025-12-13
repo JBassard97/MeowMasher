@@ -598,7 +598,11 @@ header .header-icons #achievements-icon svg:hover g path {
 .dialog-content .dialog-body .all-settings {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+}
+.dialog-content .dialog-body .all-settings div {
+  border: 1px solid gray;
+  padding: 0.2rem;
+  color: lightgray;
 }
 .dialog-content .dialog-body .all-settings * {
   display: flex;
@@ -722,14 +726,14 @@ header .header-icons #achievements-icon svg:hover g path {
 .owned-subupgrades .owned-subupgrade strong {
   text-decoration: underline;
   line-height: 1;
-  background: lightgray;
-  color: #2a2a2a;
+  background-color: gray;
+  color: lightgray;
   padding: 5px 5px 5px 10px;
 }
 .owned-subupgrades .owned-subupgrade ul {
   margin: 0;
-  padding: 0.5rem 0.25rem 0.75rem 1.5rem;
-  font-size: 12px;
+  padding: 0.5rem 0.4rem 0.75rem 1.3rem;
+  font-size: 11px;
 }
 .owned-subupgrades .owned-subupgrade #id {
   position: absolute;

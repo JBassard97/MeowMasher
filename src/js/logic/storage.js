@@ -74,6 +74,19 @@ export const storage = {
     localStorage.setItem("isInColorblindMode", JSON.stringify(value)),
   getCurrentFont: () => localStorage.getItem("currentFont") || "Finger Paint",
   setCurrentFont: (fontName) => localStorage.setItem("currentFont", fontName),
+  // ? Still in settings: SFX and Meow audio levels
+  getIsMeowAudioOn: () =>
+    JSON.parse(localStorage.getItem("isMeowAudioOn") ?? "true"),
+  setIsMeowAudioOn: (value) =>
+    localStorage.setItem("isMeowAudioOn", JSON.stringify(value)),
+  getIsSfxAudioOn: () =>
+    JSON.parse(localStorage.getItem("isSfxAudioOn") ?? "true"),
+  setIsSfxAudioOn: (value) =>
+    localStorage.setItem("isSfxAudioOn", JSON.stringify(value)),
+  getMeowAudioLevel: () => localStorage.getItem("meowAudioLevel") || "5",
+  setMeowAudioLevel: (level) => localStorage.setItem("meowAudioLevel", level),
+  getSfxAudioLevel: () => localStorage.getItem("sfxAudioLevel") || "5",
+  setSfxAudioLevel: (level) => localStorage.setItem("sfxAudioLevel", level),
 
   // --- Cat Unlocking ---
   getAdoptedCatsNumber: () =>

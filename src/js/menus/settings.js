@@ -7,6 +7,12 @@ const resetGame = document.getElementById("reset-game");
 const flipUiCheckbox = document.getElementById("flip-ui");
 const colorblindModeCheckbox = document.getElementById("color-blind-mode");
 const fontSelect = document.getElementById("font-select");
+const isMeowAudioOnCheckbox = document.getElementById("is-meow-on");
+const meowAudioVolumeSlider = document.getElementById("meow-audio-level");
+const meowLevelDisplay = document.getElementById("meow-level-display");
+const isSfxAudioOnCheckbox = document.getElementById("is-sfx-on");
+const sfxAudioVolumeSlider = document.getElementById("sfx-audio-level");
+const sfxLevelDisplay = document.getElementById("sfx-level-display");
 
 const bodyEl = document.querySelector("body");
 const mainEl = document.querySelector("main");
@@ -18,6 +24,12 @@ if (!storage.getCurrentFont()) {
   storage.setCurrentFont("Finger Paint");
 }
 fontSelect.value = storage.getCurrentFont() || "Finger Paint";
+isMeowAudioOnCheckbox.checked = storage.getIsMeowAudioOn();
+meowAudioVolumeSlider.value = storage.getMeowAudioLevel();
+meowLevelDisplay.textContent = `${meowAudioVolumeSlider.value}0%`;
+isSfxAudioOnCheckbox.checked = storage.getIsSfxAudioOn();
+sfxAudioVolumeSlider.value = storage.getSfxAudioLevel();
+sfxLevelDisplay.textContent = `${sfxAudioVolumeSlider.value}0%`;
 
 // Apply initial layout
 mainEl.style.flexDirection = flipUiCheckbox.checked ? "row-reverse" : "row";
@@ -33,7 +45,7 @@ fontSelect.addEventListener("change", () => {
   storage.setCurrentFont(selectedFont);
 });
 
-// --- When checkbox changes, save setting ---
+// --- When color blind checkbox changes, save setting ---
 colorblindModeCheckbox.addEventListener("change", () => {
   storage.setIsInColorblindMode(colorblindModeCheckbox.checked);
 
@@ -42,11 +54,47 @@ colorblindModeCheckbox.addEventListener("change", () => {
     : "none";
 });
 
-// --- When checkbox changes, save setting ---
+// --- When Flip Ui checkbox changes, save setting ---
 flipUiCheckbox.addEventListener("change", () => {
   storage.setIsUiFlipped(flipUiCheckbox.checked);
 
   mainEl.style.flexDirection = flipUiCheckbox.checked ? "row-reverse" : "row";
+});
+
+// --- When Meow audio checkbox changes, save setting ---
+isMeowAudioOnCheckbox.addEventListener("change", () => {
+  storage.setIsMeowAudioOn(isMeowAudioOnCheckbox.checked);
+  if (isMeowAudioOnCheckbox.checked) {
+    meowAudioVolumeSlider.removeAttribute("disabled");
+    meowLevelDisplay.textContent = `${meowAudioVolumeSlider.value}0%`;
+  } else {
+    meowAudioVolumeSlider.setAttribute("disabled", "true");
+    meowLevelDisplay.textContent = "0%";
+  }
+});
+
+// --- When Meow audio volume changes, save setting ---
+meowAudioVolumeSlider.addEventListener("input", () => {
+  storage.setMeowAudioLevel(meowAudioVolumeSlider.value);
+  meowLevelDisplay.textContent = `${meowAudioVolumeSlider.value}0%`;
+});
+
+// --- When SFX audio checkbox changes, save setting ---
+isSfxAudioOnCheckbox.addEventListener("change", () => {
+  storage.setIsSfxAudioOn(isSfxAudioOnCheckbox.checked);
+  if (isSfxAudioOnCheckbox.checked) {
+    sfxAudioVolumeSlider.removeAttribute("disabled");
+    sfxLevelDisplay.textContent = `${sfxAudioVolumeSlider.value}0%`;
+  } else {
+    sfxAudioVolumeSlider.setAttribute("disabled", "true");
+    sfxLevelDisplay.textContent = "0%";
+  }
+});
+
+// --- When SFX audio volume changes, save setting ---
+sfxAudioVolumeSlider.addEventListener("input", () => {
+  storage.setSfxAudioLevel(sfxAudioVolumeSlider.value);
+  sfxLevelDisplay.textContent = `${sfxAudioVolumeSlider.value}0%`;
 });
 
 // Dialog open/close

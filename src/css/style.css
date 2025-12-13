@@ -744,11 +744,8 @@ header .header-icons #achievements-icon svg:hover g path {
   font-style: italic;
 }
 
-#reset-game {
-  background-color: #d9534f;
-}
-#reset-game:hover {
-  background-color: #c9302c;
+input[type=range] {
+  width: 150px;
 }
 
 footer {

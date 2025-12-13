@@ -490,6 +490,33 @@
               <input id="color-blind-mode" type="checkbox" />
             </div>
             <h3 class="settings-header">Audio</h3>
+            <div class="meow-audio">
+              <p>Meows:</p>
+              <input type="checkbox" id="is-meow-on" />
+              <input
+                type="range"
+                min="1"
+                max="10"
+                value="5"
+                step="1"
+                id="meow-audio-level"
+              />
+              <span id="meow-level-display"></span>
+            </div>
+            <div class="sfx-audio">
+              <p>SFX:</p>
+              <input type="checkbox" id="is-sfx-on" />
+              <input
+                type="range"
+                min="1"
+                max="10"
+                value="5"
+                step="1"
+                id="sfx-audio-level"
+              />
+              <span id="sfx-level-display"></span>
+            </div>
+
             <h3 class="settings-header">General</h3>
             <div class="reload-data">
               <p>Reload game data:</p>

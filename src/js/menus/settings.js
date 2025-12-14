@@ -25,11 +25,17 @@ if (!storage.getCurrentFont()) {
 }
 fontSelect.value = storage.getCurrentFont() || "Finger Paint";
 isMeowAudioOnCheckbox.checked = storage.getIsMeowAudioOn();
+meowAudioVolumeSlider.disabled = !isMeowAudioOnCheckbox.checked;
 meowAudioVolumeSlider.value = storage.getMeowAudioLevel();
-meowLevelDisplay.textContent = `${meowAudioVolumeSlider.value}0%`;
+meowLevelDisplay.textContent = storage.getIsMeowAudioOn()
+  ? `${meowAudioVolumeSlider.value}0%`
+  : "0%";
 isSfxAudioOnCheckbox.checked = storage.getIsSfxAudioOn();
+sfxAudioVolumeSlider.disabled = !isSfxAudioOnCheckbox.checked;
 sfxAudioVolumeSlider.value = storage.getSfxAudioLevel();
-sfxLevelDisplay.textContent = `${sfxAudioVolumeSlider.value}0%`;
+sfxLevelDisplay.textContent = storage.getIsSfxAudioOn()
+  ? `${sfxAudioVolumeSlider.value}0%`
+  : "0%";
 
 // Apply initial layout
 mainEl.style.flexDirection = flipUiCheckbox.checked ? "row-reverse" : "row";

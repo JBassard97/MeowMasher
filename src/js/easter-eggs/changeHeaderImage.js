@@ -5,6 +5,7 @@ const images = [
   "src/assets/images/neonleopard.jpg",
   "src/assets/images/tigerstripes.jpg",
   "src/assets/images/legopattern.jpg",
+  "src/assets/images/waves.gif",
 ];
 
 let index = 0;

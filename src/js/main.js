@@ -356,7 +356,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   updateClickPower();
   saveMewnits();
   renderUpgrades();
-  renderSubUpgrades();
   startAutoIncrement();
+  renderSubUpgrades();
   updateOwnedCatsDisplay();
 });

@@ -8,6 +8,7 @@ const closeDialog = document.getElementById("close-achievements-dialog");
 const ownedSubUpgradesContainer =
   achievementsDialog.querySelector(".owned-subupgrades");
 const ownedRatioEl = document.querySelector(".owned-ratio");
+const achievementsContent = document.querySelector(".achievements-content");
 
 // Load both JSON data files ONCE
 let allSubUpgrades = [];
@@ -30,6 +31,9 @@ achievementsIcon.addEventListener("click", () => {
   if (!dataLoaded) return; // prevents race condition
   renderOwnedSubUpgrades();
   achievementsDialog.classList.add("active");
+  requestAnimationFrame(() => {
+    achievementsContent.scrollTop = 0;
+  });
 });
 
 closeDialog.addEventListener("click", () => {

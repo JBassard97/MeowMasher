@@ -25,15 +25,14 @@ handle.addEventListener("pointerdown", (e) => {
 });
 
 handle.addEventListener("pointermove", (e) => {
-  if (!dragging) return;
+  if (!dragging) {
+    return;
+  }
 
-  let deltaY = e.clientY - startY;
-
-  // ⛔ limit drag travel to ±400px
-  const MAX_TRAVEL = 150;
-  deltaY = Math.max(-MAX_TRAVEL, Math.min(MAX_TRAVEL, deltaY));
-
+  const deltaY = e.clientY - startY;
   const newHeight = startHeight + deltaY;
+
+  if (newHeight > 325 || newHeight < 100) return;
 
   topContainer.style.minHeight = `${newHeight}px`;
 });

@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "name": "Gentle Pets",
+    "name": "Soft Pats",
     "cost": 100,
     "bonus": 2,
     "type": "clickPowerMultiplier",
@@ -71,7 +71,7 @@
   },
   {
     "id": 7,
-    "name": " Quadrillion Pats",
+    "name": "Quadrillion Pats",
     "cost": 10000000000,
     "bonus": 20,
     "type": "thousandFingers",
@@ -80,8 +80,38 @@
     "alsoUpgradeMultiplier": true
   },
   {
+    "id": 8,
+    "name": "Quintillion Pats",
+    "cost": 10000000000000,
+    "bonus": 20,
+    "type": "thousandFingers",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 250,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 9,
+    "name": "Sextillion Pats",
+    "cost": 10000000000000000,
+    "bonus": 20,
+    "type": "thousandFingers",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 300,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 10,
+    "name": "Septillion Pats",
+    "cost": 10000000000000000000,
+    "bonus": 20,
+    "type": "thousandFingers",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 350,
+    "alsoUpgradeMultiplier": true
+  },
+  {
     "id": 1000,
-    "name": "Wet Food Upgrade",
+    "name": "9Lives Dry Food",
     "cost": 1000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -90,7 +120,7 @@
   },
   {
     "id": 1001,
-    "name": "Laser Pointer",
+    "name": "Meow Mix Dry Food",
     "cost": 5000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -99,7 +129,7 @@
   },
   {
     "id": 1002,
-    "name": "Wand Toy",
+    "name": "Friskies Dry Food",
     "cost": 50000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -108,7 +138,7 @@
   },
   {
     "id": 1003,
-    "name": "Sun Patch",
+    "name": "Purina Cat Chow",
     "cost": 5000000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -117,7 +147,7 @@
   },
   {
     "id": 1004,
-    "name": "Dental Surgery",
+    "name": "Iams Dry Food",
     "cost": 500000000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -126,7 +156,7 @@
   },
   {
     "id": 1005,
-    "name": "Night Vision",
+    "name": "Hill's Science Dry Food",
     "cost": 50000000000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -134,8 +164,44 @@
     "unlockRequirement": 150
   },
   {
+    "id": 1006,
+    "name": "Wellness Dry Food",
+    "cost": 50000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 200
+  },
+  {
+    "id": 1007,
+    "name": "Wellness Dry Food",
+    "cost": 50000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 250
+  },
+  {
+    "id": 1008,
+    "name": "Orijen Dry Food",
+    "cost": 50000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 300
+  },
+  {
+    "id": 1009,
+    "name": "Dr. Elsey's Dry Food",
+    "cost": 50000000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 350
+  },
+  {
     "id": 2000,
-    "name": "Automatic Fountian",
+    "name": "9Lives Wet Food",
     "cost": 11000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -144,7 +210,7 @@
   },
   {
     "id": 2001,
-    "name": "Milk",
+    "name": "Meow Mix Wet Food",
     "cost": 55000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -153,7 +219,7 @@
   },
   {
     "id": 2002,
-    "name": "Long Tail",
+    "name": "Friskies Wet Food",
     "cost": 550000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -162,7 +228,7 @@
   },
   {
     "id": 2003,
-    "name": "Pink Nose",
+    "name": "Fancy Feast Wet Food",
     "cost": 55000000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -171,7 +237,7 @@
   },
   {
     "id": 2004,
-    "name": "Big Stretches",
+    "name": "Sheba Wet Food",
     "cost": 5500000000,
     "bonus": 2,
     "type": "upgradeMultiplier",
@@ -180,12 +246,48 @@
   },
   {
     "id": 2005,
-    "name": "Granny's Lap",
+    "name": "Hill's Science Wet Food",
     "cost": 550000000000,
     "bonus": 2,
     "type": "upgradeMultiplier",
     "targetUpgradeId": 2,
     "unlockRequirement": 150
+  },
+  {
+    "id": 2006,
+    "name": "Wellness Wet Food",
+    "cost": 550000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 200
+  },
+  {
+    "id": 2007,
+    "name": "Tiki Cat Wet Food",
+    "cost": 550000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 250
+  },
+  {
+    "id": 2008,
+    "name": "Ziwi Peak Wet Food",
+    "cost": 550000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 300
+  },
+  {
+    "id": 2009,
+    "name": "Feline Natural Wet Food",
+    "cost": 550000000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 350
   },
   {
     "id": 3000,

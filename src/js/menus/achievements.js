@@ -81,7 +81,7 @@ function renderOwnedSubUpgrades() {
     if (style) {
       Object.assign(div.style, style);
     }
-    div.style.animationDelay = `${i * 0.1}s`;
+    div.style.animationDelay = `${i * 0.05}s`;
 
     div.innerHTML = `
       <strong>${u.name}</strong>

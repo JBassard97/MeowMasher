@@ -1,4 +1,19 @@
+import { computeYarnBonus } from "../bonuses/yarn.js";
 import { storage } from "../logic/storage.js";
+
+// Load both JSON data files ONCE
+let allSubUpgrades = [];
+// let allUpgrades = [];
+let dataLoaded = false;
+
+Promise.all([
+  fetch("src/data/subUpgrades.json").then((r) => r.json()),
+  fetch("src/data/upgrades.json").then((r) => r.json()),
+]).then(([subs, ups]) => {
+  allSubUpgrades = subs;
+  allUpgrades = ups;
+  dataLoaded = true;
+});
 
 // --- Stats Dialog ---
 const statsIcon = document.getElementById("stats-icon");
@@ -44,8 +59,11 @@ setInterval(() => {
       storage.getMewnits() || 0
     ).toLocaleString();
 
-    document.getElementById("stats-mps-display").textContent =
-      mps.toLocaleString();
+    document.getElementById("stats-mps-display").innerHTML = `${(
+      mps + computeYarnBonus(allSubUpgrades).yarnBonus
+    ).toLocaleString()} <span class="details">(+${computeYarnBonus(
+      allSubUpgrades
+    ).yarnBonus.toLocaleString()} from Yarn)</span>`;
 
     document.getElementById("stats-lifetime-clicks-display").textContent = (
       storage.getLifetimeClicks().toLocaleString() || 0
@@ -75,6 +93,14 @@ setInterval(() => {
       storage.getNumberofGoldenPawClicks().toLocaleString();
 
     // --- active bonuses ---
+    document.getElementById(
+      "stats-yarn-display"
+    ).innerHTML = `${computeYarnBonus(
+      allSubUpgrades
+    ).yarnPercent.toLocaleString()}% <span class="details">(+${computeYarnBonus(
+      allSubUpgrades
+    ).yarnBonus.toLocaleString()})</span>`;
+
     document.getElementById("stats-thousand-pats-display").textContent =
       tf.toLocaleString();
 

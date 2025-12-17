@@ -1,5 +1,6 @@
 import { startGoldenPawprintSpawner } from "./golden/goldenPawprint.js";
 import { computeThousandFingers } from "./bonuses/thousandFingers.js";
+import { computeYarnBonus } from "./bonuses/yarn.js";
 import { describeSubBonus } from "./logic/describeSubBonus.js";
 import { animateCounter } from "./effects/animateCounter.js";
 import {
@@ -121,6 +122,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       : baseAutoRate;
 
     storage.setMewnitsPerSecond(autoRate);
+
+    autoRate += computeYarnBonus(subUpgrades).yarnBonus; // Add yarn (but don't actually save it)
+
     rateDisplay.textContent = autoRate.toLocaleString();
   }
 

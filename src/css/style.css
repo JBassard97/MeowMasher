@@ -82,6 +82,12 @@
   font-weight: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: "Dancing Script";
+  src: url("../assets/fonts/DancingScript.ttf") format("truetype");
+  font-weight: normal;
+  font-display: swap;
+}
 header {
   flex: 0 0 auto;
   display: flex;
@@ -232,8 +238,8 @@ header .header-icons #achievements-icon svg:hover g path {
 #left-side .clicker-area .clicker-details #owned-cats svg,
 #left-side .clicker-area .clicker-details .living-rooms svg,
 #left-side .clicker-area .clicker-details .golden-paws-clicked svg {
-  width: 11px;
-  height: 11px;
+  width: 12px;
+  height: 12px;
 }
 #left-side .clicker-area .clicker-details #owned-cats .golden-paw-icon,
 #left-side .clicker-area .clicker-details .living-rooms .golden-paw-icon,

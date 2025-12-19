@@ -195,6 +195,31 @@ header .header-icons #achievements-icon svg:hover g path {
 #left-side .clicker-area:active #clicker {
   scale: 1.05;
 }
+#left-side .clicker-area .clicker-area-nav {
+  min-height: 1rem;
+  width: 80%;
+  position: absolute;
+  top: 5px;
+  border-radius: 20px;
+  background-color: black;
+  opacity: 0.7;
+  display: flex;
+  justify-content: space-evenly;
+  overflow: hidden;
+  z-index: 10;
+}
+#left-side .clicker-area .clicker-area-nav div {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#left-side .clicker-area .clicker-area-nav #clicking-nav-item {
+  border-right: 1px solid darkgray;
+}
+#left-side .clicker-area .clicker-area-nav #biscuits-nav-item {
+  border-left: 1px solid darkgray;
+}
 #left-side .clicker-area #bonus-display {
   text-align: center;
   position: absolute;
@@ -293,6 +318,63 @@ header .header-icons #achievements-icon svg:hover g path {
   transition: all 1s ease;
   animation: goldenSpawn 1s ease-out, goldenWobble 0.5s ease-in-out infinite alternate;
   transform-origin: center;
+}
+#left-side .clicker-area .biscuits-area {
+  height: 100%;
+  width: 100%;
+  background-color: darkslategray;
+  z-index: 8;
+  position: absolute;
+  top: 0;
+  padding-top: 37px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+#left-side .clicker-area .biscuits-area .biscuits-content {
+  border: 1px solid aqua;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#left-side .clicker-area .biscuits-area .biscuits-content .biscuits-display {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  word-wrap: break-word;
+  border: 1px solid salmon;
+  padding: 5px 0;
+}
+#left-side .clicker-area .biscuits-area .biscuits-content .biscuits-display * {
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+}
+#left-side .clicker-area .biscuits-area .biscuits-content .paws {
+  border: 1px solid lavender;
+  width: 100%;
+  display: flex;
+}
+#left-side .clicker-area .biscuits-area .biscuits-content .paws .left-paw,
+#left-side .clicker-area .biscuits-area .biscuits-content .paws .right-paw {
+  width: 50%;
+  aspect-ratio: 1;
+  border: 1px solid red;
+}
+#left-side .clicker-area .biscuits-area .biscuits-content .paws .left-paw img,
+#left-side .clicker-area .biscuits-area .biscuits-content .paws .right-paw img {
+  transition: all 0.04s ease-in-out;
+}
+#left-side .clicker-area .biscuits-area .biscuits-content .paws .left-paw:active img,
+#left-side .clicker-area .biscuits-area .biscuits-content .paws .right-paw:active img {
+  scale: 1.25;
+}
+#left-side .clicker-area .biscuits-area .biscuits-content .paws .left-paw img {
+  transform: rotateZ(-20deg);
+}
+#left-side .clicker-area .biscuits-area .biscuits-content .paws .right-paw img {
+  transform: rotateZ(20deg);
 }
 
 #right-side {

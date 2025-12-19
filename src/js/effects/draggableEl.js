@@ -1,22 +1,14 @@
 const handle = document.querySelector(".draggable");
 const topContainer = document.querySelector(".sub-upgrades");
 
-console.log("handle found:", handle);
-console.log("topContainer found:", topContainer);
-
 let dragging = false;
 let startY = 0;
 let startHeight = 0;
 
 handle.addEventListener("pointerdown", (e) => {
-  console.log("👇 pointerdown fired", e.pointerType);
-
   dragging = true;
   startY = e.clientY;
   startHeight = topContainer.getBoundingClientRect().height;
-
-  console.log("startY:", startY);
-  console.log("startHeight:", startHeight);
 
   handle.setPointerCapture(e.pointerId);
   handle.style.cursor = "grabbing";

@@ -184,6 +184,10 @@
           </p>
         </div>
         <div class="clicker-area">
+          <div class="clicker-area-nav">
+            <div id="clicking-nav-item">Petting</div>
+            <div id="biscuits-nav-item">Biscuits</div>
+          </div>
           <p id="bonus-display" class="rainbow-text">Bonus</p>
           <div id="clicker">
             <img src="./src/assets/images/clickable-cats/0.png" alt="cat" />
@@ -318,6 +322,22 @@
                 </g>
               </svg>
               x <span id="golden-paws-clicked-number">0</span>
+            </div>
+          </div>
+          <div class="biscuits-area">
+            <div class="biscuits-content">
+              <div class="biscuits-display">
+                <h3 id="biscuits-number">0</h3>
+                <h4>Biscuits</h4>
+              </div>
+              <div class="paws">
+                <div class="left-paw" id="left-paw">
+                  <img src="src/assets/images/goldenPawprint.svg" alt="" />
+                </div>
+                <div class="right-paw" id="right-paw">
+                  <img src="src/assets/images/goldenPawprint.svg" alt="" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -558,6 +578,8 @@
     <script type="module" src="src/js/menus/stats.js"></script>
     <script type="module" src="src/js/menus/achievements.js"></script>
     <script src="src/js/easter-eggs/changeHeaderImage.js"></script>
+    <script src="src/js/effects/clickerAreaNav.js"></script>
+    <script src="src/js/biscuits/biscuits.js"></script>
 
     <script>
       if ("serviceWorker" in navigator) {

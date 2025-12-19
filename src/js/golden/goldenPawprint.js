@@ -19,7 +19,7 @@ export function startGoldenPawprintSpawner(clickerButton, onClick) {
     el.style.width = "75px";
     el.style.pointerEvents = "auto";
     el.style.cursor = "pointer";
-    el.style.zIndex = 10;
+    el.style.zIndex = 7;
 
     clickerButton.appendChild(el);
 

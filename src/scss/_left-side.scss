@@ -57,6 +57,32 @@
       }
     }
 
+    .clicker-area-nav {
+      min-height: 1rem;
+      width: 80%;
+      position: absolute;
+      top: 5px;
+      border-radius: 20px;
+      background-color: black;
+      opacity: 0.7;
+      display: flex;
+      justify-content: space-evenly;
+      overflow: hidden;
+      z-index: 10;
+      div {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #clicking-nav-item {
+        border-right: 1px solid darkgray;
+      }
+      #biscuits-nav-item {
+        border-left: 1px solid darkgray;
+      }
+    }
+
     #bonus-display {
       // border: 1px solid rgb(0, 255, 140);
       text-align: center;
@@ -160,6 +186,68 @@
       animation: goldenSpawn 1s ease-out,
         goldenWobble 0.5s ease-in-out infinite alternate;
       transform-origin: center;
+    }
+
+    .biscuits-area {
+      height: 100%;
+      width: 100%;
+      background-color: darkslategray;
+      z-index: 8;
+      position: absolute;
+      top: 0;
+      padding-top: 37px;
+      overflow: hidden;
+      box-sizing: border-box;
+      .biscuits-content {
+        border: 1px solid aqua;
+        box-sizing: border-box;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .biscuits-display {
+          margin: 0;
+          padding: 0;
+          text-align: center;
+          word-wrap: break-word;
+          border: 1px solid salmon;
+          padding: 5px 0;
+          * {
+            line-height: 1;
+            margin: 0;
+            padding: 0;
+          }
+        }
+        .paws {
+          border: 1px solid lavender;
+          width: 100%;
+          display: flex;
+          .left-paw,
+          .right-paw {
+            width: 50%;
+            aspect-ratio: 1;
+            border: 1px solid red;
+            img {
+              transition: all 0.04s ease-in-out;
+            }
+            &:active {
+              img {
+                scale: 1.25;
+              }
+            }
+          }
+          .left-paw {
+            img {
+              transform: rotateZ(-20deg);
+            }
+          }
+          .right-paw {
+            img {
+              transform: rotateZ(20deg);
+            }
+          }
+        }
+      }
     }
   }
 }

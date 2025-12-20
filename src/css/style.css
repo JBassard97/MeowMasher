@@ -224,6 +224,7 @@ header .header-icons #achievements-icon svg:hover g path {
   text-align: center;
   position: absolute;
   margin: 0.5rem;
+  margin-top: 35px;
   top: 0px;
   font-size: 20px;
   font-weight: bold;
@@ -322,7 +323,7 @@ header .header-icons #achievements-icon svg:hover g path {
 #left-side .clicker-area .biscuits-area {
   height: 100%;
   width: 100%;
-  background-color: darkslategray;
+  backdrop-filter: blur(5px);
   z-index: 8;
   position: absolute;
   top: 0;
@@ -331,7 +332,6 @@ header .header-icons #achievements-icon svg:hover g path {
   box-sizing: border-box;
 }
 #left-side .clicker-area .biscuits-area .biscuits-content {
-  border: 1px solid aqua;
   box-sizing: border-box;
   height: 100%;
   display: flex;
@@ -343,28 +343,62 @@ header .header-icons #achievements-icon svg:hover g path {
   padding: 0;
   text-align: center;
   word-wrap: break-word;
-  border: 1px solid salmon;
   padding: 5px 0;
+  background-color: black;
+  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
 }
 #left-side .clicker-area .biscuits-area .biscuits-content .biscuits-display * {
   line-height: 1;
   margin: 0;
   padding: 0;
 }
+#left-side .clicker-area .biscuits-area .biscuits-content .biscuits-middle {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-image: url("../assets/images/pillow.jpg");
+  background-size: 100% 100%;
+  object-fit: contain;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+#left-side .clicker-area .biscuits-area .biscuits-content .biscuits-middle .arms-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 60%;
+  position: absolute;
+  bottom: 0;
+  gap: 0.5rem;
+}
+#left-side .clicker-area .biscuits-area .biscuits-content .biscuits-middle .arms-container .right-arm,
+#left-side .clicker-area .biscuits-area .biscuits-content .biscuits-middle .arms-container .left-arm {
+  transition: all 0.2s ease-in-out;
+}
 #left-side .clicker-area .biscuits-area .biscuits-content .paws {
-  border: 1px solid lavender;
   width: 100%;
   display: flex;
 }
 #left-side .clicker-area .biscuits-area .biscuits-content .paws .left-paw,
 #left-side .clicker-area .biscuits-area .biscuits-content .paws .right-paw {
+  display: flex;
+  justify-content: center;
   width: 50%;
-  aspect-ratio: 1;
-  border: 1px solid red;
+  max-height: 100px;
+  border: 3px solid bisque;
+  background-color: saddlebrown;
 }
 #left-side .clicker-area .biscuits-area .biscuits-content .paws .left-paw img,
 #left-side .clicker-area .biscuits-area .biscuits-content .paws .right-paw img {
   transition: all 0.04s ease-in-out;
+  width: fit-content;
+}
+#left-side .clicker-area .biscuits-area .biscuits-content .paws .left-paw:active,
+#left-side .clicker-area .biscuits-area .biscuits-content .paws .right-paw:active {
+  background-color: brown;
 }
 #left-side .clicker-area .biscuits-area .biscuits-content .paws .left-paw:active img,
 #left-side .clicker-area .biscuits-area .biscuits-content .paws .right-paw:active img {

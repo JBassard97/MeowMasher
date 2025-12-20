@@ -15,7 +15,7 @@ let lastPawPressed;
 leftPaw.addEventListener("click", (e) => {
   if (leftPaw == lastPawPressed) return;
   lastPawPressed = leftPaw;
-  leftArm.style.transform = "translateY(5px)";
+  leftArm.style.transform = "translateY(4px)";
   rightArm.style.transform = "translateY(30px)";
   pressIndex++;
   console.log("Left", pressIndex);
@@ -29,7 +29,7 @@ leftPaw.addEventListener("click", (e) => {
 rightPaw.addEventListener("click", (e) => {
   if (rightPaw == lastPawPressed) return;
   lastPawPressed = rightPaw;
-  rightArm.style.transform = "translateY(5px)";
+  rightArm.style.transform = "translateY(4px)";
   leftArm.style.transform = "translateY(30px)";
   pressIndex++;
   console.log("Right", pressIndex);

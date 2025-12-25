@@ -119,4 +119,12 @@ export const storage = {
     const current = Number(localStorage.getItem("goldenPawClicks")) || 0;
     localStorage.setItem("goldenPawClicks", String(current + 1));
   },
+
+  // --- Biscuits ---
+  getIsInBiscuitsMode: () =>
+    JSON.parse(localStorage.getItem("isInBiscuitsMode") ?? "false"),
+  setIsInBiscuitsMode: (value) =>
+    localStorage.setItem("isInBiscuitsMode", JSON.stringify(value)),
+  getBiscuits: () => Number(localStorage.getItem("biscuits")) || 0,
+  setBiscuits: (value) => localStorage.setItem("biscuits", value),
 };

@@ -1,3 +1,5 @@
+import { storage } from "../logic/storage.js";
+
 const clickingNavItem = document.getElementById("clicking-nav-item");
 const biscuitsNavItem = document.getElementById("biscuits-nav-item");
 const biscuitsArea = document.querySelector(".biscuits-area");
@@ -22,12 +24,15 @@ function deselected(el) {
   }
 }
 
+storage.setIsInBiscuitsMode(false);
+
 clickingNavItem.addEventListener("click", (e) => {
   if (e.target.id === selectedItem) return;
   console.log(e.target.id);
   selected(clickingNavItem);
   deselected(biscuitsNavItem);
   selectedItem = e.target.id;
+  storage.setIsInBiscuitsMode(false);
 });
 biscuitsNavItem.addEventListener("click", (e) => {
   if (e.target.id === selectedItem) return;
@@ -35,6 +40,7 @@ biscuitsNavItem.addEventListener("click", (e) => {
   selected(biscuitsNavItem);
   deselected(clickingNavItem);
   selectedItem = e.target.id;
+  storage.setIsInBiscuitsMode(true);
 });
 
 // INIT

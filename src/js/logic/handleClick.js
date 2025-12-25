@@ -15,6 +15,7 @@ export function setupClickHandler({
   const rotateCat = createCatRotator(clickerImg);
 
   clickerButton.onclick = (e) => {
+    if (storage.getIsInBiscuitsMode()) return;
     const rect = clickerButton.getBoundingClientRect();
 
     const clickX = e.clientX - rect.left;

@@ -1,11 +1,16 @@
+import { storage } from "../logic/storage.js";
+
 const leftPaw = document.getElementById("left-paw");
 const rightPaw = document.getElementById("right-paw");
 const leftArm = document.querySelector(".left-arm");
 const rightArm = document.querySelector(".right-arm");
 const biscuitsNumber = document.getElementById("biscuits-number");
 
-let numberOfBiscuits = 0;
-biscuitsNumber.textContent = numberOfBiscuits;
+const updateBiscuitsDisplay = () => {
+  biscuitsNumber.textContent = storage.getBiscuits().toLocaleString();
+};
+
+updateBiscuitsDisplay();
 leftArm.style.transform = "translateY(30px)";
 rightArm.style.transform = "translateY(30px)";
 
@@ -20,8 +25,8 @@ leftPaw.addEventListener("click", (e) => {
   pressIndex++;
   console.log("Left", pressIndex);
   if (pressIndex == 2) {
-    numberOfBiscuits++;
-    biscuitsNumber.textContent = numberOfBiscuits;
+    storage.setBiscuits(storage.getBiscuits() + 1);
+    updateBiscuitsDisplay();
     pressIndex = 0;
   }
 });
@@ -34,8 +39,8 @@ rightPaw.addEventListener("click", (e) => {
   pressIndex++;
   console.log("Right", pressIndex);
   if (pressIndex == 2) {
-    numberOfBiscuits++;
-    biscuitsNumber.textContent = numberOfBiscuits;
+    storage.setBiscuits(storage.getBiscuits() + 1);
+    updateBiscuitsDisplay();
     pressIndex = 0;
   }
 });

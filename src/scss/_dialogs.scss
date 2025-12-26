@@ -17,6 +17,7 @@
 // Don't Touch
 .dialog-overlay.active {
   display: flex;
+  padding: 0;
 }
 
 .dialog-content {
@@ -27,6 +28,7 @@
   width: 90%;
   min-height: 10%;
   max-height: 70%;
+  color: lightgray;
 
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   display: flex;

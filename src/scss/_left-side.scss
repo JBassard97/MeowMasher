@@ -4,7 +4,7 @@
   #stats {
     border-top: $frameBorder;
     text-align: center;
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
     padding-bottom: 1rem;
     z-index: 5;
     background-image: $softGlowFromTop;
@@ -248,6 +248,34 @@
               transition: all 0.1s ease-in-out;
             }
           }
+          .biscuits-icons {
+            margin: 0.25rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+
+            #boosts-icon,
+            #levels-icon {
+              padding: 0.1rem 0.5rem;
+              height: 19px;
+              width: fit-content;
+              background-color: black;
+              opacity: 0.7;
+              border-radius: 20px;
+              display: flex;
+              justify-content: space-evenly;
+              align-items: center;
+              gap: 0.3rem;
+
+              svg {
+                margin: 0;
+                padding: 0;
+              }
+            }
+          }
         }
         .paws {
           width: 100%;
@@ -256,6 +284,7 @@
           .right-paw {
             display: flex;
             justify-content: center;
+            position: relative;
             width: 50%;
             max-height: 100px;
             border: 3px solid bisque;
@@ -268,6 +297,31 @@
               background-color: brown;
               img {
                 scale: 1.25;
+              }
+            }
+            span {
+              position: absolute;
+              bottom: 2px;
+              width: 100%;
+              text-align: center;
+              font-size: 10px;
+              color: lightgray;
+              kbd {
+                border-radius: 2px;
+                padding: 1px 4px;
+                border: 1px solid black;
+                color: black;
+                background-color: lightgray;
+                position: relative;
+                &::after {
+                  content: "";
+                  width: 100%;
+                  height: 100%;
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  background-image: $softGlowFromTop;
+                }
               }
             }
           }

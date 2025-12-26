@@ -40,4 +40,15 @@ export const AudioList = {
       console.error("Audio play error:", err);
     });
   },
+
+  Purr() {
+    if (!storage.getIsMeowAudioOn()) return;
+    const clickAudio = new Audio("src/assets/sounds/purr.mp3");
+    clickAudio.preload = "auto";
+    clickAudio.currentTime = 0;
+    clickAudio.volume = storage.getMeowAudioLevel() / 10;
+    clickAudio.play().catch((err) => {
+      console.error("Audio play error:", err);
+    });
+  },
 };

@@ -1,0 +1,1384 @@
+[
+  {
+    "id": 0,
+    "name": "Soft Pats",
+    "cost": 100,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 1,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 1,
+    "name": "Neck Scritches",
+    "cost": 500,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 1,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 2,
+    "name": "Back Scratches",
+    "cost": 10000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 10,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 3,
+    "name": "Thousand Pats",
+    "cost": 100000,
+    "bonus": 1,
+    "type": "thousandFingers",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 25,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 4,
+    "name": "Million Pats",
+    "cost": 10000000,
+    "bonus": 5,
+    "type": "thousandFingers",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 50,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 5,
+    "name": "Billion Pats",
+    "cost": 100000000,
+    "bonus": 10,
+    "type": "thousandFingers",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 100,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 6,
+    "name": "Trillion Pats",
+    "cost": 1000000000,
+    "bonus": 20,
+    "type": "thousandFingers",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 150,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 7,
+    "name": "Quadrillion Pats",
+    "cost": 10000000000,
+    "bonus": 20,
+    "type": "thousandFingers",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 200,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 8,
+    "name": "Quintillion Pats",
+    "cost": 10000000000000,
+    "bonus": 20,
+    "type": "thousandFingers",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 250,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 9,
+    "name": "Sextillion Pats",
+    "cost": 10000000000000000,
+    "bonus": 20,
+    "type": "thousandFingers",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 300,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 10,
+    "name": "Septillion Pats",
+    "cost": 10000000000000000000,
+    "bonus": 20,
+    "type": "thousandFingers",
+    "targetUpgradeId": 0,
+    "unlockRequirement": 350,
+    "alsoUpgradeMultiplier": true
+  },
+  {
+    "id": 1000,
+    "name": "9Lives Dry Food",
+    "cost": 1000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 1001,
+    "name": "Meow Mix Dry Food",
+    "cost": 5000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 1002,
+    "name": "Friskies Dry Food",
+    "cost": 50000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 1003,
+    "name": "Purina Cat Chow",
+    "cost": 5000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 1004,
+    "name": "Iams Dry Food",
+    "cost": 500000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 1005,
+    "name": "Hill's Science Dry Food",
+    "cost": 50000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 150
+  },
+  {
+    "id": 1006,
+    "name": "Wellness Dry Food",
+    "cost": 50000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 200
+  },
+  {
+    "id": 1007,
+    "name": "Wellness Dry Food",
+    "cost": 50000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 250
+  },
+  {
+    "id": 1008,
+    "name": "Orijen Dry Food",
+    "cost": 50000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 300
+  },
+  {
+    "id": 1009,
+    "name": "Dr. Elsey's Dry Food",
+    "cost": 50000000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 1,
+    "unlockRequirement": 350
+  },
+  {
+    "id": 2000,
+    "name": "9Lives Wet Food",
+    "cost": 11000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 2001,
+    "name": "Meow Mix Wet Food",
+    "cost": 55000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 2002,
+    "name": "Friskies Wet Food",
+    "cost": 550000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 2003,
+    "name": "Fancy Feast Wet Food",
+    "cost": 55000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 2004,
+    "name": "Sheba Wet Food",
+    "cost": 5500000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 2005,
+    "name": "Hill's Science Wet Food",
+    "cost": 550000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 150
+  },
+  {
+    "id": 2006,
+    "name": "Wellness Wet Food",
+    "cost": 550000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 200
+  },
+  {
+    "id": 2007,
+    "name": "Tiki Cat Wet Food",
+    "cost": 550000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 250
+  },
+  {
+    "id": 2008,
+    "name": "Ziwi Peak Wet Food",
+    "cost": 550000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 300
+  },
+  {
+    "id": 2009,
+    "name": "Feline Natural Wet Food",
+    "cost": 550000000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 2,
+    "unlockRequirement": 350
+  },
+  {
+    "id": 3000,
+    "name": "Disposable Plastic Bowl",
+    "cost": 120000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 3001,
+    "name": "Lightweight Plastic Bowl",
+    "cost": 600000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 3002,
+    "name": "Sturdy Plastic Bowl",
+    "cost": 6000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 3003,
+    "name": "Standard Ceramic Bowl",
+    "cost": 600000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 3004,
+    "name": "Painted Ceramic Bowl",
+    "cost": 60000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 3005,
+    "name": "Low Quality Metal Bowl",
+    "cost": 6000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 150
+  },
+  {
+    "id": 3006,
+    "name": "Wide Stainless Steel Bowl",
+    "cost": 6000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 200
+  },
+  {
+    "id": 3007,
+    "name": "Elevated Ceramic Bowl",
+    "cost": 6000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 250
+  },
+  {
+    "id": 3008,
+    "name": "Elevated Stainless Steel Bowl",
+    "cost": 6000000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 300
+  },
+  {
+    "id": 3009,
+    "name": "Shallow Stainless Steel Bowl",
+    "cost": 6000000000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 3,
+    "unlockRequirement": 350
+  },
+  {
+    "id": 4000,
+    "name": "Soft Pillow",
+    "cost": 1300000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 4,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 4001,
+    "name": "Cat Tunnel",
+    "cost": 6500000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 4,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 4002,
+    "name": "9 Lives",
+    "cost": 65000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 4,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 4003,
+    "name": "Feather Wand",
+    "cost": 6500000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 4,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 4004,
+    "name": "Wall Scratches",
+    "cost": 650000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 4,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 4005,
+    "name": "Wall Scratches",
+    "cost": 65000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 4,
+    "unlockRequirement": 150
+  },
+  {
+    "id": 5000,
+    "name": "Bank 1",
+    "cost": 14000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 5,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 5001,
+    "name": "Wall Scratches",
+    "cost": 70000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 5,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 5002,
+    "name": "Wall Scratches",
+    "cost": 700000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 5,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 5003,
+    "name": "Wall Scratches",
+    "cost": 70000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 5,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 5004,
+    "name": "Wall Scratches",
+    "cost": 7000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 5,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 5005,
+    "name": "Wall Scratches",
+    "cost": 700000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 5,
+    "unlockRequirement": 150
+  },
+  {
+    "id": 6000,
+    "name": "Temple 1",
+    "cost": 200000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 6,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 6001,
+    "name": "Wall Scratches",
+    "cost": 1000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 6,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 6002,
+    "name": "Wall Scratches",
+    "cost": 10000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 6,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 6003,
+    "name": "Wall Scratches",
+    "cost": 1000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 6,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 6004,
+    "name": "Wall Scratches",
+    "cost": 100000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 6,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 7000,
+    "name": "Wizard Tower 1",
+    "cost": 3300000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 7,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 7001,
+    "name": "Wizard Tower 2",
+    "cost": 16500000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 7,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 7002,
+    "name": "Wizard Tower 3",
+    "cost": 165000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 7,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 7003,
+    "name": "Wizard Tower 4",
+    "cost": 16500000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 7,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 8000,
+    "name": "Shipment 1",
+    "cost": 51000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 8,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 8001,
+    "name": "Shipment 2",
+    "cost": 255000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 8,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 8002,
+    "name": "Shipment 3",
+    "cost": 2550000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 8,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 8003,
+    "name": "Shipment 4",
+    "cost": 255000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 8,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 9000,
+    "name": "Alchemy 1",
+    "cost": 750000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 9001,
+    "name": "Alchemy 2",
+    "cost": 3750000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 9002,
+    "name": "Alchemy 3",
+    "cost": 375000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 9003,
+    "name": "Alchemy 4",
+    "cost": 37500000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 9004,
+    "name": "Alchemy 5",
+    "cost": 3750000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 9005,
+    "name": "Alchemy 6",
+    "cost": 375000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 150
+  },
+  {
+    "id": 9006,
+    "name": "Alchemy 7",
+    "cost": 375000000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 9,
+    "unlockRequirement": 200
+  },
+  {
+    "id": 10000,
+    "name": "Portal 1",
+    "cost": 10000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 10,
+    "unlockRequirement": 1
+  },
+  {
+    "id": 10001,
+    "name": "Portal 2",
+    "cost": 50000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 10,
+    "unlockRequirement": 5
+  },
+  {
+    "id": 10002,
+    "name": "Portal 3",
+    "cost": 500000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 10,
+    "unlockRequirement": 25
+  },
+  {
+    "id": 10003,
+    "name": "Portal 4",
+    "cost": 50000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 10,
+    "unlockRequirement": 50
+  },
+  {
+    "id": 10004,
+    "name": "Portal 5",
+    "cost": 5000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 10,
+    "unlockRequirement": 100
+  },
+  {
+    "id": 10005,
+    "name": "Portal 6",
+    "cost": 500000000000000000000,
+    "bonus": 2,
+    "type": "upgradeMultiplier",
+    "targetUpgradeId": 10,
+    "unlockRequirement": 150
+  },
+  {
+    "id": 100000,
+    "name": "1 Mewnit/S Reward",
+    "cost": 300,
+    "bonus": 1,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 1
+  },
+  {
+    "id": 1000001,
+    "name": "10 Mewnits/S Reward",
+    "cost": 3000,
+    "bonus": 2,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 10
+  },
+  {
+    "id": 100002,
+    "name": "100 Mewnits/S Reward",
+    "cost": 30000,
+    "bonus": 3,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 100
+  },
+  {
+    "id": 100003,
+    "name": "1,000 Mewnits/S Reward",
+    "cost": 300000,
+    "bonus": 5,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 1000
+  },
+  {
+    "id": 100004,
+    "name": "10,000 Mewnits/S Reward",
+    "cost": 3000000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 10000
+  },
+  {
+    "id": 100005,
+    "name": "25,000 Mewnits/S Reward",
+    "cost": 7500000,
+    "bonus": 5,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 25000
+  },
+  {
+    "id": 100006,
+    "name": "50,000 Mewnits/S Reward",
+    "cost": 15000000,
+    "bonus": 5,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 50000
+  },
+  {
+    "id": 100007,
+    "name": "75,000 Mewnits/S Reward",
+    "cost": 22500000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 75000
+  },
+  {
+    "id": 100008,
+    "name": "100,000 Mewnits/S Reward",
+    "cost": 30000000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 100000
+  },
+  {
+    "id": 100009,
+    "name": "250,000 Mewnits/S Reward",
+    "cost": 75000000,
+    "bonus": 5,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 250000
+  },
+  {
+    "id": 100010,
+    "name": "500,000 Mewnits/S Reward",
+    "cost": 150000000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 500000
+  },
+  {
+    "id": 100011,
+    "name": "750,000 Mewnits/S Reward",
+    "cost": 225000000,
+    "bonus": 20,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 750000
+  },
+  {
+    "id": 100012,
+    "name": "1,000,000 Mewnits/S Reward",
+    "cost": 300000000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 1000000
+  },
+  {
+    "id": 100013,
+    "name": "2,500,000 Mewnits/S Reward",
+    "cost": 750000000,
+    "bonus": 20,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 2500000
+  },
+  {
+    "id": 100014,
+    "name": "5,000,000 Mewnits/S Reward",
+    "cost": 1500000000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 5000000
+  },
+  {
+    "id": 100015,
+    "name": "10,000,000 Mewnits/S Reward",
+    "cost": 3000000000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 10000000
+  },
+  {
+    "id": 100016,
+    "name": "25,000,000 Mewnits/S Reward",
+    "cost": 7500000000,
+    "bonus": 50,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 25000000
+  },
+  {
+    "id": 100017,
+    "name": "50,000,000 Mewnits/S Reward",
+    "cost": 15000000000,
+    "bonus": 50,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 50000000
+  },
+  {
+    "id": 100018,
+    "name": "75,000,000 Mewnits/S Reward",
+    "cost": 22500000000,
+    "bonus": 50,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 75000000
+  },
+  {
+    "id": 100019,
+    "name": "100,000,000 Mewnits/S Reward",
+    "cost": 30000000000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 100000000
+  },
+  {
+    "id": 100020,
+    "name": "250,000,000 Mewnits/S Reward",
+    "cost": 75000000000,
+    "bonus": 10,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 250000000
+  },
+  {
+    "id": 100021,
+    "name": "500,000,000 Mewnits/S Reward",
+    "cost": 150000000000,
+    "bonus": 10,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 500000000
+  },
+  {
+    "id": 100022,
+    "name": "750,000,000 Mewnits/S Reward",
+    "cost": 225000000000,
+    "bonus": 10,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 750000000
+  },
+  {
+    "id": 100023,
+    "name": "1,000,000,000 Mewnits/S Reward",
+    "cost": 300000000000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 1000000000
+  },
+  {
+    "id": 100024,
+    "name": "2,500,000,000 Mewnits/S Reward",
+    "cost": 750000000000,
+    "bonus": 20,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 2500000000
+  },
+  {
+    "id": 100025,
+    "name": "5,000,000,000 Mewnits/S Reward",
+    "cost": 1500000000000,
+    "bonus": 20,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 5000000000
+  },
+  {
+    "id": 100026,
+    "name": "10,000,000,000 Mewnits/S Reward",
+    "cost": 3000000000000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 10000000000
+  },
+  {
+    "id": 100027,
+    "name": "25,000,000,000 Mewnits/S Reward",
+    "cost": 7500000000000,
+    "bonus": 20,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 25000000000
+  },
+  {
+    "id": 100028,
+    "name": "50,000,000,000 Mewnits/S Reward",
+    "cost": 15000000000000,
+    "bonus": 20,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 50000000000
+  },
+  {
+    "id": 100029,
+    "name": "100,000,000,000 Mewnits/S Reward",
+    "cost": 30000000000000,
+    "bonus": 2,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 100000000000
+  },
+  {
+    "id": 100030,
+    "name": "250,000,000,000 Mewnits/S Reward",
+    "cost": 75000000000000,
+    "bonus": 50,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 250000000000
+  },
+  {
+    "id": 100031,
+    "name": "500,000,000,000 Mewnits/S Reward",
+    "cost": 150000000000000,
+    "bonus": 50,
+    "type": "clickPowerAdder",
+    "unlockRateRequirement": 500000000000
+  },
+  {
+    "id": 100032,
+    "name": "1,000,000,000,000 Mewnits/S Reward",
+    "cost": 300000000000000,
+    "bonus": 3,
+    "type": "clickPowerMultiplier",
+    "unlockRateRequirement": 1000000000000
+  },
+  {
+    "id": 200000,
+    "name": "1,000 Mewnits Clicked Reward",
+    "cost": 50000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 1000
+  },
+  {
+    "id": 200001,
+    "name": "100,000 Mewnits Clicked Reward",
+    "cost": 5000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 100000
+  },
+  {
+    "id": 200002,
+    "name": "10 Million Mewnits Clicked Reward",
+    "cost": 500000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 10000000
+  },
+  {
+    "id": 200003,
+    "name": "1 Billion Mewnits Clicked Reward",
+    "cost": 50000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 1000000000
+  },
+  {
+    "id": 200004,
+    "name": "100 Billion Mewnits Clicked Reward",
+    "cost": 5000000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 100000000000
+  },
+  {
+    "id": 200005,
+    "name": "10 Trillion Mewnits Clicked Reward",
+    "cost": 500000000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 10000000000000
+  },
+  {
+    "id": 200006,
+    "name": "1 Quadrillion Mewnits Clicked Reward",
+    "cost": 50000000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 1000000000000000
+  },
+  {
+    "id": 200007,
+    "name": "100 Quadrillion Mewnits Clicked Reward",
+    "cost": 5000000000000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 100000000000000000
+  },
+  {
+    "id": 200008,
+    "name": "10 Quintillion Mewnits Clicked Reward",
+    "cost": 500000000000000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 10000000000000000000
+  },
+  {
+    "id": 200009,
+    "name": "1 Sexillion Mewnits Clicked Reward",
+    "cost": 50000000000000000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 1000000000000000000
+  },
+  {
+    "id": 200010,
+    "name": "100 Sexillion Mewnits Clicked Reward",
+    "cost": 5000000000000000000000000,
+    "bonus": 1,
+    "type": "percentOfMpsClickAdder",
+    "unlockClickedMewnitsRequirement": 100000000000000000000000
+  },
+  {
+    "id": 300000,
+    "name": "ADOPT Daisy!",
+    "cost": 999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9
+  },
+  {
+    "id": 300001,
+    "name": "ADOPT Rick!",
+    "cost": 9999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99
+  },
+  {
+    "id": 300002,
+    "name": "ADOPT Comet!",
+    "cost": 99999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999
+  },
+  {
+    "id": 300003,
+    "name": "ADOPT Taco!",
+    "cost": 999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999
+  },
+  {
+    "id": 300004,
+    "name": "ADOPT Beatrice!",
+    "cost": 9999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999
+  },
+  {
+    "id": 300005,
+    "name": "ADOPT Nimbus!",
+    "cost": 99999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999
+  },
+  {
+    "id": 300006,
+    "name": "ADOPT Pixel!",
+    "cost": 999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999
+  },
+  {
+    "id": 300007,
+    "name": "ADOPT Mochi!",
+    "cost": 9999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999
+  },
+  {
+    "id": 300008,
+    "name": "ADOPT Gizmo!",
+    "cost": 99999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999
+  },
+  {
+    "id": 300009,
+    "name": "ADOPT Whiskers!",
+    "cost": 999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999
+  },
+  {
+    "id": 300010,
+    "name": "ADOPT Stardust!",
+    "cost": 9999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999
+  },
+  {
+    "id": 300011,
+    "name": "ADOPT Pudding!",
+    "cost": 99999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999
+  },
+  {
+    "id": 300012,
+    "name": "ADOPT Ember!",
+    "cost": 999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999
+  },
+  {
+    "id": 300013,
+    "name": "ADOPT Socks!",
+    "cost": 9999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999
+  },
+  {
+    "id": 300014,
+    "name": "ADOPT Noodle!",
+    "cost": 99999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999
+  },
+  {
+    "id": 300015,
+    "name": "ADOPT Orbit!",
+    "cost": 999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999
+  },
+  {
+    "id": 300016,
+    "name": "ADOPT Pretzel!",
+    "cost": 9999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999
+  },
+  {
+    "id": 300017,
+    "name": "ADOPT Mango!",
+    "cost": 99999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999999
+  },
+  {
+    "id": 300018,
+    "name": "ADOPT Pebbles!",
+    "cost": 999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999999
+  },
+  {
+    "id": 300019,
+    "name": "ADOPT Marshmallow!",
+    "cost": 9999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999999
+  },
+  {
+    "id": 300020,
+    "name": "ADOPT Sprinkles!",
+    "cost": 99999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999999999
+  },
+  {
+    "id": 300021,
+    "name": "ADOPT Shadow!",
+    "cost": 999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999999999
+  },
+  {
+    "id": 300022,
+    "name": "ADOPT Tater Tot!",
+    "cost": 9999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999999999
+  },
+  {
+    "id": 300023,
+    "name": "ADOPT Juniper!",
+    "cost": 99999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999999999999
+  },
+  {
+    "id": 300024,
+    "name": "ADOPT Clover!",
+    "cost": 999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999999999999
+  },
+  {
+    "id": 300025,
+    "name": "ADOPT Blizzard!",
+    "cost": 9999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999999999999
+  },
+  {
+    "id": 300026,
+    "name": "ADOPT Pumpkin!",
+    "cost": 99999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999999999999999
+  },
+  {
+    "id": 300027,
+    "name": "ADOPT Echo!",
+    "cost": 999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999999999999999
+  },
+  {
+    "id": 300028,
+    "name": "ADOPT Fizz!",
+    "cost": 9999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999999999999999
+  },
+  {
+    "id": 300029,
+    "name": "ADOPT Nova!",
+    "cost": 99999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999999999999999999
+  },
+  {
+    "id": 300030,
+    "name": "ADOPT Goose!",
+    "cost": 999999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999999999999999999
+  },
+  {
+    "id": 300031,
+    "name": "ADOPT Lumen!",
+    "cost": 9999999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999999999999999999
+  },
+  {
+    "id": 300032,
+    "name": "ADOPT Velvet!",
+    "cost": 99999999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 999999999999999999999999999999999
+  },
+  {
+    "id": 300033,
+    "name": "ADOPT Quartz!",
+    "cost": 999999999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 9999999999999999999999999999999999
+  },
+  {
+    "id": 300034,
+    "name": "ADOPT Snowball!",
+    "cost": 9999999999999999999999999999999999999,
+    "bonus": 1,
+    "type": "catAdopt",
+    "unlockRateRequirement": 99999999999999999999999999999999999
+  },
+  {
+    "id": 400000,
+    "name": "New Living Room!",
+    "cost": 50000,
+    "type": "livingRoom",
+    "adoptedCatsRequirement": 3
+  },
+  {
+    "id": 400001,
+    "name": "New Living Room!",
+    "cost": 50000000,
+    "type": "livingRoom",
+    "adoptedCatsRequirement": 6
+  },
+  {
+    "id": 400002,
+    "name": "New Living Room!",
+    "cost": 50000000000,
+    "type": "livingRoom",
+    "adoptedCatsRequirement": 9
+  },
+  {
+    "id": 400003,
+    "name": "New Living Room!",
+    "cost": 50000000000000,
+    "type": "livingRoom",
+    "adoptedCatsRequirement": 12
+  }
+]

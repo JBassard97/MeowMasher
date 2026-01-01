@@ -1,0 +1,142 @@
+[
+  {
+    "id": 0,
+    "name": "Pats",
+    "baseCost": 15,
+    "rate": 1,
+    "image": "./src/assets/images/upgrades/pats.png"
+  },
+  {
+    "id": 1,
+    "name": "(Dry) Cat Food",
+    "baseCost": 100,
+    "rate": 4,
+    "image": "./src/assets/images/upgrades/drycatfood.png"
+  },
+  {
+    "id": 2,
+    "name": "(Wet) Cat Food",
+    "baseCost": 1100,
+    "rate": 8,
+    "image": "./src/assets/images/upgrades/wetcatfood.png"
+  },
+  {
+    "id": 3,
+    "name": "Yogurt Tubes",
+    "baseCost": 12000,
+    "rate": 47,
+    "image": "./src/assets/images/upgrades/churu.png"
+  },
+  {
+    "id": 4,
+    "name": "Water Bowl",
+    "baseCost": 130000,
+    "rate": 260,
+    "image": "./src/assets/images/upgrades/waterbowl.png"
+  },
+  {
+    "id": 5,
+    "name": "Water Fountain",
+    "baseCost": 1400000,
+    "rate": 1400,
+    "image": "./src/assets/images/upgrades/waterfountain.png"
+  },
+  {
+    "id": 6,
+    "name": "Mouse Toy",
+    "baseCost": 20000000,
+    "rate": 7800,
+    "image": "./src/assets/images/upgrades/mousetoy.png"
+  },
+  {
+    "id": 7,
+    "name": "Crinkle Ball",
+    "baseCost": 330000000,
+    "rate": 44000,
+    "image": "./src/assets/images/upgrades/crinkleballs.png"
+  },
+  {
+    "id": 8,
+    "name": "Wand Toy",
+    "baseCost": 5100000000,
+    "rate": 260000,
+    "image": "./src/assets/images/upgrades/wandtoy.png"
+  },
+  {
+    "id": 9,
+    "name": "Laser Pointer",
+    "baseCost": 75000000000,
+    "rate": 1600000,
+    "image": "./src/assets/images/upgrades/laserpointer.png"
+  },
+  {
+    "id": 10,
+    "name": "Cat Bed",
+    "baseCost": 1000000000000,
+    "rate": 10000000,
+    "image": "./src/assets/images/upgrades/catbed.png"
+  },
+  {
+    "id": 11,
+    "name": "Scratching Post",
+    "baseCost": 14000000000000,
+    "rate": 65000000,
+    "image": "./src/assets/images/upgrades/scratchingpost.png"
+  },
+  {
+    "id": 12,
+    "name": "Cat Tree",
+    "baseCost": 170000000000000,
+    "rate": 430000000,
+    "image": "./src/assets/images/upgrades/cattree.png"
+  },
+  {
+    "id": 13,
+    "name": "Catio",
+    "baseCost": 2100000000000000,
+    "rate": 2900000000,
+    "image": "./src/assets/images/upgrades/catio.png"
+  },
+  {
+    "id": 14,
+    "name": "Litter Box",
+    "baseCost": 26000000000000000,
+    "rate": 21000000000,
+    "image": "./src/assets/images/upgrades/litterbox.png"
+  },
+  {
+    "id": 15,
+    "name": "Litter Robot",
+    "baseCost": 310000000000000000,
+    "rate": 150000000000,
+    "image": "./src/assets/images/upgrades/robot.png"
+  },
+  {
+    "id": 16,
+    "name": "Catnip",
+    "baseCost": 71000000000000000000,
+    "rate": 1100000000000,
+    "image": "./src/assets/images/upgrades/catnip.png"
+  },
+  {
+    "id": 17,
+    "name": "Paper Bag",
+    "baseCost": 12000000000000000000000,
+    "rate": 8300000000000,
+    "image": "./src/assets/images/upgrades/paperbag.png"
+  },
+  {
+    "id": 18,
+    "name": "Human Bed",
+    "baseCost": 1900000000000000000000000,
+    "rate": 64000000000000,
+    "image": "./src/assets/images/upgrades/humanbed.png"
+  },
+  {
+    "id": 19,
+    "name": "Cardboard Box",
+    "baseCost": 540000000000000000000000000,
+    "rate": 510000000000000,
+    "image": "./src/assets/images/upgrades/box.png"
+  }
+]

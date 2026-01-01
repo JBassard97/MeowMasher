@@ -414,8 +414,11 @@
 
     <footer>
       <script type="module">
-        import pkg from "./package.json" with { type: "json" };
-        document.getElementById("version-number").textContent = pkg.version;
+        fetch("package.json")
+          .then((res) => res.json())
+          .then((pkg) => {
+            document.getElementById("version-number").textContent = pkg.version;
+          });
       </script>
       <p>© 2025 Meow Masher</p>
       <a target="_blank" href="https://github.com/JBassard97/MeowMasher">

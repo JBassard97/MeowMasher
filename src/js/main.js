@@ -7,7 +7,7 @@ import {
   SUB_UPGRADE_STYLES,
   UPGRADE_GRADIENT,
 } from "./effects/upgradeStyles.js";
-import { storage } from "./logic/storage.js";
+import { storage, initStorage } from "./logic/storage.js";
 import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
 import { chooseWeighted } from "./logic/chooseWeighted.js";
@@ -27,6 +27,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const clickerImg = clickerButton.querySelector("img");
   const upgradesContainer = $(".upgrades");
   const subUpgradesContainer = $(".sub-upgrades");
+
+  await initStorage();
 
   // Load data
   const [upgrades, subUpgrades] = await Promise.all([

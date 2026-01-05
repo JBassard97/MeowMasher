@@ -664,7 +664,15 @@
         <button id="close-boosts-dialog" class="dialog-button">Close</button>
       </div>
     </dialog>
-
+    <!-- <script>
+      console.log(
+        typeof window.pywebview !== "undefined" &&
+          typeof window.pywebview.api !== "undefined"
+      );
+      console.log("window.pywebview:", window.pywebview);
+      console.log("window.pywebview.api:", window.pywebview?.api);
+    </script> -->
+    <script type="module" src="src/js/logic/storage.js"></script>
     <script type="module" src="src/js/main.js"></script>
     <script type="module" src="src/js/menus/settings.js"></script>
     <script type="module" src="src/js/menus/stats.js"></script>

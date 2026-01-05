@@ -7,7 +7,7 @@ import {
   SUB_UPGRADE_STYLES,
   UPGRADE_GRADIENT,
 } from "./effects/upgradeStyles.js";
-import { storage } from "./logic/storage.js";
+import { storage, initStorage } from "./logic/storage.js";
 import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
 import { chooseWeighted } from "./logic/chooseWeighted.js";
@@ -18,6 +18,8 @@ const mode = "dev00";
 const devBonus = 50000000000;
 
 document.addEventListener("DOMContentLoaded", async () => {
+  await initStorage();
+
   const $ = (sel) => document.querySelector(sel);
 
   const counterDisplay = $("#counter");

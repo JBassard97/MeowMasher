@@ -3,7 +3,7 @@ import { storage } from "../logic/storage.js";
 
 // Load both JSON data files ONCE
 let allSubUpgrades = [];
-// let allUpgrades = [];
+let allUpgrades = [];
 let dataLoaded = false;
 
 Promise.all([

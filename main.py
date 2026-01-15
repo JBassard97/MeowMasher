@@ -36,6 +36,10 @@ class Storage:
         self._data[key] = value
         self._save()
 
+    def clear(self):
+        self._data = {}
+        self._save()
+
 
 # --- Use save.json in root ---
 if getattr(sys, "frozen", False):
@@ -63,6 +67,11 @@ class API:
         print(f"JS ran the 'getAll' method")
         storage._load()
         return storage._data
+    
+    def clearAll(self):
+        print("JS requested clearAll")
+        storage.clear()
+        return True
 
 
 api = API()

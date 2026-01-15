@@ -1,4 +1,4 @@
-import { storage } from "../logic/storage.js";
+import { storage, clearAll } from "../logic/storage.js";
 
 const settingsIcon = document.getElementById("settings-icon");
 const settingsDialog = document.getElementById("settings-dialog");
@@ -113,7 +113,7 @@ closeDialog.addEventListener("click", () => {
 });
 
 resetGame.addEventListener("click", () => {
-  localStorage.clear();
+  clearAll();
   location.reload();
 });
 

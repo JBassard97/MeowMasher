@@ -1,20 +1,30 @@
 // Wait for pywebview to be injected
-const waitForPywebview = async (maxWait = 1000) => {
-  const startTime = Date.now();
-
-  while (Date.now() - startTime < maxWait) {
-    if (
-      typeof window.pywebview !== "undefined" &&
-      typeof window.pywebview.api !== "undefined"
-    ) {
-      console.log("pywebview found!");
-      return true;
+const waitForPywebview = (maxWait = 3000) => {
+  return new Promise((resolve) => {
+    if (window.pywebview?.api) {
+      console.log("pywebview already present");
+      return resolve(true);
     }
-    await new Promise((resolve) => setTimeout(resolve, 50));
-  }
 
-  console.log("pywebview not found after waiting");
-  return false;
+    const onReady = () => {
+      console.log("pywebviewready event received");
+      cleanup();
+      resolve(true);
+    };
+
+    const cleanup = () => {
+      window.removeEventListener("pywebviewready", onReady);
+      clearTimeout(timeoutId);
+    };
+
+    window.addEventListener("pywebviewready", onReady);
+
+    const timeoutId = setTimeout(() => {
+      console.log("pywebview not found after waiting");
+      cleanup();
+      resolve(false);
+    }, maxWait);
+  });
 };
 
 let _isDesktop = null;

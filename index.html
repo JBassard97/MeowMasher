@@ -640,12 +640,24 @@
     <!-- LEVEL UP -->
     <dialog id="levels-dialog" class="dialog-overlay">
       <div class="dialog-content">
-        <h2>Level Up</h2>
+        <h1>Level Up</h1>
         <div class="dialog-body">
-          <h3>
+          <h2 style="text-align: center">
             Current Biscuits:
             <span id="levels-current-biscuits">Loading...</span>
-          </h3>
+          </h2>
+          <div class="all-levels">
+            <div class="category">
+              <h3>Golden Pawprints</h3>
+              <div class="level">
+                <p class="label">Spawn Frequency</p>
+                <div class="spawn-freq-bar"></div>
+                <button>Level Up</button>
+              </div>
+            </div>
+            <div class="category"><h3>Biscuits</h3></div>
+            <div class="category"><h3>Bonuses</h3></div>
+          </div>
         </div>
         <button id="close-levels-dialog" class="dialog-button">Close</button>
       </div>
@@ -654,24 +666,17 @@
     <!-- BUY BOOSTS -->
     <dialog id="boosts-dialog" class="dialog-overlay">
       <div class="dialog-content">
-        <h2>Buy Boosts</h2>
+        <h1>Buy Boosts</h1>
         <div class="dialog-body">
-          <h3>
+          <h2 style="text-align: center">
             Current Biscuits:
-            <span id="levels-current-biscuits">Loading...</span>
-          </h3>
+            <span id="boosts-current-biscuits">Loading...</span>
+          </h2>
         </div>
         <button id="close-boosts-dialog" class="dialog-button">Close</button>
       </div>
     </dialog>
-    <!-- <script>
-      console.log(
-        typeof window.pywebview !== "undefined" &&
-          typeof window.pywebview.api !== "undefined"
-      );
-      console.log("window.pywebview:", window.pywebview);
-      console.log("window.pywebview.api:", window.pywebview?.api);
-    </script> -->
+
     <script type="module" src="src/js/logic/storage.js"></script>
     <script type="module" src="src/js/main.js"></script>
     <script type="module" src="src/js/menus/settings.js"></script>

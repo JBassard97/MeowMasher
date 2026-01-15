@@ -18,8 +18,6 @@ const mode = "dev00";
 const devBonus = 50000000000;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  await initStorage();
-
   const $ = (sel) => document.querySelector(sel);
 
   const counterDisplay = $("#counter");
@@ -29,6 +27,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const clickerImg = clickerButton.querySelector("img");
   const upgradesContainer = $(".upgrades");
   const subUpgradesContainer = $(".sub-upgrades");
+
+  await initStorage();
 
   // Load data
   const [upgrades, subUpgrades] = await Promise.all([

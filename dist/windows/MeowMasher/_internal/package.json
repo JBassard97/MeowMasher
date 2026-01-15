@@ -1,15 +1,14 @@
 {
   "name": "meowmasher",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "description": "The clicker game all about cats",
   "main": "index.js",
   "scripts": {
     "build-css": "sass src/scss:src/css",
     "sass-watch": "sass --watch src/scss:src/css",
     "pywebview": "py main.py",
-    "build-exe-windows": "python -m PyInstaller main.py --name MeowMasher --add-data index.html;. --add-data package.json;. --add-data save.json;. --add-data src;src --icon favicon.ico --windowed --distpath dist/windows",
+    "build-exe-windows": "python -m PyInstaller main.py --name MeowMasher --add-data \"index.html;.\" --add-data \"package.json;.\" --add-data \"save.json;.\" --add-data \"src;src\" --icon favicon.ico --windowed --distpath dist/windows",
     "build-exe-unix": "python3 -m PyInstaller main.py --name MeowMasher --add-data index.html:. --add-data package.json:. --add-data save.json:. --add-data src:src --icon favicon.ico --windowed --distpath dist/unix",
-    "build-exe-both": "npm run build-exe-windows && npm run build-exe-unix",
     "start-exe-windows": "cd dist/windows/MeowMasher && MeowMasher.exe",
     "start-exe-unix": "cd dist/unix/MeowMasher && ./MeowMasher"
   },

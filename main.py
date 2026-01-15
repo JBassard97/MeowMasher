@@ -39,7 +39,7 @@ class Storage:
 
 # --- Use save.json in root ---
 if getattr(sys, "frozen", False):
-    BASE_DIR = Path(sys.executable).parent
+    BASE_DIR = Path(sys._MEIPASS)
 else:
     BASE_DIR = Path(__file__).parent.resolve()
 
@@ -80,4 +80,4 @@ window = webview.create_window(
 )
 
 
-webview.start(debug=True)
+webview.start()

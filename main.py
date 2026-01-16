@@ -67,7 +67,7 @@ class API:
         print(f"JS ran the 'getAll' method")
         storage._load()
         return storage._data
-    
+
     def clearAll(self):
         print("JS requested clearAll")
         storage.clear()
@@ -84,6 +84,7 @@ window = webview.create_window(
     url=INDEX_FILE.as_uri(),
     width=1000,
     height=700,
+    min_size=(540, 600),
     resizable=True,
     js_api=api,  # expose API to JS
 )

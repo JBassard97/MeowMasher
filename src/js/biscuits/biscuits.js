@@ -1,52 +1,16 @@
 import { storage } from "../logic/storage.js";
 import { AudioList } from "../audio/audio.js";
+import { updateBiscuitsDisplay } from "../helpers/updateBiscuitsDisplay.js";
 
-const leftPaw = document.getElementById("left-paw");
+const leftPawButton = document.getElementById("left-paw");
 const rightPaw = document.getElementById("right-paw");
 const leftArm = document.querySelector(".left-arm");
 const rightArm = document.querySelector(".right-arm");
-const biscuitsNumber = document.getElementById("biscuits-number");
-const levelsIcon = document.getElementById("levels-icon");
-const boostsIcon = document.getElementById("boosts-icon");
-const levelsDialog = document.getElementById("levels-dialog");
-const boostsDialog = document.getElementById("boosts-dialog");
-const closeLevelsDialog = document.getElementById("close-levels-dialog");
-const closeBoostsDialog = document.getElementById("close-boosts-dialog");
-
-// Dialog open/close
-levelsIcon.addEventListener("click", () => {
-  levelsDialog.classList.add("active");
-});
-levelsDialog.addEventListener("click", (e) => {
-  if (e.target === levelsDialog) {
-    levelsDialog.classList.remove("active");
-  }
-});
-closeLevelsDialog.addEventListener("click", () => {
-  levelsDialog.classList.remove("active");
-});
-
-boostsIcon.addEventListener("click", () => {
-  boostsDialog.classList.add("active");
-});
-boostsDialog.addEventListener("click", (e) => {
-  if (e.target === boostsDialog) {
-    boostsDialog.classList.remove("active");
-  }
-});
-closeBoostsDialog.addEventListener("click", () => {
-  boostsDialog.classList.remove("active");
-});
-// ---------------------------------------------------
-
-const updateBiscuitsDisplay = () => {
-  biscuitsNumber.textContent = storage.getBiscuits().toLocaleString();
-};
 
 const handlePawPress = (direction) => {
   if (direction == "left") {
-    if (leftPaw == lastPawPressed) return;
-    lastPawPressed = leftPaw;
+    if (leftPawButton == lastPawPressed) return;
+    lastPawPressed = leftPawButton;
     leftArm.style.transform = "translateY(4px)";
     rightArm.style.transform = "translateY(30px)";
     pressIndex++;
@@ -82,7 +46,7 @@ rightArm.style.transform = "translateY(30px)";
 let pressIndex = 0;
 let lastPawPressed;
 
-leftPaw.addEventListener("click", (e) => {
+leftPawButton.addEventListener("click", (e) => {
   handlePawPress("left");
 });
 document.addEventListener("keydown", (e) => {

@@ -48,6 +48,7 @@ export const initStorage = async () => {
     }
   }
 
+  document.querySelector(".loading-spinner").style.display = "none";
   console.log(isDesktop() ? "DESKTOP MODE" : "WEB MODE");
 };
 

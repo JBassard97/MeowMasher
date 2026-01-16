@@ -1,4 +1,4 @@
-import { storage } from "../logic/storage.js";
+import { storage, getItem } from "../logic/storage.js";
 
 export function computeYarnBonus(subUpgrades) {
   let yarnPercent = 0;
@@ -6,7 +6,7 @@ export function computeYarnBonus(subUpgrades) {
 
   const totalSubUpgrades = subUpgrades.length;
   const owned = subUpgrades.filter(
-    (u) => localStorage.getItem(`subUpgrade_${u.id}_owned`) === "true"
+    (u) => getItem(`subUpgrade_${u.id}_owned`) === "true"
   );
   yarnPercent = Math.floor((owned.length / totalSubUpgrades) * 100);
   yarnBonus = Math.floor((yarnPercent / 100) * storage.getMewnitsPerSecond());

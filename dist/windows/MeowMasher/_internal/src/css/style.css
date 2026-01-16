@@ -801,6 +801,14 @@ header .header-icons #achievements-icon svg:hover g path {
   width: 100%;
   text-align: center;
 }
+.dialog-content .dialog-body #boosts-container {
+  width: 100%;
+  border: 1px solid rgba(50, 255, 126, 0.8);
+}
+.dialog-content .dialog-body #boosts-container .boost-item .boost-name {
+  font-weight: bold;
+  width: fit-content;
+}
 .dialog-content .dialog-body .all-levels {
   width: 100%;
   border: 1px solid slateblue;
@@ -1053,6 +1061,20 @@ footer a svg {
 }
 footer a svg * {
   fill: gray;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
 }
 
 html,

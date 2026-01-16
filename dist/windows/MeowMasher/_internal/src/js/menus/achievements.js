@@ -1,6 +1,7 @@
 import { describeSubBonus } from "../logic/describeSubBonus.js";
 import { describeSubUnlock } from "../logic/describeSubUnlock.js";
 import { SUB_UPGRADE_STYLES } from "../effects/upgradeStyles.js";
+import { getItem } from "../logic/storage.js";
 // --- Achievements Dialog ---
 const achievementsIcon = document.getElementById("achievements-icon");
 const achievementsDialog = document.getElementById("achievements-dialog");
@@ -57,7 +58,7 @@ function renderOwnedSubUpgrades() {
 
   // Find owned sub-upgrades
   const owned = allSubUpgrades.filter(
-    (u) => localStorage.getItem(`subUpgrade_${u.id}_owned`) === "true"
+    (u) => getItem(`subUpgrade_${u.id}_owned`) === "true"
   );
 
   if (owned.length === 0) {

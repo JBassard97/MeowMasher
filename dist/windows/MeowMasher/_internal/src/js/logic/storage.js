@@ -48,10 +48,11 @@ export const initStorage = async () => {
     }
   }
 
+  document.querySelector(".loading-spinner").style.display = "none";
   console.log(isDesktop() ? "DESKTOP MODE" : "WEB MODE");
 };
 
-const getItem = (key) => {
+export const getItem = (key) => {
   if (isDesktop()) return desktopCache?.[key] ?? null;
   return localStorage.getItem(key);
 };
@@ -64,6 +65,15 @@ const setItem = (key, value) => {
     window.pywebview.api.setItem(key, v);
   } else {
     localStorage.setItem(key, v);
+  }
+};
+
+export const clearAll = () => {
+  if (isDesktop()) {
+    window.pywebview.api.clearAll();
+    desktopCache = {};
+  } else {
+    localStorage.clear();
   }
 };
 

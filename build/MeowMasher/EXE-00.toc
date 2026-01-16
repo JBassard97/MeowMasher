@@ -70,7 +70,7 @@
  [],
  False,
  False,
- 1768435705,
+ 1768533602,
  [('runw.exe',
    'C:\\Users\\foxyr\\AppData\\Roaming\\Python\\Python313\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\runw.exe',
    'EXECUTABLE')],

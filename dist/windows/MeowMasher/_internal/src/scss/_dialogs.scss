@@ -78,6 +78,17 @@
       text-align: center;
     }
 
+    #boosts-container {
+      width: 100%;
+      border: 1px solid rgba(50, 255, 126, 0.8);
+      .boost-item {
+        .boost-name {
+          font-weight: bold;
+          width: fit-content;
+        }
+      }
+    }
+
     .all-levels {
       width: 100%;
       border: 1px solid slateblue;

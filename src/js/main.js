@@ -8,6 +8,7 @@ import {
   UPGRADE_GRADIENT,
 } from "./effects/upgradeStyles.js";
 import { storage, initStorage } from "./logic/storage.js";
+import { initSettings } from "./menus/settings.js";
 import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
 import { chooseWeighted } from "./logic/chooseWeighted.js";
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const subUpgradesContainer = $(".sub-upgrades");
 
   await initStorage();
+  initSettings();
 
   // Load data
   const [upgrades, subUpgrades] = await Promise.all([

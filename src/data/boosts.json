@@ -1,17 +1,26 @@
 [
   {
+    "id": 1,
     "name": "30s MPS Boost",
     "desc": "2x Mewnits/Second for 30 seconds",
+    "boost": 2,
+    "time": 30,
     "price": 100
   },
   {
+    "id": 1,
     "name": "60s MPS Boost",
     "desc": "2x Mewnits/Second for 60 seconds",
+    "boost": 2,
+    "time": 60,
     "price": 200
   },
   {
+    "id": 1,
     "name": "90s MPS Boost",
     "desc": "2x Mewnits/Second for 90 seconds",
+    "boost": 2,
+    "time": 90,
     "price": 300
   }
 ]

@@ -58,6 +58,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   startGoldenPawprintSpawner(clickerButton, () => {
+    // If they're already active, do nothing
+    if (goldenPawActive) return;
+
     // Weight configuration
     const reward = chooseWeighted({
       mps: 1, // equal chance by default
@@ -66,8 +69,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (reward === "mps") {
       // --- Apply 30s MPS Boost ---
+      boostFuncs.mps(30);
+    } else if (reward === "mew") {
+      // --- Immediate Mewnits payout ---
+      boostFuncs.mew(60);
+    }
+  });
+
+  const boostFuncs = {
+    mps: (secondsOfDuration = 30) => {
       goldenPawActive = true;
-      toggleGoldenPawMode(true, "mps", 30);
+      toggleGoldenPawMode(true, "mps", secondsOfDuration);
       updateAutoRate();
       startAutoIncrement();
 
@@ -76,21 +88,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         toggleGoldenPawMode(false, "mps");
         updateAutoRate();
         startAutoIncrement();
-      }, 1000 * 30);
-    } else if (reward === "mew") {
-      // --- Immediate Mewnits payout ---
-      const bonus = autoRate * 60; // e.g. 60 seconds worth
+      }, 1000 * secondsOfDuration);
+    },
+    mew: (secondsOfPayout = 60) => {
+      const bonus = autoRate * secondsOfPayout; // e.g. 60 seconds worth
       toggleGoldenPawMode(true, "mew", 1, bonus);
       const prev = count;
       count += bonus;
       storage.setMewnits(count);
       animateCounter(counterDisplay, prev, count, 400);
-    }
-  });
-
-  // -----------------------------
-  // Living Room Init
-  // -----------------------------
+    },
+  };
 
   // -----------------------------
   // Full Click Power Recalc
@@ -117,7 +125,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     baseAutoRate = upgrades.reduce(
       (sum, u) =>
         sum + u.owned * (u.rate * (u.multiplier || 1) + (u.extraBonus || 0)),
-      0
+      0,
     );
 
     // Apply golden pawprint multiplier only to autoRate
@@ -211,8 +219,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         div.innerHTML = `
           <strong style="background:${style.strongBackground}">${
-          u.name
-        }</strong>
+            u.name
+          }</strong>
           <div>
           <p><b>${u.cost.toLocaleString()}</b> <span style="font-size:0.5rem">Mewnits</span></p>
           <p>${describeSubBonus(u, upgrades)}</p>

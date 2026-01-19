@@ -1,11 +1,12 @@
 [
   {
-    "id": 1,
+    "id": 0,
     "name": "30s MPS Boost",
     "desc": "2x Mewnits/Second for 30 seconds",
     "boost": 2,
     "time": 30,
-    "price": 100
+    "price": 100,
+    "type": "mps"
   },
   {
     "id": 1,
@@ -13,14 +14,16 @@
     "desc": "2x Mewnits/Second for 60 seconds",
     "boost": 2,
     "time": 60,
-    "price": 200
+    "price": 200,
+    "type": "mps"
   },
   {
-    "id": 1,
+    "id": 2,
     "name": "90s MPS Boost",
     "desc": "2x Mewnits/Second for 90 seconds",
     "boost": 2,
     "time": 90,
-    "price": 300
+    "price": 300,
+    "type": "mps"
   }
 ]

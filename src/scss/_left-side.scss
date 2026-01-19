@@ -96,6 +96,21 @@
       // animation: rainbowFlow 5s linear infinite;
     }
 
+    #use-boosts-icon {
+      position: absolute;
+      top: 4rem;
+      left: 0;
+      padding: 0.1rem 0.5rem;
+      width: fit-content;
+      background-color: black;
+      opacity: 0.7;
+      border-radius: 20px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
     .clicker-details {
       width: 80%;
       position: absolute;
@@ -184,7 +199,8 @@
       opacity: 1;
       scale: 1;
       transition: all 1s ease;
-      animation: goldenSpawn 1s ease-out,
+      animation:
+        goldenSpawn 1s ease-out,
         goldenWobble 0.5s ease-in-out infinite alternate;
       transform-origin: center;
     }

@@ -1,10 +1,10 @@
 {
-  "mewnitsPerSecond": "4409",
+  "mewnitsPerSecond": "8818",
   "thousandFingersBonus": "47",
-  "mewnits": "1756675",
-  "lifetimeMewnits": "2458019",
-  "lifetimeClicks": "66",
-  "lifetimeClickMewnits": "551",
+  "mewnits": "3274628",
+  "lifetimeMewnits": "3975972",
+  "lifetimeClicks": "242",
+  "lifetimeClickMewnits": "12871",
   "upgrade_0_owned": "52",
   "isMeowAudioOn": "true",
   "currentFont": "Finger Paint",
@@ -19,7 +19,7 @@
   "subUpgrade_1_owned": "true",
   "subUpgrade_300001_owned": "true",
   "isInBiscuitsMode": "false",
-  "biscuits": "42",
+  "biscuits": "83",
   "upgrade_2_owned": "12",
   "subUpgrade_1000_owned": "true",
   "upgrade_1_multiplier": "8",
@@ -40,5 +40,7 @@
   "meowAudioLevel": "5",
   "sfxAudioLevel": "5",
   "isSfxAudioOn": "false",
-  "isInColorblindMode": "false"
+  "isInColorblindMode": "false",
+  "boost_0_owned": "3",
+  "boost_1_owned": "0"
 }

@@ -57,6 +57,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     u.extraBonus = 0;
   });
 
+  // --- Boosts Custom Event Listener ---
+  window.addEventListener("boostUsed", (e) => {
+    const boost = e.detail;
+    if (!boost) {
+      console.error("Boost not passed to main.js in custom event!");
+      return;
+    }
+
+    if (boost.type === "mps") {
+      boostFuncs.mps(boost.time);
+    } else if (boost.type === "mew") {
+      boostFuncs.mew(boost.time);
+    }
+
+    console.log("Boost Used: ", boost);
+  });
+
   startGoldenPawprintSpawner(clickerButton, () => {
     // If they're already active, do nothing
     if (goldenPawActive) return;

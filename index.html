@@ -190,6 +190,30 @@
           </div>
 
           <p id="bonus-display" class="rainbow-text">Bonus</p>
+
+          <div id="use-boosts-icon">
+            <svg
+              fill="lightgray"
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></g>
+              <g id="SVGRepo_iconCarrier">
+                <path
+                  d="M5 21h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2zm7-14 5 5h-4v5h-2v-5H7l5-5z"
+                ></path>
+              </g>
+            </svg>
+            Boosts
+          </div>
+
           <div id="clicker">
             <img src="./src/assets/images/clickable-cats/0.png" alt="cat" />
           </div>
@@ -682,6 +706,19 @@
       </div>
     </dialog>
 
+    <!-- USE BOOSTS -->
+    <dialog id="use-boosts-dialog" class="dialog-overlay">
+      <div class="dialog-content">
+        <h1>Use Boosts</h1>
+        <div class="dialog-body">
+          <div id="use-boosts-container"></div>
+        </div>
+        <button id="close-use-boosts-dialog" class="dialog-button">
+          Close
+        </button>
+      </div>
+    </dialog>
+
     <div class="loading-spinner"><p>Loading...</p></div>
 
     <script type="module" src="src/js/logic/storage.js"></script>
@@ -690,6 +727,7 @@
     <script type="module" src="src/js/menus/stats.js"></script>
     <script type="module" src="src/js/menus/achievements.js"></script>
     <script type="module" src="src/js/menus/boosts.js"></script>
+    <script type="module" src="src/js/menus/use-boosts.js"></script>
     <script type="module" src="src/js/menus/levels.js"></script>
     <script src="src/js/easter-eggs/changeHeaderImage.js"></script>
     <script type="module" src="src/js/effects/clickerAreaNav.js"></script>

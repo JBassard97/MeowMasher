@@ -94,6 +94,10 @@ export const storage = {
   setUpgradeMultiplier: (id, value) =>
     setItem(`upgrade_${id}_multiplier`, value),
 
+  // --- Boosts ---
+  getBoostOwned: (id) => Number(getItem(`boost_${id}_owned`)) || 0,
+  setBoostOwned: (id, value) => setItem(`boost_${id}_owned`, value),
+
   // --- Stored Mewnits Per Second ---
   getMewnitsPerSecond: () => Number(getItem("mewnitsPerSecond")) || 0,
   setMewnitsPerSecond: (value) => setItem("mewnitsPerSecond", value),

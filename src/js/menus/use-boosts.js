@@ -32,9 +32,10 @@ function renderBoosts() {
   useBoostsContainer.innerHTML = "";
 
   for (const boost of boostData) {
-    const useBoostEl = document.createElement("div");
-    useBoostEl.classList.add("boost-item");
-    useBoostEl.innerHTML = `
+    if (!boost["bonus-header"]) {
+      const useBoostEl = document.createElement("div");
+      useBoostEl.classList.add("boost-item");
+      useBoostEl.innerHTML = `
       <div class="boost-icon-and-text">
         ${createBoostIcon(boost.type, boost.time)}
         <div class="boost-text-container">
@@ -51,11 +52,20 @@ function renderBoosts() {
         </button>
       `;
 
-    useBoostEl
-      .querySelector(".use-boost-button")
-      .addEventListener("click", () => useBoost(boost.id));
+      useBoostEl
+        .querySelector(".use-boost-button")
+        .addEventListener("click", () => useBoost(boost.id));
 
-    useBoostsContainer.appendChild(useBoostEl);
+      useBoostsContainer.appendChild(useBoostEl);
+    } else {
+      const headerEl = document.createElement("div");
+      headerEl.classList.add("bonus-header");
+      headerEl.innerHTML = `
+        <h3>${boost["bonus-header"]}</h3>
+        <span class="bonus-header-details">${boost["bonus-header-details"] || ""}</span>
+      `;
+      useBoostsContainer.appendChild(headerEl);
+    }
   }
 }
 

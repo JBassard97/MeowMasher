@@ -20,6 +20,7 @@ $rainbowBackground: repeating-linear-gradient(
   background: $rainbowBackground;
   background-size: 400% 100%;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   line-height: 1;
   animation: rainbowFlow 20s linear infinite alternate;
@@ -61,7 +62,9 @@ $rainbowBackground: repeating-linear-gradient(
 /* Golden glow with a tight, subtle ebbing animation */
 .golden {
   color: #ffd966;
-  text-shadow: 0 0 4px rgba(255, 214, 102, 0.9), 0 0 8px rgba(255, 165, 0, 0.6);
+  text-shadow:
+    0 0 4px rgba(255, 214, 102, 0.9),
+    0 0 8px rgba(255, 165, 0, 0.6);
   animation: goldenEbb 2s infinite ease-in-out;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -69,19 +72,22 @@ $rainbowBackground: repeating-linear-gradient(
 
 @keyframes goldenEbb {
   0% {
-    text-shadow: 0 0 6px rgba(255, 214, 102, 1),
+    text-shadow:
+      0 0 6px rgba(255, 214, 102, 1),
       0 0 12px rgba(255, 165, 0, 0.75);
     filter: brightness(1.05);
   }
 
   50% {
-    text-shadow: 0 0 2px rgba(255, 214, 102, 0.35),
+    text-shadow:
+      0 0 2px rgba(255, 214, 102, 0.35),
       0 0 4px rgba(255, 165, 0, 0.25);
     filter: brightness(0.92);
   }
 
   100% {
-    text-shadow: 0 0 6px rgba(255, 214, 102, 1),
+    text-shadow:
+      0 0 6px rgba(255, 214, 102, 1),
       0 0 12px rgba(255, 165, 0, 0.75);
     filter: brightness(1);
   }

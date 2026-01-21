@@ -191,27 +191,29 @@
 
           <p id="bonus-display" class="rainbow-text">Bonus</p>
 
-          <div id="use-boosts-icon">
-            <svg
-              fill="lightgray"
-              width="20px"
-              height="20px"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-              <g
-                id="SVGRepo_tracerCarrier"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></g>
-              <g id="SVGRepo_iconCarrier">
-                <path
-                  d="M5 21h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2zm7-14 5 5h-4v5h-2v-5H7l5-5z"
-                ></path>
-              </g>
-            </svg>
-            Boosts
+          <div class="clicker-icons">
+            <div id="use-boosts-icon">
+              <svg
+                fill="lightgray"
+                width="20px"
+                height="20px"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M5 21h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2zm7-14 5 5h-4v5h-2v-5H7l5-5z"
+                  ></path>
+                </g>
+              </svg>
+              Use Boosts
+            </div>
           </div>
 
           <div id="clicker">
@@ -711,6 +713,7 @@
       <div class="dialog-content">
         <h1>Use Boosts</h1>
         <div class="dialog-body">
+          <!-- All boost-headers and boosts are rendered by JS -->
           <div id="use-boosts-container"></div>
         </div>
         <button id="close-use-boosts-dialog" class="dialog-button">

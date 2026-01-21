@@ -4,6 +4,7 @@
   "description": "The clicker game all about cats",
   "main": "index.js",
   "scripts": {
+    "dev-desktop": "npm run build-css && npm run pywebview",
     "build-css": "sass src/scss:src/css",
     "sass-watch": "sass --watch src/scss:src/css",
     "pywebview": "py main.py",

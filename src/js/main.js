@@ -47,6 +47,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   let autoInterval = null;
   let animationFrame = null;
 
+  let mpsBoostTimeout = null;
+  let mpsBoostActive = false;
   let goldenPawActive = false;
   let goldenPawMpsMultiplier = 2; // Temporary multiplier
 
@@ -95,20 +97,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const boostFuncs = {
     mps: (secondsOfDuration = 30) => {
-      goldenPawActive = true;
-      toggleGoldenPawMode(true, "mps", secondsOfDuration);
-      updateAutoRate();
-      startAutoIncrement();
+      if (mpsBoostActive) {
+        clearTimeout(mpsBoostTimeout);
+      } else {
+        mpsBoostActive = true;
+        updateAutoRate();
+        startAutoIncrement();
+      }
 
-      setTimeout(() => {
-        goldenPawActive = false;
+      // ALWAYS restart UI timer
+      toggleGoldenPawMode(true, "mps", secondsOfDuration);
+
+      mpsBoostTimeout = setTimeout(() => {
+        mpsBoostActive = false;
         toggleGoldenPawMode(false, "mps");
         updateAutoRate();
         startAutoIncrement();
-      }, 1000 * secondsOfDuration);
+      }, secondsOfDuration * 1000);
     },
+
     mew: (secondsOfPayout = 60) => {
-      const bonus = autoRate * secondsOfPayout; // e.g. 60 seconds worth
+      const bonus = autoRate * secondsOfPayout;
       toggleGoldenPawMode(true, "mew", 1, bonus);
       const prev = count;
       count += bonus;

@@ -34,9 +34,10 @@ function renderBoosts() {
   boostsContainer.innerHTML = "";
 
   for (const boost of boostData) {
-    const boostEl = document.createElement("div");
-    boostEl.classList.add("boost-item");
-    boostEl.innerHTML = `
+    if (!boost["bonus-header"]) {
+      const boostEl = document.createElement("div");
+      boostEl.classList.add("boost-item");
+      boostEl.innerHTML = `
       <div class="boost-icon-and-text">
         ${createBoostIcon(boost.type, boost.time)}
         <div class="boost-text-container">
@@ -50,15 +51,25 @@ function renderBoosts() {
       </div>
         <button class="buy-boost-button" ${storage.getBiscuits() < boost.price ? "disabled" : ""}>
           <span>Buy For</span>
-          <span>${boost.price} Biscuits</span>
+          <span>${boost.price.toLocaleString()}</span>
+          <span>Biscuits</span>
         </button>
       `;
 
-    boostEl
-      .querySelector(".buy-boost-button")
-      .addEventListener("click", () => buyBoost(boost.id));
+      boostEl
+        .querySelector(".buy-boost-button")
+        .addEventListener("click", () => buyBoost(boost.id));
 
-    boostsContainer.appendChild(boostEl);
+      boostsContainer.appendChild(boostEl);
+    } else {
+      const headerEl = document.createElement("div");
+      headerEl.classList.add("bonus-header");
+      headerEl.innerHTML = `
+        <h3>${boost["bonus-header"]}</h3>
+        <span class="bonus-header-details">${boost["bonus-header-details"] || ""}</span>
+      `;
+      boostsContainer.appendChild(headerEl);
+    }
   }
 }
 

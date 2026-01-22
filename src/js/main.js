@@ -14,6 +14,7 @@ import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
 import { chooseWeighted } from "./logic/chooseWeighted.js";
 import { setLivingRoom } from "./effects/setLivingRoom.js";
 import { AudioList } from "./audio/audio.js";
+import { updateBiscuitEfficiency } from "./helpers/updateBiscuitEfficiency.js";
 
 const mode = "dev00";
 const devBonus = 50000000000;
@@ -51,6 +52,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   let mpsBoostActive = false;
   let goldenPawActive = false;
   let goldenPawMpsMultiplier = 2; // Temporary multiplier
+  let activeTimedBoost = null;
+  let activeTimedBoostTimeout = null;
 
   // Restore upgrade data
   upgrades.forEach((u) => {
@@ -71,6 +74,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       boostFuncs.mps(boost.time);
     } else if (boost.type === "mew") {
       boostFuncs.mew(boost.time);
+    } else if (boost.type === "biscuit-efficiency") {
+      boostFuncs.biscuitEfficiency(boost.time, boost.boost);
     }
 
     console.log("Boost Used: ", boost);
@@ -96,24 +101,19 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   const boostFuncs = {
-    mps: (secondsOfDuration = 30) => {
-      if (mpsBoostActive) {
-        clearTimeout(mpsBoostTimeout);
-      } else {
-        mpsBoostActive = true;
-        updateAutoRate();
-        startAutoIncrement();
-      }
+    mps: (seconds = 30) => {
+      cancelActiveTimedBoost();
 
-      // ALWAYS restart UI timer
-      toggleGoldenPawMode(true, "mps", secondsOfDuration);
+      activeTimedBoost = "mps";
+      mpsBoostActive = true;
+      updateAutoRate();
+      startAutoIncrement();
 
-      mpsBoostTimeout = setTimeout(() => {
-        mpsBoostActive = false;
-        toggleGoldenPawMode(false, "mps");
-        updateAutoRate();
-        startAutoIncrement();
-      }, secondsOfDuration * 1000);
+      toggleGoldenPawMode(true, "mps", seconds);
+
+      activeTimedBoostTimeout = setTimeout(() => {
+        cancelActiveTimedBoost();
+      }, seconds * 1000);
     },
 
     mew: (secondsOfPayout = 60) => {
@@ -124,7 +124,52 @@ document.addEventListener("DOMContentLoaded", async () => {
       storage.setMewnits(count);
       animateCounter(counterDisplay, prev, count, 400);
     },
+
+    biscuitEfficiency: (seconds = 30, boost = 2) => {
+      cancelActiveTimedBoost();
+
+      activeTimedBoost = "biscuit-efficiency";
+
+      const previousEfficiency = storage.getBiscuitEfficiency();
+      storage.setBiscuitEfficiency(previousEfficiency * boost);
+      updateBiscuitEfficiency();
+
+      toggleGoldenPawMode(true, "biscuit-efficiency", seconds, boost);
+
+      activeTimedBoostTimeout = setTimeout(() => {
+        storage.setBiscuitEfficiency(previousEfficiency);
+        updateBiscuitEfficiency();
+        toggleGoldenPawMode(false, "biscuit-efficiency");
+        activeTimedBoost = null;
+      }, seconds * 1000);
+    },
   };
+
+  function cancelActiveTimedBoost() {
+    if (!activeTimedBoost) return;
+
+    // Clear timer
+    if (activeTimedBoostTimeout) {
+      clearTimeout(activeTimedBoostTimeout);
+      activeTimedBoostTimeout = null;
+    }
+
+    // Revert effects based on type
+    if (activeTimedBoost === "mps") {
+      mpsBoostActive = false;
+      updateAutoRate();
+      startAutoIncrement();
+      toggleGoldenPawMode(false, "mps");
+    }
+
+    if (activeTimedBoost === "biscuit-efficiency") {
+      storage.setBiscuitEfficiency(1);
+      updateBiscuitEfficiency();
+      toggleGoldenPawMode(false, "biscuit-efficiency");
+    }
+
+    activeTimedBoost = null;
+  }
 
   // -----------------------------
   // Full Click Power Recalc

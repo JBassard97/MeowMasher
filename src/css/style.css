@@ -236,7 +236,7 @@ header .header-icons #achievements-icon svg:hover g path {
 #left-side .clicker-area #bonus-display {
   text-align: center;
   position: absolute;
-  margin: 0.5rem;
+  margin: 0.5rem 1rem;
   top: 3.25rem;
   font-size: 20px;
   font-weight: bold;
@@ -364,7 +364,7 @@ header .header-icons #achievements-icon svg:hover g path {
   z-index: 8;
   position: absolute;
   top: 0;
-  padding-top: 37px;
+  padding-top: 30px;
   overflow: hidden;
   box-sizing: border-box;
 }
@@ -389,6 +389,10 @@ header .header-icons #achievements-icon svg:hover g path {
   margin: 0;
   padding: 0;
 }
+#left-side .clicker-area .biscuits-area .biscuits-content .biscuits-display p {
+  font-size: 11px;
+  margin-top: 0.5rem;
+}
 #left-side .clicker-area .biscuits-area .biscuits-content .biscuits-middle {
   width: 100%;
   height: 100%;
@@ -401,6 +405,12 @@ header .header-icons #achievements-icon svg:hover g path {
   object-fit: contain;
   background-repeat: no-repeat;
   overflow: hidden;
+}
+#left-side .clicker-area .biscuits-area .biscuits-content .biscuits-middle #biscuits-bonus-display {
+  position: absolute;
+  top: 4rem;
+  margin: 0.5rem;
+  display: none;
 }
 #left-side .clicker-area .biscuits-area .biscuits-content .biscuits-middle .arms-container {
   display: flex;
@@ -885,7 +895,7 @@ header .header-icons #achievements-icon svg:hover g path {
 }
 .dialog-content .dialog-body #boosts-container .boost-item .boost-icon-and-text .boost-text-container,
 .dialog-content .dialog-body #use-boosts-container .boost-item .boost-icon-and-text .boost-text-container {
-  max-width: 135px;
+  max-width: 140px;
 }
 .dialog-content .dialog-body #boosts-container .boost-item .boost-icon-and-text .boost-text-container .boost-name,
 .dialog-content .dialog-body #use-boosts-container .boost-item .boost-icon-and-text .boost-text-container .boost-name {

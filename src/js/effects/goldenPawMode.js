@@ -1,14 +1,20 @@
+// ! LOGIC LIVES IN MAIN.JS
+
 let goldenInterval = null;
 
 export function toggleGoldenPawMode(
   isInGoldenPawMode,
   modeType = "mps",
   seconds = 30,
-  value
+  value,
 ) {
   const clickerArea = document.querySelector(".clicker-area");
   const bonusDisplay = document.getElementById("bonus-display");
+  const biscuitsBonusDisplay = document.getElementById(
+    "biscuits-bonus-display",
+  );
   const rateDisplay = document.querySelector(".rate-display");
+  const efficiencyDisplay = document.querySelector(".efficiency-display");
 
   // ----- Turning OFF -----
   if (!isInGoldenPawMode) {
@@ -21,6 +27,13 @@ export function toggleGoldenPawMode(
     if (modeType === "mps") {
       rateDisplay.style.color = "white";
     }
+
+    if (modeType === "biscuit-efficiency") {
+      efficiencyDisplay.style.color = "white";
+    }
+
+    biscuitsBonusDisplay.textContent = "";
+    biscuitsBonusDisplay.style.display = "none";
 
     bonusDisplay.textContent = "";
     bonusDisplay.style.display = "none";
@@ -55,6 +68,34 @@ export function toggleGoldenPawMode(
         clearInterval(goldenInterval);
         goldenInterval = null;
         toggleGoldenPawMode(false, "mps");
+      }
+    }, 1000);
+
+    return;
+  }
+
+  // =======================================
+  //      BISCUITS EFFICIENCY MODE
+  // =======================================
+  if (modeType === "biscuit-efficiency") {
+    efficiencyDisplay.style.color = "lightgreen";
+
+    biscuitsBonusDisplay.style.display = "block";
+    biscuitsBonusDisplay.textContent = `${value.toLocaleString()}x Efficiency for ${seconds} Seconds`;
+
+    if (goldenInterval) clearInterval(goldenInterval);
+
+    let remaining = seconds;
+
+    goldenInterval = setInterval(() => {
+      remaining--;
+
+      biscuitsBonusDisplay.textContent = `${value.toLocaleString()}x Efficiency for ${remaining} Seconds`;
+
+      if (remaining <= 0) {
+        clearInterval(goldenInterval);
+        goldenInterval = null;
+        toggleGoldenPawMode(false, "biscuit-efficiency");
       }
     }, 1000);
 

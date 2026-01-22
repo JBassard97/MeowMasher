@@ -16,7 +16,9 @@ const handlePawPress = (direction) => {
     pressIndex++;
     console.log("Left", pressIndex);
     if (pressIndex == 2) {
-      storage.setBiscuits(storage.getBiscuits() + 1);
+      storage.setBiscuits(
+        storage.getBiscuits() + storage.getBiscuitEfficiency(),
+      );
       updateBiscuitsDisplay();
       pressIndex = 0;
       AudioList.Purr();
@@ -31,7 +33,9 @@ const handlePawPress = (direction) => {
     pressIndex++;
     console.log("Right", pressIndex);
     if (pressIndex == 2) {
-      storage.setBiscuits(storage.getBiscuits() + 1);
+      storage.setBiscuits(
+        storage.getBiscuits() + storage.getBiscuitEfficiency(),
+      );
       updateBiscuitsDisplay();
       pressIndex = 0;
       AudioList.Purr();

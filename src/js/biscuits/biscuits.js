@@ -4,15 +4,15 @@ import { updateBiscuitsDisplay } from "../helpers/updateBiscuitsDisplay.js";
 
 const leftPawButton = document.getElementById("left-paw");
 const rightPaw = document.getElementById("right-paw");
-const leftArm = document.querySelector(".left-arm");
-const rightArm = document.querySelector(".right-arm");
+const leftArm = document.querySelector(".left-arm-container");
+const rightArm = document.querySelector(".right-arm-container");
 
 const handlePawPress = (direction) => {
   if (direction == "left") {
     if (leftPawButton == lastPawPressed) return;
     lastPawPressed = leftPawButton;
-    leftArm.style.transform = "translateY(4px)";
-    rightArm.style.transform = "translateY(30px)";
+    leftArm.style.transform = "translate(20%, 4px)";
+    rightArm.style.transform = "translate(-20%, 30px)";
     pressIndex++;
     console.log("Left", pressIndex);
     if (pressIndex == 2) {
@@ -28,8 +28,8 @@ const handlePawPress = (direction) => {
   if (direction == "right") {
     if (rightPaw == lastPawPressed) return;
     lastPawPressed = rightPaw;
-    rightArm.style.transform = "translateY(4px)";
-    leftArm.style.transform = "translateY(30px)";
+    rightArm.style.transform = "translate(-20%, 4px)";
+    leftArm.style.transform = "translate(20%, 30px)";
     pressIndex++;
     console.log("Right", pressIndex);
     if (pressIndex == 2) {
@@ -44,8 +44,8 @@ const handlePawPress = (direction) => {
 };
 
 updateBiscuitsDisplay();
-leftArm.style.transform = "translateY(30px)";
-rightArm.style.transform = "translateY(30px)";
+leftArm.style.transform = "translate(20%, 30px)";
+rightArm.style.transform = "translate(-20%, 30px)";
 
 let pressIndex = 0;
 let lastPawPressed;

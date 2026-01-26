@@ -48,8 +48,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   let autoInterval = null;
   let animationFrame = null;
 
-  let mpsBoostTimeout = null;
-  let mpsBoostActive = false;
   let goldenPawActive = false;
   let goldenPawMpsMultiplier = 2; // Temporary multiplier
   let activeTimedBoost = null;
@@ -105,7 +103,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       cancelActiveTimedBoost();
 
       activeTimedBoost = "mps";
-      mpsBoostActive = true;
       updateAutoRate();
       startAutoIncrement();
 
@@ -130,17 +127,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       activeTimedBoost = "biscuit-efficiency";
 
-      const previousEfficiency = storage.getBiscuitEfficiency();
-      storage.setBiscuitEfficiency(previousEfficiency * boost);
+      storage.setBiscuitEfficiency(storage.getBaseBiscuitEfficiency() * boost);
       updateBiscuitEfficiency();
 
       toggleGoldenPawMode(true, "biscuit-efficiency", seconds, boost);
 
       activeTimedBoostTimeout = setTimeout(() => {
-        storage.setBiscuitEfficiency(previousEfficiency);
-        updateBiscuitEfficiency();
-        toggleGoldenPawMode(false, "biscuit-efficiency");
-        activeTimedBoost = null;
+        cancelActiveTimedBoost();
       }, seconds * 1000);
     },
   };
@@ -156,14 +149,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Revert effects based on type
     if (activeTimedBoost === "mps") {
-      mpsBoostActive = false;
       updateAutoRate();
       startAutoIncrement();
       toggleGoldenPawMode(false, "mps");
     }
 
     if (activeTimedBoost === "biscuit-efficiency") {
-      storage.setBiscuitEfficiency(1);
+      storage.setBiscuitEfficiency(storage.getBaseBiscuitEfficiency());
       updateBiscuitEfficiency();
       toggleGoldenPawMode(false, "biscuit-efficiency");
     }

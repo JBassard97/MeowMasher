@@ -192,6 +192,8 @@ export const storage = {
     setItem("isInBiscuitsMode", JSON.stringify(value)),
   getBiscuits: () => Number(getItem("biscuits")) || 0,
   setBiscuits: (value) => setItem("biscuits", value),
+  getBaseBiscuitEfficiency: () => Number(getItem("baseBiscuitEfficiency")) || 1,
+  setBaseBiscuitEfficiency: (value) => setItem("baseBiscuitEfficiency", value),
   getBiscuitEfficiency: () => Number(getItem("biscuitEfficiency")) || 1,
   setBiscuitEfficiency: (value) => setItem("biscuitEfficiency", value),
 };

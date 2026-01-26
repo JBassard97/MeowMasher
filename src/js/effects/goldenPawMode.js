@@ -15,6 +15,9 @@ export function toggleGoldenPawMode(
   );
   const rateDisplay = document.querySelector(".rate-display");
   const efficiencyDisplay = document.querySelector(".efficiency-display");
+  const catMask = document.querySelector(".cat-mask");
+  const rightArmMask = document.querySelector(".right-arm-mask");
+  const leftArmMask = document.querySelector(".left-arm-mask");
 
   // ----- Turning OFF -----
   if (!isInGoldenPawMode) {
@@ -26,10 +29,13 @@ export function toggleGoldenPawMode(
 
     if (modeType === "mps") {
       rateDisplay.style.color = "white";
+      catMask.classList.remove("rainbow");
     }
 
     if (modeType === "biscuit-efficiency") {
       efficiencyDisplay.style.color = "white";
+      rightArmMask.classList.remove("rainbow");
+      leftArmMask.classList.remove("rainbow");
     }
 
     biscuitsBonusDisplay.textContent = "";
@@ -51,6 +57,8 @@ export function toggleGoldenPawMode(
   // ======================
   if (modeType === "mps") {
     rateDisplay.style.color = "lightgreen";
+
+    catMask.classList.add("rainbow");
 
     bonusDisplay.style.display = "block";
     bonusDisplay.textContent = `2x Mewnits/S for ${seconds} Seconds`;
@@ -79,6 +87,9 @@ export function toggleGoldenPawMode(
   // =======================================
   if (modeType === "biscuit-efficiency") {
     efficiencyDisplay.style.color = "lightgreen";
+
+    rightArmMask.classList.add("rainbow");
+    leftArmMask.classList.add("rainbow");
 
     biscuitsBonusDisplay.style.display = "block";
     biscuitsBonusDisplay.textContent = `${value.toLocaleString()}x Efficiency for ${seconds} Seconds`;

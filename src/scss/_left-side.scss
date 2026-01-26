@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "animations";
 
 #left-side {
   #stats {
@@ -169,6 +170,7 @@
     }
 
     #clicker {
+      position: relative;
       width: 60%;
       height: auto;
       display: flex; // make sure it wraps the image properly
@@ -188,6 +190,30 @@
         object-fit: contain;
         pointer-events: none; // 👈 ensures clicks go to the parent div, not the image
         transition: all 0.1s ease;
+      }
+
+      .cat-mask {
+        position: absolute;
+        inset: 0;
+        background-color: transparent;
+        background-image: none;
+        background: none;
+        opacity: 0;
+
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        -webkit-mask-size: contain;
+      }
+
+      .cat-mask.rainbow {
+        background: $rainbowBackground;
+        background-size: 400% 100%;
+        animation: rainbowFlow 10s linear infinite;
+        opacity: 0.3;
       }
     }
 
@@ -270,7 +296,9 @@
             position: absolute;
             top: 4rem;
             margin: 0.5rem;
+            padding: 3px;
             display: none;
+            text-align: center;
           }
 
           .arms-container {
@@ -280,11 +308,83 @@
             height: 55%;
             position: absolute;
             bottom: 0;
-            gap: 0.5rem;
-            .right-arm,
-            .left-arm {
-              // border: 1px solid purple;
+
+            .right-arm-container,
+            .left-arm-container {
+              position: relative;
+              width: 50%;
+              height: 100%;
+              display: flex;
               transition: all 0.1s ease-in-out;
+
+              .right-arm,
+              .left-arm,
+              .right-arm-mask,
+              .left-arm-mask {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                transition: all 0.1s ease-in-out;
+                width: 100%;
+                height: 100%;
+                max-width: none;
+                object-fit: contain;
+              }
+
+              .left-arm-mask {
+                position: absolute;
+
+                height: 100%;
+                background-color: transparent;
+                background-image: none;
+                background: none;
+                opacity: 0;
+
+                mask-image: url("../assets/images/left.png");
+                mask-repeat: no-repeat;
+                mask-position: center;
+                mask-size: contain;
+
+                -webkit-mask-image: url("../assets/images/left.png");
+                -webkit-mask-repeat: no-repeat;
+                -webkit-mask-position: center;
+                -webkit-mask-size: contain;
+              }
+
+              .right-arm-mask {
+                position: absolute;
+                height: 100%;
+                background-color: transparent;
+                background-image: none;
+                background: none;
+                opacity: 0;
+
+                mask-image: url("../assets/images/right.png");
+                mask-repeat: no-repeat;
+                mask-position: center;
+                mask-size: contain;
+
+                -webkit-mask-image: url("../assets/images/right.png");
+                -webkit-mask-repeat: no-repeat;
+                -webkit-mask-position: center;
+                -webkit-mask-size: contain;
+              }
+
+              .right-arm-mask.rainbow,
+              .left-arm-mask.rainbow {
+                background: $rainbowBackground;
+                background-size: 400% 100%;
+                animation: rainbowFlow 10s linear infinite;
+                opacity: 0.3;
+              }
+            }
+
+            .left-arm-container {
+              justify-content: flex-end;
+            }
+
+            .right-arm-container {
+              justify-content: flex-start;
             }
           }
           .biscuits-icons {

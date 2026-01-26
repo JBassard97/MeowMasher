@@ -1,6 +1,9 @@
 import { storage } from "../logic/storage.js";
 
 export function createCatRotator(clickerImg) {
+  const clicker = clickerImg.closest("#clicker");
+  const maskEl = clicker.querySelector(".cat-mask");
+
   // If nothing exists, initialize to 1
   if (!storage.getAdoptedCatsNumber()) {
     storage.initAdoptedCatsNumber();
@@ -14,7 +17,7 @@ export function createCatRotator(clickerImg) {
     catImages.push(`src/assets/images/clickable-cats/${i}.png`);
   }
 
-  // If somehow still empty, prevent errors:
+  // Safety fallback
   if (catImages.length === 0) {
     catImages.push(`src/assets/images/clickable-cats/0.png`);
   }
@@ -26,14 +29,31 @@ export function createCatRotator(clickerImg) {
     }
   }
 
+ function applyCat(src) {
+  const preloader = new Image();
+
+  preloader.onload = () => {
+    // Apply mask FIRST
+    maskEl.style.maskImage = `url("${src}")`;
+    maskEl.style.webkitMaskImage = `url("${src}")`;
+
+    // Then swap image source
+    clickerImg.src = src;
+  };
+
+  preloader.src = src;
+}
+
+
   shuffleArray(catImages);
   let index = 0;
 
-  clickerImg.src = catImages[index];
+  // Initial cat
+  applyCat(catImages[index]);
   index++;
 
   function rotateCat() {
-    // 💡 Update dynamic cat count, so the rotator responds *during gameplay*
+    // 💡 Update dynamic cat count during gameplay
     const updatedCount = storage.getAdoptedCatsNumber();
 
     if (updatedCount !== numberOfCatImages) {
@@ -42,6 +62,10 @@ export function createCatRotator(clickerImg) {
 
       for (let i = 0; i < numberOfCatImages; i++) {
         catImages.push(`src/assets/images/clickable-cats/${i}.png`);
+      }
+
+      if (catImages.length === 0) {
+        catImages.push(`src/assets/images/clickable-cats/0.png`);
       }
 
       shuffleArray(catImages);
@@ -53,7 +77,7 @@ export function createCatRotator(clickerImg) {
       index = 0;
     }
 
-    clickerImg.src = catImages[index];
+    applyCat(catImages[index]);
     index++;
   }
 

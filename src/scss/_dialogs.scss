@@ -56,10 +56,10 @@
   h1 {
     margin-top: 0;
     margin-bottom: 0.5rem;
+    text-decoration: underline;
   }
 
   h3 {
-    text-decoration: underline;
     margin-top: 0.5rem;
   }
 
@@ -242,6 +242,10 @@
 
     .stats-section {
       // border: 1px solid hotpink;
+      h3 {
+        text-decoration: underline;
+      }
+
       p {
         width: fit-content;
         color: rgba(0, 179, 255, 0.8);
@@ -261,6 +265,16 @@
         color: rgba(0, 179, 255, 0.8);
         position: absolute;
         left: -10px;
+      }
+
+      p.no-before {
+        margin-left: 3px;
+        text-decoration: none;
+        transform: translateY(5px);
+      }
+
+      p.no-before::before {
+        content: none;
       }
 
       .clicks-header {
@@ -284,7 +298,8 @@
         }
       }
 
-      .money-header {
+      .money-header,
+      .no-before {
         width: fit-content;
         position: relative;
 
@@ -307,29 +322,6 @@
         text-shadow: 0 0 6px rgba(33, 196, 93, 0.5);
 
         animation: moneyShine 2.2s ease-in-out infinite;
-      }
-
-      /* animated underline, also vertical */
-      .money-header::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 4px;
-        height: 2px;
-        width: 100%;
-        border-radius: 20px;
-
-        background: linear-gradient(
-          180deg,
-          transparent,
-          rgba(50, 255, 126, 0.8),
-          transparent
-        );
-
-        background-size: 100% 300%;
-
-        animation: moneyShine 2.2s ease-in-out infinite;
-        animation-delay: 0.1s;
       }
 
       /* vertical movement top → bottom → top */

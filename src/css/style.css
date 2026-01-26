@@ -2,7 +2,7 @@
 .rainbow-text,
 .rainbow-header {
   width: fit-content;
-  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, springgreen 42.8571428571%, blue 57.1428571429%, rebeccapurple 71.4285714286%, rgb(245, 72, 170) 85.7142857143%, red 100%);
+  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, rgb(0, 255, 76) 42.8571428571%, blue 57.1428571429%, rebeccapurple 71.4285714286%, rgb(245, 72, 170) 85.7142857143%, red 100%);
   background-size: 400% 100%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -13,27 +13,13 @@
   font-weight: bold;
 }
 
-.rainbow-header::after {
-  content: "";
-  width: 100%;
-  height: 2px;
-  border-radius: 20px;
-  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, springgreen 42.8571428571%, blue 57.1428571429%, rebeccapurple 71.4285714286%, rgb(245, 72, 170) 85.7142857143%, red 100%);
-  background-size: 400% 100%;
-  position: absolute;
-  bottom: 2px;
-  left: 0;
-  animation: rainbowFlow 20s linear infinite alternate;
-  animation-delay: 0.2s;
-}
-
 .rainbow-text::after,
 .header::after::after {
   content: "";
   width: 100%;
   height: 2px;
   border-radius: 20px;
-  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, springgreen 42.8571428571%, blue 57.1428571429%, rebeccapurple 71.4285714286%, rgb(245, 72, 170) 85.7142857143%, red 100%);
+  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, rgb(0, 255, 76) 42.8571428571%, blue 57.1428571429%, rebeccapurple 71.4285714286%, rgb(245, 72, 170) 85.7142857143%, red 100%);
   background-size: 400% 100%;
   position: absolute;
   bottom: 2px;
@@ -411,7 +397,7 @@ header .header-icons #achievements-icon svg:hover g path {
   -webkit-mask-size: contain;
 }
 #left-side .clicker-area #clicker .cat-mask.rainbow {
-  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, springgreen 42.8571428571%, blue 57.1428571429%, rebeccapurple 71.4285714286%, rgb(245, 72, 170) 85.7142857143%, red 100%);
+  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, rgb(0, 255, 76) 42.8571428571%, blue 57.1428571429%, rebeccapurple 71.4285714286%, rgb(245, 72, 170) 85.7142857143%, red 100%);
   background-size: 400% 100%;
   animation: rainbowFlow 10s linear infinite;
   opacity: 0.3;
@@ -564,7 +550,7 @@ header .header-icons #achievements-icon svg:hover g path {
 #left-side .clicker-area .biscuits-area .biscuits-content .biscuits-middle .arms-container .right-arm-container .left-arm-mask.rainbow,
 #left-side .clicker-area .biscuits-area .biscuits-content .biscuits-middle .arms-container .left-arm-container .right-arm-mask.rainbow,
 #left-side .clicker-area .biscuits-area .biscuits-content .biscuits-middle .arms-container .left-arm-container .left-arm-mask.rainbow {
-  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, springgreen 42.8571428571%, blue 57.1428571429%, rebeccapurple 71.4285714286%, rgb(245, 72, 170) 85.7142857143%, red 100%);
+  background: repeating-linear-gradient(90deg, red 0%, orange 14.2857142857%, yellow 28.5714285714%, rgb(0, 255, 76) 42.8571428571%, blue 57.1428571429%, rebeccapurple 71.4285714286%, rgb(245, 72, 170) 85.7142857143%, red 100%);
   background-size: 400% 100%;
   animation: rainbowFlow 10s linear infinite;
   opacity: 0.3;
@@ -930,9 +916,9 @@ header .header-icons #achievements-icon svg:hover g path {
 .dialog-content h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  text-decoration: underline;
 }
 .dialog-content h3 {
-  text-decoration: underline;
   margin-top: 0.5rem;
 }
 .dialog-content button {
@@ -1109,6 +1095,9 @@ header .header-icons #achievements-icon svg:hover g path {
   margin: 0;
   padding: 0;
 }
+.dialog-content .dialog-body .stats-section h3 {
+  text-decoration: underline;
+}
 .dialog-content .dialog-body .stats-section p {
   width: fit-content;
   color: rgba(0, 179, 255, 0.8);
@@ -1128,6 +1117,14 @@ header .header-icons #achievements-icon svg:hover g path {
   position: absolute;
   left: -10px;
 }
+.dialog-content .dialog-body .stats-section p.no-before {
+  margin-left: 3px;
+  text-decoration: none;
+  transform: translateY(5px);
+}
+.dialog-content .dialog-body .stats-section p.no-before::before {
+  content: none;
+}
 .dialog-content .dialog-body .stats-section .clicks-header {
   margin-top: 0;
   color: lightblue;
@@ -1146,7 +1143,8 @@ header .header-icons #achievements-icon svg:hover g path {
   position: absolute;
   animation: clickFlash 1s infinite;
 }
-.dialog-content .dialog-body .stats-section .money-header {
+.dialog-content .dialog-body .stats-section .money-header,
+.dialog-content .dialog-body .stats-section .no-before {
   width: fit-content;
   position: relative;
   /* vertical money gradient */
@@ -1159,22 +1157,6 @@ header .header-icons #achievements-icon svg:hover g path {
   /* glow */
   text-shadow: 0 0 6px rgba(33, 196, 93, 0.5);
   animation: moneyShine 2.2s ease-in-out infinite;
-}
-.dialog-content .dialog-body .stats-section {
-  /* animated underline, also vertical */
-}
-.dialog-content .dialog-body .stats-section .money-header::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 4px;
-  height: 2px;
-  width: 100%;
-  border-radius: 20px;
-  background: linear-gradient(180deg, transparent, rgba(50, 255, 126, 0.8), transparent);
-  background-size: 100% 300%;
-  animation: moneyShine 2.2s ease-in-out infinite;
-  animation-delay: 0.1s;
 }
 .dialog-content .dialog-body .stats-section {
   /* vertical movement top → bottom → top */

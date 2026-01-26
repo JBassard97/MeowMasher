@@ -358,7 +358,7 @@
                 <h3 id="biscuits-number">0</h3>
                 <h4>Biscuits</h4>
                 <p class="efficiency-display">
-                  Efficiency: <span id="efficiency-number">1</span>
+                  Efficiency: <b><span id="efficiency-number">1</span></b>
                 </p>
               </div>
               <div class="biscuits-middle">
@@ -511,7 +511,10 @@
         <h1>Stats</h1>
         <div class="dialog-body">
           <div class="stats-section">
-            <h3 class="money-header">Mewnits</h3>
+            <div style="display: flex; align-items: center">
+              <h3 class="money-header">Mewnits</h3>
+              <p class="no-before">$$$</p>
+            </div>
             <p>
               Lifetime Mewnits:
               <b><span id="stats-lifetime-mewnits-display">Loading...</span></b>
@@ -587,6 +590,31 @@
             <p>
               Click Boost (% of MPS):
               <b><span id="stats-mps-click-boost-display">Loading...</span> </b>
+            </p>
+            <h3 class="biscuits-header">
+              <span class="bis">Bis</span><span class="cuits">cuits</span>
+            </h3>
+            <p>
+              Lifetime Biscuits:
+              <b
+                ><span id="stats-lifetime-biscuits-display">Loading...</span></b
+              >
+            </p>
+            <p>
+              Current Biscuits:
+              <b><span id="stats-current-biscuits-display">Loading...</span></b>
+            </p>
+            <p>
+              Base Efficiency:
+              <b><span id="stats-base-efficiency-display">Loading...</span></b>
+            </p>
+            <p>
+              Current Efficiency:
+              <b
+                ><span id="stats-current-efficiency-display"
+                  >Loading...</span
+                ></b
+              >
             </p>
           </div>
         </div>

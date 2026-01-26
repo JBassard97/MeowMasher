@@ -196,4 +196,6 @@ export const storage = {
   setBaseBiscuitEfficiency: (value) => setItem("baseBiscuitEfficiency", value),
   getBiscuitEfficiency: () => Number(getItem("biscuitEfficiency")) || 1,
   setBiscuitEfficiency: (value) => setItem("biscuitEfficiency", value),
+  getLifetimeBiscuits: () => Number(getItem("lifetimeBiscuits")) || 0,
+  setLifetimeBiscuits: (value) => setItem("lifetimeBiscuits", value),
 };

@@ -1,5 +1,6 @@
 import { computeYarnBonus } from "../bonuses/yarn.js";
 import { storage } from "../logic/storage.js";
+import { computeThousandFingers } from "../bonuses/thousandFingers.js";
 
 // Load both JSON data files ONCE
 let allSubUpgrades = [];
@@ -59,7 +60,10 @@ setInterval(() => {
       storage.getMewnits() || 0
     ).toLocaleString();
 
-    document.getElementById("stats-mps-display").innerHTML = `${(
+    document.getElementById("stats-base-mps-display").textContent =
+      mps.toLocaleString();
+
+    document.getElementById("stats-current-mps-display").innerHTML = `${(
       mps + computeYarnBonus(allSubUpgrades).yarnBonus
     ).toLocaleString()} <span class="details">(+${computeYarnBonus(
       allSubUpgrades,
@@ -99,8 +103,8 @@ setInterval(() => {
         allSubUpgrades,
       ).yarnBonus.toLocaleString()})</span>`;
 
-    document.getElementById("stats-thousand-pats-display").textContent =
-      tf.toLocaleString();
+    document.getElementById("stats-thousand-pats-display").innerHTML =
+      `${tf.toLocaleString()} <span class="details">(+${computeThousandFingers(allUpgrades, allSubUpgrades).bonus.toLocaleString()} Click Power and +${computeThousandFingers(allUpgrades, allSubUpgrades).bonus.toLocaleString()} Pats output for each non-Pats upgrade owned)</span>`;
 
     document.getElementById("stats-mps-click-boost-display").innerHTML = percent
       ? `${mpsBonus.toLocaleString()} <span class="details">(${Math.floor(percent * 100)}%)</span>`

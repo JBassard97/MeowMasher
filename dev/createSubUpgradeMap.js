@@ -20,6 +20,6 @@ fs.readFile("../src/data/subUpgrades.json", "utf-8", (err, data) => {
 
   function logSubUpgradeCostsMap() {
     sortedJsonData = jsonData.sort((a, b) => a.cost - b.cost);
-    console.table(sortedJsonData, ["id", "name", "cost"]);
+    console.table(sortedJsonData, ["id", "cost", "name"]);
   }
 });

@@ -80,7 +80,7 @@
       cursor: pointer;
       display: flex;
       flex-direction: column;
-      
+
       height: auto;
       // max-height: 150px;
       // padding: 0.5rem;
@@ -228,6 +228,25 @@
         left: 7px;
         line-height: 1;
         font-style: italic;
+      }
+    }
+
+    .upgrade.hidden {
+      * {
+        display: none;
+      }
+      &::after {
+        content: "???";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        // background-color: red;
       }
     }
 

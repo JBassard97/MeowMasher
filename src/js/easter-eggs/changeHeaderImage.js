@@ -1,3 +1,4 @@
+import { storage } from "../logic/storage.js";
 const header = document.querySelector(".image-header");
 const imageHeaderTargets = document.querySelectorAll(".image-header-target");
 
@@ -24,6 +25,11 @@ function changeHeaderImage() {
   header.style.backgroundImage = `url(${images[index]})`;
   for (const target of imageHeaderTargets) {
     target.style.backgroundImage = `url(${images[index]})`;
+  }
+
+  // Dev Easter Egg
+  if (index === 3) {
+    storage.setBoostOwned(0, 5);
   }
 }
 

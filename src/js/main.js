@@ -17,7 +17,7 @@ import { AudioList } from "./audio/audio.js";
 import { updateBiscuitEfficiency } from "./helpers/updateBiscuitEfficiency.js";
 
 const mode = "dev00";
-const devBonus = 50000000000;
+const devBonus = 50000;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const $ = (sel) => document.querySelector(sel);
@@ -49,9 +49,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   let animationFrame = null;
 
   let goldenPawActive = false;
-  let goldenPawMpsMultiplier = 2; // Temporary multiplier
+  let boostMpsMultiplier = 1; // Temporary multiplier
   let activeTimedBoost = null;
   let activeTimedBoostTimeout = null;
+
+  let revealedUpgrades = new Set();
 
   // Restore upgrade data
   upgrades.forEach((u) => {
@@ -69,7 +71,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (boost.type === "mps") {
-      boostFuncs.mps(boost.time);
+      boostFuncs.mps(boost.time, boost.boost);
     } else if (boost.type === "mew") {
       boostFuncs.mew(boost.time);
     } else if (boost.type === "biscuit-efficiency") {
@@ -99,10 +101,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   const boostFuncs = {
-    mps: (seconds = 30) => {
+    mps: (seconds = 30, boost = 2) => {
       cancelActiveTimedBoost();
 
       activeTimedBoost = "mps";
+      boostMpsMultiplier = boost;
       updateAutoRate();
       startAutoIncrement();
 
@@ -149,6 +152,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Revert effects based on type
     if (activeTimedBoost === "mps") {
+      boostMpsMultiplier = 1;
       updateAutoRate();
       startAutoIncrement();
       toggleGoldenPawMode(false, "mps");
@@ -167,7 +171,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Full Click Power Recalc
   // -----------------------------
   function updateClickPower() {
-    const tf = computeThousandFingers(upgrades, subUpgrades);
+    const tf = computeThousandFingers(upgrades, subUpgrades).total;
     const percent = storage.getPercentOfMpsClickAdder(); // e.g. 0.01
 
     // Use baseAutoRate, not the multiplied autoRate
@@ -192,9 +196,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     );
 
     // Apply golden pawprint multiplier only to autoRate
-    autoRate = goldenPawActive
-      ? Math.floor(baseAutoRate * goldenPawMpsMultiplier)
-      : baseAutoRate;
+    autoRate =
+      activeTimedBoost === "mps"
+        ? Math.floor(baseAutoRate * boostMpsMultiplier)
+        : baseAutoRate;
 
     storage.setMewnitsPerSecond(autoRate);
 
@@ -222,6 +227,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     tick();
     autoInterval = setInterval(tick, 1000);
+  }
+
+  function shouldRevealUpgrade(u, cost) {
+    if (u.id === 0) return true;
+
+    if (revealedUpgrades.has(u.id)) return true;
+
+    const owned = storage.getUpgradeOwned(u.id) >= 1;
+    const canAfford75 = count >= cost * 0.75;
+
+    if (owned || canAfford75) {
+      revealedUpgrades.add(u.id);
+      return true;
+    }
+
+    return false;
   }
 
   // -----------------------------
@@ -405,6 +426,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       const u = upgrades[i];
       const cost = Math.floor(u.baseCost * Math.pow(1.15, u.owned));
       const afford = count >= cost;
+      if (!shouldRevealUpgrade(u, cost)) {
+        div.classList.add("hidden");
+      } else {
+        div.classList.remove("hidden");
+      }
       div.style.opacity = afford ? "1" : "0.4";
       div.style.pointerEvents = afford ? "auto" : "none";
     });
@@ -427,9 +453,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     counterDisplay.textContent = count.toLocaleString();
   }
 
+  function syncBiscuitEfficiencies() {
+    storage.setBiscuitEfficiency(storage.getBaseBiscuitEfficiency());
+  }
+
   // -----------------------------
   // INIT
   // -----------------------------
+  syncBiscuitEfficiencies();
   setLivingRoom();
   updateAutoRate();
   updateClickPower();

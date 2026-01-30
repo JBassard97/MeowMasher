@@ -110,6 +110,13 @@ setInterval(() => {
       ? `${mpsBonus.toLocaleString()} <span class="details">(${Math.floor(percent * 100)}%)</span>`
       : "0";
 
+    // --- general ---
+    document.getElementById("stats-game-started-display").textContent =
+      storage.getGameStartTimeFormatted();
+
+    document.getElementById("stats-total-playtime-display").textContent =
+      storage.getTotalPlayTimeFormatted();
+
     // --- biscuits ---
     document.getElementById("stats-lifetime-biscuits-display").textContent =
       storage.getLifetimeBiscuits().toLocaleString();

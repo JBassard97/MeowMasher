@@ -457,6 +457,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     storage.setBiscuitEfficiency(storage.getBaseBiscuitEfficiency());
   }
 
+  // ? ---------------------------
+  // ? ONLY ON FIRST GAME LOAD
+  // ? ---------------------------
+  if (!storage.getGameStartTimeMs()) {
+    storage.setGameStartTime();
+  }
+
+  console.log(storage.getGameStartTimeMs());
+
   // -----------------------------
   // INIT
   // -----------------------------

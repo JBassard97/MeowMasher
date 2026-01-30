@@ -1,5 +1,5 @@
 // Wait for pywebview to be injected
-const waitForPywebview = (maxWait = 3000) => {
+const waitForPywebview = (maxWait = 2000) => {
   return new Promise((resolve) => {
     if (window.pywebview?.api) {
       console.log("pywebview already present");
@@ -198,4 +198,44 @@ export const storage = {
   setBiscuitEfficiency: (value) => setItem("biscuitEfficiency", value),
   getLifetimeBiscuits: () => Number(getItem("lifetimeBiscuits")) || 0,
   setLifetimeBiscuits: (value) => setItem("lifetimeBiscuits", value),
+
+  // --- Game Age ---
+  getGameStartTimeMs: () => {
+    let t = getItem("gameStartTime");
+    if (!t) {
+      t = Date.now();
+      setItem("gameStartTime", t);
+    }
+    return Number(t);
+  },
+  getGameStartTimeFormatted: () => {
+    return new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    }).format(new Date(storage.getGameStartTimeMs()));
+  },
+  setGameStartTime: () => setItem("gameStartTime", Date.now()),
+  getTotalPlayTimeMs: () => Date.now() - storage.getGameStartTimeMs(),
+  getTotalPlayTimeFormatted: () => {
+    let ms = storage.getTotalPlayTimeMs();
+
+    const totalSeconds = Math.floor(ms / 1000);
+
+    const seconds = totalSeconds % 60;
+    const minutes = Math.floor(totalSeconds / 60) % 60;
+    const hours = Math.floor(totalSeconds / 3600) % 24;
+    const days = Math.floor(totalSeconds / 86400);
+
+    const parts = [];
+    if (days) parts.push(`${days}d`);
+    if (hours || days) parts.push(`${hours}h`);
+    if (minutes || hours || days) parts.push(`${minutes}m`);
+    parts.push(`${seconds}s`);
+
+    return parts.join(" ");
+  },
 };

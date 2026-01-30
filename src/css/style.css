@@ -866,7 +866,7 @@ header .header-icons #achievements-icon svg:hover g path {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 #right-side .upgrades::-webkit-scrollbar {
   width: 8px;

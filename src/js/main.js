@@ -7,7 +7,7 @@ import {
   SUB_UPGRADE_STYLES,
   UPGRADE_GRADIENT,
 } from "./effects/upgradeStyles.js";
-import { storage, initStorage } from "./logic/storage.js";
+import { storage, initStorage, isDesktop } from "./logic/storage.js";
 import { initSettings } from "./menus/settings.js";
 import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";

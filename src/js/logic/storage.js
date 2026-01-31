@@ -50,6 +50,9 @@ export const initStorage = async () => {
 
   document.querySelector(".loading-spinner").style.display = "none";
   console.log(isDesktop() ? "DESKTOP MODE" : "WEB MODE");
+  const $ = (sel) => document.querySelector(sel);
+  const deskOrWebDisplay = $("#desktop-or-web-display");
+  deskOrWebDisplay.textContent = isDesktop() ? "(Desktop Mode)" : "(Web Mode)";
 };
 
 export const getItem = (key) => {

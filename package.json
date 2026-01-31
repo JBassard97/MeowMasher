@@ -4,7 +4,8 @@
   "description": "The clicker game all about cats",
   "main": "index.js",
   "scripts": {
-    "loc": "cd dev && node loc.js",
+    "dev-funcs": "cd dev && node loc.js && node subUpgradePdf.js && cd ..",
+    "loc": "cd dev && node loc.js && cd ..",
     "build-css": "sass src/scss:src/css",
     "sass-watch": "sass --watch src/scss:src/css",
     "pywebview": "py main.py",
@@ -33,13 +34,15 @@
       ".html",
       ".scss",
       ".json",
-      ".py"
+      ".py",
+      ".sh"
     ]
   },
   "devDependencies": {
     "sass": "^1.93.2"
   },
   "dependencies": {
-    "jbassard97nodecolors": "^3.1.0"
+    "jbassard97nodecolors": "^3.1.0",
+    "pdfkit": "^0.17.2"
   }
 }

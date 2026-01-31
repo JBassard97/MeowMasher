@@ -12,6 +12,9 @@ fi
 COMMIT_MESSAGE="$1"
 VERSION_TYPE="$2"
 
+# Run pre-commit dev funcs
+npm run dev-funcs
+
 # Stage all changes
 git add .
 

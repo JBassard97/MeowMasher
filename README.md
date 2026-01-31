@@ -2,6 +2,8 @@
 
 # subUpgrades:
 
+[View subUpgrades.pdf](dev/outputs/subUpgrades.pdf)
+
 ## JSON Map
 
 ### Tiered Sub-Upgrades

@@ -52,7 +52,7 @@ export const initStorage = async () => {
   console.log(isDesktop() ? "DESKTOP MODE" : "WEB MODE");
   const $ = (sel) => document.querySelector(sel);
   const deskOrWebDisplay = $("#desktop-or-web-display");
-  deskOrWebDisplay.textContent = isDesktop() ? "(Desktop Mode)" : "(Web Mode)";
+  deskOrWebDisplay.textContent = isDesktop() ? "(Desktop)" : "(Web)";
 };
 
 export const getItem = (key) => {
@@ -213,7 +213,7 @@ export const storage = {
   },
   getGameStartTimeFormatted: () => {
     return new Intl.DateTimeFormat("en-US", {
-      month: "long",
+      month: "short",
       day: "numeric",
       year: "numeric",
       hour: "numeric",

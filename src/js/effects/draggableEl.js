@@ -6,6 +6,10 @@ let startY = 0;
 let startHeight = 0;
 
 handle.addEventListener("pointerdown", (e) => {
+  if (e.target.closest("button")) {
+    return;
+  }
+
   dragging = true;
   startY = e.clientY;
   startHeight = topContainer.getBoundingClientRect().height;

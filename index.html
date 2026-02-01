@@ -444,9 +444,17 @@
         </div>
       </div>
       <div id="right-side">
-        <h4 class="image-text image-header-target">~ Sub-Upgrades ~</h4>
+        <h5 class="image-text image-header-target">
+          <span id="available-sub-upgrades-display">0</span>
+          <span style="text-decoration: underline; font-size: 0.7rem;">Sub-Upgrades</span>
+          <button id="auto-buy-sub-upgrade">Buy Many (<span id="buy-many-display">0</span>)</button>
+        </h5>
         <div class="sub-upgrades"></div>
-        <h4 class="image-text image-header-target draggable">~ Upgrades ~</h4>
+        <h5 class="image-text image-header-target draggable">
+          <span id="available-upgrades-display">0</span>
+          <span style="text-decoration: underline; font-size: 0.7rem;">Upgrades</span>
+          <button id="auto-buy-upgrade">Auto Buy</button>
+        </h5>
         <script src="src/js/effects/draggableEl.js"></script>
         <div class="upgrades"></div>
       </div>

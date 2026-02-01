@@ -688,8 +688,8 @@ header .header-icons #achievements-icon svg:hover g path {
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-  padding: 0.15rem;
-  padding-left: 2rem;
+  padding: 0.2rem;
+  padding-left: 0.5rem;
   margin: 0;
   width: 100%;
   font-style: italic;
@@ -698,6 +698,30 @@ header .header-icons #achievements-icon svg:hover g path {
   border-top: 1px solid darkslategray;
   border-bottom: 1px solid darkslategray;
   height: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+#right-side h5 #available-sub-upgrades-display,
+#right-side h5 #available-upgrades-display,
+#right-side .image-text #available-sub-upgrades-display,
+#right-side .image-text #available-upgrades-display {
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  text-align: center;
+  height: calc(100% - 2px);
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#right-side h5 button,
+#right-side .image-text button {
+  font-size: 10px;
+  color: black;
+  pointer-events: auto;
+  cursor: pointer;
+  padding: 2px;
 }
 #right-side h5::before,
 #right-side .image-text::before {
@@ -771,13 +795,16 @@ header .header-icons #achievements-icon svg:hover g path {
   transform: translateY(-2px);
 }
 #right-side .draggable {
-  pointer-events: auto;
   touch-action: none;
   user-select: none;
   cursor: row-resize;
   position: relative;
   height: 3rem;
   box-sizing: border-box;
+}
+#right-side .draggable button {
+  pointer-events: auto;
+  cursor: pointer;
 }
 #right-side .draggable::after {
   content: "";

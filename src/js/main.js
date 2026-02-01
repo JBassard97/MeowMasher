@@ -29,6 +29,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const clickerImg = clickerButton.querySelector("img");
   const upgradesContainer = $(".upgrades");
   const subUpgradesContainer = $(".sub-upgrades");
+  const availUpgradesDisplay = $("#available-upgrades-display");
+  const availSubUpgradesDisplay = $("#available-sub-upgrades-display");
+  const autoBuyUpgradeButton = $("#auto-buy-upgrade");
+  const autoBuySubUpgradeButton = $("#auto-buy-sub-upgrade");
+  const buyManyDisplay = $("#buy-many-display");
 
   await initStorage();
   initSettings();
@@ -311,7 +316,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           </div>
         `;
 
-        div.onclick = () => buySubUpgrade(u, div);
+        div.onclick = () => buySubUpgrade(u);
         subUpgradesContainer.appendChild(div);
       });
 
@@ -359,7 +364,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     startAutoIncrement();
   }
 
-  function buySubUpgrade(u, div) {
+  function buySubUpgrade(u) {
     if (count < u.cost) return;
 
     count -= u.cost;
@@ -403,7 +408,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderSubUpgrades();
     startAutoIncrement();
 
-    div.remove();
+    const el = document.querySelector(`.sub-upgrade[data-id="${u.id}"]`);
+    el?.remove();
   }
 
   setupClickHandler({
@@ -422,6 +428,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Helpers
   // -----------------------------
   function updateAffordability() {
+    let availUpgradesAmount = 0;
+    let cheapestUpgrade = null;
     upgradesContainer.querySelectorAll(".upgrade").forEach((div, i) => {
       const u = upgrades[i];
       const cost = Math.floor(u.baseCost * Math.pow(1.15, u.owned));
@@ -433,14 +441,76 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
       div.style.opacity = afford ? "1" : "0.4";
       div.style.pointerEvents = afford ? "auto" : "none";
+      if (afford) {
+        availUpgradesAmount++;
+        if (
+          !cheapestUpgrade ||
+          (cheapestUpgrade && cost < cheapestUpgrade.cost)
+        ) {
+          cheapestUpgrade = { u: u, cost: cost };
+        }
+      }
     });
+    availUpgradesDisplay.textContent = availUpgradesAmount;
+    if (availUpgradesAmount > 0 && cheapestUpgrade) {
+      autoBuyUpgradeButton.disabled = false;
+      autoBuyUpgradeButton.title = cheapestUpgrade.u.name;
+      autoBuyUpgradeButton.onclick = () => {
+        buyUpgrade(cheapestUpgrade.u, cheapestUpgrade.cost);
+      };
+    } else {
+      autoBuyUpgradeButton.disabled = true;
+      autoBuyUpgradeButton.title = "Not Yet...";
+      autoBuyUpgradeButton.onclick = null;
+    }
 
+    let availSubUpgradesAmount = 0;
+    let cheapestSubUpgrades = [];
     subUpgradesContainer.querySelectorAll(".sub-upgrade").forEach((div) => {
       const u = subUpgrades.find((x) => x.id == div.dataset.id);
       const afford = count >= u.cost && isSubUnlocked(u);
       div.style.opacity = afford ? "1" : "0.4";
       div.style.pointerEvents = afford ? "auto" : "none";
+      if (afford) {
+        availSubUpgradesAmount++;
+        cheapestSubUpgrades.push(u);
+      }
     });
+    availSubUpgradesDisplay.textContent =
+      availSubUpgradesAmount <= 99 ? availSubUpgradesAmount : 99;
+
+    if (
+      cheapestSubUpgrades.length >= 2 &&
+      count >= cheapestSubUpgrades[0].cost + cheapestSubUpgrades[1].cost
+    ) {
+      let potentialSpend = 0;
+      let purchasableSubUpgrades = [];
+
+      for (const u of cheapestSubUpgrades) {
+        if (count >= potentialSpend + u.cost) {
+          potentialSpend += u.cost;
+          purchasableSubUpgrades.push(u);
+        } else {
+          break;
+        }
+      }
+      if (purchasableSubUpgrades.length > 0) {
+        autoBuySubUpgradeButton.disabled = false;
+        autoBuySubUpgradeButton.title = `Buy ${purchasableSubUpgrades.length}`;
+        buyManyDisplay.textContent =
+          purchasableSubUpgrades.length <= 99
+            ? purchasableSubUpgrades.length
+            : 99;
+        autoBuySubUpgradeButton.onclick = () => {
+          purchasableSubUpgrades.forEach(buySubUpgrade);
+        };
+      }
+    } else {
+      autoBuySubUpgradeButton.disabled = true;
+      autoBuySubUpgradeButton.title = "Not Yet...";
+      buyManyDisplay.textContent = 0;
+      autoBuySubUpgradeButton.onclick = null;
+    }
   }
 
   function updateOwnedCatsDisplay() {

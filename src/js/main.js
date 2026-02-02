@@ -7,7 +7,7 @@ import {
   SUB_UPGRADE_STYLES,
   UPGRADE_GRADIENT,
 } from "./effects/upgradeStyles.js";
-import { storage, initStorage, isDesktop } from "./logic/storage.js";
+import { storage, initStorage } from "./logic/storage.js";
 import { initSettings } from "./menus/settings.js";
 import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
@@ -15,12 +15,13 @@ import { chooseWeighted } from "./logic/chooseWeighted.js";
 import { setLivingRoom } from "./effects/setLivingRoom.js";
 import { AudioList } from "./audio/audio.js";
 import { updateBiscuitEfficiency } from "./helpers/updateBiscuitEfficiency.js";
+import { $ } from "./helpers/$.js";
 
 const mode = "dev00";
 const devBonus = 50000;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const $ = (sel) => document.querySelector(sel);
+  // const $ = (sel) => document.querySelector(sel);
 
   const counterDisplay = $("#counter");
   const rateDisplay = $("#rate");
@@ -34,6 +35,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const autoBuyUpgradeButton = $("#auto-buy-upgrade");
   const autoBuySubUpgradeButton = $("#auto-buy-sub-upgrade");
   const buyManyDisplay = $("#buy-many-display");
+  const buyManyUpgradesButton = $("#buy-many-upgrades");
+  const buyManyUpgradesDisplay = $("#buy-many-upgrades-display");
+  const pauseResumeButton = $("#pause-resume");
 
   await initStorage();
   initSettings();
@@ -54,9 +58,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   let animationFrame = null;
 
   let goldenPawActive = false;
-  let boostMpsMultiplier = 1; // Temporary multiplier
+  let boostMpsMultiplier = 1; // Temporary multiplier, is reset back to 1 at the end of boosts and on reload
   let activeTimedBoost = null;
   let activeTimedBoostTimeout = null;
+
+  let isPaused = false;
 
   let revealedUpgrades = new Set();
 
@@ -348,6 +354,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Purchases
   // -----------------------------
   function buyUpgrade(u, cost) {
+    if (isPaused) return;
     if (count < cost) return;
     count -= cost;
 
@@ -365,6 +372,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function buySubUpgrade(u) {
+    if (isPaused) return;
     if (count < u.cost) return;
 
     count -= u.cost;
@@ -451,17 +459,68 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
       }
     });
-    availUpgradesDisplay.textContent = availUpgradesAmount;
+    availUpgradesDisplay.textContent =
+      availUpgradesAmount <= 99 ? availUpgradesAmount : 99;
+    availUpgradesAmount > 0
+      ? availUpgradesDisplay.classList.add("positive")
+      : availUpgradesDisplay.classList.remove("positive");
     if (availUpgradesAmount > 0 && cheapestUpgrade) {
       autoBuyUpgradeButton.disabled = false;
       autoBuyUpgradeButton.title = cheapestUpgrade.u.name;
       autoBuyUpgradeButton.onclick = () => {
+        if (isPaused) return;
         buyUpgrade(cheapestUpgrade.u, cheapestUpgrade.cost);
       };
     } else {
       autoBuyUpgradeButton.disabled = true;
       autoBuyUpgradeButton.title = "Not Yet...";
       autoBuyUpgradeButton.onclick = null;
+    }
+
+    // -----------------------------
+    // Buy MANY Upgrades Logic
+    // -----------------------------
+    let affordableUpgrades = [];
+
+    upgrades.forEach((u) => {
+      const cost = Math.floor(u.baseCost * Math.pow(1.15, u.owned));
+      if (count >= cost) {
+        affordableUpgrades.push({ u, cost });
+      }
+    });
+
+    // Sort cheapest first (important)
+    affordableUpgrades.sort((a, b) => a.cost - b.cost);
+
+    let upgradeSpend = 0;
+    let purchasableUpgrades = [];
+
+    for (const item of affordableUpgrades) {
+      if (count >= upgradeSpend + item.cost) {
+        upgradeSpend += item.cost;
+        purchasableUpgrades.push(item);
+      } else {
+        break;
+      }
+    }
+
+    if (purchasableUpgrades.length > 0) {
+      buyManyUpgradesButton.disabled = false;
+      buyManyUpgradesButton.title = `Buy ${purchasableUpgrades.length}`;
+      buyManyUpgradesDisplay.textContent =
+        purchasableUpgrades.length <= 99 ? purchasableUpgrades.length : 99;
+
+      buyManyUpgradesButton.onclick = () => {
+        if (isPaused) return;
+        purchasableUpgrades.forEach(({ u, cost }) => {
+          buyUpgrade(u, cost);
+        });
+      };
+    } else {
+      buyManyUpgradesButton.disabled = true;
+      buyManyUpgradesButton.title = "Not Yet...";
+      buyManyUpgradesDisplay.textContent = 0;
+      buyManyUpgradesButton.onclick = null;
     }
 
     let availSubUpgradesAmount = 0;
@@ -478,7 +537,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     availSubUpgradesDisplay.textContent =
       availSubUpgradesAmount <= 99 ? availSubUpgradesAmount : 99;
-
+    availSubUpgradesAmount > 0
+      ? availSubUpgradesDisplay.classList.add("positive")
+      : availSubUpgradesDisplay.classList.remove("positive");
     if (
       cheapestSubUpgrades.length >= 2 &&
       count >= cheapestSubUpgrades[0].cost + cheapestSubUpgrades[1].cost
@@ -502,6 +563,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             ? purchasableSubUpgrades.length
             : 99;
         autoBuySubUpgradeButton.onclick = () => {
+          if (isPaused) return;
           purchasableSubUpgrades.forEach(buySubUpgrade);
         };
       }
@@ -526,6 +588,49 @@ document.addEventListener("DOMContentLoaded", async () => {
   function syncBiscuitEfficiencies() {
     storage.setBiscuitEfficiency(storage.getBaseBiscuitEfficiency());
   }
+
+  function Pause() {
+    if (isPaused) return;
+
+    isPaused = true;
+    pauseResumeButton.textContent = "⏵︎";
+
+    // Stop auto tick
+    if (autoInterval) {
+      clearInterval(autoInterval);
+      autoInterval = null;
+    }
+
+    // Stop timed boosts safely
+    if (activeTimedBoostTimeout) {
+      clearTimeout(activeTimedBoostTimeout);
+      activeTimedBoostTimeout = null;
+    }
+
+    console.log("⏸ Game Paused");
+  }
+
+  function Resume() {
+    if (!isPaused) return;
+
+    isPaused = false;
+    pauseResumeButton.textContent = "⏸︎";
+
+    updateAutoRate();
+    startAutoIncrement();
+
+    console.log("▶️ Game Resumed");
+  }
+
+  document.addEventListener("keypress", (e) => {
+    if (e.key.toLowerCase() === "p") {
+      !isPaused ? Pause() : Resume();
+    }
+  });
+
+  pauseResumeButton.addEventListener("click", () => {
+    !isPaused ? Pause() : Resume();
+  });
 
   // ? ---------------------------
   // ? ONLY ON FIRST GAME LOAD

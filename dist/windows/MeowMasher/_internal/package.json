@@ -1,9 +1,11 @@
 {
   "name": "meowmasher",
-  "version": "1.11.3",
+  "version": "1.13.8",
   "description": "The clicker game all about cats",
   "main": "index.js",
   "scripts": {
+    "dev-funcs": "cd dev && node loc.js && node subUpgradePdf.js && cd ..",
+    "loc": "cd dev && node loc.js && cd ..",
     "build-css": "sass src/scss:src/css",
     "sass-watch": "sass --watch src/scss:src/css",
     "pywebview": "py main.py",
@@ -12,31 +14,35 @@
     "start-exe-windows": "cd dist/windows/MeowMasher && MeowMasher.exe",
     "start-exe-unix": "cd dist/unix/MeowMasher && ./MeowMasher"
   },
-  "keywords": [
-    "game",
-    "clicker",
-    "javascript",
-    "python",
-    "bash",
-    "sass",
-    "css",
-    "web",
-    "desktop",
-    "counter",
-    "upgrades",
-    "addicting",
-    "addictive",
-    "stats",
-    "bonuses",
-    "cats",
-    "meow",
-    "meowmasher",
-    "fun"
-  ],
-  "author": "",
+  "keywords": [],
+  "author": "JBassard97",
   "license": "ISC",
   "type": "commonjs",
+  "loc": {
+    "ignoreDirs": [
+      "node_modules",
+      ".git",
+      "dist",
+      "build",
+      "assets"
+    ],
+    "ignoreFiles": [
+      "save.json"
+    ],
+    "allowedExts": [
+      ".js",
+      ".html",
+      ".scss",
+      ".json",
+      ".py",
+      ".sh"
+    ]
+  },
   "devDependencies": {
     "sass": "^1.93.2"
+  },
+  "dependencies": {
+    "jbassard97nodecolors": "^3.1.0",
+    "pdfkit": "^0.17.2"
   }
 }

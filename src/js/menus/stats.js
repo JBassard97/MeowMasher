@@ -1,6 +1,7 @@
 import { computeYarnBonus } from "../bonuses/yarn.js";
 import { storage } from "../logic/storage.js";
 import { computeThousandFingers } from "../bonuses/thousandFingers.js";
+import { isDesktop } from "../logic/storage.js";
 
 // Load both JSON data files ONCE
 let allSubUpgrades = [];
@@ -116,6 +117,9 @@ setInterval(() => {
 
     document.getElementById("stats-total-playtime-display").textContent =
       storage.getTotalPlayTimeFormatted();
+
+    document.getElementById("stats-current-game-mode-display").textContent =
+      isDesktop() ? "Desktop" : "Web";
 
     // --- biscuits ---
     document.getElementById("stats-lifetime-biscuits-display").textContent =

@@ -1,17 +1,17 @@
 {
-  "totalLOC": 7119,
+  "totalLOC": 6993,
   "langBreakdown": {
     ".sh": {
       "numOfFiles": 1,
       "loc": 22
     },
     ".js": {
-      "numOfFiles": 33,
-      "loc": 2370
+      "numOfFiles": 32,
+      "loc": 2281
     },
     ".html": {
       "numOfFiles": 1,
-      "loc": 799
+      "loc": 781
     },
     ".py": {
       "numOfFiles": 1,
@@ -19,11 +19,11 @@
     },
     ".json": {
       "numOfFiles": 7,
-      "loc": 2447
+      "loc": 2446
     },
     ".scss": {
       "numOfFiles": 10,
-      "loc": 1411
+      "loc": 1393
     }
   }
 }

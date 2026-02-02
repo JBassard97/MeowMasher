@@ -56,10 +56,10 @@
   h1 {
     margin-top: 0;
     margin-bottom: 0.5rem;
+    text-decoration: underline;
   }
 
   h3 {
-    text-decoration: underline;
     margin-top: 0.5rem;
   }
 
@@ -78,13 +78,78 @@
       text-align: center;
     }
 
-    #boosts-container {
+    .bonus-header {
+      // margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      .bonus-header-details {
+        margin: 0;
+        padding: 0;
+        margin-left: 0.7rem;
+        max-width: 75%;
+        text-decoration: none;
+        font-style: italic;
+        color: rgb(145, 145, 145);
+        font-size: 12px;
+        transform: translate(0px, 5px);
+      }
+    }
+
+    #boosts-container,
+    #use-boosts-container {
       width: 100%;
-      border: 1px solid rgba(50, 255, 126, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
       .boost-item {
-        .boost-name {
-          font-weight: bold;
-          width: fit-content;
+        border: 2px solid rgb(170, 166, 166);
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0.5rem;
+        min-height: 52px;
+        .boost-text-container,
+        .buy-boost-button {
+          max-width: 50%;
+        }
+        .boost-icon-and-text {
+          display: flex;
+          gap: 1.5rem;
+          align-items: center;
+          justify-content: center;
+
+          .boost-text-container {
+            max-width: 140px;
+            .boost-name {
+              font-weight: bold;
+              width: fit-content;
+              text-decoration: underline;
+            }
+            .boost-desc {
+              font-style: italic;
+              font-size: 12px;
+              color: gray;
+            }
+          }
+        }
+
+        .owned-boosts {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          font-size: 13px;
+        }
+
+        .buy-boost-button,
+        .use-boost-button {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          margin: 0;
         }
       }
     }
@@ -177,6 +242,10 @@
 
     .stats-section {
       // border: 1px solid hotpink;
+      h3 {
+        text-decoration: underline;
+      }
+
       p {
         width: fit-content;
         color: rgba(0, 179, 255, 0.8);
@@ -196,6 +265,16 @@
         color: rgba(0, 179, 255, 0.8);
         position: absolute;
         left: -10px;
+      }
+
+      p.no-before {
+        margin-left: 3px;
+        text-decoration: none;
+        transform: translateY(5px);
+      }
+
+      p.no-before::before {
+        content: none;
       }
 
       .clicks-header {
@@ -219,7 +298,8 @@
         }
       }
 
-      .money-header {
+      .money-header,
+      .no-before {
         width: fit-content;
         position: relative;
 
@@ -235,35 +315,13 @@
         background-size: 100% 300%;
 
         -webkit-background-clip: text;
+        background-clip: text;
         color: transparent;
 
         /* glow */
         text-shadow: 0 0 6px rgba(33, 196, 93, 0.5);
 
         animation: moneyShine 2.2s ease-in-out infinite;
-      }
-
-      /* animated underline, also vertical */
-      .money-header::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 4px;
-        height: 2px;
-        width: 100%;
-        border-radius: 20px;
-
-        background: linear-gradient(
-          180deg,
-          transparent,
-          rgba(50, 255, 126, 0.8),
-          transparent
-        );
-
-        background-size: 100% 300%;
-
-        animation: moneyShine 2.2s ease-in-out infinite;
-        animation-delay: 0.1s;
       }
 
       /* vertical movement top → bottom → top */

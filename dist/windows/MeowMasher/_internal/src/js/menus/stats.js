@@ -1,5 +1,6 @@
 import { computeYarnBonus } from "../bonuses/yarn.js";
 import { storage } from "../logic/storage.js";
+import { computeThousandFingers } from "../bonuses/thousandFingers.js";
 
 // Load both JSON data files ONCE
 let allSubUpgrades = [];
@@ -59,10 +60,13 @@ setInterval(() => {
       storage.getMewnits() || 0
     ).toLocaleString();
 
-    document.getElementById("stats-mps-display").innerHTML = `${(
+    document.getElementById("stats-base-mps-display").textContent =
+      mps.toLocaleString();
+
+    document.getElementById("stats-current-mps-display").innerHTML = `${(
       mps + computeYarnBonus(allSubUpgrades).yarnBonus
     ).toLocaleString()} <span class="details">(+${computeYarnBonus(
-      allSubUpgrades
+      allSubUpgrades,
     ).yarnBonus.toLocaleString()} from Yarn)</span>`;
 
     document.getElementById("stats-lifetime-clicks-display").textContent = (
@@ -70,7 +74,7 @@ setInterval(() => {
     ).toString();
 
     document.getElementById(
-      "stats-lifetime-clicks-mewnits-display"
+      "stats-lifetime-clicks-mewnits-display",
     ).textContent = (storage.getLifetimeClickMewnits() || 0).toLocaleString();
 
     document.getElementById("stats-base-click-power-display").textContent =
@@ -84,29 +88,46 @@ setInterval(() => {
       : "";
 
     // --- final display (total + breakdown) ---
-    document.getElementById(
-      "stats-current-clickpower-display"
-    ).innerHTML = `${totalClickPower.toLocaleString()} <span class="details">${baseText}${tfText}${mpsText}</span>`;
+    document.getElementById("stats-current-clickpower-display").innerHTML =
+      `${totalClickPower.toLocaleString()} <span class="details">${baseText}${tfText}${mpsText}</span>`;
 
     // --- golden pawprints clicked ---
     document.getElementById("stats-clicked-golden-display").textContent =
       storage.getNumberofGoldenPawClicks().toLocaleString();
 
     // --- active bonuses ---
-    document.getElementById(
-      "stats-yarn-display"
-    ).innerHTML = `${computeYarnBonus(
-      allSubUpgrades
-    ).yarnPercent.toLocaleString()}% <span class="details">(+${computeYarnBonus(
-      allSubUpgrades
-    ).yarnBonus.toLocaleString()})</span>`;
+    document.getElementById("stats-yarn-display").innerHTML =
+      `${computeYarnBonus(
+        allSubUpgrades,
+      ).yarnPercent.toLocaleString()}% <span class="details">(+${computeYarnBonus(
+        allSubUpgrades,
+      ).yarnBonus.toLocaleString()})</span>`;
 
-    document.getElementById("stats-thousand-pats-display").textContent =
-      tf.toLocaleString();
+    document.getElementById("stats-thousand-pats-display").innerHTML =
+      `${tf.toLocaleString()} <span class="details">(+${computeThousandFingers(allUpgrades, allSubUpgrades).bonus.toLocaleString()} Click Power and +${computeThousandFingers(allUpgrades, allSubUpgrades).bonus.toLocaleString()} Pats output for each non-Pats upgrade owned)</span>`;
 
-    document.getElementById("stats-mps-click-boost-display").textContent =
-      percent
-        ? `${mpsBonus.toLocaleString()} (${Math.floor(percent * 100)}%)`
-        : "0";
+    document.getElementById("stats-mps-click-boost-display").innerHTML = percent
+      ? `${mpsBonus.toLocaleString()} <span class="details">(${Math.floor(percent * 100)}%)</span>`
+      : "0";
+
+    // --- general ---
+    document.getElementById("stats-game-started-display").textContent =
+      storage.getGameStartTimeFormatted();
+
+    document.getElementById("stats-total-playtime-display").textContent =
+      storage.getTotalPlayTimeFormatted();
+
+    // --- biscuits ---
+    document.getElementById("stats-lifetime-biscuits-display").textContent =
+      storage.getLifetimeBiscuits().toLocaleString();
+
+    document.getElementById("stats-current-biscuits-display").textContent =
+      storage.getBiscuits().toLocaleString();
+
+    document.getElementById("stats-base-efficiency-display").textContent =
+      storage.getBaseBiscuitEfficiency().toLocaleString();
+
+    document.getElementById("stats-current-efficiency-display").textContent =
+      storage.getBiscuitEfficiency().toLocaleString();
   }
 }, 1000);

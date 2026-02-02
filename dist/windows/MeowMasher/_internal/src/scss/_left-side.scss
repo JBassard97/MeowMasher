@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "animations";
 
 #left-side {
   #stats {
@@ -64,7 +65,7 @@
       top: 5px;
       border-radius: 20px;
       background-color: black;
-      opacity: 0.7;
+      opacity: 0.8;
       display: flex;
       justify-content: space-evenly;
       overflow: hidden;
@@ -87,19 +88,44 @@
       // border: 1px solid rgb(0, 255, 140);
       text-align: center;
       position: absolute;
-      margin: 0.5rem;
-      margin-top: 35px;
-      top: 0px;
+      margin: 0.5rem 1rem;
+      top: 3.25rem;
       font-size: 20px;
       font-weight: bold;
       display: none;
-      // animation: rainbowFlow 5s linear infinite;
+    }
+
+    .clicker-icons {
+      position: absolute;
+      left: 0;
+      top: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.25rem;
+      width: 100%;
+      z-index: 8;
+      // border: 1px solid yellow;
+      box-sizing: border-box;
+      #use-boosts-icon {
+        padding: 0.1rem 0.5rem;
+        height: 19px;
+        width: fit-content;
+        background-color: black;
+        opacity: 0.8;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.3rem;
+      }
     }
 
     .clicker-details {
       width: 80%;
       position: absolute;
-      bottom: 2px;
+      bottom: 0.4rem;
       border-radius: 20px;
       // padding: 0 20px;
       background-color: black;
@@ -144,6 +170,7 @@
     }
 
     #clicker {
+      position: relative;
       width: 60%;
       height: auto;
       display: flex; // make sure it wraps the image properly
@@ -163,6 +190,30 @@
         object-fit: contain;
         pointer-events: none; // 👈 ensures clicks go to the parent div, not the image
         transition: all 0.1s ease;
+      }
+
+      .cat-mask {
+        position: absolute;
+        inset: 0;
+        background-color: transparent;
+        background-image: none;
+        background: none;
+        opacity: 0;
+
+        mask-repeat: no-repeat;
+        mask-position: center;
+        mask-size: contain;
+
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        -webkit-mask-size: contain;
+      }
+
+      .cat-mask.rainbow {
+        background: $rainbowBackground;
+        background-size: 400% 100%;
+        animation: rainbowFlow 10s linear infinite;
+        opacity: 0.3;
       }
     }
 
@@ -184,7 +235,8 @@
       opacity: 1;
       scale: 1;
       transition: all 1s ease;
-      animation: goldenSpawn 1s ease-out,
+      animation:
+        goldenSpawn 1s ease-out,
         goldenWobble 0.5s ease-in-out infinite alternate;
       transform-origin: center;
     }
@@ -196,7 +248,7 @@
       z-index: 8;
       position: absolute;
       top: 0;
-      padding-top: 37px;
+      padding-top: 30px;
       overflow: hidden;
       box-sizing: border-box;
       .biscuits-content {
@@ -221,6 +273,11 @@
             margin: 0;
             padding: 0;
           }
+
+          p {
+            font-size: 11px;
+            margin-top: 0.5rem;
+          }
         }
         .biscuits-middle {
           width: 100%;
@@ -234,6 +291,16 @@
           object-fit: contain;
           background-repeat: no-repeat;
           overflow: hidden;
+
+          #biscuits-bonus-display {
+            position: absolute;
+            top: 4rem;
+            margin: 0.5rem;
+            padding: 3px;
+            display: none;
+            text-align: center;
+          }
+
           .arms-container {
             display: flex;
             justify-content: center;
@@ -241,11 +308,83 @@
             height: 55%;
             position: absolute;
             bottom: 0;
-            gap: 0.5rem;
-            .right-arm,
-            .left-arm {
-              // border: 1px solid purple;
+
+            .right-arm-container,
+            .left-arm-container {
+              position: relative;
+              width: 50%;
+              height: 100%;
+              display: flex;
               transition: all 0.1s ease-in-out;
+
+              .right-arm,
+              .left-arm,
+              .right-arm-mask,
+              .left-arm-mask {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                transition: all 0.1s ease-in-out;
+                width: 100%;
+                height: 100%;
+                max-width: none;
+                object-fit: contain;
+              }
+
+              .left-arm-mask {
+                position: absolute;
+
+                height: 100%;
+                background-color: transparent;
+                background-image: none;
+                background: none;
+                opacity: 0;
+
+                mask-image: url("../assets/images/left.png");
+                mask-repeat: no-repeat;
+                mask-position: center;
+                mask-size: contain;
+
+                -webkit-mask-image: url("../assets/images/left.png");
+                -webkit-mask-repeat: no-repeat;
+                -webkit-mask-position: center;
+                -webkit-mask-size: contain;
+              }
+
+              .right-arm-mask {
+                position: absolute;
+                height: 100%;
+                background-color: transparent;
+                background-image: none;
+                background: none;
+                opacity: 0;
+
+                mask-image: url("../assets/images/right.png");
+                mask-repeat: no-repeat;
+                mask-position: center;
+                mask-size: contain;
+
+                -webkit-mask-image: url("../assets/images/right.png");
+                -webkit-mask-repeat: no-repeat;
+                -webkit-mask-position: center;
+                -webkit-mask-size: contain;
+              }
+
+              .right-arm-mask.rainbow,
+              .left-arm-mask.rainbow {
+                background: $rainbowBackground;
+                background-size: 400% 100%;
+                animation: rainbowFlow 10s linear infinite;
+                opacity: 0.3;
+              }
+            }
+
+            .left-arm-container {
+              justify-content: flex-end;
+            }
+
+            .right-arm-container {
+              justify-content: flex-start;
             }
           }
           .biscuits-icons {

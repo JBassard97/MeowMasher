@@ -34,13 +34,10 @@ handle.addEventListener("pointermove", (e) => {
 });
 
 function stopDrag(e) {
-  console.log("🛑 stopDrag fired", e.type);
-
   dragging = false;
 
   try {
     handle.releasePointerCapture(e.pointerId);
-    console.log("pointer capture released");
   } catch (err) {
     console.warn("releasePointerCapture failed", err);
   }

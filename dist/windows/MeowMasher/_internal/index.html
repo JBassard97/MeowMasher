@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -24,6 +24,8 @@
   </head>
   <body>
     <header>
+      <span id="desktop-or-web-display">(Loading...)</span>
+
       <h1 class="image-header">Meow Masher</h1>
 
       <div
@@ -190,8 +192,35 @@
           </div>
 
           <p id="bonus-display" class="rainbow-text">Bonus</p>
+
+          <div class="clicker-icons">
+            <div id="use-boosts-icon">
+              <svg
+                fill="lightgray"
+                width="20px"
+                height="20px"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path
+                    d="M5 21h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2zm7-14 5 5h-4v5h-2v-5H7l5-5z"
+                  ></path>
+                </g>
+              </svg>
+              Use Boosts
+            </div>
+          </div>
+
           <div id="clicker">
             <img src="./src/assets/images/clickable-cats/0.png" alt="cat" />
+            <div class="cat-mask"></div>
           </div>
           <div class="clicker-details">
             <div id="owned-cats">
@@ -330,11 +359,22 @@
               <div class="biscuits-display">
                 <h3 id="biscuits-number">0</h3>
                 <h4>Biscuits</h4>
+                <p class="efficiency-display">
+                  Efficiency: <b><span id="efficiency-number">1</span></b>
+                </p>
               </div>
               <div class="biscuits-middle">
+                <p id="biscuits-bonus-display" class="rainbow-text">Bonus</p>
+
                 <div class="arms-container">
-                  <img class="left-arm" src="src/assets/images/left.png" />
-                  <img class="right-arm" src="src/assets/images/right.png" />
+                  <div class="left-arm-container">
+                    <img class="left-arm" src="src/assets/images/left.png" />
+                    <div class="left-arm-mask"></div>
+                  </div>
+                  <div class="right-arm-container">
+                    <img class="right-arm" src="src/assets/images/right.png" />
+                    <div class="right-arm-mask"></div>
+                  </div>
                 </div>
                 <div class="biscuits-icons">
                   <div id="boosts-icon">
@@ -404,9 +444,23 @@
         </div>
       </div>
       <div id="right-side">
-        <h4 class="image-text image-header-target">~ Sub-Upgrades ~</h4>
+        <h5 class="image-text image-header-target">
+          <span id="available-sub-upgrades-display">0</span>
+          <span style="text-decoration: underline; font-size: 0.7rem"
+            >Sub-Upgrades</span
+          >
+          <button id="auto-buy-sub-upgrade">
+            Buy Many (<span id="buy-many-display">0</span>)
+          </button>
+        </h5>
         <div class="sub-upgrades"></div>
-        <h4 class="image-text image-header-target draggable">~ Upgrades ~</h4>
+        <h5 class="image-text image-header-target draggable">
+          <span id="available-upgrades-display">0</span>
+          <span style="text-decoration: underline; font-size: 0.7rem"
+            >Upgrades</span
+          >
+          <button id="auto-buy-upgrade">Auto Buy</button>
+        </h5>
         <script src="src/js/effects/draggableEl.js"></script>
         <div class="upgrades"></div>
       </div>
@@ -420,7 +474,7 @@
             document.getElementById("version-number").textContent = pkg.version;
           });
       </script>
-      <p>© 2025 Meow Masher</p>
+      <p>© 2025-2026 Meow Masher</p>
       <a target="_blank" href="https://github.com/JBassard97/MeowMasher">
         <p>v<span id="version-number">1.0.0</span></p>
         <svg
@@ -473,7 +527,19 @@
         <h1>Stats</h1>
         <div class="dialog-body">
           <div class="stats-section">
-            <h3 class="money-header">Mewnits</h3>
+            <h3>General</h3>
+            <p>
+              Legacy Began On:
+              <b><span id="stats-game-started-display">Loading...</span></b>
+            </p>
+            <p>
+              Total Play Time:
+              <b><span id="stats-total-playtime-display">Loading...</span></b>
+            </p>
+            <div style="display: flex; align-items: center">
+              <h3 class="money-header">Mewnits</h3>
+              <p class="no-before">$$$</p>
+            </div>
             <p>
               Lifetime Mewnits:
               <b><span id="stats-lifetime-mewnits-display">Loading...</span></b>
@@ -483,8 +549,12 @@
               <b><span id="stats-current-mewnits-display">Loading...</span></b>
             </p>
             <p>
+              Base MPS:
+              <b><span id="stats-base-mps-display">Loading...</span></b>
+            </p>
+            <p>
               Current MPS:
-              <b><span id="stats-mps-display">Loading...</span></b>
+              <b><span id="stats-current-mps-display">Loading...</span></b>
             </p>
             <h3 class="clicks-header">
               Clicks<svg
@@ -550,6 +620,31 @@
               Click Boost (% of MPS):
               <b><span id="stats-mps-click-boost-display">Loading...</span> </b>
             </p>
+            <h3 class="biscuits-header">
+              <span class="bis">Bis</span><span class="cuits">cuits</span>
+            </h3>
+            <p>
+              Lifetime Biscuits:
+              <b
+                ><span id="stats-lifetime-biscuits-display">Loading...</span></b
+              >
+            </p>
+            <p>
+              Current Biscuits:
+              <b><span id="stats-current-biscuits-display">Loading...</span></b>
+            </p>
+            <p>
+              Base Efficiency:
+              <b><span id="stats-base-efficiency-display">Loading...</span></b>
+            </p>
+            <p>
+              Current Efficiency:
+              <b
+                ><span id="stats-current-efficiency-display"
+                  >Loading...</span
+                ></b
+              >
+            </p>
           </div>
         </div>
         <button id="close-stats-dialog" class="dialog-button">Close</button>
@@ -570,9 +665,13 @@
               <p>Set the game's font:</p>
               <select id="font-select">
                 <option value="Finger Paint">Finger Paint</option>
-                <option value="BitcountPropSingle">BitcountPropSingle</option>
+                <option value="Bitcount Prop Single">
+                  Bitcount Prop Single
+                </option>
                 <option value="Bebas Neue">Bebas Neue</option>
                 <option value="Dancing Script">Dancing Script</option>
+                <option value="Averia Gruesa Libre">Averia Gruesa Libre</option>
+                <option value="Macondo">Macondo</option>
               </select>
             </div>
             <div class="color-blind-mode">
@@ -678,6 +777,20 @@
       </div>
     </dialog>
 
+    <!-- USE BOOSTS -->
+    <dialog id="use-boosts-dialog" class="dialog-overlay">
+      <div class="dialog-content">
+        <h1>Use Boosts</h1>
+        <div class="dialog-body">
+          <!-- All boost-headers and boosts are rendered by JS -->
+          <div id="use-boosts-container"></div>
+        </div>
+        <button id="close-use-boosts-dialog" class="dialog-button">
+          Close
+        </button>
+      </div>
+    </dialog>
+
     <div class="loading-spinner"><p>Loading...</p></div>
 
     <script type="module" src="src/js/logic/storage.js"></script>
@@ -686,8 +799,12 @@
     <script type="module" src="src/js/menus/stats.js"></script>
     <script type="module" src="src/js/menus/achievements.js"></script>
     <script type="module" src="src/js/menus/boosts.js"></script>
+    <script type="module" src="src/js/menus/use-boosts.js"></script>
     <script type="module" src="src/js/menus/levels.js"></script>
-    <script src="src/js/easter-eggs/changeHeaderImage.js"></script>
+    <script
+      type="module"
+      src="src/js/easter-eggs/changeHeaderImage.js"
+    ></script>
     <script type="module" src="src/js/effects/clickerAreaNav.js"></script>
     <script type="module" src="src/js/biscuits/biscuits.js"></script>
 

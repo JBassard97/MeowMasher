@@ -7,15 +7,17 @@ import {
   SUB_UPGRADE_STYLES,
   UPGRADE_GRADIENT,
 } from "./effects/upgradeStyles.js";
-import { storage, initStorage } from "./logic/storage.js";
+import { storage, initStorage, isDesktop } from "./logic/storage.js";
+import { initSettings } from "./menus/settings.js";
 import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
 import { chooseWeighted } from "./logic/chooseWeighted.js";
 import { setLivingRoom } from "./effects/setLivingRoom.js";
 import { AudioList } from "./audio/audio.js";
+import { updateBiscuitEfficiency } from "./helpers/updateBiscuitEfficiency.js";
 
 const mode = "dev00";
-const devBonus = 50000000000;
+const devBonus = 50000;
 
 document.addEventListener("DOMContentLoaded", async () => {
   const $ = (sel) => document.querySelector(sel);
@@ -27,8 +29,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   const clickerImg = clickerButton.querySelector("img");
   const upgradesContainer = $(".upgrades");
   const subUpgradesContainer = $(".sub-upgrades");
+  const availUpgradesDisplay = $("#available-upgrades-display");
+  const availSubUpgradesDisplay = $("#available-sub-upgrades-display");
+  const autoBuyUpgradeButton = $("#auto-buy-upgrade");
+  const autoBuySubUpgradeButton = $("#auto-buy-sub-upgrade");
+  const buyManyDisplay = $("#buy-many-display");
 
   await initStorage();
+  initSettings();
 
   // Load data
   const [upgrades, subUpgrades] = await Promise.all([
@@ -46,7 +54,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   let animationFrame = null;
 
   let goldenPawActive = false;
-  let goldenPawMpsMultiplier = 2; // Temporary multiplier
+  let boostMpsMultiplier = 1; // Temporary multiplier
+  let activeTimedBoost = null;
+  let activeTimedBoostTimeout = null;
+
+  let revealedUpgrades = new Set();
 
   // Restore upgrade data
   upgrades.forEach((u) => {
@@ -55,7 +67,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     u.extraBonus = 0;
   });
 
+  // --- Boosts Custom Event Listener ---
+  window.addEventListener("boostUsed", (e) => {
+    const boost = e.detail;
+    if (!boost) {
+      console.error("Boost not passed to main.js in custom event!");
+      return;
+    }
+
+    if (boost.type === "mps") {
+      boostFuncs.mps(boost.time, boost.boost);
+    } else if (boost.type === "mew") {
+      boostFuncs.mew(boost.time);
+    } else if (boost.type === "biscuit-efficiency") {
+      boostFuncs.biscuitEfficiency(boost.time, boost.boost);
+    }
+
+    console.log("Boost Used: ", boost);
+  });
+
   startGoldenPawprintSpawner(clickerButton, () => {
+    // If they're already active, do nothing
+    if (goldenPawActive) return;
+
     // Weight configuration
     const reward = chooseWeighted({
       mps: 1, // equal chance by default
@@ -64,37 +98,85 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (reward === "mps") {
       // --- Apply 30s MPS Boost ---
-      goldenPawActive = true;
-      toggleGoldenPawMode(true, "mps", 30);
+      boostFuncs.mps(30);
+    } else if (reward === "mew") {
+      // --- Immediate Mewnits payout ---
+      boostFuncs.mew(60);
+    }
+  });
+
+  const boostFuncs = {
+    mps: (seconds = 30, boost = 2) => {
+      cancelActiveTimedBoost();
+
+      activeTimedBoost = "mps";
+      boostMpsMultiplier = boost;
       updateAutoRate();
       startAutoIncrement();
 
-      setTimeout(() => {
-        goldenPawActive = false;
-        toggleGoldenPawMode(false, "mps");
-        updateAutoRate();
-        startAutoIncrement();
-      }, 1000 * 30);
-    } else if (reward === "mew") {
-      // --- Immediate Mewnits payout ---
-      const bonus = autoRate * 60; // e.g. 60 seconds worth
+      toggleGoldenPawMode(true, "mps", seconds);
+
+      activeTimedBoostTimeout = setTimeout(() => {
+        cancelActiveTimedBoost();
+      }, seconds * 1000);
+    },
+
+    mew: (secondsOfPayout = 60) => {
+      const bonus = autoRate * secondsOfPayout;
       toggleGoldenPawMode(true, "mew", 1, bonus);
       const prev = count;
       count += bonus;
       storage.setMewnits(count);
       animateCounter(counterDisplay, prev, count, 400);
-    }
-  });
+    },
 
-  // -----------------------------
-  // Living Room Init
-  // -----------------------------
+    biscuitEfficiency: (seconds = 30, boost = 2) => {
+      cancelActiveTimedBoost();
+
+      activeTimedBoost = "biscuit-efficiency";
+
+      storage.setBiscuitEfficiency(storage.getBaseBiscuitEfficiency() * boost);
+      updateBiscuitEfficiency();
+
+      toggleGoldenPawMode(true, "biscuit-efficiency", seconds, boost);
+
+      activeTimedBoostTimeout = setTimeout(() => {
+        cancelActiveTimedBoost();
+      }, seconds * 1000);
+    },
+  };
+
+  function cancelActiveTimedBoost() {
+    if (!activeTimedBoost) return;
+
+    // Clear timer
+    if (activeTimedBoostTimeout) {
+      clearTimeout(activeTimedBoostTimeout);
+      activeTimedBoostTimeout = null;
+    }
+
+    // Revert effects based on type
+    if (activeTimedBoost === "mps") {
+      boostMpsMultiplier = 1;
+      updateAutoRate();
+      startAutoIncrement();
+      toggleGoldenPawMode(false, "mps");
+    }
+
+    if (activeTimedBoost === "biscuit-efficiency") {
+      storage.setBiscuitEfficiency(storage.getBaseBiscuitEfficiency());
+      updateBiscuitEfficiency();
+      toggleGoldenPawMode(false, "biscuit-efficiency");
+    }
+
+    activeTimedBoost = null;
+  }
 
   // -----------------------------
   // Full Click Power Recalc
   // -----------------------------
   function updateClickPower() {
-    const tf = computeThousandFingers(upgrades, subUpgrades);
+    const tf = computeThousandFingers(upgrades, subUpgrades).total;
     const percent = storage.getPercentOfMpsClickAdder(); // e.g. 0.01
 
     // Use baseAutoRate, not the multiplied autoRate
@@ -115,13 +197,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     baseAutoRate = upgrades.reduce(
       (sum, u) =>
         sum + u.owned * (u.rate * (u.multiplier || 1) + (u.extraBonus || 0)),
-      0
+      0,
     );
 
     // Apply golden pawprint multiplier only to autoRate
-    autoRate = goldenPawActive
-      ? Math.floor(baseAutoRate * goldenPawMpsMultiplier)
-      : baseAutoRate;
+    autoRate =
+      activeTimedBoost === "mps"
+        ? Math.floor(baseAutoRate * boostMpsMultiplier)
+        : baseAutoRate;
 
     storage.setMewnitsPerSecond(autoRate);
 
@@ -149,6 +232,22 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     tick();
     autoInterval = setInterval(tick, 1000);
+  }
+
+  function shouldRevealUpgrade(u, cost) {
+    if (u.id === 0) return true;
+
+    if (revealedUpgrades.has(u.id)) return true;
+
+    const owned = storage.getUpgradeOwned(u.id) >= 1;
+    const canAfford75 = count >= cost * 0.75;
+
+    if (owned || canAfford75) {
+      revealedUpgrades.add(u.id);
+      return true;
+    }
+
+    return false;
   }
 
   // -----------------------------
@@ -209,15 +308,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         div.innerHTML = `
           <strong style="background:${style.strongBackground}">${
-          u.name
-        }</strong>
+            u.name
+          }</strong>
           <div>
           <p><b>${u.cost.toLocaleString()}</b> <span style="font-size:0.5rem">Mewnits</span></p>
           <p>${describeSubBonus(u, upgrades)}</p>
           </div>
         `;
 
-        div.onclick = () => buySubUpgrade(u, div);
+        div.onclick = () => buySubUpgrade(u);
         subUpgradesContainer.appendChild(div);
       });
 
@@ -265,7 +364,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     startAutoIncrement();
   }
 
-  function buySubUpgrade(u, div) {
+  function buySubUpgrade(u) {
     if (count < u.cost) return;
 
     count -= u.cost;
@@ -309,7 +408,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderSubUpgrades();
     startAutoIncrement();
 
-    div.remove();
+    const el = document.querySelector(`.sub-upgrade[data-id="${u.id}"]`);
+    el?.remove();
   }
 
   setupClickHandler({
@@ -328,20 +428,95 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Helpers
   // -----------------------------
   function updateAffordability() {
+    let availUpgradesAmount = 0;
+    let cheapestUpgrade = null;
     upgradesContainer.querySelectorAll(".upgrade").forEach((div, i) => {
       const u = upgrades[i];
       const cost = Math.floor(u.baseCost * Math.pow(1.15, u.owned));
       const afford = count >= cost;
+      if (!shouldRevealUpgrade(u, cost)) {
+        div.classList.add("hidden");
+      } else {
+        div.classList.remove("hidden");
+      }
       div.style.opacity = afford ? "1" : "0.4";
       div.style.pointerEvents = afford ? "auto" : "none";
+      if (afford) {
+        availUpgradesAmount++;
+        if (
+          !cheapestUpgrade ||
+          (cheapestUpgrade && cost < cheapestUpgrade.cost)
+        ) {
+          cheapestUpgrade = { u: u, cost: cost };
+        }
+      }
     });
+    availUpgradesDisplay.textContent =
+      availUpgradesAmount <= 99 ? availUpgradesAmount : 99;
+    availUpgradesAmount > 0
+      ? availUpgradesDisplay.classList.add("positive")
+      : availUpgradesDisplay.classList.remove("positive");
+    if (availUpgradesAmount > 0 && cheapestUpgrade) {
+      autoBuyUpgradeButton.disabled = false;
+      autoBuyUpgradeButton.title = cheapestUpgrade.u.name;
+      autoBuyUpgradeButton.onclick = () => {
+        buyUpgrade(cheapestUpgrade.u, cheapestUpgrade.cost);
+      };
+    } else {
+      autoBuyUpgradeButton.disabled = true;
+      autoBuyUpgradeButton.title = "Not Yet...";
+      autoBuyUpgradeButton.onclick = null;
+    }
 
+    let availSubUpgradesAmount = 0;
+    let cheapestSubUpgrades = [];
     subUpgradesContainer.querySelectorAll(".sub-upgrade").forEach((div) => {
       const u = subUpgrades.find((x) => x.id == div.dataset.id);
       const afford = count >= u.cost && isSubUnlocked(u);
       div.style.opacity = afford ? "1" : "0.4";
       div.style.pointerEvents = afford ? "auto" : "none";
+      if (afford) {
+        availSubUpgradesAmount++;
+        cheapestSubUpgrades.push(u);
+      }
     });
+    availSubUpgradesDisplay.textContent =
+      availSubUpgradesAmount <= 99 ? availSubUpgradesAmount : 99;
+    availSubUpgradesAmount > 0
+      ? availSubUpgradesDisplay.classList.add("positive")
+      : availSubUpgradesDisplay.classList.remove("positive");
+    if (
+      cheapestSubUpgrades.length >= 2 &&
+      count >= cheapestSubUpgrades[0].cost + cheapestSubUpgrades[1].cost
+    ) {
+      let potentialSpend = 0;
+      let purchasableSubUpgrades = [];
+
+      for (const u of cheapestSubUpgrades) {
+        if (count >= potentialSpend + u.cost) {
+          potentialSpend += u.cost;
+          purchasableSubUpgrades.push(u);
+        } else {
+          break;
+        }
+      }
+      if (purchasableSubUpgrades.length > 0) {
+        autoBuySubUpgradeButton.disabled = false;
+        autoBuySubUpgradeButton.title = `Buy ${purchasableSubUpgrades.length}`;
+        buyManyDisplay.textContent =
+          purchasableSubUpgrades.length <= 99
+            ? purchasableSubUpgrades.length
+            : 99;
+        autoBuySubUpgradeButton.onclick = () => {
+          purchasableSubUpgrades.forEach(buySubUpgrade);
+        };
+      }
+    } else {
+      autoBuySubUpgradeButton.disabled = true;
+      autoBuySubUpgradeButton.title = "Not Yet...";
+      buyManyDisplay.textContent = 0;
+      autoBuySubUpgradeButton.onclick = null;
+    }
   }
 
   function updateOwnedCatsDisplay() {
@@ -354,9 +529,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     counterDisplay.textContent = count.toLocaleString();
   }
 
+  function syncBiscuitEfficiencies() {
+    storage.setBiscuitEfficiency(storage.getBaseBiscuitEfficiency());
+  }
+
+  // ? ---------------------------
+  // ? ONLY ON FIRST GAME LOAD
+  // ? ---------------------------
+  if (!storage.getGameStartTimeMs()) {
+    storage.setGameStartTime();
+  }
+
+  console.log(storage.getGameStartTimeMs());
+
   // -----------------------------
   // INIT
   // -----------------------------
+  syncBiscuitEfficiencies();
   setLivingRoom();
   updateAutoRate();
   updateClickPower();

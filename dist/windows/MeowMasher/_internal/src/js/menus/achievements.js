@@ -92,7 +92,7 @@ function renderOwnedSubUpgrades() {
           u,
           allUpgrades
         )}</b></li>
-        <li style="color:lightblue">Unlock Requirement: <b>${describeSubUnlock(
+        <li style="color:lightblue">Unlock: <b>${describeSubUnlock(
           u,
           allUpgrades
         )}</b></li>

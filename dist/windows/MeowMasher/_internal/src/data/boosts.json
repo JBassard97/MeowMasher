@@ -1,17 +1,89 @@
 [
   {
-    "name": "30s MPS Boost",
+    "bonus-header": "Mewnits/S",
+    "bonus-header-details": "(These will not stack, and each use resets the in-game timer)"
+  },
+  {
+    "id": 0,
+    "name": "2x MPS for 30s",
     "desc": "2x Mewnits/Second for 30 seconds",
-    "price": 100
+    "boost": 2,
+    "time": 30,
+    "price": 100,
+    "type": "mps"
   },
   {
-    "name": "60s MPS Boost",
+    "id": 1,
+    "name": "2x MPS for 60s",
     "desc": "2x Mewnits/Second for 60 seconds",
-    "price": 200
+    "boost": 2,
+    "time": 60,
+    "price": 200,
+    "type": "mps"
   },
   {
-    "name": "90s MPS Boost",
+    "id": 2,
+    "name": "2x MPS for 90s",
     "desc": "2x Mewnits/Second for 90 seconds",
-    "price": 300
+    "boost": 2,
+    "time": 90,
+    "price": 300,
+    "type": "mps"
+  },
+  { "bonus-header": "Instant Mewnits" },
+  {
+    "id": 3,
+    "name": "30s of Mewnits",
+    "desc": "Gain the Mewnits you'd make in 30 seconds",
+    "time": 30,
+    "price": 100,
+    "type": "mew"
+  },
+  {
+    "id": 4,
+    "name": "60s of Mewnits",
+    "desc": "Gain the Mewnits you'd make in 60 seconds",
+    "time": 60,
+    "price": 200,
+    "type": "mew"
+  },
+  {
+    "id": 5,
+    "name": "90s of Mewnits",
+    "desc": "Gain the Mewnits you'd make in 90 seconds",
+    "time": 90,
+    "price": 30000,
+    "type": "mew"
+  },
+  {
+    "bonus-header": "Biscuits",
+    "bonus-header-details": "(These will not stack, and each use resets the in-game timer)"
+  },
+  {
+    "id": 6,
+    "name": "2x Biscuits for 30s",
+    "desc": "Double Biscuit efficiency for 30 seconds",
+    "boost": 2,
+    "time": 30,
+    "price": 100,
+    "type": "biscuit-efficiency"
+  },
+  {
+    "id": 7,
+    "name": "2x Biscuits for 60s",
+    "desc": "Double Biscuit efficiency for 60 seconds",
+    "boost": 2,
+    "time": 60,
+    "price": 200,
+    "type": "biscuit-efficiency"
+  },
+  {
+    "id": 8,
+    "name": "2x Biscuits for 90s",
+    "desc": "Double Biscuit efficiency for 90 seconds",
+    "boost": 2,
+    "time": 90,
+    "price": 300,
+    "type": "biscuit-efficiency"
   }
 ]

@@ -184,6 +184,7 @@
             <strong><span id="click-rate">1</span></strong>
             <span style="font-size: 0.6rem">Mewnits/Click</span>
           </p>
+          <button id="pause-resume">⏸︎</button>
         </div>
         <div class="clicker-area">
           <div class="clicker-area-nav">
@@ -446,14 +447,25 @@
       <div id="right-side">
         <h5 class="image-text image-header-target">
           <span id="available-sub-upgrades-display">0</span>
-          <span style="text-decoration: underline; font-size: 0.7rem;">Sub-Upgrades</span>
-          <button id="auto-buy-sub-upgrade">Buy Many (<span id="buy-many-display">0</span>)</button>
+          <span style="text-decoration: underline; font-size: 0.7rem"
+            >Sub-Upgrades</span
+          >
+          <button id="auto-buy-sub-upgrade">
+            Buy Many (<span id="buy-many-display">0</span>)
+          </button>
         </h5>
         <div class="sub-upgrades"></div>
         <h5 class="image-text image-header-target draggable">
           <span id="available-upgrades-display">0</span>
-          <span style="text-decoration: underline; font-size: 0.7rem;">Upgrades</span>
-          <button id="auto-buy-upgrade">Auto Buy</button>
+          <span style="text-decoration: underline; font-size: 0.7rem"
+            >Upgrades</span
+          >
+          <button id="auto-buy-upgrade">
+            Buy <span style="line-height: 0">⬇</span>$
+          </button>
+          <button id="buy-many-upgrades">
+            Buy Many (<span id="buy-many-upgrades-display">0</span>)
+          </button>
         </h5>
         <script src="src/js/effects/draggableEl.js"></script>
         <div class="upgrades"></div>
@@ -529,6 +541,12 @@
             <p>
               Total Play Time:
               <b><span id="stats-total-playtime-display">Loading...</span></b>
+            </p>
+            <p>
+              Current Game Mode:
+              <b
+                ><span id="stats-current-game-mode-display">Loading...</span></b
+              >
             </p>
             <div style="display: flex; align-items: center">
               <h3 class="money-header">Mewnits</h3>

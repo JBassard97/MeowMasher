@@ -24,7 +24,8 @@
       ".git",
       "dist",
       "build",
-      "assets"
+      "assets",
+      "outputs"
     ],
     "ignoreFiles": [
       "save.json"

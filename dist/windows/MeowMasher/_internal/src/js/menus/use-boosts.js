@@ -1,11 +1,10 @@
 import { storage } from "../logic/storage.js";
 import { createBoostIcon } from "../helpers/createBoostIcon.js";
-import { $ } from "../helpers/$.js";
 
-const useBoostsIcon = $("#use-boosts-icon");
-const useBoostsDialog = $("#use-boosts-dialog");
-const closeUseBoostsDialog = $("#close-use-boosts-dialog");
-const useBoostsContainer = $("#use-boosts-container");
+const useBoostsIcon = document.getElementById("use-boosts-icon");
+const useBoostsDialog = document.getElementById("use-boosts-dialog");
+const closeUseBoostsDialog = document.getElementById("close-use-boosts-dialog");
+const useBoostsContainer = document.getElementById("use-boosts-container");
 
 useBoostsIcon.addEventListener("click", () => {
   useBoostsDialog.classList.add("active");

@@ -1,4 +1,6 @@
 import { storage } from "../logic/storage.js";
+import { updateBiscuitsDisplay } from "../helpers/updateBiscuitsDisplay.js";
+import { updateBiscuitEfficiency } from "../helpers/updateBiscuitEfficiency.js";
 
 const clickingNavItem = document.getElementById("clicking-nav-item");
 const biscuitsNavItem = document.getElementById("biscuits-nav-item");
@@ -37,6 +39,8 @@ clickingNavItem.addEventListener("click", (e) => {
 biscuitsNavItem.addEventListener("click", (e) => {
   if (e.target.id === selectedItem) return;
   console.log(e.target.id);
+  updateBiscuitsDisplay();
+  updateBiscuitEfficiency();
   selected(biscuitsNavItem);
   deselected(clickingNavItem);
   selectedItem = e.target.id;

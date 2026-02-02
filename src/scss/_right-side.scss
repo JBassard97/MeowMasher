@@ -31,7 +31,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     padding: 0.2rem;
-    padding-left: 0.5rem;
+    padding-left: 0.4rem;
     margin: 0;
     width: 100%;
     font-style: italic;
@@ -42,26 +42,34 @@
     height: 3rem;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.2rem;
 
     #available-sub-upgrades-display,
     #available-upgrades-display {
-      border: 2px solid rgba(255, 255, 255, 0.25);
-      border-radius: 50%;
-      text-align: center;
       height: calc(100% - 2px);
       aspect-ratio: 1;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      font-style: normal;
+
       display: flex;
       justify-content: center;
       align-items: center;
+      text-align: center;
+      transition: border 50ms ease-in-out;
+
+      &.positive {
+        border: 2px solid rgba(255, 255, 255, 0.7);
+      }
     }
 
     button {
-      font-size: 10px;
+      font-size: 9px;
+      font-weight: bold;
       color: black;
       pointer-events: auto;
       cursor: pointer;
-      padding: 2px;
+      padding: 1px;
     }
 
     &::before {
@@ -172,7 +180,7 @@
       height: 100%;
       aspect-ratio: 1/1;
       top: 0;
-      right: 0;
+      right: -5px;
       background-image: url("../assets/images/vert-resize.svg");
       background-repeat: no-repeat;
       background-position: center;

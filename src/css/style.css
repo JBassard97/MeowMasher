@@ -221,6 +221,7 @@ header .header-icons #achievements-icon svg:hover g path {
   padding-bottom: 1rem;
   z-index: 5;
   background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
+  position: relative;
 }
 #left-side #stats p {
   margin: 0;
@@ -242,6 +243,17 @@ header .header-icons #achievements-icon svg:hover g path {
 #left-side #stats .click-rate-display {
   line-height: 0.5rem;
 }
+#left-side #stats #pause-resume {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #left-side .clicker-area {
   cursor: pointer;
   flex: 1 1 auto;
@@ -257,7 +269,7 @@ header .header-icons #achievements-icon svg:hover g path {
   overflow: hidden;
   padding-bottom: 1rem;
   transition: all 0.5s ease-in-out;
-  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.3);
 }
 #left-side .clicker-area:active #clicker {
   scale: 1.05;
@@ -689,7 +701,7 @@ header .header-icons #achievements-icon svg:hover g path {
   -webkit-background-clip: text;
   background-clip: text;
   padding: 0.2rem;
-  padding-left: 0.5rem;
+  padding-left: 0.4rem;
   margin: 0;
   width: 100%;
   font-style: italic;
@@ -700,28 +712,37 @@ header .header-icons #achievements-icon svg:hover g path {
   height: 3rem;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.2rem;
 }
 #right-side h5 #available-sub-upgrades-display,
 #right-side h5 #available-upgrades-display,
 #right-side .image-text #available-sub-upgrades-display,
 #right-side .image-text #available-upgrades-display {
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  border-radius: 50%;
-  text-align: center;
   height: calc(100% - 2px);
   aspect-ratio: 1;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  font-style: normal;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  transition: border 50ms ease-in-out;
+}
+#right-side h5 #available-sub-upgrades-display.positive,
+#right-side h5 #available-upgrades-display.positive,
+#right-side .image-text #available-sub-upgrades-display.positive,
+#right-side .image-text #available-upgrades-display.positive {
+  border: 2px solid rgba(255, 255, 255, 0.7);
 }
 #right-side h5 button,
 #right-side .image-text button {
-  font-size: 10px;
+  font-size: 9px;
+  font-weight: bold;
   color: black;
   pointer-events: auto;
   cursor: pointer;
-  padding: 2px;
+  padding: 1px;
 }
 #right-side h5::before,
 #right-side .image-text::before {
@@ -812,7 +833,7 @@ header .header-icons #achievements-icon svg:hover g path {
   height: 100%;
   aspect-ratio: 1/1;
   top: 0;
-  right: 0;
+  right: -5px;
   background-image: url("../assets/images/vert-resize.svg");
   background-repeat: no-repeat;
   background-position: center;

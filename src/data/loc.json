@@ -1,5 +1,5 @@
 {
-  "totalLOC": 9052,
+  "totalLOC": 9138,
   "langBreakdown": {
     ".sh": {
       "numOfFiles": 1,
@@ -9,6 +9,10 @@
       "numOfFiles": 36,
       "loc": 2541
     },
+    ".py": {
+      "numOfFiles": 2,
+      "loc": 156
+    },
     ".yml": {
       "numOfFiles": 1,
       "loc": 944
@@ -16,10 +20,6 @@
     ".html": {
       "numOfFiles": 1,
       "loc": 853
-    },
-    ".py": {
-      "numOfFiles": 1,
-      "loc": 70
     },
     ".json": {
       "numOfFiles": 5,
@@ -43,6 +43,10 @@
       "numOfFiles": 36,
       "loc": 2541
     },
+    ".py": {
+      "numOfFiles": 2,
+      "loc": 156
+    },
     ".yml": {
       "numOfFiles": 1,
       "loc": 944
@@ -50,10 +54,6 @@
     ".html": {
       "numOfFiles": 1,
       "loc": 853
-    },
-    ".py": {
-      "numOfFiles": 1,
-      "loc": 70
     },
     ".json": {
       "numOfFiles": 5,

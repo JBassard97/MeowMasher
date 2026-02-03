@@ -1,6 +1,7 @@
 import { storage } from "../logic/storage.js";
 import { createBoostIcon } from "../helpers/createBoostIcon.js";
 import { $ } from "../helpers/$.js";
+import { isPaused } from "../helpers/isPaused.js";
 
 const useBoostsIcon = $("#use-boosts-icon");
 const useBoostsDialog = $("#use-boosts-dialog");
@@ -8,6 +9,7 @@ const closeUseBoostsDialog = $("#close-use-boosts-dialog");
 const useBoostsContainer = $("#use-boosts-container");
 
 useBoostsIcon.addEventListener("click", () => {
+  if (isPaused) return;
   useBoostsDialog.classList.add("active");
   renderBoosts();
 });

@@ -37,15 +37,20 @@
     }
 
     #pause-resume {
+      all: unset;
       position: absolute;
       bottom: 0;
       right: 0;
+      width: fit-content;
+      height: fit-content;
       cursor: pointer;
       font-size: 1rem;
-      padding: 0 2px;
+      padding: 0;
+      margin: 0;
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: transparent;
     }
   }
 

@@ -244,15 +244,20 @@ header .header-icons #achievements-icon svg:hover g path {
   line-height: 0.5rem;
 }
 #left-side #stats #pause-resume {
+  all: unset;
   position: absolute;
   bottom: 0;
   right: 0;
+  width: fit-content;
+  height: fit-content;
   cursor: pointer;
   font-size: 1rem;
-  padding: 0 2px;
+  padding: 0;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: transparent;
 }
 #left-side .clicker-area {
   cursor: pointer;
@@ -779,7 +784,7 @@ header .header-icons #achievements-icon svg:hover g path {
   flex-direction: column;
   height: auto;
   border: 2px solid transparent;
-  border-radius: 12px;
+  border-radius: 20px;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.03);
   transition: all 0.15s ease;
@@ -787,6 +792,7 @@ header .header-icons #achievements-icon svg:hover g path {
   text-align: center;
   line-height: 1.2;
   box-shadow: 0 0 3px 10px transparent;
+  overflow: clip;
 }
 #right-side .sub-upgrades .sub-upgrade strong {
   font-size: 12px;
@@ -1193,10 +1199,35 @@ header .header-icons #achievements-icon svg:hover g path {
 .dialog-content .dialog-body .stats-section p.no-before {
   margin-left: 3px;
   text-decoration: none;
-  transform: translateY(5px);
 }
 .dialog-content .dialog-body .stats-section p.no-before::before {
   content: none;
+}
+.dialog-content .dialog-body .stats-section ul {
+  padding-inline-start: 20px;
+  margin: 0;
+}
+.dialog-content .dialog-body .stats-section ul p {
+  color: lightskyblue;
+}
+.dialog-content .dialog-body .stats-section ul p span {
+  color: whitesmoke;
+}
+.dialog-content .dialog-body .stats-section ul p span .details {
+  color: rgba(211, 211, 211, 0.639);
+}
+.dialog-content .dialog-body .stats-section ul p::before {
+  color: lightskyblue;
+}
+.dialog-content .dialog-body .stats-section .stats-card {
+  border: 2px solid rgba(128, 128, 128, 0.502);
+  border-radius: 20px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+.dialog-content .dialog-body .stats-section .stats-card h3 {
+  margin: 0;
+  margin-bottom: 0.2rem;
 }
 .dialog-content .dialog-body .stats-section .clicks-header {
   margin-top: 0;

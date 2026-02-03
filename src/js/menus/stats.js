@@ -2,6 +2,7 @@ import { computeYarnBonus } from "../bonuses/yarn.js";
 import { storage } from "../logic/storage.js";
 import { computeThousandFingers } from "../bonuses/thousandFingers.js";
 import { isDesktop } from "../logic/storage.js";
+import { isPaused } from "../helpers/isPaused.js";
 
 // Load both JSON data files ONCE
 let allSubUpgrades = [];
@@ -120,6 +121,14 @@ setInterval(() => {
 
     document.getElementById("stats-current-game-mode-display").textContent =
       isDesktop() ? "Desktop" : "Web";
+
+    // ---------- pausing -----------
+    document.getElementById("stats-isPaused-display").textContent = isPaused;
+    document.getElementById("stats-time-spent-paused-display").textContent =
+      storage.getTotalPauseTimeFormatted();
+    document.getElementById("stats-num-of-pauses-display").textContent = storage
+      .getNumberOfPauses()
+      .toLocaleString();
 
     // --- biscuits ---
     document.getElementById("stats-lifetime-biscuits-display").textContent =

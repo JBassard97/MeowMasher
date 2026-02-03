@@ -1,6 +1,7 @@
 import { storage } from "../logic/storage.js";
 import { updateBiscuitsDisplay } from "../helpers/updateBiscuitsDisplay.js";
 import { createBoostIcon } from "../helpers/createBoostIcon.js";
+import { isPaused } from "../helpers/isPaused.js";
 
 const boostsIcon = document.getElementById("boosts-icon");
 const boostsDialog = document.getElementById("boosts-dialog");
@@ -8,6 +9,7 @@ const closeBoostsDialog = document.getElementById("close-boosts-dialog");
 const boostsContainer = document.getElementById("boosts-container");
 
 boostsIcon.addEventListener("click", () => {
+  if (isPaused) return;
   boostsDialog.classList.add("active");
   updateBiscuitsDisplay();
   renderBoosts();

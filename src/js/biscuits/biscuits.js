@@ -2,6 +2,7 @@ import { storage } from "../logic/storage.js";
 import { AudioList } from "../audio/audio.js";
 import { updateBiscuitsDisplay } from "../helpers/updateBiscuitsDisplay.js";
 import { $ } from "../helpers/$.js";
+import { isPaused } from "../helpers/isPaused.js";
 
 const leftPawButton = $("#left-paw");
 const rightPaw = $("#right-paw");
@@ -9,6 +10,7 @@ const leftArm = $(".left-arm-container");
 const rightArm = $(".right-arm-container");
 
 const handlePawPress = (direction) => {
+  if (isPaused) return;
   if (direction == "left") {
     if (leftPawButton == lastPawPressed) return;
     lastPawPressed = leftPawButton;

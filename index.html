@@ -184,7 +184,7 @@
             <strong><span id="click-rate">1</span></strong>
             <span style="font-size: 0.6rem">Mewnits/Click</span>
           </p>
-          <button id="pause-resume">⏸︎</button>
+          <button id="pause-resume">⏸️</button>
         </div>
         <div class="clicker-area">
           <div class="clicker-area-nav">
@@ -533,130 +533,183 @@
         <h1>Stats</h1>
         <div class="dialog-body">
           <div class="stats-section">
-            <h3>General</h3>
-            <p>
-              Legacy Began On:
-              <b><span id="stats-game-started-display">Loading...</span></b>
-            </p>
-            <p>
-              Total Play Time:
-              <b><span id="stats-total-playtime-display">Loading...</span></b>
-            </p>
-            <p>
-              Current Game Mode:
-              <b
-                ><span id="stats-current-game-mode-display">Loading...</span></b
-              >
-            </p>
-            <div style="display: flex; align-items: center">
-              <h3 class="money-header">Mewnits</h3>
-              <p class="no-before">$$$</p>
-            </div>
-            <p>
-              Lifetime Mewnits:
-              <b><span id="stats-lifetime-mewnits-display">Loading...</span></b>
-            </p>
-            <p>
-              Current Mewnits:
-              <b><span id="stats-current-mewnits-display">Loading...</span></b>
-            </p>
-            <p>
-              Base MPS:
-              <b><span id="stats-base-mps-display">Loading...</span></b>
-            </p>
-            <p>
-              Current MPS:
-              <b><span id="stats-current-mps-display">Loading...</span></b>
-            </p>
-            <h3 class="clicks-header">
-              Clicks<svg
-                fill="#ffffff"
-                width="25px"
-                height="25px"
-                viewBox="0 0 40 40"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g
-                  id="SVGRepo_tracerCarrier"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                ></g>
-                <g id="SVGRepo_iconCarrier">
-                  <path
-                    d="M33 38H21c-.6 0-1-.4-1-1 0-1.5-.7-2.4-1.8-3.8-.6-.7-1.3-1.6-2-2.7-1.9-3-3.6-6.6-4-7.9-.4-1.3-.1-2.2.3-2.7.4-.6 1.2-.9 2.1-.9 1.2 0 2.4 1 3.5 2.3V11c0-1.7 1.3-3 3-3s3 1.3 3 3v4.2c.3-.1.6-.2 1-.2 1.1 0 2 .6 2.5 1.4.4-.3.9-.4 1.4-.4 1.4 0 2.5.9 2.9 2.2.3-.1.7-.2 1.1-.2 1.7 0 3 1.3 3 3v3c0 2.6-.5 4.7-1 6.7s-1 3.9-1 6.3c0 .6-.4 1-1 1zm-11.1-2H32c.1-2.2.6-4 1-5.8.5-2 1-3.9 1-6.2v-3c0-.6-.4-1-1-1s-1 .4-1 1v1c0 .6-.4 1-1 1s-1-.4-1-1v-3c0-.6-.4-1-1-1s-1 .4-1 1v2c0 .6-.4 1-1 1s-1-.4-1-1v-3c0-.6-.4-1-1-1s-1 .4-1 1v2c0 .6-.4 1-1 1s-1-.4-1-1v-9c0-.6-.4-1-1-1s-1 .4-1 1v15c0 .6-.4 1-1 1s-1-.4-1-1v-.8c-.9-2.3-2.8-4.2-3.5-4.2-.2 0-.4 0-.5.1-.1.1-.1.4 0 .9.3 1.1 1.8 4.3 3.8 7.5.6 1 1.2 1.7 1.8 2.5 1.1 1.2 2.1 2.3 2.3 4z"
-                  ></path>
-                </g>
-              </svg>
-            </h3>
-            <p>
-              Lifetime Clicks:
-              <b><span id="stats-lifetime-clicks-display">Loading...</span> </b>
-            </p>
-            <p>
-              Mewnits Gained from Clicks:
-              <b
-                ><span id="stats-lifetime-clicks-mewnits-display"
-                  >Loading...</span
+            <div class="stats-card">
+              <h3>General</h3>
+              <p>
+                Legacy Began On:
+                <b><span id="stats-game-started-display">Loading...</span></b>
+              </p>
+              <p>
+                Total Play Time:
+                <b><span id="stats-total-playtime-display">Loading...</span></b>
+              </p>
+              <p>
+                Game Mode:
+                <b
+                  ><span id="stats-current-game-mode-display"
+                    >Loading...</span
+                  ></b
                 >
-              </b>
-            </p>
-            <p>
-              Base Click Power:
-              <b
-                ><span id="stats-base-click-power-display">Loading...</span>
-              </b>
-            </p>
-            <p>
-              Current Click Power:
-              <b
-                ><span id="stats-current-clickpower-display">Loading...</span>
-              </b>
-            </p>
-            <h3 class="golden">Golden Pawprints</h3>
-            <p>
-              Golden Pawprints Clicked:<b style="margin-left: 5px"
-                ><span id="stats-clicked-golden-display">Loading...</span></b
-              >
-            </p>
-            <h3 class="rainbow-header">Active Bonuses</h3>
-            <p>
-              Yarn:
-              <b><span id="stats-yarn-display">Loading...</span></b>
-            </p>
-            <p>
-              Thousand Pats:
-              <b><span id="stats-thousand-pats-display">Loading...</span> </b>
-            </p>
-            <p>
-              Click Boost (% of MPS):
-              <b><span id="stats-mps-click-boost-display">Loading...</span> </b>
-            </p>
-            <h3 class="biscuits-header">
-              <span class="bis">Bis</span><span class="cuits">cuits</span>
-            </h3>
-            <p>
-              Lifetime Biscuits:
-              <b
-                ><span id="stats-lifetime-biscuits-display">Loading...</span></b
-              >
-            </p>
-            <p>
-              Current Biscuits:
-              <b><span id="stats-current-biscuits-display">Loading...</span></b>
-            </p>
-            <p>
-              Base Efficiency:
-              <b><span id="stats-base-efficiency-display">Loading...</span></b>
-            </p>
-            <p>
-              Current Efficiency:
-              <b
-                ><span id="stats-current-efficiency-display"
-                  >Loading...</span
-                ></b
-              >
-            </p>
+              </p>
+              <p>Pausing:</p>
+              <ul>
+                <p>
+                  isPaused:
+                  <b><span id="stats-isPaused-display">Loading...</span></b>
+                </p>
+                <p>
+                  Time Wasted:
+                  <b
+                    ><span id="stats-time-spent-paused-display"
+                      >Loading...</span
+                    ></b
+                  >
+                </p>
+                <p>
+                  # Of Pauses:
+                  <b
+                    ><span id="stats-num-of-pauses-display">Loading...</span></b
+                  >
+                </p>
+              </ul>
+            </div>
+            <div class="stats-card">
+              <div style="display: flex; align-items: center">
+                <h3 class="money-header">Mewnits</h3>
+                <p class="no-before">$$$</p>
+              </div>
+              <p>
+                Lifetime Mewnits:
+                <b
+                  ><span id="stats-lifetime-mewnits-display"
+                    >Loading...</span
+                  ></b
+                >
+              </p>
+              <p>
+                Current Mewnits:
+                <b
+                  ><span id="stats-current-mewnits-display">Loading...</span></b
+                >
+              </p>
+              <p>
+                Base MPS:
+                <b><span id="stats-base-mps-display">Loading...</span></b>
+              </p>
+              <p>
+                Current MPS:
+                <b><span id="stats-current-mps-display">Loading...</span></b>
+              </p>
+            </div>
+            <div class="stats-card">
+              <h3 class="clicks-header">
+                Clicks<svg
+                  fill="#ffffff"
+                  width="25px"
+                  height="25px"
+                  viewBox="0 0 40 40"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g
+                    id="SVGRepo_tracerCarrier"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path
+                      d="M33 38H21c-.6 0-1-.4-1-1 0-1.5-.7-2.4-1.8-3.8-.6-.7-1.3-1.6-2-2.7-1.9-3-3.6-6.6-4-7.9-.4-1.3-.1-2.2.3-2.7.4-.6 1.2-.9 2.1-.9 1.2 0 2.4 1 3.5 2.3V11c0-1.7 1.3-3 3-3s3 1.3 3 3v4.2c.3-.1.6-.2 1-.2 1.1 0 2 .6 2.5 1.4.4-.3.9-.4 1.4-.4 1.4 0 2.5.9 2.9 2.2.3-.1.7-.2 1.1-.2 1.7 0 3 1.3 3 3v3c0 2.6-.5 4.7-1 6.7s-1 3.9-1 6.3c0 .6-.4 1-1 1zm-11.1-2H32c.1-2.2.6-4 1-5.8.5-2 1-3.9 1-6.2v-3c0-.6-.4-1-1-1s-1 .4-1 1v1c0 .6-.4 1-1 1s-1-.4-1-1v-3c0-.6-.4-1-1-1s-1 .4-1 1v2c0 .6-.4 1-1 1s-1-.4-1-1v-3c0-.6-.4-1-1-1s-1 .4-1 1v2c0 .6-.4 1-1 1s-1-.4-1-1v-9c0-.6-.4-1-1-1s-1 .4-1 1v15c0 .6-.4 1-1 1s-1-.4-1-1v-.8c-.9-2.3-2.8-4.2-3.5-4.2-.2 0-.4 0-.5.1-.1.1-.1.4 0 .9.3 1.1 1.8 4.3 3.8 7.5.6 1 1.2 1.7 1.8 2.5 1.1 1.2 2.1 2.3 2.3 4z"
+                    ></path>
+                  </g>
+                </svg>
+              </h3>
+              <p>
+                Lifetime Clicks:
+                <b
+                  ><span id="stats-lifetime-clicks-display">Loading...</span>
+                </b>
+              </p>
+              <p>
+                Mewnits Gained from Clicks:
+                <b
+                  ><span id="stats-lifetime-clicks-mewnits-display"
+                    >Loading...</span
+                  >
+                </b>
+              </p>
+              <p>
+                Base Click Power:
+                <b
+                  ><span id="stats-base-click-power-display">Loading...</span>
+                </b>
+              </p>
+              <p>
+                Current Click Power:
+                <b
+                  ><span id="stats-current-clickpower-display">Loading...</span>
+                </b>
+              </p>
+            </div>
+            <div class="stats-card">
+              <h3 class="golden">Golden Pawprints</h3>
+              <p>
+                Golden Pawprints Clicked:<b style="margin-left: 5px"
+                  ><span id="stats-clicked-golden-display">Loading...</span></b
+                >
+              </p>
+            </div>
+            <div class="stats-card">
+              <h3 class="rainbow-header">Active Bonuses</h3>
+              <p>
+                Yarn:
+                <b><span id="stats-yarn-display">Loading...</span></b>
+              </p>
+              <p>
+                Thousand Pats:
+                <b><span id="stats-thousand-pats-display">Loading...</span> </b>
+              </p>
+              <p>
+                Click Boost (% of MPS):
+                <b
+                  ><span id="stats-mps-click-boost-display">Loading...</span>
+                </b>
+              </p>
+            </div>
+            <div class="stats-card">
+              <h3 class="biscuits-header">
+                <span class="bis">Bis</span><span class="cuits">cuits</span>
+              </h3>
+              <p>
+                Lifetime Biscuits:
+                <b
+                  ><span id="stats-lifetime-biscuits-display"
+                    >Loading...</span
+                  ></b
+                >
+              </p>
+              <p>
+                Current Biscuits:
+                <b
+                  ><span id="stats-current-biscuits-display"
+                    >Loading...</span
+                  ></b
+                >
+              </p>
+              <p>
+                Base Efficiency:
+                <b
+                  ><span id="stats-base-efficiency-display">Loading...</span></b
+                >
+              </p>
+              <p>
+                Current Efficiency:
+                <b
+                  ><span id="stats-current-efficiency-display"
+                    >Loading...</span
+                  ></b
+                >
+              </p>
+            </div>
           </div>
         </div>
         <button id="close-stats-dialog" class="dialog-button">Close</button>
@@ -819,6 +872,7 @@
     ></script>
     <script type="module" src="src/js/effects/clickerAreaNav.js"></script>
     <script type="module" src="src/js/biscuits/biscuits.js"></script>
+    <script type="module" src="src/js/helpers/isPaused.js"></script>
 
     <script>
       if ("serviceWorker" in navigator) {

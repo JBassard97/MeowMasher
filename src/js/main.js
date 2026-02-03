@@ -63,6 +63,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   let activeTimedBoostTimeout = null;
 
   let isPaused = false;
+  const MS_IN_A_SEC = 1000;
+  let pauseInterval = null;
 
   let revealedUpgrades = new Set();
 
@@ -593,7 +595,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (isPaused) return;
 
     isPaused = true;
-    pauseResumeButton.textContent = "⏵︎";
+    pauseResumeButton.textContent = "▶️";
 
     // Stop auto tick
     if (autoInterval) {
@@ -607,19 +609,38 @@ document.addEventListener("DOMContentLoaded", async () => {
       activeTimedBoostTimeout = null;
     }
 
-    console.log("⏸ Game Paused");
+    // Add to numOfPauses
+    storage.setNumberOfPauses(storage.getNumberOfPauses() + 1);
+
+    // ⏱️ Start pause time tracker
+    if (!pauseInterval) {
+      pauseInterval = setInterval(() => {
+        const current = storage.getTimeSpentPaused();
+        storage.setTimeSpentPaused(current + MS_IN_A_SEC);
+      }, MS_IN_A_SEC);
+    }
+
+    console.log("⏸️ Game Paused");
+    window.dispatchEvent(new CustomEvent("pause"));
   }
 
   function Resume() {
     if (!isPaused) return;
 
     isPaused = false;
-    pauseResumeButton.textContent = "⏸︎";
+    pauseResumeButton.textContent = "⏸️";
 
     updateAutoRate();
     startAutoIncrement();
 
+    // ⏹️ Stop pause time tracker
+    if (pauseInterval) {
+      clearInterval(pauseInterval);
+      pauseInterval = null;
+    }
+
     console.log("▶️ Game Resumed");
+    window.dispatchEvent(new CustomEvent("resume"));
   }
 
   document.addEventListener("keypress", (e) => {
@@ -637,9 +658,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ? ---------------------------
   if (!storage.getGameStartTimeMs()) {
     storage.setGameStartTime();
+    console.log("Game Started @: ", storage.getGameStartTimeMs());
   }
-
-  console.log(storage.getGameStartTimeMs());
 
   // -----------------------------
   // INIT

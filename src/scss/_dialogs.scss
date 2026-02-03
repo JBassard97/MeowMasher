@@ -270,11 +270,38 @@
       p.no-before {
         margin-left: 3px;
         text-decoration: none;
-        transform: translateY(5px);
       }
 
       p.no-before::before {
         content: none;
+      }
+
+      ul {
+        padding-inline-start: 20px;
+        margin: 0;
+        p {
+          color: lightskyblue;
+          span {
+            color: whitesmoke;
+            .details {
+              color: rgba(211, 211, 211, 0.639);
+            }
+          }
+        }
+        p::before {
+          color: lightskyblue;
+        }
+      }
+
+      .stats-card {
+        border: 2px solid rgba(128, 128, 128, 0.502);
+        border-radius: 20px;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        h3 {
+          margin: 0;
+          margin-bottom: 0.2rem;
+        }
       }
 
       .clicks-header {

@@ -2,6 +2,7 @@
 import { spawnClickPopup } from "../effects/clickPopup.js";
 import { createCatRotator } from "../effects/catRotation.js";
 import { AudioList } from "../audio/audio.js";
+import { isPaused } from "../helpers/isPaused.js";
 
 export function setupClickHandler({
   clickerButton,
@@ -15,6 +16,7 @@ export function setupClickHandler({
   const rotateCat = createCatRotator(clickerImg);
 
   clickerButton.onclick = (e) => {
+    if (isPaused) return;
     if (storage.getIsInBiscuitsMode()) return;
     const rect = clickerButton.getBoundingClientRect();
 

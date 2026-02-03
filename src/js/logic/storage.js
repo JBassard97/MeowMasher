@@ -202,6 +202,30 @@ export const storage = {
   getLifetimeBiscuits: () => Number(getItem("lifetimeBiscuits")) || 0,
   setLifetimeBiscuits: (value) => setItem("lifetimeBiscuits", value),
 
+  // --- Pause ---
+  getNumberOfPauses: () => Number(getItem("numOfPauses")) || 0,
+  setNumberOfPauses: (value) => setItem("numOfPauses", value),
+  getTimeSpentPaused: () => Number(getItem("timeSpentPaused")) || 0,
+  setTimeSpentPaused: (value) => setItem("timeSpentPaused", value),
+  getTotalPauseTimeFormatted: () => {
+    let ms = storage.getTimeSpentPaused();
+
+    const totalSeconds = Math.floor(ms / 1000);
+
+    const seconds = totalSeconds % 60;
+    const minutes = Math.floor(totalSeconds / 60) % 60;
+    const hours = Math.floor(totalSeconds / 3600) % 24;
+    const days = Math.floor(totalSeconds / 86400);
+
+    const parts = [];
+    if (days) parts.push(`${days}d`);
+    if (hours || days) parts.push(`${hours}h`);
+    if (minutes || hours || days) parts.push(`${minutes}m`);
+    parts.push(`${seconds}s`);
+
+    return parts.join(" ");
+  },
+
   // --- Game Age ---
   getGameStartTimeMs: () => {
     let t = getItem("gameStartTime");

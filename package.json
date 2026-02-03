@@ -4,15 +4,17 @@
   "description": "The clicker game all about cats",
   "main": "index.js",
   "scripts": {
-    "dev-funcs": "cd dev && node loc.js && node subUpgradePdf.js && cd ..",
-    "loc": "cd dev && node loc.js && cd ..",
+    "dev-funcs": "cd dev && cd scripts && node yamlToJson.js && node subUpgradePdf.js && node loc.js && cd ../..",
+    "subUpgradePdf": "cd dev && cd scripts && node subUpgradePdf.js && cd ../..",
+    "yamlToJson": "cd dev && cd scripts && node yamlToJson.js && cd ../..",
+    "loc": "cd dev && cd scripts && node loc.js && cd ../..",
     "build-css": "sass src/scss:src/css",
     "sass-watch": "sass --watch src/scss:src/css",
     "pywebview": "py main.py",
-    "build-exe-windows": "python -m PyInstaller main.py --name MeowMasher --add-data \"index.html;.\" --add-data \"package.json;.\" --add-data \"save.json;.\" --add-data \"src;src\" --icon favicon.ico --windowed --distpath dist/windows",
-    "build-exe-unix": "python3 -m PyInstaller main.py --name MeowMasher --add-data index.html:. --add-data package.json:. --add-data save.json:. --add-data src:src --icon favicon.ico --windowed --distpath dist/unix",
-    "start-exe-windows": "cd dist/windows/MeowMasher && MeowMasher.exe",
-    "start-exe-unix": "cd dist/unix/MeowMasher && ./MeowMasher"
+    "build-exe:windows": "python -m PyInstaller main.py --name MeowMasher --add-data \"index.html;.\" --add-data \"package.json;.\" --add-data \"save.json;.\" --add-data \"src;src\" --icon favicon.ico --windowed --distpath dist/windows",
+    "build-exe:unix": "python3 -m PyInstaller main.py --name MeowMasher --add-data index.html:. --add-data package.json:. --add-data save.json:. --add-data src:src --icon favicon.ico --windowed --distpath dist/unix",
+    "start:exe-windows": "cd dist/windows/MeowMasher && MeowMasher.exe",
+    "start:exe-unix": "cd dist/unix/MeowMasher && ./MeowMasher"
   },
   "keywords": [],
   "author": "JBassard97",
@@ -28,22 +30,39 @@
       "outputs"
     ],
     "ignoreFiles": [
-      "save.json"
+      "save.json",
+      "package-lock.json"
     ],
     "allowedExts": [
       ".js",
       ".html",
+      ".css",
       ".scss",
       ".json",
       ".py",
-      ".sh"
+      ".sh",
+      ".yml"
+    ],
+    "devExts": [
+      ".html",
+      ".scss",
+      ".js",
+      ".json",
+      ".py",
+      ".sh",
+      ".yml"
+    ],
+    "prodExts": [
+      ".html",
+      ".css",
+      ".js",
+      ".json"
     ]
   },
   "devDependencies": {
-    "sass": "^1.93.2"
-  },
-  "dependencies": {
     "jbassard97nodecolors": "^3.1.0",
-    "pdfkit": "^0.17.2"
+    "pdfkit": "^0.17.2",
+    "sass": "^1.93.2",
+    "yaml": "^2.8.2"
   }
 }

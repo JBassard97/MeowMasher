@@ -7,11 +7,12 @@ const { MagentaText } = require("jbassard97nodecolors");
 const outputPath = path.join(
   __dirname,
   "..",
+  "..",
   "dev",
   "outputs",
   "subUpgrades.pdf",
 );
-const inputPath = path.join(__dirname, "..", "src", "data", "subUpgrades.json");
+const inputPath = path.join(__dirname, "..", "..", "src", "data", "subUpgrades.json");
 
 const ROW_TYPE_COLORS = {
   clickPowerAdder: "#92ccf6",

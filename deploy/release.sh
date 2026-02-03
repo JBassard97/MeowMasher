@@ -12,7 +12,10 @@ fi
 COMMIT_MESSAGE="$1"
 VERSION_TYPE="$2"
 
-# Run pre-commit dev funcs
+# ?Does in order: 
+# Compiles subUpgrades.yml into .json, 
+# Creates updated subUpgrades.pdf, 
+# Counts lines of code
 npm run dev-funcs
 
 # Stage all changes

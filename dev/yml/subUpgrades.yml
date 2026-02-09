@@ -944,8 +944,9 @@ items:
     cost: 50000000000
     adoptedCatsRequirement: 9
     <<: *livingRoom
-  - id: 400003
-    name: New Living Room!
-    cost: 50000000000000
-    adoptedCatsRequirement: 12
-    <<: *livingRoom
+  #  TODO: add image for this
+  # - id: 400003
+  #   name: New Living Room!
+  #   cost: 50000000000000
+  #   adoptedCatsRequirement: 12
+  #   <<: *livingRoom

@@ -1,6 +1,9 @@
 const handle = document.querySelector(".draggable");
 const topContainer = document.querySelector(".sub-upgrades");
 
+// Force initial height to a reasonable value
+topContainer.style.minHeight = "150px";
+
 let dragging = false;
 let startY = 0;
 let startHeight = 0;
@@ -28,7 +31,7 @@ handle.addEventListener("pointermove", (e) => {
   const deltaY = e.clientY - startY;
   const newHeight = startHeight + deltaY;
 
-  if (newHeight > 325 || newHeight < 100) return;
+  if (newHeight > 400 || newHeight < 100) return;
 
   topContainer.style.minHeight = `${newHeight}px`;
 });

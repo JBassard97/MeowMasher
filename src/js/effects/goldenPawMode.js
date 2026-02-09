@@ -1,4 +1,5 @@
 // ! LOGIC LIVES IN MAIN.JS
+import { formatNumber } from "../helpers/formatNumber.js";
 
 let goldenInterval = null;
 let remainingSeconds = 0;
@@ -153,7 +154,7 @@ export function toggleGoldenPawMode(
   // ======================
   if (modeType === "mew") {
     bonusDisplay.style.display = "block";
-    bonusDisplay.textContent = `+${value.toLocaleString()} Mewnits`;
+    bonusDisplay.textContent = `+${formatNumber(value)} Mewnits`;
 
     if (goldenInterval) clearInterval(goldenInterval);
 

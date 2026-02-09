@@ -1,3 +1,5 @@
+import { D } from "../logic/decimalWrapper.js";
+
 // Wait for pywebview to be injected
 const waitForPywebview = (maxWait = 2000) => {
   return new Promise((resolve) => {
@@ -81,136 +83,227 @@ export const clearAll = () => {
 };
 
 export const storage = {
-  // --- Existing getters ---
-  getMewnits: () => Number(getItem("mewnits")) || 0,
-  getClickPower: () => Number(getItem("clickPower")) || 1,
-  getUpgradeOwned: (id) => Number(getItem(`upgrade_${id}_owned`)) || 0,
+  // --- ALL NUMERIC GETTERS NOW RETURN DECIMALS ---
+  getMewnits: () => D(getItem("mewnits") || "0"),
+  getClickPower: () => D(getItem("clickPower") || "1"),
+  getUpgradeMultiplier: (id) => D(getItem(`upgrade_${id}_multiplier`) || "1"),
+  getMewnitsPerSecond: () => D(getItem("mewnitsPerSecond") || "0"),
+  getLifetimeMewnits: () => D(getItem("lifetimeMewnits") || "0"),
+  getLifetimeClickMewnits: () => D(getItem("lifetimeClickMewnits") || "0"),
+  getUpgradeOwned: (id) => D(getItem(`upgrade_${id}_owned`) || "0"),
+  getLifetimeClicks: () => D(getItem("lifetimeClicks") || "0"),
+  getBoostOwned: (id) => D(getItem(`boost_${id}_owned`) || "0"),
+  getThousandFingersBonus: () => D(getItem("thousandFingersBonus") || "0"),
+  getAdoptedCatsNumber: () => D(getItem("adoptedCatsAmount") || "1"),
+  getLivingRoomIndex: () => D(getItem("livingRoomIndex") || "0"),
+  getNumberOfLivingRooms: () => D(getItem("livingRoomAmount") || "1"),
+  getBiscuits: () => D(getItem("biscuits") || "0"),
+  getBaseBiscuitEfficiency: () => D(getItem("baseBiscuitEfficiency") || "1"),
+  getBiscuitEfficiency: () => D(getItem("biscuitEfficiency") || "1"),
+  getLifetimeBiscuits: () => D(getItem("lifetimeBiscuits") || "0"),
+  getNumberofGoldenPawClicks: () => D(getItem("goldenPawClicks") || "0"),
+  getNumberOfPauses: () => D(getItem("numOfPauses") || "0"),
+  getTimeSpentPaused: () => D(getItem("timeSpentPaused") || "0"),
+  getGameStartTimeMs: () => {
+    let t = getItem("gameStartTime");
+    if (!t) {
+      t = Date.now();
+      setItem("gameStartTime", t);
+    }
+    return D(t);
+  },
+
+  // --- STRING/BOOLEAN GETTERS (non-numeric) ---
   getSubUpgradeOwned: (id) => getItem(`subUpgrade_${id}_owned`),
-  getUpgradeMultiplier: (id) =>
-    Number(getItem(`upgrade_${id}_multiplier`)) || 1,
+  getPercentOfMpsClickAdder: () =>
+    Number(getItem("percentOfMpsClickAdder")) || 0, // Keep as number - it's a small percentage
+  getIsUiFlipped: () => JSON.parse(getItem("isUiFlipped") ?? "false"),
+  getIsInColorblindMode: () =>
+    JSON.parse(getItem("isInColorblindMode") ?? "false"),
+  getCurrentFont: () => getItem("currentFont") || "Finger Paint",
+  getIsMeowAudioOn: () => JSON.parse(getItem("isMeowAudioOn") ?? "true"),
+  getIsSfxAudioOn: () => JSON.parse(getItem("isSfxAudioOn") ?? "true"),
+  getMeowAudioLevel: () => getItem("meowAudioLevel") || "5",
+  getSfxAudioLevel: () => getItem("sfxAudioLevel") || "5",
+  getIsInBiscuitsMode: () => JSON.parse(getItem("isInBiscuitsMode") ?? "false"),
+  getNumberFormat: () => getItem("numberFormat") || "suffix",
 
-  // --- Existing setters ---
-  setMewnits: (value) => setItem("mewnits", value),
-  setClickPower: (value) => setItem("clickPower", value),
-  setUpgradeOwned: (id, value) => setItem(`upgrade_${id}_owned`, value),
+  // --- BIG NUMBER SETTERS (accept strings or Decimals) ---
+  setMewnits: (value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem("mewnits", v);
+  },
+  setClickPower: (value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem("clickPower", v);
+  },
+  setUpgradeMultiplier: (id, value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem(`upgrade_${id}_multiplier`, v);
+  },
+  setMewnitsPerSecond: (value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem("mewnitsPerSecond", v);
+  },
+
+  // --- NUMERIC SETTERS (accept Decimals or numbers) ---
+  setUpgradeOwned: (id, value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem(`upgrade_${id}_owned`, v);
+  },
   setSubUpgradeOwned: (id) => setItem(`subUpgrade_${id}_owned`, "true"),
-  setUpgradeMultiplier: (id, value) =>
-    setItem(`upgrade_${id}_multiplier`, value),
+  setBoostOwned: (id, value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem(`boost_${id}_owned`, v);
+  },
 
-  // --- Boosts ---
-  getBoostOwned: (id) => Number(getItem(`boost_${id}_owned`)) || 0,
-  setBoostOwned: (id, value) => setItem(`boost_${id}_owned`, value),
-
-  // --- Stored Mewnits Per Second ---
-  getMewnitsPerSecond: () => Number(getItem("mewnitsPerSecond")) || 0,
-  setMewnitsPerSecond: (value) => setItem("mewnitsPerSecond", value),
-
-  // --- Lifetime Mewnits ---
-  getLifetimeMewnits: () => Number(getItem("lifetimeMewnits")) || 0,
+  // --- Lifetime Mewnits (Decimal-safe) ---
   addLifetimeMewnits: (amount) => {
-    const current = Number(getItem("lifetimeMewnits")) || 0;
-    setItem("lifetimeMewnits", current + amount);
+    const current = D(getItem("lifetimeMewnits") || "0");
+    const amountD =
+      typeof amount === "object" && amount.plus ? amount : D(amount);
+    const newValue = current.plus(amountD);
+    setItem("lifetimeMewnits", newValue.toString());
   },
-  resetLifetimeMewnits: () => setItem("lifetimeMewnits", 0),
+  resetLifetimeMewnits: () => setItem("lifetimeMewnits", "0"),
 
-  // --- Lifetime Clicks ---
-  getLifetimeClicks: () => Number(getItem("lifetimeClicks")) || 0,
+  // --- Lifetime Clicks (Decimal-safe) ---
   addLifetimeClicks: (amount = 1) => {
-    const current = Number(getItem("lifetimeClicks")) || 0;
-    setItem("lifetimeClicks", current + amount);
+    const current = D(getItem("lifetimeClicks") || "0");
+    const amountD = D(amount);
+    const newValue = current.plus(amountD);
+    setItem("lifetimeClicks", newValue.toString());
   },
-  resetLifetimeClicks: () => setItem("lifetimeClicks", 0),
+  resetLifetimeClicks: () => setItem("lifetimeClicks", "0"),
 
-  // --- Lifetime Click-Generated Mewnits ---
-  getLifetimeClickMewnits: () => Number(getItem("lifetimeClickMewnits")) || 0,
+  // --- Lifetime Click-Generated Mewnits (Decimal-safe) ---
   addLifetimeClickMewnits: (amount) => {
-    const current = Number(getItem("lifetimeClickMewnits")) || 0;
-    setItem("lifetimeClickMewnits", current + amount);
+    const current = D(getItem("lifetimeClickMewnits") || "0");
+    const amountD =
+      typeof amount === "object" && amount.plus ? amount : D(amount);
+    const newValue = current.plus(amountD);
+    setItem("lifetimeClickMewnits", newValue.toString());
   },
-  resetLifetimeClickMewnits: () => setItem("lifetimeClickMewnits", 0),
+  resetLifetimeClickMewnits: () => setItem("lifetimeClickMewnits", "0"),
 
   // --- Thousand Fingers Bonus ---
-  getThousandFingersBonus: () => Number(getItem("thousandFingersBonus")) || 0,
-  setThousandFingersBonus: (value) => setItem("thousandFingersBonus", value),
+  setThousandFingersBonus: (value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem("thousandFingersBonus", v);
+  },
 
   // --- Percent-of-MPS-to-Click bonus ---
-  getPercentOfMpsClickAdder: () =>
-    Number(getItem("percentOfMpsClickAdder")) || 0,
   setPercentOfMpsClickAdder: (value) =>
     setItem("percentOfMpsClickAdder", value),
 
   // --- Settings ---
-  getIsUiFlipped: () => JSON.parse(getItem("isUiFlipped") ?? "false"),
   setIsUiFlipped: (value) => setItem("isUiFlipped", JSON.stringify(value)),
-  getIsInColorblindMode: () =>
-    JSON.parse(getItem("isInColorblindMode") ?? "false"),
   setIsInColorblindMode: (value) =>
     setItem("isInColorblindMode", JSON.stringify(value)),
-
-  getCurrentFont: () => getItem("currentFont") || "Finger Paint",
   setCurrentFont: (fontName) => setItem("currentFont", fontName),
-
-  getIsMeowAudioOn: () => JSON.parse(getItem("isMeowAudioOn") ?? "true"),
   setIsMeowAudioOn: (value) => setItem("isMeowAudioOn", JSON.stringify(value)),
-
-  getIsSfxAudioOn: () => JSON.parse(getItem("isSfxAudioOn") ?? "true"),
   setIsSfxAudioOn: (value) => setItem("isSfxAudioOn", JSON.stringify(value)),
-
-  getMeowAudioLevel: () => getItem("meowAudioLevel") || "5",
   setMeowAudioLevel: (level) => setItem("meowAudioLevel", level),
-
-  getSfxAudioLevel: () => getItem("sfxAudioLevel") || "5",
   setSfxAudioLevel: (level) => setItem("sfxAudioLevel", level),
 
   // --- Golden Pawprint ---
-  getNumberofGoldenPawClicks: () => Number(getItem("goldenPawClicks")) || 0,
   addGoldenPawClick: () => {
-    const current = Number(getItem("goldenPawClicks")) || 0;
-    setItem("goldenPawClicks", String(current + 1));
+    const current = D(getItem("goldenPawClicks") || "0");
+    const newValue = current.plus(1);
+    setItem("goldenPawClicks", newValue.toString());
   },
 
   // --- Cat Unlocking ---
-  getAdoptedCatsNumber: () => JSON.parse(getItem("adoptedCatsAmount")) || 1,
-  initAdoptedCatsNumber: () => setItem("adoptedCatsAmount", 1),
+  initAdoptedCatsNumber: () => setItem("adoptedCatsAmount", "1"),
   addAdoptedCatsNumber: () => {
-    const current = JSON.parse(getItem("adoptedCatsAmount")) || 1;
-    setItem("adoptedCatsAmount", JSON.stringify(current + 1));
+    const current = D(getItem("adoptedCatsAmount") || "1");
+    const newValue = current.plus(1);
+    setItem("adoptedCatsAmount", newValue.toString());
   },
 
   // --- Living Rooms ---
-  getLivingRoomIndex: () => Number(getItem("livingRoomIndex")) || 0,
   addLivingRoomIndex: () => {
-    const currentIndex = Number(getItem("livingRoomIndex")) || 0;
-    setItem("livingRoomIndex", String(currentIndex + 1));
+    const current = D(getItem("livingRoomIndex") || "0");
+    const newValue = current.plus(1);
+    setItem("livingRoomIndex", newValue.toString());
   },
-  getNumberOfLivingRooms: () => Number(getItem("livingRoomAmount")) || 1,
   addNumberOfLivingRooms: () => {
-    const currentNumber = Number(getItem("livingRoomAmount")) || 1;
-    setItem("livingRoomAmount", String(currentNumber + 1));
+    const current = D(getItem("livingRoomAmount") || "1");
+    const newValue = current.plus(1);
+    setItem("livingRoomAmount", newValue.toString());
   },
 
   // --- Biscuits ---
-  getIsInBiscuitsMode: () => JSON.parse(getItem("isInBiscuitsMode") ?? "false"),
   setIsInBiscuitsMode: (value) =>
     setItem("isInBiscuitsMode", JSON.stringify(value)),
-  getBiscuits: () => Number(getItem("biscuits")) || 0,
-  setBiscuits: (value) => setItem("biscuits", value),
-  getBaseBiscuitEfficiency: () => Number(getItem("baseBiscuitEfficiency")) || 1,
-  setBaseBiscuitEfficiency: (value) => setItem("baseBiscuitEfficiency", value),
-  getBiscuitEfficiency: () => Number(getItem("biscuitEfficiency")) || 1,
-  setBiscuitEfficiency: (value) => setItem("biscuitEfficiency", value),
-  getLifetimeBiscuits: () => Number(getItem("lifetimeBiscuits")) || 0,
-  setLifetimeBiscuits: (value) => setItem("lifetimeBiscuits", value),
+  setBiscuits: (value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem("biscuits", v);
+  },
+  setBaseBiscuitEfficiency: (value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem("baseBiscuitEfficiency", v);
+  },
+  setBiscuitEfficiency: (value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem("biscuitEfficiency", v);
+  },
+  setLifetimeBiscuits: (value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem("lifetimeBiscuits", v);
+  },
 
   // --- Pause ---
-  getNumberOfPauses: () => Number(getItem("numOfPauses")) || 0,
-  setNumberOfPauses: (value) => setItem("numOfPauses", value),
-  getTimeSpentPaused: () => Number(getItem("timeSpentPaused")) || 0,
-  setTimeSpentPaused: (value) => setItem("timeSpentPaused", value),
+  setNumberOfPauses: (value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem("numOfPauses", v);
+  },
+  setTimeSpentPaused: (value) => {
+    const v =
+      typeof value === "object" && value.toString
+        ? value.toString()
+        : String(value);
+    setItem("timeSpentPaused", v);
+  },
   getTotalPauseTimeFormatted: () => {
-    let ms = storage.getTimeSpentPaused();
-
-    const totalSeconds = Math.floor(ms / 1000);
+    const ms = D(getItem("timeSpentPaused") || "0");
+    const totalSeconds = ms.div(1000).floor().toNumber();
 
     const seconds = totalSeconds % 60;
     const minutes = Math.floor(totalSeconds / 60) % 60;
@@ -227,15 +320,8 @@ export const storage = {
   },
 
   // --- Game Age ---
-  getGameStartTimeMs: () => {
-    let t = getItem("gameStartTime");
-    if (!t) {
-      t = Date.now();
-      setItem("gameStartTime", t);
-    }
-    return Number(t);
-  },
   getGameStartTimeFormatted: () => {
+    const startTime = D(getItem("gameStartTime") || String(Date.now()));
     return new Intl.DateTimeFormat("en-US", {
       month: "short",
       day: "numeric",
@@ -243,14 +329,16 @@ export const storage = {
       hour: "numeric",
       minute: "numeric",
       hour12: true,
-    }).format(new Date(storage.getGameStartTimeMs()));
+    }).format(new Date(startTime.toNumber()));
   },
   setGameStartTime: () => setItem("gameStartTime", Date.now()),
-  getTotalPlayTimeMs: () => Date.now() - storage.getGameStartTimeMs(),
+  getTotalPlayTimeMs: () => {
+    const startTime = D(getItem("gameStartTime") || String(Date.now()));
+    return D(Date.now()).minus(startTime);
+  },
   getTotalPlayTimeFormatted: () => {
-    let ms = storage.getTotalPlayTimeMs();
-
-    const totalSeconds = Math.floor(ms / 1000);
+    const ms = storage.getTotalPlayTimeMs();
+    const totalSeconds = ms.div(1000).floor().toNumber();
 
     const seconds = totalSeconds % 60;
     const minutes = Math.floor(totalSeconds / 60) % 60;
@@ -265,4 +353,7 @@ export const storage = {
 
     return parts.join(" ");
   },
+
+  // --- Number Format ---
+  setNumberFormat: (format) => setItem("numberFormat", format),
 };

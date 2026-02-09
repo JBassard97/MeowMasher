@@ -1373,12 +1373,5 @@
     "cost": 50000000000,
     "adoptedCatsRequirement": 9,
     "type": "livingRoom"
-  },
-  {
-    "id": 400003,
-    "name": "New Living Room!",
-    "cost": 50000000000000,
-    "adoptedCatsRequirement": 12,
-    "type": "livingRoom"
   }
 ]

@@ -21,6 +21,7 @@
     />
     <meta name="apple-mobile-web-app-title" content="Meow Masher" />
     <link rel="manifest" href="./site.webmanifest" />
+    <script src="https://cdn.jsdelivr.net/npm/decimal.js@10.4.3/decimal.min.js"></script>
   </head>
   <body>
     <header>
@@ -467,7 +468,6 @@
             Buy Many (<span id="buy-many-upgrades-display">0</span>)
           </button>
         </h5>
-        <script src="src/js/effects/draggableEl.js"></script>
         <div class="upgrades"></div>
       </div>
     </main>
@@ -481,6 +481,7 @@
           });
       </script>
       <p>© 2025-2026 Meow Masher</p>
+      <button id="dev">&GreaterGreater;</button>
       <a target="_blank" href="https://github.com/JBassard97/MeowMasher">
         <p>v<span id="version-number">1.0.0</span></p>
         <svg
@@ -858,6 +859,7 @@
 
     <div class="loading-spinner"><p>Loading...</p></div>
 
+    <!-- <script src="src/js/logic/decimalWrapper.js"></script> -->
     <script type="module" src="src/js/logic/storage.js"></script>
     <script type="module" src="src/js/main.js"></script>
     <script type="module" src="src/js/menus/settings.js"></script>
@@ -871,8 +873,12 @@
       src="src/js/easter-eggs/changeHeaderImage.js"
     ></script>
     <script type="module" src="src/js/effects/clickerAreaNav.js"></script>
+    <script type="module" src="src/js/effects/goldenPawMode.js"></script>
+    <script src="src/js/effects/draggableEl.js"></script>
     <script type="module" src="src/js/biscuits/biscuits.js"></script>
     <script type="module" src="src/js/helpers/isPaused.js"></script>
+    <script type="module" src="src/js/helpers/formatNumber.js"></script>
+    <script type="module" src="src/inject/game-progress.js"></script>
 
     <script>
       if ("serviceWorker" in navigator) {

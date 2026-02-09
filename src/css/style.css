@@ -764,12 +764,12 @@ header .header-icons #achievements-icon svg:hover g path {
 #right-side .sub-upgrades {
   padding: 8px;
   overflow: auto;
-  min-height: 150px;
-  max-height: 500px;
+  max-height: 100px;
   transition: height 0.1s linear;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
+  align-content: start;
 }
 #right-side .sub-upgrades::-webkit-scrollbar {
   width: 8px;
@@ -783,6 +783,7 @@ header .header-icons #achievements-icon svg:hover g path {
   display: flex;
   flex-direction: column;
   height: auto;
+  max-height: 200px;
   border: 2px solid transparent;
   border-radius: 20px;
   box-sizing: border-box;
@@ -803,6 +804,7 @@ header .header-icons #achievements-icon svg:hover g path {
   padding-bottom: 0.75rem;
   box-sizing: border-box;
   width: 100%;
+  word-break: break-all;
 }
 #right-side .sub-upgrades .sub-upgrade div {
   height: 100%;
@@ -836,10 +838,10 @@ header .header-icons #achievements-icon svg:hover g path {
 #right-side .draggable::after {
   content: "";
   position: absolute;
-  height: 100%;
+  height: 90%;
   aspect-ratio: 1/1;
   top: 0;
-  right: -5px;
+  right: 0;
   background-image: url("../assets/images/vert-resize.svg");
   background-repeat: no-repeat;
   background-position: center;

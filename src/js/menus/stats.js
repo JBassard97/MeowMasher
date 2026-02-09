@@ -4,6 +4,7 @@ import { computeThousandFingers } from "../bonuses/thousandFingers.js";
 import { isDesktop } from "../logic/storage.js";
 import { isPaused } from "../helpers/isPaused.js";
 import { formatNumber } from "../helpers/formatNumber.js";
+import { D } from "../logic/decimalWrapper.js";
 
 // Load both JSON data files ONCE
 let allSubUpgrades = [];
@@ -39,33 +40,32 @@ statsDialog.addEventListener("click", (e) => {
 
 setInterval(() => {
   if (statsDialog && statsDialog.classList.contains("active")) {
-    // --- numeric values first (convert strings to numbers) ---
-    const base = Number(storage.getClickPower() || 1);
+    // --- numeric values using Decimals ---
+    const base = storage.getClickPower();
     const tf = storage.getThousandFingersBonus
-      ? Number(storage.getThousandFingersBonus() || 0)
-      : 0;
+      ? storage.getThousandFingersBonus()
+      : D(0);
     const percent = storage.getPercentOfMpsClickAdder
-      ? Number(storage.getPercentOfMpsClickAdder() || 0)
-      : 0;
-    const mps = Number(storage.getMewnitsPerSecond() || 0);
-    const mpsBonus = Math.floor(mps * percent);
+      ? D(storage.getPercentOfMpsClickAdder())
+      : D(0);
+    const mps = storage.getMewnitsPerSecond();
+    const mpsBonus = mps.times(percent).floor();
 
-    const totalClickPower = base + tf + mpsBonus;
+    const totalClickPower = base.plus(tf).plus(mpsBonus);
 
     // --- display basic stats ---
     document.getElementById("stats-lifetime-mewnits-display").textContent =
-      formatNumber(storage.getLifetimeMewnits() || 0);
+      formatNumber(storage.getLifetimeMewnits());
 
-    // Convert Decimal string to number for display
     document.getElementById("stats-current-mewnits-display").textContent =
-      formatNumber(storage.getMewnits() || 0);
+      formatNumber(storage.getMewnits());
 
     document.getElementById("stats-base-mps-display").textContent =
       formatNumber(mps);
 
     document.getElementById("stats-current-mps-display").innerHTML =
       `${formatNumber(
-        mps + computeYarnBonus(allSubUpgrades).yarnBonus,
+        mps.plus(computeYarnBonus(allSubUpgrades).yarnBonus),
       )} <span class="details">(+${formatNumber(
         computeYarnBonus(allSubUpgrades).yarnBonus,
       )} from Yarn)</span>`;
@@ -75,19 +75,18 @@ setInterval(() => {
 
     document.getElementById(
       "stats-lifetime-clicks-mewnits-display",
-    ).textContent = formatNumber(storage.getLifetimeClickMewnits() || 0);
+    ).textContent = formatNumber(storage.getLifetimeClickMewnits());
 
     document.getElementById("stats-base-click-power-display").textContent =
       formatNumber(base);
 
     // --- build breakdown text ---
     const baseText = `(+${formatNumber(base)} Base Click Power)`;
-    const tfText = tf ? ` (+${formatNumber(tf)} from Thousand Pats)` : "";
-    const mpsText = percent
+    const tfText = tf.gt(0) ? ` (+${formatNumber(tf)} from Thousand Pats)` : "";
+    const mpsText = percent.gt(0)
       ? ` (+${formatNumber(mpsBonus)} from MPS Click Boost)`
       : "";
 
-    // --- final display (total + breakdown) ---
     document.getElementById("stats-current-clickpower-display").innerHTML =
       `${formatNumber(totalClickPower)} <span class="details">${baseText}${tfText}${mpsText}</span>`;
 
@@ -96,19 +95,25 @@ setInterval(() => {
       storage.getNumberofGoldenPawClicks().toLocaleString();
 
     // --- active bonuses ---
+    const yarn = computeYarnBonus(allSubUpgrades);
+    const thousand = computeThousandFingers(allUpgrades, allSubUpgrades);
+
     document.getElementById("stats-yarn-display").innerHTML =
-      `${computeYarnBonus(
-        allSubUpgrades,
-      ).yarnPercent.toLocaleString()}% <span class="details">(+${formatNumber(
-        computeYarnBonus(allSubUpgrades).yarnBonus,
+      `${yarn.yarnPercent.toLocaleString()}% <span class="details">(+${formatNumber(
+        yarn.yarnBonus,
       )})</span>`;
 
     document.getElementById("stats-thousand-pats-display").innerHTML =
-      `${formatNumber(tf)} <span class="details">(+${formatNumber(computeThousandFingers(allUpgrades, allSubUpgrades).bonus)} Click Power and +${formatNumber(computeThousandFingers(allUpgrades, allSubUpgrades).bonus)} Pats output for each non-Pats upgrade owned)</span>`;
+      `${formatNumber(tf)} <span class="details">(+${formatNumber(
+        thousand.bonus,
+      )} Click Power and +${formatNumber(
+        thousand.bonus,
+      )} Pats output for each non-Pats upgrade owned)</span>`;
 
-    document.getElementById("stats-mps-click-boost-display").innerHTML = percent
-      ? `${formatNumber(mpsBonus)} <span class="details">(${Math.floor(percent * 100)}%)</span>`
-      : "0";
+    document.getElementById("stats-mps-click-boost-display").innerHTML =
+      percent.gt(0)
+        ? `${formatNumber(mpsBonus)} <span class="details">(${percent.times(100).floor()}%)</span>`
+        : "0";
 
     // --- general ---
     document.getElementById("stats-game-started-display").textContent =
@@ -120,7 +125,7 @@ setInterval(() => {
     document.getElementById("stats-current-game-mode-display").textContent =
       isDesktop() ? "Desktop" : "Web";
 
-    // ---------- pausing -----------
+    // --- pausing ---
     document.getElementById("stats-isPaused-display").textContent = isPaused;
     document.getElementById("stats-time-spent-paused-display").textContent =
       storage.getTotalPauseTimeFormatted();

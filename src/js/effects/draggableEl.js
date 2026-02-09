@@ -3,6 +3,7 @@ const topContainer = document.querySelector(".sub-upgrades");
 
 // Force initial height to a reasonable value
 topContainer.style.minHeight = "150px";
+topContainer.style.maxHeight = "300px";
 
 let dragging = false;
 let startY = 0;

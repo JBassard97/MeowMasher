@@ -8,8 +8,8 @@ export function computeThousandFingers(upgrades, subUpgrades) {
 
   if (!ownedTFs.length) {
     upgrades.forEach((u) => (u.extraBonus = D(0)));
-    storage.setThousandFingersBonus(D(0));
-    return { total: 0, bonus: 0 }; // These are used for display only, safe to keep as numbers
+    storage.setThousandFingersBonus(0);
+    return { total: 0, bonus: 0 }; // Return regular numbers when there's no TF
   }
 
   // FIXED: Use Decimal for owned count
@@ -31,13 +31,9 @@ export function computeThousandFingers(upgrades, subUpgrades) {
 
   storage.setThousandFingersBonus(total);
 
-  // Return values: total as number for display/compatibility, but internal uses Decimal
+  // Return Decimals directly - caller should handle formatting
   return {
-    total: total.gt(Number.MAX_SAFE_INTEGER)
-      ? total.toNumber()
-      : total.toNumber(),
-    bonus: bonus.gt(Number.MAX_SAFE_INTEGER)
-      ? bonus.toNumber()
-      : bonus.toNumber(),
+    total: total, // Keep as Decimal
+    bonus: bonus, // Keep as Decimal
   };
 }

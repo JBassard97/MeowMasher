@@ -7,33 +7,28 @@ export function computeThousandFingers(upgrades, subUpgrades) {
   );
 
   if (!ownedTFs.length) {
-    upgrades.forEach((u) => (u.extraBonus = D(0)));
-    storage.setThousandFingersBonus(0);
-    return { total: 0, bonus: 0 }; // Return regular numbers when there's no TF
+    storage.setThousandFingersBonus(D(0));
+    return { total: D(0), bonus: D(0), patsBonus: D(0) };
   }
 
-  // FIXED: Use Decimal for owned count
   const nonPatsOwned = upgrades
     .filter((u) => u.name !== "Pats")
-    .reduce((sum, u) => sum.plus(u.owned), D(0)); // u.owned is already Decimal from storage
+    .reduce((sum, u) => sum.plus(u.owned), D(0));
 
-  let bonus = D(1); // "+n click power for every non-pats upgrade owned"
-
+  let bonus = D(1);
   let total = nonPatsOwned;
+
   ownedTFs.forEach((tf) => {
     total = total.times(tf.bonus);
     bonus = bonus.times(tf.bonus);
   });
 
-  upgrades.forEach((u) => {
-    u.extraBonus = u.name === "Pats" ? total : D(0);
-  });
-
   storage.setThousandFingersBonus(total);
 
-  // Return Decimals directly - caller should handle formatting
+  // Return values - don't modify upgrade objects here
   return {
-    total: total, // Keep as Decimal
-    bonus: bonus, // Keep as Decimal
+    total: total, // For click power
+    bonus: bonus, // For display
+    patsBonus: total, // For Pats MPS bonus
   };
 }

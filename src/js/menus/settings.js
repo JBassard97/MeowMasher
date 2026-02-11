@@ -1,4 +1,5 @@
 import { storage, clearAll } from "../logic/storage.js";
+import { setNumberFormat } from "../helpers/formatNumber.js";
 
 const settingsIcon = document.getElementById("settings-icon");
 const settingsDialog = document.getElementById("settings-dialog");
@@ -7,6 +8,7 @@ const resetGame = document.getElementById("reset-game");
 const flipUiCheckbox = document.getElementById("flip-ui");
 const colorblindModeCheckbox = document.getElementById("color-blind-mode");
 const fontSelect = document.getElementById("font-select");
+const numberFormatSelect = document.getElementById("number-format-select");
 const isMeowAudioOnCheckbox = document.getElementById("is-meow-on");
 const meowAudioVolumeSlider = document.getElementById("meow-audio-level");
 const meowLevelDisplay = document.getElementById("meow-level-display");
@@ -30,6 +32,7 @@ export const initSettings = () => {
   }
 
   fontSelect.value = storage.getCurrentFont();
+  numberFormatSelect.value = storage.getNumberFormat();
   isMeowAudioOnCheckbox.checked = storage.getIsMeowAudioOn();
 
   meowAudioVolumeSlider.disabled = !isMeowAudioOnCheckbox.checked;
@@ -62,6 +65,13 @@ fontSelect.addEventListener("change", () => {
   const selectedFont = fontSelect.value;
   bodyEl.style.fontFamily = selectedFont;
   storage.setCurrentFont(selectedFont);
+});
+
+// Number format
+numberFormatSelect.addEventListener("change", () => {
+  const selectedFormat = numberFormatSelect.value;
+  setNumberFormat(selectedFormat);
+  storage.setNumberFormat(selectedFormat);
 });
 
 // Colorblind mode

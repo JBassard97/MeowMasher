@@ -528,7 +528,7 @@
     </footer>
 
     <!-- STATS -->
-    <div id="stats-dialog" class="dialog-overlay active">
+    <div id="stats-dialog" class="dialog-overlay">
       <div class="dialog-content">
         <div class="close-container">
           <button id="close-stats-dialog" class="dialog-button">X</button>
@@ -744,6 +744,14 @@
                 <option value="Macondo">Macondo</option>
               </select>
             </div>
+            <div class="set-number-format">
+              <p>Set Number Format:</p>
+              <select id="number-format-select">
+                <option value="suffix">Suffix</option>
+                <option value="standard">Standard</option>
+                <option value="scientific">Scientific</option>
+              </select>
+            </div>
             <div class="color-blind-mode">
               <p>Toggle Color-Blind Mode:</p>
               <input id="color-blind-mode" type="checkbox" />
@@ -794,7 +802,10 @@
     <div id="achievements-dialog" class="dialog-overlay">
       <div class="dialog-content achievements-content">
         <div class="close-container">
-          <button id="close-achievements-dialog" class="dialog-button">X</button></div>
+          <button id="close-achievements-dialog" class="dialog-button">
+            X
+          </button>
+        </div>
         <h1>Achievements</h1>
         <div class="dialog-body">
           <h2>Owned Sub-Upgrades</h2>
@@ -836,7 +847,8 @@
     <dialog id="boosts-dialog" class="dialog-overlay">
       <div class="dialog-content">
         <div class="close-container">
-          <button id="close-boosts-dialog" class="dialog-button">X</button></div>
+          <button id="close-boosts-dialog" class="dialog-button">X</button>
+        </div>
         <h1>Buy Boosts</h1>
         <div class="dialog-body">
           <h2 style="text-align: center">
@@ -852,13 +864,13 @@
     <dialog id="use-boosts-dialog" class="dialog-overlay">
       <div class="dialog-content">
         <div class="close-container">
-          <button id="close-use-boosts-dialog" class="dialog-button">X</button></div>
+          <button id="close-use-boosts-dialog" class="dialog-button">X</button>
+        </div>
         <h1>Use Boosts</h1>
         <div class="dialog-body">
           <!-- All boost-headers and boosts are rendered by JS -->
           <div id="use-boosts-container"></div>
         </div>
- 
       </div>
     </dialog>
 

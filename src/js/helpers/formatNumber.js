@@ -46,12 +46,8 @@ export const NumberFormat = {
   SCIENTIFIC: "scientific", // 1.23e+6
 };
 
-if (!storage.getNumberFormat()) {
-  storage.setNumberFormat(NumberFormat.SUFFIX);
-}
-
 // Current format (can be changed via settings)
-let currentFormat = storage.getNumberFormat() || NumberFormat.SUFFIX;
+let currentFormat = storage.getNumberFormat()
 
 // ! USED IN SETTINGS
 export function setNumberFormat(format) {

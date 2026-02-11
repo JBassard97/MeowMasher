@@ -15,6 +15,7 @@ import { chooseWeighted } from "./logic/chooseWeighted.js";
 import { setLivingRoom } from "./effects/setLivingRoom.js";
 import { AudioList } from "./audio/audio.js";
 import { updateBiscuitEfficiency } from "./helpers/updateBiscuitEfficiency.js";
+import { updateBiscuitsDisplay } from "./helpers/updateBiscuitsDisplay.js";
 import { $ } from "./helpers/$.js";
 import { D } from "./logic/decimalWrapper.js";
 import { formatNumber } from "./helpers/formatNumber.js";
@@ -712,6 +713,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     storage.setGameStartTime();
     console.log("Game Started @: ", storage.getGameStartTimeMs());
   }
+
+  window.addEventListener("numberFormatChanged", () => {
+    console.log("Number format changed, updating displays...");
+    // All displays that show numbers should be updated when the format changes
+    updateAutoRate();
+    updateClickPower();
+    renderUpgrades();
+    renderSubUpgrades();
+    updateBiscuitsDisplay();
+    updateBiscuitEfficiency();
+  });
 
   syncBiscuitEfficiencies();
   setLivingRoom();

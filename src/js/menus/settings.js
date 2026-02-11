@@ -72,6 +72,7 @@ numberFormatSelect.addEventListener("change", () => {
   const selectedFormat = numberFormatSelect.value;
   setNumberFormat(selectedFormat);
   storage.setNumberFormat(selectedFormat);
+  window.dispatchEvent(new Event("numberFormatChanged"));
 });
 
 // Colorblind mode

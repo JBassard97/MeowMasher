@@ -66,7 +66,6 @@
     button {
       font-size: 9px;
       font-weight: bold;
-      color: black;
       pointer-events: auto;
       cursor: pointer;
       padding: 1px;
@@ -126,8 +125,7 @@
       text-align: center;
       line-height: 1.2;
       box-shadow: 0 0 3px 10px transparent;
-      overflow: clip; 
-      
+      overflow: clip;
 
       strong {
         font-size: 12px;
@@ -304,4 +302,38 @@
   .upgrade:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
+}
+
+.buy-cheap-button,
+.buy-many-button {
+  border-radius: 2px;
+  color: black;
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: $softGlowFromTop;
+  }
+  transition: all 0.1s ease;
+}
+
+.buy-many-button {
+  border: 2px solid rgba(255, 166, 0, 0.92);
+  background-color: rgb(254, 188, 64);;
+}
+
+.buy-cheap-button {
+  border: 2px solid limegreen;
+  background-color: rgb(81, 255, 81);
+}
+
+.buy-cheap-button:disabled,
+.buy-many-button:disabled {
+  color: darkslategrey;
+  border-color: gray;
+  background-color: darkgray;
 }

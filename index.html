@@ -528,8 +528,11 @@
     </footer>
 
     <!-- STATS -->
-    <div id="stats-dialog" class="dialog-overlay">
+    <div id="stats-dialog" class="dialog-overlay active">
       <div class="dialog-content">
+        <div class="close-container">
+          <button id="close-stats-dialog" class="dialog-button">X</button>
+        </div>
         <h1>Stats</h1>
         <div class="dialog-body">
           <div class="stats-section">
@@ -712,12 +715,14 @@
             </div>
           </div>
         </div>
-        <button id="close-stats-dialog" class="dialog-button">Close</button>
       </div>
     </div>
     <!-- SETTINGS -->
     <div id="settings-dialog" class="dialog-overlay">
       <div class="dialog-content">
+        <div class="close-container">
+          <button id="close-settings-dialog" class="dialog-button">X</button>
+        </div>
         <h1>Settings</h1>
         <div class="dialog-body">
           <div class="all-settings">
@@ -782,28 +787,29 @@
             </div>
           </div>
         </div>
-        <button id="close-settings-dialog" class="dialog-button">Close</button>
       </div>
     </div>
 
     <!-- ACHIEVEMENTS -->
     <div id="achievements-dialog" class="dialog-overlay">
       <div class="dialog-content achievements-content">
+        <div class="close-container">
+          <button id="close-achievements-dialog" class="dialog-button">X</button></div>
         <h1>Achievements</h1>
         <div class="dialog-body">
           <h2>Owned Sub-Upgrades</h2>
           <div class="owned-ratio"></div>
           <div class="owned-subupgrades"></div>
         </div>
-        <button id="close-achievements-dialog" class="dialog-button">
-          Close
-        </button>
       </div>
     </div>
 
     <!-- LEVEL UP -->
     <dialog id="levels-dialog" class="dialog-overlay">
       <div class="dialog-content">
+        <div class="close-container">
+          <button id="close-levels-dialog" class="dialog-button">X</button>
+        </div>
         <h1>Level Up</h1>
         <div class="dialog-body">
           <h2 style="text-align: center">
@@ -823,13 +829,14 @@
             <div class="category"><h3>Bonuses</h3></div>
           </div>
         </div>
-        <button id="close-levels-dialog" class="dialog-button">Close</button>
       </div>
     </dialog>
 
     <!-- BUY BOOSTS -->
     <dialog id="boosts-dialog" class="dialog-overlay">
       <div class="dialog-content">
+        <div class="close-container">
+          <button id="close-boosts-dialog" class="dialog-button">X</button></div>
         <h1>Buy Boosts</h1>
         <div class="dialog-body">
           <h2 style="text-align: center">
@@ -838,21 +845,20 @@
           </h2>
           <div id="boosts-container"></div>
         </div>
-        <button id="close-boosts-dialog" class="dialog-button">Close</button>
       </div>
     </dialog>
 
     <!-- USE BOOSTS -->
     <dialog id="use-boosts-dialog" class="dialog-overlay">
       <div class="dialog-content">
+        <div class="close-container">
+          <button id="close-use-boosts-dialog" class="dialog-button">X</button></div>
         <h1>Use Boosts</h1>
         <div class="dialog-body">
           <!-- All boost-headers and boosts are rendered by JS -->
           <div id="use-boosts-container"></div>
         </div>
-        <button id="close-use-boosts-dialog" class="dialog-button">
-          Close
-        </button>
+ 
       </div>
     </dialog>
 

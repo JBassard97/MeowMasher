@@ -254,6 +254,7 @@
         position: relative;
         span {
           color: whitesmoke;
+          z-index: 3;
           .details {
             color: rgba(211, 211, 211, 0.639);
           }
@@ -435,4 +436,39 @@
 
 input[type="range"] {
   width: 150px;
+}
+
+#close-use-boosts-dialog,
+#close-boosts-dialog,
+#close-levels-dialog,
+#close-achievements-dialog,
+#close-stats-dialog,
+#close-settings-dialog {
+  all: unset;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 25px;
+  border: 3px solid maroon;
+  background-color: red;
+  border-radius: 50%;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.close-container {
+  height: 5px;
+  position: sticky;
+  top: 0;
+  width: 98%;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 4;
 }

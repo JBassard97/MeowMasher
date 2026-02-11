@@ -1188,6 +1188,7 @@ header .header-icons #achievements-icon svg:hover g path {
 }
 .dialog-content .dialog-body .stats-section p span {
   color: whitesmoke;
+  z-index: 3;
 }
 .dialog-content .dialog-body .stats-section p span .details {
   color: rgba(211, 211, 211, 0.639);
@@ -1344,6 +1345,45 @@ header .header-icons #achievements-icon svg:hover g path {
 
 input[type=range] {
   width: 150px;
+}
+
+#close-use-boosts-dialog,
+#close-boosts-dialog,
+#close-levels-dialog,
+#close-achievements-dialog,
+#close-stats-dialog,
+#close-settings-dialog {
+  all: unset;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 25px;
+  border: 3px solid maroon;
+  background-color: red;
+  border-radius: 50%;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+#close-use-boosts-dialog:hover,
+#close-boosts-dialog:hover,
+#close-levels-dialog:hover,
+#close-achievements-dialog:hover,
+#close-stats-dialog:hover,
+#close-settings-dialog:hover {
+  cursor: pointer;
+}
+
+.close-container {
+  height: 5px;
+  position: sticky;
+  top: 0;
+  width: 98%;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 4;
 }
 
 footer {

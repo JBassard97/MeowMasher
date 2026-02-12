@@ -526,175 +526,175 @@ items:
     unlockRateRequirement: 1000
     <<: *clickPowerAdder
   - id: 100004
-    name: 10,000 Mewnits/S Reward
+    name: 10K Mewnits/S Reward
     cost: 3000000
     bonus: 2
     type: clickPowerMultiplier
     unlockRateRequirement: 10000
   - id: 100005
-    name: 25,000 Mewnits/S Reward
+    name: 25K Mewnits/S Reward
     cost: 7500000
     bonus: 5
     unlockRateRequirement: 25000
     <<: *clickPowerAdder
   - id: 100006
-    name: 50,000 Mewnits/S Reward
+    name: 50K Mewnits/S Reward
     cost: 15000000
     bonus: 5
     unlockRateRequirement: 50000
     <<: *clickPowerAdder
   - id: 100007
-    name: 75,000 Mewnits/S Reward
+    name: 75K Mewnits/S Reward
     cost: 22500000
     bonus: 2
     type: clickPowerMultiplier
     unlockRateRequirement: 75000
   - id: 100008
-    name: 100,000 Mewnits/S Reward
+    name: 100K Mewnits/S Reward
     cost: 30000000
     bonus: 2
     type: clickPowerMultiplier
     unlockRateRequirement: 100000
   - id: 100009
-    name: 250,000 Mewnits/S Reward
+    name: 250K Mewnits/S Reward
     cost: 75000000
     bonus: 5
     unlockRateRequirement: 250000
     <<: *clickPowerAdder
   - id: 100010
-    name: 500,000 Mewnits/S Reward
+    name: 500K Mewnits/S Reward
     cost: 150000000
     bonus: 2
     type: clickPowerMultiplier
     unlockRateRequirement: 500000
   - id: 100011
-    name: 750,000 Mewnits/S Reward
+    name: 750K Mewnits/S Reward
     cost: 225000000
     bonus: 20
     unlockRateRequirement: 750000
     <<: *clickPowerAdder
   - id: 100012
-    name: 1,000,000 Mewnits/S Reward
+    name: 1M Mewnits/S Reward
     cost: 300000000
     bonus: 2
     type: clickPowerMultiplier
     unlockRateRequirement: 1000000
   - id: 100013
-    name: 2,500,000 Mewnits/S Reward
+    name: 2.5M Mewnits/S Reward
     cost: 750000000
     bonus: 20
     unlockRateRequirement: 2500000
     <<: *clickPowerAdder
   - id: 100014
-    name: 5,000,000 Mewnits/S Reward
+    name: 5M Mewnits/S Reward
     cost: 1500000000
     bonus: 2
     type: clickPowerMultiplier
     unlockRateRequirement: 5000000
   - id: 100015
-    name: 10,000,000 Mewnits/S Reward
+    name: 10M Mewnits/S Reward
     cost: 3000000000
     bonus: 2
     type: clickPowerMultiplier
     unlockRateRequirement: 10000000
   - id: 100016
-    name: 25,000,000 Mewnits/S Reward
+    name: 25M Mewnits/S Reward
     cost: 7500000000
     bonus: 50
     unlockRateRequirement: 25000000
     <<: *clickPowerAdder
   - id: 100017
-    name: 50,000,000 Mewnits/S Reward
+    name: 50M Mewnits/S Reward
     cost: 15000000000
     bonus: 50
     unlockRateRequirement: 50000000
     <<: *clickPowerAdder
   - id: 100018
-    name: 75,000,000 Mewnits/S Reward
+    name: 75M Mewnits/S Reward
     cost: 22500000000
     bonus: 50
     unlockRateRequirement: 75000000
     <<: *clickPowerAdder
   - id: 100019
-    name: 100,000,000 Mewnits/S Reward
+    name: 100M Mewnits/S Reward
     cost: 30000000000
     bonus: 2
     type: clickPowerMultiplier
     unlockRateRequirement: 100000000
   - id: 100020
-    name: 250,000,000 Mewnits/S Reward
+    name: 250M Mewnits/S Reward
     cost: 75000000000
     bonus: 10
     unlockRateRequirement: 250000000
     <<: *clickPowerAdder
   - id: 100021
-    name: 500,000,000 Mewnits/S Reward
+    name: 500M Mewnits/S Reward
     cost: 150000000000
     bonus: 10
     unlockRateRequirement: 500000000
     <<: *clickPowerAdder
   - id: 100022
-    name: 750,000,000 Mewnits/S Reward
+    name: 750M Mewnits/S Reward
     cost: 225000000000
     bonus: 10
     unlockRateRequirement: 750000000
     <<: *clickPowerAdder
   - id: 100023
-    name: 1,000,000,000 Mewnits/S Reward
+    name: 1B Mewnits/S Reward
     cost: 300000000000
     bonus: 2
     type: clickPowerMultiplier
     unlockRateRequirement: 1000000000
   - id: 100024
-    name: 2,500,000,000 Mewnits/S Reward
+    name: 2.5B Mewnits/S Reward
     cost: 750000000000
     bonus: 20
     unlockRateRequirement: 2500000000
     <<: *clickPowerAdder
   - id: 100025
-    name: 5,000,000,000 Mewnits/S Reward
+    name: 5B Mewnits/S Reward
     cost: 1500000000000
     bonus: 20
     unlockRateRequirement: 5000000000
     <<: *clickPowerAdder
   - id: 100026
-    name: 10,000,000,000 Mewnits/S Reward
+    name: 10B Mewnits/S Reward
     cost: 3000000000000
     bonus: 2
     type: clickPowerMultiplier
     unlockRateRequirement: 10000000000
   - id: 100027
-    name: 25,000,000,000 Mewnits/S Reward
+    name: 25B Mewnits/S Reward
     cost: 7500000000000
     bonus: 20
     unlockRateRequirement: 25000000000
     <<: *clickPowerAdder
   - id: 100028
-    name: 50,000,000,000 Mewnits/S Reward
+    name: 50B Mewnits/S Reward
     cost: 15000000000000
     bonus: 20
     unlockRateRequirement: 50000000000
     <<: *clickPowerAdder
   - id: 100029
-    name: 100,000,000,000 Mewnits/S Reward
+    name: 100B Mewnits/S Reward
     cost: 30000000000000
     bonus: 2
     type: clickPowerMultiplier
     unlockRateRequirement: 100000000000
   - id: 100030
-    name: 250,000,000,000 Mewnits/S Reward
+    name: 250B Mewnits/S Reward
     cost: 75000000000000
     bonus: 50
     unlockRateRequirement: 250000000000
     <<: *clickPowerAdder
   - id: 100031
-    name: 500,000,000,000 Mewnits/S Reward
+    name: 500B Mewnits/S Reward
     cost: 150000000000000
     bonus: 50
     unlockRateRequirement: 500000000000
     <<: *clickPowerAdder
   - id: 100032
-    name: 1,000,000,000,000 Mewnits/S Reward
+    name: 1T Mewnits/S Reward
     cost: 300000000000000
     bonus: 3
     type: clickPowerMultiplier
@@ -705,52 +705,52 @@ items:
     unlockClickedMewnitsRequirement: 1000
     <<: *percentOfMpsClickAdder
   - id: 200001
-    name: 100,000 Mewnits Clicked Reward
+    name: 100K Mewnits Clicked Reward
     cost: 5000000
     unlockClickedMewnitsRequirement: 100000
     <<: *percentOfMpsClickAdder
   - id: 200002
-    name: 10 Million Mewnits Clicked Reward
+    name: 10M Mewnits Clicked Reward
     cost: 500000000
     unlockClickedMewnitsRequirement: 10000000
     <<: *percentOfMpsClickAdder
   - id: 200003
-    name: 1 Billion Mewnits Clicked Reward
+    name: 1B Mewnits Clicked Reward
     cost: 50000000000
     unlockClickedMewnitsRequirement: 1000000000
     <<: *percentOfMpsClickAdder
   - id: 200004
-    name: 100 Billion Mewnits Clicked Reward
+    name: 100B Mewnits Clicked Reward
     cost: 5000000000000
     unlockClickedMewnitsRequirement: 100000000000
     <<: *percentOfMpsClickAdder
   - id: 200005
-    name: 10 Trillion Mewnits Clicked Reward
+    name: 10T Mewnits Clicked Reward
     cost: 500000000000000
     unlockClickedMewnitsRequirement: 10000000000000
     <<: *percentOfMpsClickAdder
   - id: 200006
-    name: 1 Quadrillion Mewnits Clicked Reward
+    name: 1Qa Mewnits Clicked Reward
     cost: 50000000000000
     unlockClickedMewnitsRequirement: 1000000000000000
     <<: *percentOfMpsClickAdder
   - id: 200007
-    name: 100 Quadrillion Mewnits Clicked Reward
+    name: 100Qa Mewnits Clicked Reward
     cost: 5000000000000000000
     unlockClickedMewnitsRequirement: 100000000000000000
     <<: *percentOfMpsClickAdder
   - id: 200008
-    name: 10 Quintillion Mewnits Clicked Reward
+    name: 10Qi Mewnits Clicked Reward
     cost: 500000000000000000000
     unlockClickedMewnitsRequirement: 10000000000000000000
     <<: *percentOfMpsClickAdder
   - id: 200009
-    name: 1 Sexillion Mewnits Clicked Reward
+    name: 1Sx Mewnits Clicked Reward
     cost: 5e+22
     unlockClickedMewnitsRequirement: 1000000000000000000
     <<: *percentOfMpsClickAdder
   - id: 200010
-    name: 100 Sexillion Mewnits Clicked Reward
+    name: 100Sx Mewnits Clicked Reward
     cost: 5e+24
     unlockClickedMewnitsRequirement: 1e+23
     <<: *percentOfMpsClickAdder

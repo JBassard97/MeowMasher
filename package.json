@@ -1,6 +1,6 @@
 {
   "name": "meowmasher",
-  "version": "1.15.8",
+  "version": "1.15.9",
   "description": "The clicker game all about cats",
   "main": "index.js",
   "scripts": {

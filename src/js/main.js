@@ -323,8 +323,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="upgrade-info">
           <strong>${u.name}</strong>
           <div>
-            <p><b>${formatNumber(cost)}</b> <span style="font-size:0.6rem">Mewnits</span></p>
-            <p><b>+${formatNumber(effRate)}</b> <span style="font-size:0.6rem">Mew/S</span></p>
+            <p><b class="upgrade-cost">-${formatNumber(cost)}</b> <span style="font-size:0.6rem">Mewnits</span></p>
+            <p><b class="upgrade-boost">+${formatNumber(effRate)}</b> <span style="font-size:0.6rem">Mew/S</span></p>
           </div>
         </div>
         <p class="owned-number">${u.owned}</p>

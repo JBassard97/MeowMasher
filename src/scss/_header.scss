@@ -11,6 +11,85 @@ header {
   background-image: $softGlowFromTop;
   position: relative;
 
+  .toast {
+    position: absolute;
+    width: fit-content;
+    max-width: 50%;
+    height: 20px;
+    border: 2px solid darkslateblue;
+    border-top: none;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-image: linear-gradient(
+      to bottom in oklch longer hue,
+      whitesmoke,
+      darkslategray
+    );
+    color: black;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100%);
+    text-align: center;
+    z-index: 10;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transition:
+      transform 0.5s ease-in-out,
+      opacity 0.5s ease-in-out;
+
+    * {
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+    }
+
+    .toast-header {
+      text-decoration: underline;
+      margin-bottom: 0.25rem;
+    }
+
+    .toast-content {
+      font-size: 0.8rem;
+    }
+
+    .toast-desc {
+      font-size: 0.6rem;
+      color: lightblue;
+    }
+
+    &.active {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0%);
+    }
+  }
+
+  @keyframes toastSlide {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-100%);
+    }
+
+    12.5% {
+      /* 0.5s of 4s */
+      opacity: 1;
+      transform: translateX(-50%) translateY(0%);
+    }
+
+    87.5% {
+      /* hold position */
+      opacity: 1;
+      transform: translateX(-50%) translateY(0%);
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-100%);
+    }
+  }
+
   #desktop-or-web-display {
     position: absolute;
     top: 1px;

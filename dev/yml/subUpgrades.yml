@@ -214,133 +214,157 @@ items:
     unlockRequirement: 350
     <<: *upgradeMultiplier
   - id: 3000
-    name: Disposable Plastic Bowl
+    name: Store-Brand Treats
     cost: 120000
     targetUpgradeId: 3
     unlockRequirement: 1
     <<: *upgradeMultiplier
   - id: 3001
-    name: Lightweight Plastic Bowl
+    name: Temptations Classic Treats
     cost: 600000
     targetUpgradeId: 3
     unlockRequirement: 5
     <<: *upgradeMultiplier
   - id: 3002
-    name: Sturdy Plastic Bowl
+    name: Friskies Party Mix
     cost: 6000000
     targetUpgradeId: 3
     unlockRequirement: 25
     <<: *upgradeMultiplier
   - id: 3003
-    name: Standard Ceramic Bowl
+    name: Greenies Dental Treats
     cost: 600000000
     targetUpgradeId: 3
     unlockRequirement: 50
     <<: *upgradeMultiplier
   - id: 3004
-    name: Painted Ceramic Bowl
+    name: Blue Buffalo Bursts
     cost: 60000000000
     targetUpgradeId: 3
     unlockRequirement: 100
     <<: *upgradeMultiplier
   - id: 3005
-    name: Low Quality Metal Bowl
+    name: Churu Tubes
     cost: 6000000000000
     targetUpgradeId: 3
     unlockRequirement: 150
     <<: *upgradeMultiplier
   - id: 3006
-    name: Wide Stainless Steel Bowl
+    name: Temptations MixUps
     cost: 6000000000000000
     targetUpgradeId: 3
     unlockRequirement: 200
     <<: *upgradeMultiplier
   - id: 3007
-    name: Elevated Ceramic Bowl
+    name: Greenies Pill Pockets
     cost: 6000000000000000000
     targetUpgradeId: 3
     unlockRequirement: 250
     <<: *upgradeMultiplier
   - id: 3008
-    name: Elevated Stainless Steel Bowl
+    name: Freeze-Dried Chicken Treats
     cost: 6e+21
     targetUpgradeId: 3
     unlockRequirement: 300
     <<: *upgradeMultiplier
   - id: 3009
-    name: Shallow Stainless Steel Bowl
+    name: Freeze-Dried Fish Treats
     cost: 6e+24
     targetUpgradeId: 3
     unlockRequirement: 350
     <<: *upgradeMultiplier
   - id: 4000
-    name: Soft Pillow
+    name: Disposable Plastic Bowl
     cost: 1300000
     targetUpgradeId: 4
     unlockRequirement: 1
     <<: *upgradeMultiplier
   - id: 4001
-    name: Cat Tunnel
+    name: Lightweight Plastic Bowl
     cost: 6500000
     targetUpgradeId: 4
     unlockRequirement: 5
     <<: *upgradeMultiplier
   - id: 4002
-    name: 9 Lives
+    name: Sturdy Plastic Bowl
     cost: 65000000
     targetUpgradeId: 4
     unlockRequirement: 25
     <<: *upgradeMultiplier
   - id: 4003
-    name: Feather Wand
+    name: Standard Ceramic Bowl
     cost: 6500000000
     targetUpgradeId: 4
     unlockRequirement: 50
     <<: *upgradeMultiplier
   - id: 4004
-    name: Wall Scratches
+    name: Painted Ceramic Bowl
     cost: 650000000000
     targetUpgradeId: 4
     unlockRequirement: 100
     <<: *upgradeMultiplier
   - id: 4005
-    name: Wall Scratches
+    name: Low Quality Metal Bowl
     cost: 65000000000000
     targetUpgradeId: 4
     unlockRequirement: 150
     <<: *upgradeMultiplier
+  - id: 4006
+    name: Wide Stainless Steel Bowl
+    cost: 65000000000000000
+    targetUpgradeId: 4
+    unlockRequirement: 200
+    <<: *upgradeMultiplier
+  - id: 4007
+    name: Elevated Ceramic Bowl
+    cost: 65000000000000000000
+    targetUpgradeId: 4
+    unlockRequirement: 250
+    <<: *upgradeMultiplier
+  - id: 4008
+    name: Elevated Stainless Steel Bowl
+    cost: 65000000000000000000000
+    targetUpgradeId: 4
+    unlockRequirement: 300
+    <<: *upgradeMultiplier
+  - id: 4009
+    name: Shallow Stainless Steel Bowl
+    cost: 65000000000000000000000000
+    targetUpgradeId: 4
+    unlockRequirement: 350
+    <<: *upgradeMultiplier
   - id: 5000
-    name: Bank 1
+    name: Kitchen Faucet
     cost: 14000000
     targetUpgradeId: 5
     unlockRequirement: 1
     <<: *upgradeMultiplier
   - id: 5001
-    name: Wall Scratches
+    name: Bathroom Faucet
     cost: 70000000
     targetUpgradeId: 5
     unlockRequirement: 5
     <<: *upgradeMultiplier
   - id: 5002
-    name: Wall Scratches
+    name: Cheap Water Fountain
     cost: 700000000
     targetUpgradeId: 5
     unlockRequirement: 25
     <<: *upgradeMultiplier
   - id: 5003
-    name: Wall Scratches
+    name: Plastic Water Fountain
     cost: 70000000000
     targetUpgradeId: 5
     unlockRequirement: 50
     <<: *upgradeMultiplier
   - id: 5004
-    name: Wall Scratches
+    name: Stainless Steel Water Fountain
     cost: 7000000000000
     targetUpgradeId: 5
     unlockRequirement: 100
     <<: *upgradeMultiplier
   - id: 5005
-    name: Wall Scratches
+    name: Ceramic Water Fountain
     cost: 700000000000000
     targetUpgradeId: 5
     unlockRequirement: 150
@@ -352,25 +376,25 @@ items:
     unlockRequirement: 1
     <<: *upgradeMultiplier
   - id: 6001
-    name: Wall Scratches
+    name: Second Hand Mouse Toy
     cost: 1000000000
     targetUpgradeId: 6
     unlockRequirement: 5
     <<: *upgradeMultiplier
   - id: 6002
-    name: Wall Scratches
+    name: Fluffy Mouse Toy
     cost: 10000000000
     targetUpgradeId: 6
     unlockRequirement: 25
     <<: *upgradeMultiplier
   - id: 6003
-    name: Wall Scratches
+    name: Crinkly Mouse Toy
     cost: 1000000000000
     targetUpgradeId: 6
     unlockRequirement: 50
     <<: *upgradeMultiplier
   - id: 6004
-    name: Wall Scratches
+    name: Catnip Laced Mouse Toy
     cost: 100000000000000
     targetUpgradeId: 6
     unlockRequirement: 100

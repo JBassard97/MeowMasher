@@ -137,7 +137,6 @@
         padding-bottom: 0.75rem;
         box-sizing: border-box;
         width: 100%;
-        word-break: break-all;
       }
       div {
         height: 100%;
@@ -254,6 +253,14 @@
             line-height: 1;
             overflow-wrap: anywhere;
           }
+
+          .upgrade-cost {
+            color: rgb(255, 180, 180);
+          }
+
+          .upgrade-boost {
+            color: rgb(180, 255, 180);
+          }
         }
       }
 
@@ -323,7 +330,7 @@
 
 .buy-many-button {
   border: 2px solid rgba(255, 166, 0, 0.92);
-  background-color: rgb(254, 188, 64);;
+  background-color: rgb(254, 188, 64);
 }
 
 .buy-cheap-button {

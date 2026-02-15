@@ -30,7 +30,7 @@ function changeHeaderImage() {
   // Dev Easter Egg
   if (index === 3) {
     storage.setBoostOwned(0, 5);
-    storage.setBiscuits(5000);
+    storage.setBiscuits(300);
   }
 }
 

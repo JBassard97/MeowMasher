@@ -308,6 +308,22 @@ document.addEventListener("DOMContentLoaded", async () => {
       const cost = D(u.baseCost).times(D(1.15).pow(u.owned)).floor();
       const afford = count.gte(cost);
       const effRate = D(u.rate).times(u.multiplier).plus(u.extraBonus);
+      const output = D(u.owned).times(effRate);
+      const percentOfAutoRate = autoRate.gt(0)
+        ? output.dividedBy(autoRate).times(100)
+        : D(0);
+
+      // Format percentage with appropriate precision
+      let percentDisplay;
+      if (percentOfAutoRate.eq(0)) {
+        percentDisplay = "0";
+      } else if (percentOfAutoRate.lt(0.01)) {
+        percentDisplay = percentOfAutoRate.toFixed(4); // Show 0.0001%
+      } else if (percentOfAutoRate.lt(1)) {
+        percentDisplay = percentOfAutoRate.toFixed(2); // Show 0.01%
+      } else {
+        percentDisplay = percentOfAutoRate.floor().toString(); // Show whole numbers
+      }
 
       const div = document.createElement("div");
       div.className = "upgrade";
@@ -325,6 +341,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <div>
             <p><b class="upgrade-cost">-${formatNumber(cost)}</b> <span style="font-size:0.6rem">Mewnits</span></p>
             <p><b class="upgrade-boost">+${formatNumber(effRate)}</b> <span style="font-size:0.6rem">Mew/S</span></p>
+            <p><span style="font-size:0.6rem">Output:</span> <b><span class="upgrade-output">${formatNumber(output)}</span></b> <span class="percentOfAutoRate">(${percentDisplay}%)</span></p>
           </div>
         </div>
         <p class="owned-number">${u.owned}</p>

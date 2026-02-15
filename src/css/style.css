@@ -969,11 +969,17 @@ header .header-icons #achievements-icon svg:hover g path {
   line-height: 1;
   overflow-wrap: anywhere;
 }
+#right-side .upgrades .upgrade .upgrade-info div p:last-child {
+  font-size: 0.6rem;
+}
 #right-side .upgrades .upgrade .upgrade-info div .upgrade-cost {
   color: rgb(255, 180, 180);
 }
 #right-side .upgrades .upgrade .upgrade-info div .upgrade-boost {
   color: rgb(180, 255, 180);
+}
+#right-side .upgrades .upgrade .upgrade-info div .upgrade-output {
+  color: rgb(180, 180, 255);
 }
 #right-side .upgrades .upgrade .owned-number {
   margin: 0;

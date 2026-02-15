@@ -254,12 +254,20 @@
             overflow-wrap: anywhere;
           }
 
+          p:last-child {
+            font-size: 0.6rem;
+          }
+
           .upgrade-cost {
             color: rgb(255, 180, 180);
           }
 
           .upgrade-boost {
             color: rgb(180, 255, 180);
+          }
+
+          .upgrade-output {
+            color: rgb(180, 180, 255);
           }
         }
       }

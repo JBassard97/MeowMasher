@@ -164,4 +164,15 @@ export function toggleGoldenPawMode(
 
     return;
   }
+
+  if (modeType === "freeBoost") {
+    bonusDisplay.style.display = "block";
+    bonusDisplay.textContent = `Free Boost: ${value}`;
+
+    if (goldenInterval) clearInterval(goldenInterval);
+
+    goldenInterval = setTimeout(() => {
+      toggleGoldenPawMode(false, "freeBoost");
+    }, 2000);
+  }
 }

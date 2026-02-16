@@ -31,6 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
         },
       }),
     );
+    toast.onclick = () => {
+      window.dispatchEvent(new Event("resume"));
+      toast.onclick = null;
+    };
   });
 
   window.addEventListener("resume", () => {

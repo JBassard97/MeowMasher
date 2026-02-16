@@ -44,9 +44,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   initSettings();
 
   // Load data
-  const [upgrades, subUpgrades] = await Promise.all([
+  const [upgrades, subUpgrades, boosts] = await Promise.all([
     fetch("src/data/upgrades.json").then((r) => r.json()),
     fetch("src/data/subUpgrades.json").then((r) => r.json()),
+    fetch("src/data/boosts.json").then((r) => r.json()),
   ]);
 
   // State - ALL using Decimal
@@ -102,14 +103,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (goldenPawActive) return;
 
     const reward = chooseWeighted({
-      mps: 1,
-      mew: 2,
+      mps: 2,
+      mew: 4,
+      freeBoost: 1,
     });
 
     if (reward === "mps") {
       boostFuncs.mps(30);
     } else if (reward === "mew") {
-      boostFuncs.mew(60);
+      boostFuncs.mew(30);
+    } else if (reward === "freeBoost") {
+      boostFuncs.freeBoost();
     }
   });
 
@@ -129,7 +133,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }, seconds * 1000);
     },
 
-    mew: (secondsOfPayout = 60) => {
+    mew: (secondsOfPayout = 30) => {
       const bonus = autoRate.times(secondsOfPayout);
       const bonusDisplay = bonus.gt(Number.MAX_SAFE_INTEGER)
         ? bonus.toExponential(2)
@@ -162,6 +166,18 @@ document.addEventListener("DOMContentLoaded", async () => {
       activeTimedBoostTimeout = setTimeout(() => {
         cancelActiveTimedBoost();
       }, seconds * 1000);
+    },
+    freeBoost: () => {
+      // clean up boosts json
+      const validBoosts = boosts.filter((b) => b.name);
+      // grab a random on from the list
+      const freeBoost =
+        validBoosts[Math.floor(Math.random() * validBoosts.length) - 1];
+      storage.setBoostOwned(
+        freeBoost.id,
+        storage.getBoostOwned(freeBoost.id).plus(1),
+      );
+      toggleGoldenPawMode(true, "freeBoost", 2, freeBoost.name);
     },
   };
 
@@ -341,7 +357,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <div>
             <p><b class="upgrade-cost">-${formatNumber(cost)}</b> <span style="font-size:0.6rem">Mewnits</span></p>
             <p><b class="upgrade-boost">+${formatNumber(effRate)}</b> <span style="font-size:0.6rem">Mew/S</span></p>
-            <p><span style="font-size:0.6rem">Output:</span> <b><span class="upgrade-output">${formatNumber(output)}</span></b> <span class="percentOfAutoRate">(${percentDisplay}%)</span></p>
+            <p><span style="font-size:0.5rem">Output:</span> <b><span class="upgrade-output">${formatNumber(output)}</span></b> <span class="percentOfAutoRate">(%${percentDisplay})</span></p>
           </div>
         </div>
         <p class="owned-number">${u.owned}</p>
@@ -724,6 +740,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   pauseResumeButton.addEventListener("click", () => {
     !isPaused ? Pause() : Resume();
   });
+
+  window.addEventListener("pause", Pause);
+  window.addEventListener("resume", Resume);
 
   const gameStartTime = storage.getGameStartTimeMs();
   if (gameStartTime.eq(0)) {

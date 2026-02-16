@@ -133,7 +133,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }, seconds * 1000);
     },
 
-    mew: (secondsOfPayout = 30) => {
+    mew: (secondsOfPayout = 60) => {
       const bonus = autoRate.times(secondsOfPayout);
       const bonusDisplay = bonus.gt(Number.MAX_SAFE_INTEGER)
         ? bonus.toExponential(2)
@@ -180,6 +180,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       toggleGoldenPawMode(true, "freeBoost", 2, freeBoost.name);
     },
   };
+
+  window.addEventListener("cancelActiveTimedBoost", () => {
+    cancelActiveTimedBoost();
+  });
 
   function cancelActiveTimedBoost() {
     if (!activeTimedBoost) return;

@@ -97,6 +97,11 @@ export function toggleGoldenPawMode(
     bonusDisplay.textContent = "";
     bonusDisplay.style.display = "none";
 
+    // main.js listens for this to guarantee everything resets in case timer interrupted by Pause()
+    if (modeType === "mps" || modeType === "biscuit-efficiency") {
+      window.dispatchEvent(new Event("cancelActiveTimedBoost"));
+    }
+
     return;
   }
 

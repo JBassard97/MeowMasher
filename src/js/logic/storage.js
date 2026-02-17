@@ -1,4 +1,9 @@
 import { D } from "../logic/decimalWrapper.js";
+import { $ } from "../helpers/$.js";
+import {
+  loadAchievementsData,
+  giveSpecificAchievement,
+} from "./achievements.js";
 
 // Wait for pywebview to be injected
 const waitForPywebview = (maxWait = 2000) => {
@@ -52,9 +57,11 @@ export const initStorage = async () => {
 
   document.querySelector(".loading-spinner").style.display = "none";
   console.log(isDesktop() ? "DESKTOP MODE" : "WEB MODE");
-  const $ = (sel) => document.querySelector(sel);
   const deskOrWebDisplay = $("#desktop-or-web-display");
   deskOrWebDisplay.textContent = isDesktop() ? "(Desktop)" : "(Web)";
+
+  await loadAchievementsData(); // Load achievements data on startup
+  giveSpecificAchievement(0); // "Welcome to Meow Masher!" achievement
 };
 
 export const getItem = (key) => {
@@ -115,6 +122,7 @@ export const storage = {
 
   // --- STRING/BOOLEAN GETTERS (non-numeric) ---
   getSubUpgradeOwned: (id) => getItem(`subUpgrade_${id}_owned`),
+  getAchievementOwned: (id) => getItem(`achievement_${id}_owned`),
   getPercentOfMpsClickAdder: () =>
     Number(getItem("percentOfMpsClickAdder")) || 0, // Keep as number - it's a small percentage
   getIsUiFlipped: () => JSON.parse(getItem("isUiFlipped") ?? "false"),
@@ -167,6 +175,7 @@ export const storage = {
     setItem(`upgrade_${id}_owned`, v);
   },
   setSubUpgradeOwned: (id) => setItem(`subUpgrade_${id}_owned`, "true"),
+  setAchievementOwned: (id) => setItem(`achievement_${id}_owned`, "true"),
   setBoostOwned: (id, value) => {
     const v =
       typeof value === "object" && value.toString

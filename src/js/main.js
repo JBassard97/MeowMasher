@@ -19,6 +19,7 @@ import { updateBiscuitsDisplay } from "./helpers/updateBiscuitsDisplay.js";
 import { $ } from "./helpers/$.js";
 import { D } from "./logic/decimalWrapper.js";
 import { formatNumber } from "./helpers/formatNumber.js";
+import { checkForAchievements } from "./logic/achievements.js";
 
 const mode = "dev00";
 const devBonus = D(50000);

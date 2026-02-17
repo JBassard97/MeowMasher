@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (type !== "pause") {
       setTimeout(() => {
         toast.classList.remove("active");
-      }, 5000);
+      }, 3000);
     }
   });
 

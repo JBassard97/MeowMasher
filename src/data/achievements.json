@@ -1,0 +1,15 @@
+[
+  {
+    "id": 0,
+    "name": "Welcome to Meow Masher!",
+    "desc": "Start the game for the 1st time",
+    "type": "misc"
+  },
+  {
+    "id": 900,
+    "name": "See? It won't bite.",
+    "desc": "Click the cat 1 time",
+    "type": "clicks",
+    "requirement": 1
+  }
+]

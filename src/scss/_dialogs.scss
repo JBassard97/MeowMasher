@@ -369,6 +369,37 @@
   }
 }
 
+.earned-achievements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  .earned-achievement {
+    width: 80%;
+    border: 2px solid rgb(170, 166, 166);
+    border-radius: 20px;
+    padding: 0.5rem;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease forwards;
+
+    .earned-achievement-details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+
+      p {
+        strong {
+          text-decoration: underline;
+        }
+        width: fit-content;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+
 .owned-ratio {
   text-align: center;
   margin: 0;
@@ -450,7 +481,11 @@ input[type="range"] {
   font-weight: bold;
   font-size: 25px;
   border: 3px solid maroon;
-  background-image: radial-gradient(ellipse 70% 70% at top, rgb(249, 173, 173), red);
+  background-image: radial-gradient(
+    ellipse 70% 70% at top,
+    rgb(249, 173, 173),
+    red
+  );
   border-radius: 50%;
   min-width: 40px;
   min-height: 40px;

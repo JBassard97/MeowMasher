@@ -112,7 +112,7 @@ header .toast {
   transform: translateX(-50%) translateY(-100%);
   text-align: center;
   z-index: 10;
-  padding: 30px 20px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -129,10 +129,11 @@ header .toast .toast-header {
   margin-bottom: 0.25rem;
 }
 header .toast .toast-content {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 header .toast .toast-desc {
   font-size: 0.6rem;
+  margin-top: 0.5rem;
   color: lightblue;
 }
 header .toast.active {
@@ -934,6 +935,13 @@ header .header-icons #achievements-icon svg:hover g path {
   align-items: center;
   position: relative;
   background-image: radial-gradient(ellipse 80% 65% at top, rgba(255, 255, 255, 0.1921568627), rgba(208, 208, 208, 0.0392156863));
+  will-change: transform;
+}
+#right-side .upgrades .upgrade.in {
+  transform: translateX(0%);
+}
+#right-side .upgrades .upgrade.out {
+  transform: translateX(60%);
 }
 #right-side .upgrades .upgrade img {
   height: 80px;
@@ -1389,6 +1397,35 @@ header .header-icons #achievements-icon svg:hover g path {
   100% {
     background-position: 0% 0%;
   }
+}
+
+.earned-achievements {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+.earned-achievements .earned-achievement {
+  width: 80%;
+  border: 2px solid rgb(170, 166, 166);
+  border-radius: 20px;
+  padding: 0.5rem;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+.earned-achievements .earned-achievement .earned-achievement-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.earned-achievements .earned-achievement .earned-achievement-details p strong {
+  text-decoration: underline;
+}
+.earned-achievements .earned-achievement .earned-achievement-details p {
+  width: fit-content;
+  margin: 0;
+  padding: 0;
 }
 
 .owned-ratio {

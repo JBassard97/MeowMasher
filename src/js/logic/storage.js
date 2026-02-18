@@ -1,7 +1,6 @@
 import { D } from "../logic/decimalWrapper.js";
 import { $ } from "../helpers/$.js";
 import {
-  loadAchievementsData,
   giveSpecificAchievement,
 } from "./achievements.js";
 
@@ -60,7 +59,6 @@ export const initStorage = async () => {
   const deskOrWebDisplay = $("#desktop-or-web-display");
   deskOrWebDisplay.textContent = isDesktop() ? "(Desktop)" : "(Web)";
 
-  await loadAchievementsData(); // Load achievements data on startup
   giveSpecificAchievement(0); // "Welcome to Meow Masher!" achievement
 };
 

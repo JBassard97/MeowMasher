@@ -6,10 +6,59 @@
     "type": "misc"
   },
   {
-    "id": 900,
+    "id": 1,
     "name": "See? It won't bite.",
-    "desc": "Click the cat 1 time",
-    "type": "clicks",
+    "desc": "Click the cat for the 1st time",
+    "type": "number_of_clicks",
     "requirement": 1
+  },
+  {
+    "id": 2,
+    "name": "A little upgrade never hurt anyone",
+    "desc": "Buy your 1st upgrade",
+    "type": "number_of_upgrades",
+    "requirement": 1
+  },
+  {
+    "id": 3,
+    "name": "Now we're getting somewhere",
+    "desc": "Buy your 1st sub-upgrade",
+    "type": "number_of_subupgrades",
+    "requirement": 1
+  },
+  {
+    "id": 4,
+    "name": "Stop",
+    "desc": "Pause the game for the 1st time",
+    "type": "number_of_pauses",
+    "requirement": 1
+  },
+  {
+    "id": 901,
+    "name": "He likes you!",
+    "desc": "Click the cat 100 times",
+    "type": "number_of_clicks",
+    "requirement": 100
+  },
+  {
+    "id": 902,
+    "name": "Petting enthusiast",
+    "desc": "Click the cat 1K times",
+    "type": "number_of_clicks",
+    "requirement": 1000
+  },
+  {
+    "id": 903,
+    "name": "Petting maniac",
+    "desc": "Click the cat 10K times",
+    "type": "number_of_clicks",
+    "requirement": 10000
+  },
+  {
+    "id": 904,
+    "name": "Petting addict",
+    "desc": "Click the cat 100K times",
+    "type": "number_of_clicks",
+    "requirement": 100000
   }
 ]

@@ -216,6 +216,15 @@
       align-items: center;
       position: relative;
       background-image: $softGlowFromTop;
+      will-change: transform;
+
+      &.in {
+        transform: translateX(0%);
+      }
+
+      &.out {
+        transform: translateX(60%);
+      }
 
       img {
         height: 80px;

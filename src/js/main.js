@@ -8,18 +8,20 @@ import {
   UPGRADE_GRADIENT,
 } from "./effects/upgradeStyles.js";
 import { storage, initStorage } from "./logic/storage.js";
+import { checkForAchievements } from "./logic/achievements.js";
 import { initSettings } from "./menus/settings.js";
 import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
 import { chooseWeighted } from "./logic/chooseWeighted.js";
 import { setLivingRoom } from "./effects/setLivingRoom.js";
+import { upgradeObserver } from "./effects/upgradesIntersectionObserver.js";
 import { AudioList } from "./audio/audio.js";
 import { updateBiscuitEfficiency } from "./helpers/updateBiscuitEfficiency.js";
 import { updateBiscuitsDisplay } from "./helpers/updateBiscuitsDisplay.js";
 import { $ } from "./helpers/$.js";
 import { D } from "./logic/decimalWrapper.js";
 import { formatNumber } from "./helpers/formatNumber.js";
-import { checkForAchievements } from "./logic/achievements.js";
+// import { checkForAchievements } from "./logic/achievements.js";
 
 const mode = "dev00";
 const devBonus = D(50000);
@@ -45,10 +47,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   initSettings();
 
   // Load data
-  const [upgrades, subUpgrades, boosts] = await Promise.all([
+  const [upgrades, subUpgrades, boosts, achievements] = await Promise.all([
     fetch("src/data/upgrades.json").then((r) => r.json()),
     fetch("src/data/subUpgrades.json").then((r) => r.json()),
     fetch("src/data/boosts.json").then((r) => r.json()),
+    fetch("src/data/achievements.json").then((r) => r.json()),
   ]);
 
   // State - ALL using Decimal
@@ -370,6 +373,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       div.onclick = () => buyUpgrade(u);
       upgradesContainer.appendChild(div);
+      // upgradeObserver.observe(div);
     });
   }
 
@@ -754,6 +758,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     storage.setGameStartTime();
     console.log("Game Started @: ", storage.getGameStartTimeMs());
   }
+
+  if (autoRate.lte(0)) {
+    counterDisplay.textContent = formatNumber(count);
+  }
+
+  setInterval(() => {
+    checkForAchievements(achievements, upgrades, subUpgrades);
+  }, 1000);
 
   window.addEventListener("numberFormatChanged", () => {
     console.log("Number format changed, updating displays...");

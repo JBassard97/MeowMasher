@@ -79,7 +79,7 @@ function renderEarnedAchievements() {
     outerDiv.style.animationDelay = `${i * 0.05}s`;
     const innerDiv = document.createElement("div");
     innerDiv.className = "earned-achievement-details";
-    innerDiv.innerHTML = `<p><strong>#${a.id}: ${a.name}</strong></p><p>${a.desc}</p>`;
+    innerDiv.innerHTML = `<p><strong>#${a.id}: ${a.name}</strong></p><p class="ach-desc">${a.desc}</p>`;
     outerDiv.appendChild(innerDiv);
     earnedAchievementsContainer.appendChild(outerDiv);
   });

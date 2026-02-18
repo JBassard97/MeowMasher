@@ -371,30 +371,39 @@
 
 .earned-achievements {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   gap: 0.6rem;
   .earned-achievement {
-    width: 80%;
+    width: 42%;
+    min-height: 80px;
+    padding: 10px 10px;
     border: 2px solid rgb(170, 166, 166);
     border-radius: 20px;
-    padding: 0.5rem;
     opacity: 0;
     animation: fadeInUp 0.5s ease forwards;
 
     .earned-achievement-details {
+      height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: space-evenly;
       text-align: center;
 
       p {
         strong {
           text-decoration: underline;
+          margin-bottom: 10px;
         }
-        width: fit-content;
-        margin: 0;
-        padding: 0;
+
+        &.ach-desc {
+          margin-top: 5px;
+          color: lightblue;
+          font-style: italic;
+          font-size: 0.7rem;
+          opacity: 0.8;
+        }
       }
     }
   }

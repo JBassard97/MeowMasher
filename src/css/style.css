@@ -1401,31 +1401,37 @@ header .header-icons #achievements-icon svg:hover g path {
 
 .earned-achievements {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   gap: 0.6rem;
 }
 .earned-achievements .earned-achievement {
-  width: 80%;
+  width: 42%;
+  min-height: 80px;
+  padding: 10px 10px;
   border: 2px solid rgb(170, 166, 166);
   border-radius: 20px;
-  padding: 0.5rem;
   opacity: 0;
   animation: fadeInUp 0.5s ease forwards;
 }
 .earned-achievements .earned-achievement .earned-achievement-details {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
   text-align: center;
 }
 .earned-achievements .earned-achievement .earned-achievement-details p strong {
   text-decoration: underline;
+  margin-bottom: 10px;
 }
-.earned-achievements .earned-achievement .earned-achievement-details p {
-  width: fit-content;
-  margin: 0;
-  padding: 0;
+.earned-achievements .earned-achievement .earned-achievement-details p.ach-desc {
+  margin-top: 5px;
+  color: lightblue;
+  font-style: italic;
+  font-size: 0.7rem;
+  opacity: 0.8;
 }
 
 .owned-ratio {

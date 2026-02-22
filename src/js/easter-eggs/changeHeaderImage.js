@@ -1,4 +1,6 @@
 import { storage } from "../logic/storage.js";
+import { giveSpecificAchievement } from "../logic/achievements.js";
+
 const header = document.querySelector(".image-header");
 const imageHeaderTargets = document.querySelectorAll(".image-header-target");
 
@@ -26,6 +28,8 @@ function changeHeaderImage() {
   for (const target of imageHeaderTargets) {
     target.style.backgroundImage = `url(${images[index]})`;
   }
+
+  giveSpecificAchievement(100); // Easter Egg #1
 
   // Dev Easter Egg
   if (index === 3) {

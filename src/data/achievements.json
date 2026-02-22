@@ -7,21 +7,21 @@
   },
   {
     "id": 1,
-    "name": "See? It won't bite.",
+    "name": "See? He Won't Bite.",
     "desc": "Click the cat for the 1st time",
     "type": "number_of_clicks",
     "requirement": 1
   },
   {
     "id": 2,
-    "name": "A little upgrade never hurt anyone",
+    "name": "A Little Upgrade Never Hurt Anyone",
     "desc": "Buy your 1st upgrade",
     "type": "number_of_upgrades",
     "requirement": 1
   },
   {
     "id": 3,
-    "name": "Now we're getting somewhere",
+    "name": "Now We're Getting Somewhere",
     "desc": "Buy your 1st sub-upgrade",
     "type": "number_of_subupgrades",
     "requirement": 1
@@ -34,31 +34,91 @@
     "requirement": 1
   },
   {
+    "id": 5,
+    "name": "Setting Things Up...",
+    "desc": "Open 'Settings' for the 1st time",
+    "type": "misc"
+  },
+  {
+    "id": 6,
+    "name": "Numbers Go BRRR",
+    "desc": "Open 'Stats' for the 1st time",
+    "type": "misc"
+  },
+  {
+    "id": 7,
+    "name": "Trophy Room",
+    "desc": "Open 'Achievements' for the 1st time",
+    "type": "misc"
+  },
+  {
     "id": 901,
-    "name": "He likes you!",
+    "name": "He likes You!",
     "desc": "Click the cat 100 times",
     "type": "number_of_clicks",
     "requirement": 100
   },
   {
     "id": 902,
-    "name": "Petting enthusiast",
+    "name": "Petting Enthusiast",
     "desc": "Click the cat 1K times",
     "type": "number_of_clicks",
     "requirement": 1000
   },
   {
     "id": 903,
-    "name": "Petting maniac",
+    "name": "Petting Maniac",
     "desc": "Click the cat 10K times",
     "type": "number_of_clicks",
     "requirement": 10000
   },
   {
     "id": 904,
-    "name": "Petting addict",
+    "name": "Petting Addict",
     "desc": "Click the cat 100K times",
     "type": "number_of_clicks",
     "requirement": 100000
+  },
+  {
+    "id": 100,
+    "name": "Fresh Coat of Paint",
+    "desc": "Easter Egg #1 Found!",
+    "type": "misc"
+  },
+  {
+    "id": 300,
+    "name": "Hush Little Kitten",
+    "desc": "Set Meow/Purr Volume to 0%",
+    "type": "misc"
+  },
+  {
+    "id": 301,
+    "name": "Crank It To 11",
+    "desc": "Set Meow/Purr Volume to 100%",
+    "type": "misc"
+  },
+  {
+    "id": 302,
+    "name": "Did You Hear Something?",
+    "desc": "Set SFX Volume to 0%",
+    "type": "misc"
+  },
+  {
+    "id": 303,
+    "name": "Can You Hear That Thunder?",
+    "desc": "Set SFX Volume to 100%",
+    "type": "misc"
+  },
+  {
+    "id": 304,
+    "name": "Who Turned Out The Lights?",
+    "desc": "Toggle Color-Blind Mode",
+    "type": "misc"
+  },
+  {
+    "id": 305,
+    "name": "Flip Out",
+    "desc": "Flip the Left and Right sides",
+    "type": "misc"
   }
 ]

@@ -2,6 +2,8 @@ import { describeSubBonus } from "../logic/describeSubBonus.js";
 import { describeSubUnlock } from "../logic/describeSubUnlock.js";
 import { SUB_UPGRADE_STYLES } from "../effects/upgradeStyles.js";
 import { getItem } from "../logic/storage.js";
+import { giveSpecificAchievement } from "../logic/achievements.js";
+
 // --- Achievements Dialog ---
 const achievementsIcon = document.getElementById("achievements-icon");
 const achievementsDialog = document.getElementById("achievements-dialog");
@@ -12,6 +14,7 @@ const earnedAchievementsContainer = achievementsDialog.querySelector(
 const ownedSubUpgradesContainer =
   achievementsDialog.querySelector(".owned-subupgrades");
 const ownedRatioEl = document.querySelector(".owned-ratio");
+const earnedRatioEl = document.querySelector(".earned-ratio");
 const achievementsContent = document.querySelector(".achievements-content");
 
 // Load both JSON data files ONCE
@@ -42,6 +45,7 @@ achievementsIcon.addEventListener("click", () => {
   requestAnimationFrame(() => {
     achievementsContent.scrollTop = 0;
   });
+  giveSpecificAchievement(7);
 });
 
 closeDialog.addEventListener("click", () => {
@@ -54,6 +58,8 @@ achievementsDialog.addEventListener("click", (e) => {
     achievementsDialog.classList.remove("active");
   }
 });
+
+window.addEventListener("achievementEarned", renderEarnedAchievements);
 
 // ----------------------------------
 // RENDER EARNED ACHIEVEMENTS
@@ -72,6 +78,11 @@ function renderEarnedAchievements() {
     `;
     return;
   }
+
+  // EARNED RATIO
+  const percent = Math.floor((owned.length / allAchievements.length) * 100);
+
+  earnedRatioEl.textContent = `${owned.length}/${allAchievements.length} (${percent}%)`;
 
   owned.forEach((a, i) => {
     const outerDiv = document.createElement("div");

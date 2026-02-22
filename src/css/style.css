@@ -111,7 +111,7 @@ header .toast {
   left: 50%;
   transform: translateX(-50%) translateY(-100%);
   text-align: center;
-  z-index: 10;
+  z-index: 1001;
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
@@ -867,6 +867,7 @@ header .header-icons #achievements-icon svg:hover g path {
   padding-bottom: 0.75rem;
   box-sizing: border-box;
   width: 100%;
+  word-break: break-all;
 }
 #right-side .sub-upgrades .sub-upgrade div {
   height: 100%;
@@ -1434,12 +1435,14 @@ header .header-icons #achievements-icon svg:hover g path {
   opacity: 0.8;
 }
 
-.owned-ratio {
+.owned-ratio,
+.earned-ratio {
   text-align: center;
   margin: 0;
   margin-bottom: 0.5rem;
 }
-.owned-ratio h3 {
+.owned-ratio h3,
+.earned-ratio h3 {
   font-style: italic;
   line-height: 1;
   margin: 0;

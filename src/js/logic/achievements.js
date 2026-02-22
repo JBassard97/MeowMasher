@@ -28,6 +28,7 @@ export const giveSpecificAchievement = async (id) => {
       },
     }),
   );
+  window.dispatchEvent(new CustomEvent("achievementEarned"));
 };
 
 export const checkForAchievements = (achievements, upgrades, subUpgrades) => {

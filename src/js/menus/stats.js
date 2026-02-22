@@ -5,6 +5,7 @@ import { isDesktop } from "../logic/storage.js";
 import { isPaused } from "../helpers/isPaused.js";
 import { formatNumber } from "../helpers/formatNumber.js";
 import { D } from "../logic/decimalWrapper.js";
+import { giveSpecificAchievement } from "../logic/achievements.js";
 
 // Load both JSON data files ONCE
 let allSubUpgrades = [];
@@ -32,6 +33,7 @@ const closeStatsDialog = document.getElementById("close-stats-dialog");
 
 statsIcon.addEventListener("click", () => {
   statsDialog.classList.add("active");
+  giveSpecificAchievement(6);
 });
 
 closeStatsDialog.addEventListener("click", () => {

@@ -370,7 +370,7 @@ items:
     unlockRequirement: 150
     <<: *upgradeMultiplier
   - id: 6000
-    name: Temple 1
+    name: Flimsy Mouse Toy
     cost: 200000000
     targetUpgradeId: 6
     unlockRequirement: 1
@@ -400,127 +400,127 @@ items:
     unlockRequirement: 100
     <<: *upgradeMultiplier
   - id: 7000
-    name: Wizard Tower 1
+    name: Red Crinkle Ball
     cost: 3300000000
     targetUpgradeId: 7
     unlockRequirement: 1
     <<: *upgradeMultiplier
   - id: 7001
-    name: Wizard Tower 2
+    name: Orange Crinkle Ball
     cost: 16500000000
     targetUpgradeId: 7
     unlockRequirement: 5
     <<: *upgradeMultiplier
   - id: 7002
-    name: Wizard Tower 3
+    name: Yellow Crinkle Ball
     cost: 165000000000
     targetUpgradeId: 7
     unlockRequirement: 25
     <<: *upgradeMultiplier
   - id: 7003
-    name: Wizard Tower 4
+    name: Green Crinkle Ball
     cost: 16500000000000
     targetUpgradeId: 7
     unlockRequirement: 50
     <<: *upgradeMultiplier
   - id: 8000
-    name: Shipment 1
+    name: Flimsy Wand Toy
     cost: 51000000000
     targetUpgradeId: 8
     unlockRequirement: 1
     <<: *upgradeMultiplier
   - id: 8001
-    name: Shipment 2
+    name: Plastic Wand Toy
     cost: 255000000000
     targetUpgradeId: 8
     unlockRequirement: 5
     <<: *upgradeMultiplier
   - id: 8002
-    name: Shipment 3
+    name: Wooden Wand Toy
     cost: 2550000000000
     targetUpgradeId: 8
     unlockRequirement: 25
     <<: *upgradeMultiplier
   - id: 8003
-    name: Shipment 4
+    name: Metal Wand Toy
     cost: 255000000000000
     targetUpgradeId: 8
     unlockRequirement: 50
     <<: *upgradeMultiplier
   - id: 9000
-    name: Alchemy 1
+    name: Used Laser Pointer
     cost: 750000000000
     targetUpgradeId: 9
     unlockRequirement: 1
     <<: *upgradeMultiplier
   - id: 9001
-    name: Alchemy 2
+    name: New Batteries
     cost: 3750000000000
     targetUpgradeId: 9
     unlockRequirement: 5
     <<: *upgradeMultiplier
   - id: 9002
-    name: Alchemy 3
+    name: Simple Laser Pointer
     cost: 375000000000000
     targetUpgradeId: 9
     unlockRequirement: 25
     <<: *upgradeMultiplier
   - id: 9003
-    name: Alchemy 4
+    name: Enhanced Focusing Tip
     cost: 37500000000000000
     targetUpgradeId: 9
     unlockRequirement: 50
     <<: *upgradeMultiplier
   - id: 9004
-    name: Alchemy 5
+    name: Blue Laser (Pet Safe)
     cost: 3750000000000000000
     targetUpgradeId: 9
     unlockRequirement: 100
     <<: *upgradeMultiplier
   - id: 9005
-    name: Alchemy 6
+    name: Green Laser (Pet Safe)
     cost: 375000000000000000000
     targetUpgradeId: 9
     unlockRequirement: 150
     <<: *upgradeMultiplier
   - id: 9006
-    name: Alchemy 7
+    name: Keychain Attachment
     cost: 3.75e+23
     targetUpgradeId: 9
     unlockRequirement: 200
     <<: *upgradeMultiplier
   - id: 10000
-    name: Portal 1
+    name: Used Cat Bed
     cost: 10000000000000
     targetUpgradeId: 10
     unlockRequirement: 1
     <<: *upgradeMultiplier
   - id: 10001
-    name: Portal 2
+    name: Simple Cat Bed
     cost: 50000000000000
     targetUpgradeId: 10
     unlockRequirement: 5
     <<: *upgradeMultiplier
   - id: 10002
-    name: Portal 3
+    name: Felt Cat Bed
     cost: 500000000000000
     targetUpgradeId: 10
     unlockRequirement: 25
     <<: *upgradeMultiplier
   - id: 10003
-    name: Portal 4
+    name: Plush Cat Bed
     cost: 50000000000000000
     targetUpgradeId: 10
     unlockRequirement: 50
     <<: *upgradeMultiplier
   - id: 10004
-    name: Portal 5
+    name: Furry Cat Bed
     cost: 5000000000000000000
     targetUpgradeId: 10
     unlockRequirement: 100
     <<: *upgradeMultiplier
   - id: 10005
-    name: Portal 6
+    name: Satin Cat Bed
     cost: 500000000000000000000
     targetUpgradeId: 10
     unlockRequirement: 150

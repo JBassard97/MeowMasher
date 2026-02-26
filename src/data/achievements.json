@@ -52,6 +52,13 @@
     "type": "misc"
   },
   {
+    "id": 8,
+    "name": "Off To The Bakery",
+    "desc": "Make your 1st biscuit",
+    "type": "number_of_biscuits",
+    "requirement": 1
+  },
+  {
     "id": 901,
     "name": "He likes You!",
     "desc": "Click the cat 100 times",
@@ -119,6 +126,18 @@
     "id": 305,
     "name": "Flip Out",
     "desc": "Flip the Left and Right sides",
+    "type": "misc"
+  },
+  {
+    "id": 306,
+    "name": "Open a Window",
+    "desc": "Drag the Upgrades Bar",
+    "type": "misc"
+  },
+  {
+    "id": 307,
+    "name": "Typographic Touches",
+    "desc": "Change the Game's Font",
     "type": "misc"
   }
 ]

@@ -10,13 +10,16 @@ import { giveSpecificAchievement } from "../logic/achievements.js";
 // Load both JSON data files ONCE
 let allSubUpgrades = [];
 let allUpgrades = [];
+let versionNumber = "";
 
 Promise.all([
   fetch("src/data/subUpgrades.json").then((r) => r.json()),
   fetch("src/data/upgrades.json").then((r) => r.json()),
-]).then(([subs, ups]) => {
+  fetch("package.json").then((r) => r.json()),
+]).then(([subs, ups, pkg]) => {
   allSubUpgrades = subs;
   allUpgrades = ups;
+  versionNumber = pkg.version;
 
   // CRITICAL: Initialize upgrades with Decimal properties just like main.js does
   allUpgrades.forEach((u) => {
@@ -136,6 +139,10 @@ setInterval(() => {
       storage.getTotalPauseTimeFormatted();
     document.getElementById("stats-num-of-pauses-display").textContent =
       formatNumber(storage.getNumberOfPauses());
+
+    // --- game version ---
+    document.getElementById("stats-game-version-display").textContent =
+      versionNumber;
 
     // --- biscuits ---
     document.getElementById("stats-lifetime-biscuits-display").textContent =

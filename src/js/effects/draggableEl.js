@@ -1,3 +1,5 @@
+import { giveSpecificAchievement } from "../logic/achievements.js";
+
 const handle = document.querySelector(".draggable");
 const topContainer = document.querySelector(".sub-upgrades");
 
@@ -28,6 +30,8 @@ handle.addEventListener("pointermove", (e) => {
   if (!dragging) {
     return;
   }
+
+  giveSpecificAchievement(306);
 
   const deltaY = e.clientY - startY;
   const newHeight = startHeight + deltaY;

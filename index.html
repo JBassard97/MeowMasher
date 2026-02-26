@@ -2,7 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
     <title>Meow Masher</title>
     <link rel="stylesheet" href="src/css/style.css" />
     <link rel="icon" href="./favicon-96x96.png" sizes="96x96" />
@@ -580,6 +583,10 @@
                   >
                 </p>
               </ul>
+              <p>
+                Game Version:
+                <b><span id="stats-game-version-display">Loading...</span></b>
+              </p>
             </div>
             <div class="stats-card">
               <div style="display: flex; align-items: center">
@@ -903,8 +910,8 @@
       type="module"
       src="src/js/effects/upgradesIntersectionObserver.js"
     ></script>
-    <script src="src/js/effects/draggableEl.js"></script>
-    <script src="src/js/effects/toast.js"></script>
+    <script type="module" src="src/js/effects/draggableEl.js"></script>
+    <script type="module" src="src/js/effects/toast.js"></script>
     <script type="module" src="src/js/biscuits/biscuits.js"></script>
     <script type="module" src="src/js/helpers/isPaused.js"></script>
     <script type="module" src="src/js/helpers/formatNumber.js"></script>

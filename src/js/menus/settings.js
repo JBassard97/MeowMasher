@@ -66,6 +66,7 @@ fontSelect.addEventListener("change", () => {
   const selectedFont = fontSelect.value;
   bodyEl.style.fontFamily = selectedFont;
   storage.setCurrentFont(selectedFont);
+  giveSpecificAchievement(307);
 });
 
 // Number format

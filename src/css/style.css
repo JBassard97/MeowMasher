@@ -405,7 +405,7 @@ header .header-icons #achievements-icon svg:hover g path {
 #left-side .clicker-area .clicker-details {
   width: 80%;
   position: absolute;
-  bottom: 0.4rem;
+  bottom: 2px;
   border-radius: 20px;
   background-color: black;
   opacity: 0.5;

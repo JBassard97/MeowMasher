@@ -1,6 +1,7 @@
 import { storage, getItem } from "./storage.js";
 import { D } from "./decimalWrapper.js";
 
+// Called everywhere for certain user actions
 export const giveSpecificAchievement = async (id) => {
   console.log("giveSpecificAchievement called with ID:", id);
   if (storage.getAchievementOwned(id)) return; // Already owned
@@ -31,6 +32,7 @@ export const giveSpecificAchievement = async (id) => {
   window.dispatchEvent(new CustomEvent("achievementEarned"));
 };
 
+// Runs once/second in main.js
 export const checkForAchievements = (achievements, upgrades, subUpgrades) => {
   if (!achievements || achievements.length === 0) {
     console.warn("No achievements data available to check.");
@@ -64,6 +66,11 @@ export const checkForAchievements = (achievements, upgrades, subUpgrades) => {
           break;
         case "number_of_pauses":
           if (storage.getNumberOfPauses().gte(D(a.requirement))) {
+            giveSpecificAchievement(a.id);
+          }
+          break;
+        case "number_of_biscuits":
+          if (storage.getBiscuits().gte(D(a.requirement))) {
             giveSpecificAchievement(a.id);
           }
           break;

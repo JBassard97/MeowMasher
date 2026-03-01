@@ -3,6 +3,7 @@ import { updateBiscuitsDisplay } from "../helpers/updateBiscuitsDisplay.js";
 import { createBoostIcon } from "../helpers/createBoostIcon.js";
 import { isPaused } from "../helpers/isPaused.js";
 import { D } from "../logic/decimalWrapper.js";
+import { giveSpecificAchievement } from "../logic/achievements.js";
 
 const boostsIcon = document.getElementById("boosts-icon");
 const boostsDialog = document.getElementById("boosts-dialog");
@@ -88,6 +89,8 @@ function buyBoost(boostId) {
   storage.setBiscuits(biscuits.minus(boost.price));
   const owned = storage.getBoostOwned(boostId);
   storage.setBoostOwned(boostId, owned.plus(1));
+
+  giveSpecificAchievement(309);
 
   updateBiscuitsDisplay();
   renderBoosts();

@@ -14,7 +14,7 @@ import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
 import { chooseWeighted } from "./logic/chooseWeighted.js";
 import { setLivingRoom } from "./effects/setLivingRoom.js";
-import { upgradeObserver } from "./effects/upgradesIntersectionObserver.js";
+// import { upgradeObserver } from "./effects/upgradesIntersectionObserver.js";
 import { AudioList } from "./audio/audio.js";
 import { updateBiscuitEfficiency } from "./helpers/updateBiscuitEfficiency.js";
 import { updateBiscuitsDisplay } from "./helpers/updateBiscuitsDisplay.js";

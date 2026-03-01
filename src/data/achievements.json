@@ -139,5 +139,23 @@
     "name": "Typographic Touches",
     "desc": "Change the Game's Font",
     "type": "misc"
+  },
+  {
+    "id": 308,
+    "name": "Who put Letters in my Numbers?",
+    "desc": "Change the Game's Number Format",
+    "type": "misc"
+  },
+  {
+    "id": 309,
+    "name": "Wonder What this Does?",
+    "desc": "Buy your 1st boost",
+    "type": "misc"
+  },
+  {
+    "id": 310,
+    "name": "Do That Again!",
+    "desc": "Use your 1st boost",
+    "type": "misc"
   }
 ]

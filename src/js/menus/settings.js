@@ -75,6 +75,7 @@ numberFormatSelect.addEventListener("change", () => {
   setNumberFormat(selectedFormat);
   storage.setNumberFormat(selectedFormat);
   window.dispatchEvent(new Event("numberFormatChanged"));
+  giveSpecificAchievement(308);
 });
 
 // Colorblind mode

@@ -3,6 +3,7 @@ import { createBoostIcon } from "../helpers/createBoostIcon.js";
 import { $ } from "../helpers/$.js";
 import { isPaused } from "../helpers/isPaused.js";
 import { D } from "../logic/decimalWrapper.js";
+import { giveSpecificAchievement } from "../logic/achievements.js";
 
 const useBoostsIcon = $("#use-boosts-icon");
 const useBoostsDialog = $("#use-boosts-dialog");
@@ -84,6 +85,7 @@ function useBoost(boostId) {
   if (!boost) return;
 
   window.dispatchEvent(new CustomEvent("boostUsed", { detail: boost }));
+  giveSpecificAchievement(310);
 
   useBoostsDialog.classList.remove("active");
   storage.setBoostOwned(boostId, owned.minus(1)); // Decimal-safe subtraction

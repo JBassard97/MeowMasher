@@ -15,6 +15,15 @@ export function setupClickHandler({
 }) {
   const rotateCat = createCatRotator(clickerImg);
 
+  // Prevent iOS double-tap zoom without touching any click logic
+  clickerButton.addEventListener(
+    "touchstart",
+    (e) => {
+      e.preventDefault();
+    },
+    { passive: false },
+  );
+
   clickerButton.onclick = (e) => {
     if (isPaused) return;
     if (storage.getIsInBiscuitsMode()) return;

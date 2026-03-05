@@ -46,8 +46,8 @@
 
     #available-sub-upgrades-display,
     #available-upgrades-display {
-      height: calc(100% - 2px);
-      aspect-ratio: 1;
+      height: 15px;
+      width: 15px;
       border: 2px solid rgba(255, 255, 255, 0.2);
       border-radius: 50%;
       font-style: normal;
@@ -181,7 +181,7 @@
       content: "";
       position: absolute;
       height: 90%;
-      aspect-ratio: 1/1;
+      aspect-ratio: 1;
       top: 0;
       right: 0;
       background-image: url("../assets/images/vert-resize.svg");
@@ -344,6 +344,7 @@
     background-image: $softGlowFromTop;
   }
   transition: all 0.1s ease;
+  text-wrap: nowrap;
 }
 
 .buy-many-button {

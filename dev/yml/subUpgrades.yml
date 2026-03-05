@@ -26,6 +26,9 @@ x-catAdopt: &catAdopt
 x-livingRoom: &livingRoom
   type: livingRoom
 
+x-goldenPaw: &goldenPaw
+  type: goldenPaw
+
 items:
   - id: 0
     name: Soft Pats
@@ -974,3 +977,10 @@ items:
   #   cost: 50000000000000
   #   adoptedCatsRequirement: 12
   #   <<: *livingRoom
+  # - id: 500000
+  #   name: Lucky Day
+  #   cost: 100
+  #   goldenPawsRequirement: 7
+  #   twiceAsOften: true
+  #   twiceAsLong: true
+  #   <<: *goldenPaw

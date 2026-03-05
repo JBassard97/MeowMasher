@@ -428,6 +428,10 @@ document.addEventListener("DOMContentLoaded", async () => {
       const adoptedCats = storage.getAdoptedCatsNumber();
       if (adoptedCats.lt(u.adoptedCatsRequirement)) return false;
     }
+    if (u.goldenPawsRequirement) {
+      const goldenPaws = storage.getNumberofGoldenPawClicks();
+      if (goldenPaws.lt(u.goldenPawsRequirement)) return false;
+    }
 
     return true;
   }
@@ -507,6 +511,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       storage.addLivingRoomIndex();
       storage.addNumberOfLivingRooms();
       setLivingRoom();
+    } else if (u.type === "goldenPaw") {
+      // TODO: HANDLE THIS
     }
 
     AudioList.Click();

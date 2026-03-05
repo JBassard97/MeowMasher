@@ -787,8 +787,8 @@ header .header-icons #achievements-icon svg:hover g path {
 #right-side h5 #available-upgrades-display,
 #right-side .image-text #available-sub-upgrades-display,
 #right-side .image-text #available-upgrades-display {
-  height: calc(100% - 2px);
-  aspect-ratio: 1;
+  height: 15px;
+  width: 15px;
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   font-style: normal;
@@ -902,7 +902,7 @@ header .header-icons #achievements-icon svg:hover g path {
   content: "";
   position: absolute;
   height: 90%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1;
   top: 0;
   right: 0;
   background-image: url("../assets/images/vert-resize.svg");
@@ -1047,6 +1047,7 @@ header .header-icons #achievements-icon svg:hover g path {
 .buy-cheap-button,
 .buy-many-button {
   transition: all 0.1s ease;
+  text-wrap: nowrap;
 }
 
 .buy-many-button {

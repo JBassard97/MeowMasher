@@ -1,3 +1,9 @@
+// handleClick.js
+import { spawnClickPopup } from "../effects/clickPopup.js";
+import { createCatRotator } from "../effects/catRotation.js";
+import { AudioList } from "../audio/audio.js";
+import { isPaused } from "../helpers/isPaused.js";
+
 export function setupClickHandler({
   clickerButton,
   clickerImg,

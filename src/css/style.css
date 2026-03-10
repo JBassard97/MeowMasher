@@ -279,7 +279,7 @@ header .header-icons #achievements-icon svg:hover g path {
   }
 }
 #left-side #stats {
-  border-top: 1px solid darkslategray;
+  border-top: 1px solid rgb(31, 53, 53);
   text-align: center;
   padding: 0.5rem 1rem;
   padding-bottom: 1rem;
@@ -776,8 +776,8 @@ header .header-icons #achievements-icon svg:hover g path {
   font-style: italic;
   position: relative;
   box-sizing: border-box;
-  border-top: 1px solid darkslategray;
-  border-bottom: 1px solid darkslategray;
+  border-top: 1px solid rgb(31, 53, 53);
+  border-bottom: 1px solid rgb(31, 53, 53);
   height: 3rem;
   display: flex;
   align-items: center;

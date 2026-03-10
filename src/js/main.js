@@ -303,6 +303,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       updateAffordability();
+      renderSubUpgrades();
     };
 
     tick();
@@ -512,7 +513,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       storage.addNumberOfLivingRooms();
       setLivingRoom();
     } else if (u.type === "goldenPaw") {
-      // TODO: HANDLE THIS
+      if (u.twiceAsOften) {
+        const current = storage.getGoldenPawSpawnInterval();
+        storage.setGoldenPawSpawnInterval(current.dv(2));
+        console.log("new spawn interval:", storage.getGoldenPawSpawnInterval());
+      }
+      if (u.twiceAsLong) {
+        const current = storage.getGoldenPawSpawnLifetime();
+        storage.setGoldenPawSpawnLifetime(current.times(2));
+        console.log("new spawn lifetime:", storage.getGoldenPawSpawnLifetime());
+      }
     }
 
     AudioList.Click();

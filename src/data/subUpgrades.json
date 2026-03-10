@@ -1409,5 +1409,23 @@
     "cost": 50000000000,
     "adoptedCatsRequirement": 9,
     "type": "livingRoom"
+  },
+  {
+    "id": 500000,
+    "name": "Lucky Break",
+    "cost": 777777777,
+    "goldenPawsRequirement": 7,
+    "twiceAsOften": true,
+    "twiceAsLong": true,
+    "type": "goldenPaw"
+  },
+  {
+    "id": 500001,
+    "name": "Hot Streak",
+    "cost": 77777777777,
+    "goldenPawsRequirement": 27,
+    "twiceAsOften": true,
+    "twiceAsLong": true,
+    "type": "goldenPaw"
   }
 ]

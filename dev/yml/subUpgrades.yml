@@ -977,10 +977,17 @@ items:
   #   cost: 50000000000000
   #   adoptedCatsRequirement: 12
   #   <<: *livingRoom
-  # - id: 500000
-  #   name: Lucky Day
-  #   cost: 100
-  #   goldenPawsRequirement: 7
-  #   twiceAsOften: true
-  #   twiceAsLong: true
-  #   <<: *goldenPaw
+  - id: 500000
+    name: Lucky Break
+    cost: 777777777
+    goldenPawsRequirement: 7
+    twiceAsOften: true
+    twiceAsLong: true
+    <<: *goldenPaw
+  - id: 500001
+    name: Hot Streak
+    cost: 77777777777
+    goldenPawsRequirement: 27
+    twiceAsOften: true
+    twiceAsLong: true
+    <<: *goldenPaw

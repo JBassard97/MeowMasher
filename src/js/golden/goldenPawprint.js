@@ -3,8 +3,8 @@ import { storage } from "../logic/storage.js";
 import { isPaused } from "../helpers/isPaused.js";
 
 export function startGoldenPawprintSpawner(clickerButton, onClick) {
-  const SPAWN_INTERVAL = 9 * 60 * 1000; // 9 min
-  const LIFETIME = 9000; // 9 seconds
+  const SPAWN_INTERVAL = storage.getGoldenPawSpawnInterval(); // 9 minutes
+  const LIFETIME = storage.getGoldenPawSpawnLifetime(); // 4.5 seconds
 
   function spawnGoldenPawprint() {
     if (isPaused) return;

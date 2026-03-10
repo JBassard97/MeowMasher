@@ -1,5 +1,3 @@
-import { storage } from "./storage.js";
-
 export function describeSubBonus(u, upgrades) {
   const t = upgrades.find((x) => x.id === u.targetUpgradeId);
   switch (u.type) {
@@ -22,6 +20,10 @@ export function describeSubBonus(u, upgrades) {
       return `It's time to move${u.id !== 400000 ? " again" : ""}!`;
     case "catAdopt":
       return "Every cat deserves a home";
+    case "goldenPaw":
+      if (u.twiceAsOften && u.twiceAsLong) {
+        return "2x Golden Paw Frequency & Lifetime";
+      }
     default:
       return "Oops case not handled in describeSubBonus.js";
   }

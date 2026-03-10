@@ -1,8 +1,6 @@
 import { D } from "../logic/decimalWrapper.js";
 import { $ } from "../helpers/$.js";
-import {
-  giveSpecificAchievement,
-} from "./achievements.js";
+import { giveSpecificAchievement } from "./achievements.js";
 
 // Wait for pywebview to be injected
 const waitForPywebview = (maxWait = 2000) => {
@@ -107,6 +105,10 @@ export const storage = {
   getBiscuitEfficiency: () => D(getItem("biscuitEfficiency") || "1"),
   getLifetimeBiscuits: () => D(getItem("lifetimeBiscuits") || "0"),
   getNumberofGoldenPawClicks: () => D(getItem("goldenPawClicks") || "0"),
+  getGoldenPawSpawnInterval: () =>
+    D(getItem("goldenPawSpawnInterval") || "540000"),
+  getGoldenPawSpawnLifetime: () =>
+    D(getItem("goldenPawSpawnLifetime") || "4500"),
   getNumberOfPauses: () => D(getItem("numOfPauses") || "0"),
   getTimeSpentPaused: () => D(getItem("timeSpentPaused") || "0"),
   getGameStartTimeMs: () => {
@@ -240,6 +242,10 @@ export const storage = {
     const newValue = current.plus(1);
     setItem("goldenPawClicks", newValue.toString());
   },
+  setGoldenPawSpawnInterval: (value) =>
+    setItem("goldenPawSpawnInterval", value),
+  setGoldenPawSpawnLifetime: (value) =>
+    setItem("goldenPawSpawnLifetime", value),
 
   // --- Cat Unlocking ---
   initAdoptedCatsNumber: () => setItem("adoptedCatsAmount", "1"),

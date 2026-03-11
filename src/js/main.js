@@ -21,16 +21,12 @@ import { updateBiscuitsDisplay } from "./helpers/updateBiscuitsDisplay.js";
 import { $ } from "./helpers/$.js";
 import { D } from "./logic/decimalWrapper.js";
 import { formatNumber } from "./helpers/formatNumber.js";
-// import { WebHaptics } from "web-haptics";
-import * as h from "https://cdn.jsdelivr.net/npm/web-haptics@0.0.6/+esm";
-
+import { haptics } from "./effects/haptics.js";
 
 const mode = "prod";
 const devBonus = D(50000);
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const haptics = new h.WebHaptics();
-
   const counterDisplay = $("#counter");
   const rateDisplay = $("#rate");
   const clickRateDisplay = $("#click-rate");

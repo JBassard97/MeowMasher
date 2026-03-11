@@ -21,7 +21,7 @@ import { updateBiscuitsDisplay } from "./helpers/updateBiscuitsDisplay.js";
 import { $ } from "./helpers/$.js";
 import { D } from "./logic/decimalWrapper.js";
 import { formatNumber } from "./helpers/formatNumber.js";
-import { haptics } from "./effects/haptics.js";
+import { HapticsList } from "./effects/haptics.js";
 
 const mode = "prod";
 const devBonus = D(50000);
@@ -459,6 +459,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     storage.setUpgradeOwned(u.id, u.owned);
 
     AudioList.Click();
+    HapticsList.LitlePulse();
 
     updateAutoRate();
     updateClickPower();
@@ -525,7 +526,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
     }
 
-    AudioList.Click();
+    AudioList.Click(); // Audio
+    HapticsList.LitlePulse() // Haptics
 
     updateAutoRate();
     updateClickPower();
@@ -545,7 +547,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     incrementCount: (amount) => {
       count = count.plus(amount);
       animateCounter(counterDisplay, count);
-      haptics.trigger([{ duration: 15 }], { intensity: 0.3 });
+      HapticsList.LitlePulse();
     },
     saveMewnits,
     updateAffordability,

@@ -93,8 +93,72 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 80% 65% at top, rgba(255, 255, 255, 0.1921568627), rgba(208, 208, 208, 0.0392156863));
   position: relative;
+}
+header .toast {
+  position: absolute;
+  width: fit-content;
+  max-width: 50%;
+  height: 20px;
+  border: 2px solid darkslateblue;
+  border-top: none;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-image: linear-gradient(to bottom in oklch longer hue, whitesmoke, darkslategray);
+  color: black;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100%);
+  text-align: center;
+  z-index: 1001;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  opacity: 0;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+header .toast * {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+header .toast .toast-header {
+  text-decoration: underline;
+  margin-bottom: 0.25rem;
+}
+header .toast .toast-content {
+  font-size: 0.9rem;
+}
+header .toast .toast-desc {
+  font-size: 0.6rem;
+  margin-top: 0.5rem;
+  color: lightblue;
+}
+header .toast.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0%);
+}
+@keyframes toastSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-100%);
+  }
+  12.5% {
+    /* 0.5s of 4s */
+    opacity: 1;
+    transform: translateX(-50%) translateY(0%);
+  }
+  87.5% {
+    /* hold position */
+    opacity: 1;
+    transform: translateX(-50%) translateY(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-100%);
+  }
 }
 header #desktop-or-web-display {
   position: absolute;
@@ -215,12 +279,13 @@ header .header-icons #achievements-icon svg:hover g path {
   }
 }
 #left-side #stats {
-  border-top: 1px solid darkslategray;
+  border-top: 1px solid rgb(31, 53, 53);
   text-align: center;
   padding: 0.5rem 1rem;
   padding-bottom: 1rem;
   z-index: 5;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 80% 65% at top, rgba(255, 255, 255, 0.1921568627), rgba(208, 208, 208, 0.0392156863));
+  position: relative;
 }
 #left-side #stats p {
   margin: 0;
@@ -242,6 +307,22 @@ header .header-icons #achievements-icon svg:hover g path {
 #left-side #stats .click-rate-display {
   line-height: 0.5rem;
 }
+#left-side #stats #pause-resume {
+  all: unset;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
 #left-side .clicker-area {
   cursor: pointer;
   flex: 1 1 auto;
@@ -257,7 +338,7 @@ header .header-icons #achievements-icon svg:hover g path {
   overflow: hidden;
   padding-bottom: 1rem;
   transition: all 0.5s ease-in-out;
-  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.3);
 }
 #left-side .clicker-area:active #clicker {
   scale: 1.05;
@@ -324,7 +405,7 @@ header .header-icons #achievements-icon svg:hover g path {
 #left-side .clicker-area .clicker-details {
   width: 80%;
   position: absolute;
-  bottom: 0.4rem;
+  bottom: 2px;
   border-radius: 20px;
   background-color: black;
   opacity: 0.5;
@@ -339,7 +420,7 @@ header .header-icons #achievements-icon svg:hover g path {
   position: absolute;
   top: 0;
   left: 0;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 80% 65% at top, rgba(255, 255, 255, 0.1921568627), rgba(208, 208, 208, 0.0392156863));
 }
 #left-side .clicker-area .clicker-details #owned-cats,
 #left-side .clicker-area .clicker-details .living-rooms,
@@ -457,7 +538,7 @@ header .header-icons #achievements-icon svg:hover g path {
   word-wrap: break-word;
   padding: 5px 0;
   background-color: black;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 80% 65% at top, rgba(255, 255, 255, 0.1921568627), rgba(208, 208, 208, 0.0392156863));
 }
 #left-side .clicker-area .biscuits-area .biscuits-content .biscuits-display * {
   line-height: 1;
@@ -651,7 +732,7 @@ header .header-icons #achievements-icon svg:hover g path {
   position: absolute;
   top: 0;
   left: 0;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 80% 65% at top, rgba(255, 255, 255, 0.1921568627), rgba(208, 208, 208, 0.0392156863));
 }
 #left-side .clicker-area .biscuits-area .biscuits-content .paws .left-paw img {
   transform: rotateZ(-20deg);
@@ -689,25 +770,25 @@ header .header-icons #achievements-icon svg:hover g path {
   -webkit-background-clip: text;
   background-clip: text;
   padding: 0.2rem;
-  padding-left: 0.5rem;
+  padding-left: 0.4rem;
   margin: 0;
   width: 100%;
   font-style: italic;
   position: relative;
   box-sizing: border-box;
-  border-top: 1px solid darkslategray;
-  border-bottom: 1px solid darkslategray;
+  border-top: 1px solid rgb(31, 53, 53);
+  border-bottom: 1px solid rgb(31, 53, 53);
   height: 3rem;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.2rem;
 }
 #right-side h5 #available-sub-upgrades-display,
 #right-side h5 #available-upgrades-display,
 #right-side .image-text #available-sub-upgrades-display,
 #right-side .image-text #available-upgrades-display {
-  height: calc(100% - 2px);
-  aspect-ratio: 1;
+  height: 15px;
+  width: 15px;
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   font-style: normal;
@@ -725,11 +806,11 @@ header .header-icons #achievements-icon svg:hover g path {
 }
 #right-side h5 button,
 #right-side .image-text button {
-  font-size: 10px;
-  color: black;
+  font-size: 9px;
+  font-weight: bold;
   pointer-events: auto;
   cursor: pointer;
-  padding: 2px;
+  padding: 1px;
 }
 #right-side h5::before,
 #right-side .image-text::before {
@@ -741,17 +822,17 @@ header .header-icons #achievements-icon svg:hover g path {
   height: 100%;
   left: 0;
   top: 0;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 80% 65% at top, rgba(255, 255, 255, 0.1921568627), rgba(208, 208, 208, 0.0392156863));
 }
 #right-side .sub-upgrades {
   padding: 8px;
   overflow: auto;
-  min-height: 150px;
-  max-height: 500px;
+  max-height: 100px;
   transition: height 0.1s linear;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
+  align-content: start;
 }
 #right-side .sub-upgrades::-webkit-scrollbar {
   width: 8px;
@@ -765,8 +846,9 @@ header .header-icons #achievements-icon svg:hover g path {
   display: flex;
   flex-direction: column;
   height: auto;
+  max-height: 200px;
   border: 2px solid transparent;
-  border-radius: 12px;
+  border-radius: 20px;
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.03);
   transition: all 0.15s ease;
@@ -774,6 +856,7 @@ header .header-icons #achievements-icon svg:hover g path {
   text-align: center;
   line-height: 1.2;
   box-shadow: 0 0 3px 10px transparent;
+  overflow: clip;
 }
 #right-side .sub-upgrades .sub-upgrade strong {
   font-size: 12px;
@@ -784,6 +867,7 @@ header .header-icons #achievements-icon svg:hover g path {
   padding-bottom: 0.75rem;
   box-sizing: border-box;
   width: 100%;
+  word-break: break-all;
 }
 #right-side .sub-upgrades .sub-upgrade div {
   height: 100%;
@@ -817,8 +901,8 @@ header .header-icons #achievements-icon svg:hover g path {
 #right-side .draggable::after {
   content: "";
   position: absolute;
-  height: 100%;
-  aspect-ratio: 1/1;
+  height: 90%;
+  aspect-ratio: 1;
   top: 0;
   right: 0;
   background-image: url("../assets/images/vert-resize.svg");
@@ -851,7 +935,14 @@ header .header-icons #achievements-icon svg:hover g path {
   justify-content: space-evenly;
   align-items: center;
   position: relative;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 80% 65% at top, rgba(255, 255, 255, 0.1921568627), rgba(208, 208, 208, 0.0392156863));
+  will-change: transform;
+}
+#right-side .upgrades .upgrade.in {
+  transform: translateX(0%);
+}
+#right-side .upgrades .upgrade.out {
+  transform: translateX(60%);
 }
 #right-side .upgrades .upgrade img {
   height: 80px;
@@ -886,6 +977,18 @@ header .header-icons #achievements-icon svg:hover g path {
   margin: 0;
   line-height: 1;
   overflow-wrap: anywhere;
+}
+#right-side .upgrades .upgrade .upgrade-info div p:last-child {
+  font-size: 0.6rem;
+}
+#right-side .upgrades .upgrade .upgrade-info div .upgrade-cost {
+  color: rgb(255, 180, 180);
+}
+#right-side .upgrades .upgrade .upgrade-info div .upgrade-boost {
+  color: rgb(180, 255, 180);
+}
+#right-side .upgrades .upgrade .upgrade-info div .upgrade-output {
+  color: rgb(180, 180, 255);
 }
 #right-side .upgrades .upgrade .owned-number {
   margin: 0;
@@ -923,6 +1026,45 @@ header .header-icons #achievements-icon svg:hover g path {
 #right-side .sub-upgrade:hover,
 #right-side .upgrade:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.buy-cheap-button,
+.buy-many-button {
+  border-radius: 2px;
+  color: black;
+  position: relative;
+}
+.buy-cheap-button::after,
+.buy-many-button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(ellipse 80% 65% at top, rgba(255, 255, 255, 0.1921568627), rgba(208, 208, 208, 0.0392156863));
+}
+.buy-cheap-button,
+.buy-many-button {
+  transition: all 0.1s ease;
+  text-wrap: nowrap;
+}
+
+.buy-many-button {
+  border: 2px solid rgba(255, 166, 0, 0.92);
+  background-color: rgb(254, 188, 64);
+}
+
+.buy-cheap-button {
+  border: 2px solid limegreen;
+  background-color: rgb(81, 255, 81);
+}
+
+.buy-cheap-button:disabled,
+.buy-many-button:disabled {
+  color: darkslategrey;
+  border-color: gray;
+  background-color: darkgray;
 }
 
 .dialog-overlay {
@@ -1167,6 +1309,7 @@ header .header-icons #achievements-icon svg:hover g path {
 }
 .dialog-content .dialog-body .stats-section p span {
   color: whitesmoke;
+  z-index: 3;
 }
 .dialog-content .dialog-body .stats-section p span .details {
   color: rgba(211, 211, 211, 0.639);
@@ -1180,10 +1323,35 @@ header .header-icons #achievements-icon svg:hover g path {
 .dialog-content .dialog-body .stats-section p.no-before {
   margin-left: 3px;
   text-decoration: none;
-  transform: translateY(5px);
 }
 .dialog-content .dialog-body .stats-section p.no-before::before {
   content: none;
+}
+.dialog-content .dialog-body .stats-section ul {
+  padding-inline-start: 20px;
+  margin: 0;
+}
+.dialog-content .dialog-body .stats-section ul p {
+  color: lightskyblue;
+}
+.dialog-content .dialog-body .stats-section ul p span {
+  color: whitesmoke;
+}
+.dialog-content .dialog-body .stats-section ul p span .details {
+  color: rgba(211, 211, 211, 0.639);
+}
+.dialog-content .dialog-body .stats-section ul p::before {
+  color: lightskyblue;
+}
+.dialog-content .dialog-body .stats-section .stats-card {
+  border: 2px solid rgba(128, 128, 128, 0.502);
+  border-radius: 20px;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+}
+.dialog-content .dialog-body .stats-section .stats-card h3 {
+  margin: 0;
+  margin-bottom: 0.2rem;
 }
 .dialog-content .dialog-body .stats-section .clicks-header {
   margin-top: 0;
@@ -1233,12 +1401,49 @@ header .header-icons #achievements-icon svg:hover g path {
   }
 }
 
-.owned-ratio {
+.earned-achievements {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.earned-achievements .earned-achievement {
+  width: 42%;
+  min-height: 80px;
+  padding: 10px 10px;
+  border: 2px solid rgb(170, 166, 166);
+  border-radius: 20px;
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+.earned-achievements .earned-achievement .earned-achievement-details {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: center;
+}
+.earned-achievements .earned-achievement .earned-achievement-details p strong {
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+.earned-achievements .earned-achievement .earned-achievement-details p.ach-desc {
+  margin-top: 5px;
+  color: lightblue;
+  font-style: italic;
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+.owned-ratio,
+.earned-ratio {
   text-align: center;
   margin: 0;
   margin-bottom: 0.5rem;
 }
-.owned-ratio h3 {
+.owned-ratio h3,
+.earned-ratio h3 {
   font-style: italic;
   line-height: 1;
   margin: 0;
@@ -1300,13 +1505,53 @@ input[type=range] {
   width: 150px;
 }
 
+#close-use-boosts-dialog,
+#close-boosts-dialog,
+#close-levels-dialog,
+#close-achievements-dialog,
+#close-stats-dialog,
+#close-settings-dialog {
+  all: unset;
+  font-family: monospace;
+  font-weight: bold;
+  font-size: 25px;
+  border: 3px solid maroon;
+  background-image: radial-gradient(ellipse 70% 70% at top, rgb(249, 173, 173), red);
+  border-radius: 50%;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+#close-use-boosts-dialog:hover,
+#close-boosts-dialog:hover,
+#close-levels-dialog:hover,
+#close-achievements-dialog:hover,
+#close-stats-dialog:hover,
+#close-settings-dialog:hover {
+  cursor: pointer;
+}
+
+.close-container {
+  height: 5px;
+  position: sticky;
+  top: 0;
+  width: 98%;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 4;
+}
+
 footer {
   flex: 0 0 auto;
   text-align: center;
   font-size: 0.8rem;
   color: lightgray;
   padding: 0 1rem;
-  background-image: radial-gradient(ellipse 70% 60% at top, rgba(255, 255, 255, 0.2117647059), rgba(208, 208, 208, 0.0392156863));
+  background-image: radial-gradient(ellipse 80% 65% at top, rgba(255, 255, 255, 0.1921568627), rgba(208, 208, 208, 0.0392156863));
   display: flex;
   justify-content: space-between;
 }
@@ -1348,7 +1593,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
   box-sizing: border-box;
   background-color: black;

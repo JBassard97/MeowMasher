@@ -1,26 +1,31 @@
 import { storage } from "../logic/storage.js";
 import { AudioList } from "../audio/audio.js";
 import { updateBiscuitsDisplay } from "../helpers/updateBiscuitsDisplay.js";
+import { $ } from "../helpers/$.js";
+import { isPaused } from "../helpers/isPaused.js";
 
-const leftPawButton = document.getElementById("left-paw");
-const rightPaw = document.getElementById("right-paw");
-const leftArm = document.querySelector(".left-arm-container");
-const rightArm = document.querySelector(".right-arm-container");
+const leftPawButton = $("#left-paw");
+const rightPaw = $("#right-paw");
+const leftArm = $(".left-arm-container");
+const rightArm = $(".right-arm-container");
 
 const handlePawPress = (direction) => {
+  if (isPaused) return;
+
   if (direction == "left") {
     if (leftPawButton == lastPawPressed) return;
     lastPawPressed = leftPawButton;
     leftArm.style.transform = "translate(20%, 4px)";
     rightArm.style.transform = "translate(-20%, 30px)";
     pressIndex++;
-    console.log("Left", pressIndex);
+
     if (pressIndex == 2) {
+      // Decimal-safe math
       storage.setBiscuits(
-        storage.getBiscuits() + storage.getBiscuitEfficiency(),
+        storage.getBiscuits().plus(storage.getBiscuitEfficiency()),
       );
       storage.setLifetimeBiscuits(
-        storage.getLifetimeBiscuits() + storage.getBiscuitEfficiency(),
+        storage.getLifetimeBiscuits().plus(storage.getBiscuitEfficiency()),
       );
       updateBiscuitsDisplay();
       pressIndex = 0;
@@ -34,13 +39,14 @@ const handlePawPress = (direction) => {
     rightArm.style.transform = "translate(-20%, 4px)";
     leftArm.style.transform = "translate(20%, 30px)";
     pressIndex++;
-    console.log("Right", pressIndex);
+
     if (pressIndex == 2) {
+      // Decimal-safe math
       storage.setBiscuits(
-        storage.getBiscuits() + storage.getBiscuitEfficiency(),
+        storage.getBiscuits().plus(storage.getBiscuitEfficiency()),
       );
       storage.setLifetimeBiscuits(
-        storage.getLifetimeBiscuits() + storage.getBiscuitEfficiency(),
+        storage.getLifetimeBiscuits().plus(storage.getBiscuitEfficiency()),
       );
       updateBiscuitsDisplay();
       pressIndex = 0;
@@ -56,20 +62,11 @@ rightArm.style.transform = "translate(-20%, 30px)";
 let pressIndex = 0;
 let lastPawPressed;
 
-leftPawButton.addEventListener("click", (e) => {
-  handlePawPress("left");
-});
-document.addEventListener("keydown", (e) => {
-  if (e.key.toLowerCase() === "g" && storage.getIsInBiscuitsMode()) {
-    handlePawPress("left");
-  }
-});
+leftPawButton.addEventListener("click", () => handlePawPress("left"));
+rightPaw.addEventListener("click", () => handlePawPress("right"));
 
-rightPaw.addEventListener("click", (e) => {
-  handlePawPress("right");
-});
 document.addEventListener("keydown", (e) => {
-  if (e.key.toLowerCase() === "h" && storage.getIsInBiscuitsMode()) {
-    handlePawPress("right");
-  }
+  if (!storage.getIsInBiscuitsMode()) return;
+  if (e.key.toLowerCase() === "g") handlePawPress("left");
+  if (e.key.toLowerCase() === "h") handlePawPress("right");
 });

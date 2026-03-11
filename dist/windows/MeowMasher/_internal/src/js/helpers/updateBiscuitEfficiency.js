@@ -1,7 +1,8 @@
 import { storage } from "../logic/storage.js";
+import { formatNumber } from "./formatNumber.js";
 
 export function updateBiscuitEfficiency() {
   const biscuitEfficiencyDisplay = document.getElementById("efficiency-number");
   const efficiency = storage.getBiscuitEfficiency();
-  biscuitEfficiencyDisplay.textContent = efficiency.toLocaleString();
+  biscuitEfficiencyDisplay.textContent = formatNumber(efficiency);
 }

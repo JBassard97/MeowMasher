@@ -1,4 +1,6 @@
 import { storage } from "../logic/storage.js";
+import { giveSpecificAchievement } from "../logic/achievements.js";
+
 const header = document.querySelector(".image-header");
 const imageHeaderTargets = document.querySelectorAll(".image-header-target");
 
@@ -27,9 +29,15 @@ function changeHeaderImage() {
     target.style.backgroundImage = `url(${images[index]})`;
   }
 
+  giveSpecificAchievement(100); // Easter Egg #1
+
   // Dev Easter Egg
   if (index === 3) {
     storage.setBoostOwned(0, 5);
+    storage.setBiscuits(300);
+    for (let i = 0; i < 7; i++) {
+      storage.addGoldenPawClick();
+    }
   }
 }
 

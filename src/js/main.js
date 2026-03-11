@@ -22,11 +22,13 @@ import { $ } from "./helpers/$.js";
 import { D } from "./logic/decimalWrapper.js";
 import { formatNumber } from "./helpers/formatNumber.js";
 // import { checkForAchievements } from "./logic/achievements.js";
-
-const mode = "dev00";
+import { WebHaptics } from "web-haptics";
+const mode = "prod";
 const devBonus = D(50000);
 
 document.addEventListener("DOMContentLoaded", async () => {
+  const haptics = new WebHaptics();
+
   const counterDisplay = $("#counter");
   const rateDisplay = $("#rate");
   const clickRateDisplay = $("#click-rate");
@@ -545,6 +547,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     incrementCount: (amount) => {
       count = count.plus(amount);
       animateCounter(counterDisplay, count);
+      haptics.trigger([{ duration: 15 }], { intensity: 0.3 });
     },
     saveMewnits,
     updateAffordability,

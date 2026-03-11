@@ -5,7 +5,7 @@ export function describeSubUnlock(u, upgrades) {
     case "catAdopt":
       if (u.unlockRateRequirement) {
         return `Achieve ${Number(
-          u.unlockRateRequirement
+          u.unlockRateRequirement,
         ).toLocaleString()} Mewnits/S`;
       }
     case "thousandFingers":
@@ -13,12 +13,14 @@ export function describeSubUnlock(u, upgrades) {
       return `Own ${u.unlockRequirement} ${targetUpgrade.name}`;
     case "clickPowerAdder":
       return `Achieve ${Number(
-        u.unlockRateRequirement
+        u.unlockRateRequirement,
       ).toLocaleString()} Mewnits/S`;
     case "percentOfMpsClickAdder":
       return `${Number(u.unlockClickedMewnitsRequirement).toLocaleString()}`;
     case "livingRoom":
       return `Adopt ${Number(u.adoptedCatsRequirement).toLocaleString()} Cats`;
+    case "goldenPaw":
+      return `Click ${Number(u.goldenPawsRequirement).toLocaleString()} Golden Pawprints`;
     default:
       return "Yikes unhandled case in describeSubUnlock.js";
   }

@@ -1,12 +1,13 @@
 // effects/goldenPawprint.js
 import { storage } from "../logic/storage.js";
+import { isPaused } from "../helpers/isPaused.js";
 
 export function startGoldenPawprintSpawner(clickerButton, onClick) {
-  // Spawn every 5 minutes
-  const SPAWN_INTERVAL = 5 * 60 * 1000; // 9 min
-  const LIFETIME = 9000; // 9 seconds
+  const SPAWN_INTERVAL = storage.getGoldenPawSpawnInterval(); // 9 minutes
+  const LIFETIME = storage.getGoldenPawSpawnLifetime(); // 4.5 seconds
 
   function spawnGoldenPawprint() {
+    if (isPaused) return;
     const el = document.createElement("img");
     el.className = "golden-pawprint";
     el.src = "src/assets/images/goldenPawprint.svg";

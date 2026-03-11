@@ -1,13 +1,13 @@
 {
-  "totalLOC": 10426,
+  "totalLOC": 10439,
   "langBreakdown": {
     ".sh": {
       "numOfFiles": 1,
-      "loc": 25
+      "loc": 26
     },
     ".js": {
       "numOfFiles": 44,
-      "loc": 3142
+      "loc": 3150
     },
     ".py": {
       "numOfFiles": 2,
@@ -23,7 +23,7 @@
     },
     ".json": {
       "numOfFiles": 6,
-      "loc": 1979
+      "loc": 1983
     },
     ".css": {
       "numOfFiles": 1,
@@ -37,11 +37,11 @@
   "devLangBreakdown": {
     ".sh": {
       "numOfFiles": 1,
-      "loc": 25
+      "loc": 26
     },
     ".js": {
       "numOfFiles": 44,
-      "loc": 3142
+      "loc": 3150
     },
     ".py": {
       "numOfFiles": 2,
@@ -57,7 +57,7 @@
     },
     ".json": {
       "numOfFiles": 6,
-      "loc": 1979
+      "loc": 1983
     },
     ".scss": {
       "numOfFiles": 10,
@@ -67,7 +67,7 @@
   "prodLangBreakdown": {
     ".js": {
       "numOfFiles": 44,
-      "loc": 3142
+      "loc": 3150
     },
     ".html": {
       "numOfFiles": 1,
@@ -75,7 +75,7 @@
     },
     ".json": {
       "numOfFiles": 6,
-      "loc": 1979
+      "loc": 1983
     },
     ".css": {
       "numOfFiles": 1,

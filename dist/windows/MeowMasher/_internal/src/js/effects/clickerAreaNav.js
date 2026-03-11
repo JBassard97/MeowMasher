@@ -1,6 +1,7 @@
 import { storage } from "../logic/storage.js";
 import { updateBiscuitsDisplay } from "../helpers/updateBiscuitsDisplay.js";
 import { updateBiscuitEfficiency } from "../helpers/updateBiscuitEfficiency.js";
+import { isPaused } from "../helpers/isPaused.js";
 
 const clickingNavItem = document.getElementById("clicking-nav-item");
 const biscuitsNavItem = document.getElementById("biscuits-nav-item");
@@ -29,6 +30,7 @@ function deselected(el) {
 storage.setIsInBiscuitsMode(false);
 
 clickingNavItem.addEventListener("click", (e) => {
+  if (isPaused) return;
   if (e.target.id === selectedItem) return;
   console.log(e.target.id);
   selected(clickingNavItem);
@@ -37,6 +39,7 @@ clickingNavItem.addEventListener("click", (e) => {
   storage.setIsInBiscuitsMode(false);
 });
 biscuitsNavItem.addEventListener("click", (e) => {
+  if (isPaused) return;
   if (e.target.id === selectedItem) return;
   console.log(e.target.id);
   updateBiscuitsDisplay();

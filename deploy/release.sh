@@ -18,6 +18,8 @@ VERSION_TYPE="$2"
 # Counts lines of code
 npm run dev-funcs
 
+npm run build
+
 # Stage all changes
 git add .
 

@@ -1,5 +1,11 @@
+import { giveSpecificAchievement } from "../logic/achievements.js";
+
 const handle = document.querySelector(".draggable");
 const topContainer = document.querySelector(".sub-upgrades");
+
+// Force initial height to a reasonable value
+topContainer.style.minHeight = "150px";
+// topContainer.style.maxHeight = "300px";
 
 let dragging = false;
 let startY = 0;
@@ -25,22 +31,21 @@ handle.addEventListener("pointermove", (e) => {
     return;
   }
 
+  giveSpecificAchievement(306);
+
   const deltaY = e.clientY - startY;
   const newHeight = startHeight + deltaY;
 
-  if (newHeight > 325 || newHeight < 100) return;
+  if (newHeight > 400 || newHeight < 100) return;
 
   topContainer.style.minHeight = `${newHeight}px`;
 });
 
 function stopDrag(e) {
-  console.log("🛑 stopDrag fired", e.type);
-
   dragging = false;
 
   try {
     handle.releasePointerCapture(e.pointerId);
-    console.log("pointer capture released");
   } catch (err) {
     console.warn("releasePointerCapture failed", err);
   }

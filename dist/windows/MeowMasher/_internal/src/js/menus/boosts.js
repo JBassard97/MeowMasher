@@ -1,6 +1,9 @@
 import { storage } from "../logic/storage.js";
 import { updateBiscuitsDisplay } from "../helpers/updateBiscuitsDisplay.js";
 import { createBoostIcon } from "../helpers/createBoostIcon.js";
+import { isPaused } from "../helpers/isPaused.js";
+import { D } from "../logic/decimalWrapper.js";
+import { giveSpecificAchievement } from "../logic/achievements.js";
 
 const boostsIcon = document.getElementById("boosts-icon");
 const boostsDialog = document.getElementById("boosts-dialog");
@@ -8,6 +11,7 @@ const closeBoostsDialog = document.getElementById("close-boosts-dialog");
 const boostsContainer = document.getElementById("boosts-container");
 
 boostsIcon.addEventListener("click", () => {
+  if (isPaused) return;
   boostsDialog.classList.add("active");
   updateBiscuitsDisplay();
   renderBoosts();
@@ -37,6 +41,9 @@ function renderBoosts() {
     if (!boost["bonus-header"]) {
       const boostEl = document.createElement("div");
       boostEl.classList.add("boost-item");
+
+      const biscuits = storage.getBiscuits(); // Decimal-safe
+
       boostEl.innerHTML = `
       <div class="boost-icon-and-text">
         ${createBoostIcon(boost.type, boost.time)}
@@ -49,9 +56,9 @@ function renderBoosts() {
         <span>Owned:</span>
         <span class="owned-count">${storage.getBoostOwned(boost.id)}</span>
       </div>
-        <button class="buy-boost-button" ${storage.getBiscuits() < boost.price ? "disabled" : ""}>
+        <button class="buy-boost-button" ${biscuits.lt(boost.price) ? "disabled" : ""}>
           <span>Buy For</span>
-          <span>${boost.price.toLocaleString()}</span>
+          <span>${D(boost.price).toLocaleString()}</span>
           <span>Biscuits</span>
         </button>
       `;
@@ -75,12 +82,15 @@ function renderBoosts() {
 
 function buyBoost(boostId) {
   const boost = boostData.find((b) => b.id === boostId);
-  const biscuits = storage.getBiscuits();
-  if (biscuits < boost.price) return;
+  let biscuits = storage.getBiscuits(); // Decimal-safe
 
-  storage.setBiscuits(biscuits - boost.price);
+  if (biscuits.lt(boost.price)) return;
+
+  storage.setBiscuits(biscuits.minus(boost.price));
   const owned = storage.getBoostOwned(boostId);
-  storage.setBoostOwned(boostId, owned + 1);
+  storage.setBoostOwned(boostId, owned.plus(1));
+
+  giveSpecificAchievement(309);
 
   updateBiscuitsDisplay();
   renderBoosts();

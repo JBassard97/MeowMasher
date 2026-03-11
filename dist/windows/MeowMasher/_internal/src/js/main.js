@@ -7,20 +7,27 @@ import {
   SUB_UPGRADE_STYLES,
   UPGRADE_GRADIENT,
 } from "./effects/upgradeStyles.js";
-import { storage, initStorage, isDesktop } from "./logic/storage.js";
+import { storage, initStorage } from "./logic/storage.js";
+import { checkForAchievements } from "./logic/achievements.js";
 import { initSettings } from "./menus/settings.js";
 import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
 import { chooseWeighted } from "./logic/chooseWeighted.js";
 import { setLivingRoom } from "./effects/setLivingRoom.js";
+// import { upgradeObserver } from "./effects/upgradesIntersectionObserver.js";
 import { AudioList } from "./audio/audio.js";
 import { updateBiscuitEfficiency } from "./helpers/updateBiscuitEfficiency.js";
-
-const mode = "dev00";
-const devBonus = 50000;
+import { updateBiscuitsDisplay } from "./helpers/updateBiscuitsDisplay.js";
+import { $ } from "./helpers/$.js";
+import { D } from "./logic/decimalWrapper.js";
+import { formatNumber } from "./helpers/formatNumber.js";
+// import { checkForAchievements } from "./logic/achievements.js";
+import { WebHaptics } from "web-haptics";
+const mode = "prod";
+const devBonus = D(50000);
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const $ = (sel) => document.querySelector(sel);
+  const haptics = new WebHaptics();
 
   const counterDisplay = $("#counter");
   const rateDisplay = $("#rate");
@@ -34,37 +41,49 @@ document.addEventListener("DOMContentLoaded", async () => {
   const autoBuyUpgradeButton = $("#auto-buy-upgrade");
   const autoBuySubUpgradeButton = $("#auto-buy-sub-upgrade");
   const buyManyDisplay = $("#buy-many-display");
+  const buyManyUpgradesButton = $("#buy-many-upgrades");
+  const buyManyUpgradesDisplay = $("#buy-many-upgrades-display");
+  const pauseResumeButton = $("#pause-resume");
 
   await initStorage();
   initSettings();
 
   // Load data
-  const [upgrades, subUpgrades] = await Promise.all([
+  const [upgrades, subUpgrades, boosts, achievements] = await Promise.all([
     fetch("src/data/upgrades.json").then((r) => r.json()),
     fetch("src/data/subUpgrades.json").then((r) => r.json()),
+    fetch("src/data/boosts.json").then((r) => r.json()),
+    fetch("src/data/achievements.json").then((r) => r.json()),
   ]);
 
-  // State
+  // State - ALL using Decimal
   let count = storage.getMewnits();
-  let baseAutoRate = 0;
+  let baseAutoRate = D(0);
   let baseClickPower = storage.getClickPower();
-  let autoRate = 0;
-  let clickPower = 0;
+  let autoRate = D(0);
+  let clickPower = D(0);
   let autoInterval = null;
-  let animationFrame = null;
+  let autoAnimFrame = null;
 
   let goldenPawActive = false;
-  let boostMpsMultiplier = 1; // Temporary multiplier
+  let boostMpsMultiplier = D(1);
   let activeTimedBoost = null;
   let activeTimedBoostTimeout = null;
 
+  let isPaused = false;
+  const MS_IN_A_SEC = 1000;
+  let pauseInterval = null;
+
   let revealedUpgrades = new Set();
 
-  // Restore upgrade data
+  // ADDED: Flag to prevent rate recalculation unless upgrades changed
+  let ratesNeedUpdate = false;
+
+  // Restore upgrade data - ALL using Decimal
   upgrades.forEach((u) => {
     u.owned = storage.getUpgradeOwned(u.id);
     u.multiplier = storage.getUpgradeMultiplier(u.id);
-    u.extraBonus = 0;
+    u.extraBonus = D(0);
   });
 
   // --- Boosts Custom Event Listener ---
@@ -87,21 +106,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   startGoldenPawprintSpawner(clickerButton, () => {
-    // If they're already active, do nothing
     if (goldenPawActive) return;
 
-    // Weight configuration
     const reward = chooseWeighted({
-      mps: 1, // equal chance by default
-      mew: 2, // equal chance
+      mps: 2,
+      mew: 4,
+      freeBoost: 1,
     });
 
     if (reward === "mps") {
-      // --- Apply 30s MPS Boost ---
       boostFuncs.mps(30);
     } else if (reward === "mew") {
-      // --- Immediate Mewnits payout ---
-      boostFuncs.mew(60);
+      boostFuncs.mew(30);
+    } else if (reward === "freeBoost") {
+      boostFuncs.freeBoost();
     }
   });
 
@@ -110,7 +128,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       cancelActiveTimedBoost();
 
       activeTimedBoost = "mps";
-      boostMpsMultiplier = boost;
+      boostMpsMultiplier = D(boost);
       updateAutoRate();
       startAutoIncrement();
 
@@ -122,12 +140,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     },
 
     mew: (secondsOfPayout = 60) => {
-      const bonus = autoRate * secondsOfPayout;
-      toggleGoldenPawMode(true, "mew", 1, bonus);
-      const prev = count;
-      count += bonus;
+      const bonus = autoRate.times(secondsOfPayout);
+      const bonusDisplay = bonus.gt(Number.MAX_SAFE_INTEGER)
+        ? bonus.toExponential(2)
+        : bonus.toNumber();
+      toggleGoldenPawMode(true, "mew", 1, bonusDisplay);
+      const bonusD = autoRate.times(secondsOfPayout);
+
+      count = count.plus(bonusD);
+
       storage.setMewnits(count);
-      animateCounter(counterDisplay, prev, count, 400);
+
+      if (autoAnimFrame) {
+        cancelAnimationFrame(autoAnimFrame);
+        autoAnimFrame = null;
+      }
+      animateCounter(counterDisplay, count);
     },
 
     biscuitEfficiency: (seconds = 30, boost = 2) => {
@@ -135,7 +163,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       activeTimedBoost = "biscuit-efficiency";
 
-      storage.setBiscuitEfficiency(storage.getBaseBiscuitEfficiency() * boost);
+      const baseBiscuitEff = storage.getBaseBiscuitEfficiency();
+      storage.setBiscuitEfficiency(baseBiscuitEff.times(boost));
       updateBiscuitEfficiency();
 
       toggleGoldenPawMode(true, "biscuit-efficiency", seconds, boost);
@@ -144,20 +173,34 @@ document.addEventListener("DOMContentLoaded", async () => {
         cancelActiveTimedBoost();
       }, seconds * 1000);
     },
+    freeBoost: () => {
+      // clean up boosts json
+      const validBoosts = boosts.filter((b) => b.name);
+      // grab a random on from the list
+      const freeBoost =
+        validBoosts[Math.floor(Math.random() * validBoosts.length) - 1];
+      storage.setBoostOwned(
+        freeBoost.id,
+        storage.getBoostOwned(freeBoost.id).plus(1),
+      );
+      toggleGoldenPawMode(true, "freeBoost", 2, freeBoost.name);
+    },
   };
+
+  window.addEventListener("cancelActiveTimedBoost", () => {
+    cancelActiveTimedBoost();
+  });
 
   function cancelActiveTimedBoost() {
     if (!activeTimedBoost) return;
 
-    // Clear timer
     if (activeTimedBoostTimeout) {
       clearTimeout(activeTimedBoostTimeout);
       activeTimedBoostTimeout = null;
     }
 
-    // Revert effects based on type
     if (activeTimedBoost === "mps") {
-      boostMpsMultiplier = 1;
+      boostMpsMultiplier = D(1);
       updateAutoRate();
       startAutoIncrement();
       toggleGoldenPawMode(false, "mps");
@@ -172,62 +215,97 @@ document.addEventListener("DOMContentLoaded", async () => {
     activeTimedBoost = null;
   }
 
-  // -----------------------------
-  // Full Click Power Recalc
-  // -----------------------------
   function updateClickPower() {
-    const tf = computeThousandFingers(upgrades, subUpgrades).total;
-    const percent = storage.getPercentOfMpsClickAdder(); // e.g. 0.01
+    const tf = D(computeThousandFingers(upgrades, subUpgrades).total);
+    const percent = storage.getPercentOfMpsClickAdder();
 
-    // Use baseAutoRate, not the multiplied autoRate
-    const mpsBonus = Math.floor(baseAutoRate * percent);
+    const mpsBonus = baseAutoRate.times(percent).floor();
 
-    clickPower = baseClickPower + tf + mpsBonus;
+    clickPower = baseClickPower.plus(tf).plus(mpsBonus);
 
-    if (mode === "dev") clickPower += devBonus;
+    if (mode === "dev") clickPower = clickPower.plus(devBonus);
 
-    clickRateDisplay.textContent = clickPower.toLocaleString();
+    clickRateDisplay.textContent = formatNumber(clickPower);
   }
 
-  // -----------------------------
-  // Auto Mewnits / second
-  // -----------------------------
   function updateAutoRate() {
-    // Compute base rate only from upgrades
-    baseAutoRate = upgrades.reduce(
-      (sum, u) =>
-        sum + u.owned * (u.rate * (u.multiplier || 1) + (u.extraBonus || 0)),
-      0,
-    );
+    // First, get the Pats bonus from Thousand Fingers
+    const tfResult = computeThousandFingers(upgrades, subUpgrades);
 
-    // Apply golden pawprint multiplier only to autoRate
+    // Apply it to the Pats upgrade
+    const patsUpgrade = upgrades.find((u) => u.name === "Pats");
+    if (patsUpgrade) {
+      patsUpgrade.extraBonus = tfResult.patsBonus;
+    }
+
+    // Now compute base rate with the updated extraBonus
+    baseAutoRate = upgrades.reduce((sum, u) => {
+      const rate = D(u.rate);
+      const multiplier = u.multiplier;
+      const extraBonus = u.extraBonus;
+      const owned = u.owned;
+
+      return sum.plus(owned.times(rate.times(multiplier).plus(extraBonus)));
+    }, D(0));
+
     autoRate =
       activeTimedBoost === "mps"
-        ? Math.floor(baseAutoRate * boostMpsMultiplier)
+        ? baseAutoRate.times(boostMpsMultiplier).floor()
         : baseAutoRate;
 
     storage.setMewnitsPerSecond(autoRate);
 
-    autoRate += computeYarnBonus(subUpgrades).yarnBonus; // Add yarn (but don't actually save it)
+    const yarnBonus = D(computeYarnBonus(subUpgrades).yarnBonus || 0);
+    autoRate = autoRate.plus(yarnBonus);
 
-    rateDisplay.textContent = autoRate.toLocaleString();
+    rateDisplay.textContent = formatNumber(autoRate);
   }
 
   function startAutoIncrement() {
     if (autoInterval) clearInterval(autoInterval);
-    if (autoRate <= 0) return;
+    if (autoRate.lte(0)) return;
+
+    function animateAutoTick(from) {
+      if (autoAnimFrame) cancelAnimationFrame(autoAnimFrame);
+
+      const to = from.plus(autoRate);
+      const startTime = performance.now();
+      const duration = 1000;
+
+      function frame(now) {
+        const p = Math.min((now - startTime) / duration, 1);
+        const current = from.plus(to.minus(from).times(p)).floor();
+        counterDisplay.textContent = formatNumber(current);
+
+        if (p < 1) {
+          autoAnimFrame = requestAnimationFrame(frame);
+        } else {
+          autoAnimFrame = null;
+        }
+      }
+
+      autoAnimFrame = requestAnimationFrame(frame);
+    }
 
     const tick = () => {
       const prev = count;
-      count += autoRate;
 
-      animateCounter(counterDisplay, prev, count, 1000, animationFrame);
+      count = count.plus(autoRate);
+
       storage.setMewnits(count);
       storage.addLifetimeMewnits(autoRate);
 
-      updateAutoRate();
-      updateClickPower();
+      animateAutoTick(prev, count);
+
+      // FIXED: Only recalculate rates if upgrades were bought
+      if (ratesNeedUpdate) {
+        updateAutoRate();
+        updateClickPower();
+        ratesNeedUpdate = false;
+      }
+
       updateAffordability();
+      renderSubUpgrades();
     };
 
     tick();
@@ -239,8 +317,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (revealedUpgrades.has(u.id)) return true;
 
-    const owned = storage.getUpgradeOwned(u.id) >= 1;
-    const canAfford75 = count >= cost * 0.75;
+    const owned = u.owned.gte(1);
+    const canAfford75 = count.gte(cost.times(0.75));
 
     if (owned || canAfford75) {
       revealedUpgrades.add(u.id);
@@ -250,16 +328,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     return false;
   }
 
-  // -----------------------------
-  // Rendering
-  // -----------------------------
   function renderUpgrades() {
     upgradesContainer.innerHTML = "";
 
     upgrades.forEach((u, i) => {
-      const cost = Math.floor(u.baseCost * Math.pow(1.15, u.owned));
-      const afford = count >= cost;
-      const effRate = u.rate * (u.multiplier || 1) + (u.extraBonus || 0);
+      const cost = D(u.baseCost).times(D(1.15).pow(u.owned)).floor();
+      const afford = count.gte(cost);
+      const effRate = D(u.rate).times(u.multiplier).plus(u.extraBonus);
+      const output = D(u.owned).times(effRate);
+      const percentOfAutoRate = autoRate.gt(0)
+        ? output.dividedBy(autoRate).times(100)
+        : D(0);
+
+      // Format percentage with appropriate precision
+      let percentDisplay;
+      if (percentOfAutoRate.eq(0)) {
+        percentDisplay = "0";
+      } else if (percentOfAutoRate.lt(0.01)) {
+        percentDisplay = percentOfAutoRate.toFixed(4); // Show 0.0001%
+      } else if (percentOfAutoRate.lt(1)) {
+        percentDisplay = percentOfAutoRate.toFixed(2); // Show 0.01%
+      } else {
+        percentDisplay = percentOfAutoRate.floor().toString(); // Show whole numbers
+      }
 
       const div = document.createElement("div");
       div.className = "upgrade";
@@ -275,15 +366,17 @@ document.addEventListener("DOMContentLoaded", async () => {
         <div class="upgrade-info">
           <strong>${u.name}</strong>
           <div>
-            <p><b>${cost.toLocaleString()}</b> <span style="font-size:0.6rem">Mewnits</span></p>
-            <p><b>+${effRate.toLocaleString()}</b> <span style="font-size:0.6rem">Mew/S</span></p>
+            <p><b class="upgrade-cost">-${formatNumber(cost)}</b> <span style="font-size:0.6rem">Mewnits</span></p>
+            <p><b class="upgrade-boost">+${formatNumber(effRate)}</b> <span style="font-size:0.6rem">Mew/S</span></p>
+            <p><span style="font-size:0.5rem">Output:</span> <b><span class="upgrade-output">${formatNumber(output)}</span></b> <span class="percentOfAutoRate">(%${percentDisplay})</span></p>
           </div>
         </div>
         <p class="owned-number">${u.owned}</p>
       `;
 
-      div.onclick = () => buyUpgrade(u, cost);
+      div.onclick = () => buyUpgrade(u);
       upgradesContainer.appendChild(div);
+      // upgradeObserver.observe(div);
     });
   }
 
@@ -300,7 +393,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         div.className = "sub-upgrade";
         div.dataset.id = u.id;
 
-        // Apply dynamic border/glow based on type
         const style = SUB_UPGRADE_STYLES[u.type];
         if (style) {
           Object.assign(div.style, style);
@@ -311,7 +403,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             u.name
           }</strong>
           <div>
-          <p><b>${u.cost.toLocaleString()}</b> <span style="font-size:0.5rem">Mewnits</span></p>
+          <p><b>${formatNumber(u.cost)}</b> <span style="font-size:0.5rem">Mewnits</span></p>
           <p>${describeSubBonus(u, upgrades)}</p>
           </div>
         `;
@@ -326,66 +418,91 @@ document.addEventListener("DOMContentLoaded", async () => {
   function isSubUnlocked(u) {
     if (u.targetUpgradeId !== undefined) {
       const t = upgrades.find((x) => x.id === u.targetUpgradeId);
-      if (!t || t.owned < u.unlockRequirement) return false;
+      if (!t || t.owned.lt(u.unlockRequirement)) return false;
     }
-    if (u.unlockRateRequirement && autoRate < u.unlockRateRequirement)
+    if (u.unlockRateRequirement && autoRate.lt(u.unlockRateRequirement))
       return false;
-    if (
-      u.unlockClickedMewnitsRequirement &&
-      storage.getLifetimeClickMewnits() < u.unlockClickedMewnitsRequirement
-    )
-      return false;
-    if (
-      u.adoptedCatsRequirement &&
-      storage.getAdoptedCatsNumber() < u.adoptedCatsRequirement
-    )
-      return false;
+    if (u.unlockClickedMewnitsRequirement) {
+      const lifetimeClickMewnits = storage.getLifetimeClickMewnits();
+      if (lifetimeClickMewnits.lt(u.unlockClickedMewnitsRequirement))
+        return false;
+    }
+    if (u.adoptedCatsRequirement) {
+      const adoptedCats = storage.getAdoptedCatsNumber();
+      if (adoptedCats.lt(u.adoptedCatsRequirement)) return false;
+    }
+    if (u.goldenPawsRequirement) {
+      const goldenPaws = storage.getNumberofGoldenPawClicks();
+      if (goldenPaws.lt(u.goldenPawsRequirement)) return false;
+    }
 
     return true;
   }
 
-  // -----------------------------
-  // Purchases
-  // -----------------------------
-  function buyUpgrade(u, cost) {
-    if (count < cost) return;
-    count -= cost;
+  function buyUpgrade(u) {
+    if (isPaused) return;
 
-    u.owned++;
+    const cost = D(u.baseCost).times(D(1.15).pow(u.owned)).floor();
+
+    if (count.lt(cost)) return;
+
+    count = count.minus(cost);
+
+    saveMewnits();
+
+    if (autoAnimFrame) {
+      cancelAnimationFrame(autoAnimFrame);
+      autoAnimFrame = null;
+    }
+
+    counterDisplay.textContent = formatNumber(count);
+
+    u.owned = u.owned.plus(1);
     storage.setUpgradeOwned(u.id, u.owned);
 
-    AudioList.Click(); // ? Audio Effect
+    AudioList.Click();
 
     updateAutoRate();
     updateClickPower();
-    saveMewnits();
+    ratesNeedUpdate = true; // ADDED: Signal that rates changed
     renderUpgrades();
     renderSubUpgrades();
-    startAutoIncrement();
+
+    if (!autoInterval && autoRate.gt(0)) {
+      startAutoIncrement();
+    }
   }
 
   function buySubUpgrade(u) {
-    if (count < u.cost) return;
+    if (isPaused) return;
+    const cost = D(u.cost);
+    if (count.lt(cost)) return;
+    count = count.minus(cost);
 
-    count -= u.cost;
+    if (autoAnimFrame) {
+      cancelAnimationFrame(autoAnimFrame);
+      autoAnimFrame = null;
+    }
+
+    counterDisplay.textContent = formatNumber(count);
+
     storage.setSubUpgradeOwned(u.id);
 
-    // Apply upgrade effect
     if (u.type === "clickPowerAdder") {
-      baseClickPower += u.bonus;
+      baseClickPower = baseClickPower.plus(u.bonus);
       storage.setClickPower(baseClickPower);
     } else if (u.type === "clickPowerMultiplier") {
-      baseClickPower *= u.bonus;
+      baseClickPower = baseClickPower.times(u.bonus);
       storage.setClickPower(baseClickPower);
 
       if (u.targetUpgradeId !== undefined && u.alsoUpgradeMultiplier) {
         const t = upgrades.find((x) => x.id === u.targetUpgradeId);
-        t.multiplier *= u.bonus;
+        t.multiplier = t.multiplier.times(u.bonus);
         storage.setUpgradeMultiplier(t.id, t.multiplier);
       }
     } else if (u.type === "upgradeMultiplier") {
       const t = upgrades.find((x) => x.id === u.targetUpgradeId);
-      t.multiplier *= u.bonus;
+      t.multiplier = t.multiplier.times(u.bonus);
       storage.setUpgradeMultiplier(t.id, t.multiplier);
     } else if (u.type === "percentOfMpsClickAdder") {
       const current = storage.getPercentOfMpsClickAdder();
@@ -397,16 +514,27 @@ document.addEventListener("DOMContentLoaded", async () => {
       storage.addLivingRoomIndex();
       storage.addNumberOfLivingRooms();
       setLivingRoom();
+    } else if (u.type === "goldenPaw") {
+      if (u.twiceAsOften) {
+        const current = storage.getGoldenPawSpawnInterval();
+        storage.setGoldenPawSpawnInterval(current.dv(2));
+        console.log("new spawn interval:", storage.getGoldenPawSpawnInterval());
+      }
+      if (u.twiceAsLong) {
+        const current = storage.getGoldenPawSpawnLifetime();
+        storage.setGoldenPawSpawnLifetime(current.times(2));
+        console.log("new spawn lifetime:", storage.getGoldenPawSpawnLifetime());
+      }
     }
 
-    AudioList.Click(); // ? Audio Effect
+    AudioList.Click();
 
     updateAutoRate();
     updateClickPower();
+    ratesNeedUpdate = true; // ADDED: Signal that rates changed
     saveMewnits();
     renderUpgrades();
     renderSubUpgrades();
-    startAutoIncrement();
 
     const el = document.querySelector(`.sub-upgrade[data-id="${u.id}"]`);
     el?.remove();
@@ -417,23 +545,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     clickerImg,
     getClickPower: () => clickPower,
     incrementCount: (amount) => {
-      count += amount;
+      count = count.plus(amount);
+      animateCounter(counterDisplay, count);
+      haptics.trigger(5);
     },
     saveMewnits,
     updateAffordability,
     storage,
   });
 
-  // -----------------------------
-  // Helpers
-  // -----------------------------
   function updateAffordability() {
     let availUpgradesAmount = 0;
     let cheapestUpgrade = null;
     upgradesContainer.querySelectorAll(".upgrade").forEach((div, i) => {
       const u = upgrades[i];
-      const cost = Math.floor(u.baseCost * Math.pow(1.15, u.owned));
-      const afford = count >= cost;
+      const cost = D(u.baseCost).times(D(1.15).pow(u.owned)).floor();
+      const afford = count.gte(cost);
       if (!shouldRevealUpgrade(u, cost)) {
         div.classList.add("hidden");
       } else {
@@ -445,7 +572,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         availUpgradesAmount++;
         if (
           !cheapestUpgrade ||
-          (cheapestUpgrade && cost < cheapestUpgrade.cost)
+          (cheapestUpgrade && cost.lt(cheapestUpgrade.cost))
         ) {
           cheapestUpgrade = { u: u, cost: cost };
         }
@@ -460,7 +587,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       autoBuyUpgradeButton.disabled = false;
       autoBuyUpgradeButton.title = cheapestUpgrade.u.name;
       autoBuyUpgradeButton.onclick = () => {
-        buyUpgrade(cheapestUpgrade.u, cheapestUpgrade.cost);
+        if (isPaused) return;
+        buyUpgrade(cheapestUpgrade.u);
       };
     } else {
       autoBuyUpgradeButton.disabled = true;
@@ -468,11 +596,58 @@ document.addEventListener("DOMContentLoaded", async () => {
       autoBuyUpgradeButton.onclick = null;
     }
 
+    let affordableUpgrades = [];
+
+    upgrades.forEach((u) => {
+      const cost = D(u.baseCost).times(D(1.15).pow(u.owned)).floor();
+      if (count.gte(cost)) {
+        affordableUpgrades.push({ u, cost });
+      }
+    });
+
+    affordableUpgrades.sort((a, b) => {
+      if (a.cost.lt(b.cost)) return -1;
+      if (a.cost.gt(b.cost)) return 1;
+      return 0;
+    });
+
+    let upgradeSpend = D(0);
+    let purchasableUpgrades = [];
+
+    for (const item of affordableUpgrades) {
+      const nextSpend = upgradeSpend.plus(item.cost);
+      if (count.gte(nextSpend)) {
+        upgradeSpend = nextSpend;
+        purchasableUpgrades.push(item);
+      } else {
+        break;
+      }
+    }
+
+    if (purchasableUpgrades.length > 0) {
+      buyManyUpgradesButton.disabled = false;
+      buyManyUpgradesButton.title = `Buy ${purchasableUpgrades.length}`;
+      buyManyUpgradesDisplay.textContent =
+        purchasableUpgrades.length <= 99 ? purchasableUpgrades.length : 99;
+
+      buyManyUpgradesButton.onclick = () => {
+        if (isPaused) return;
+        purchasableUpgrades.forEach(({ u }) => {
+          buyUpgrade(u);
+        });
+      };
+    } else {
+      buyManyUpgradesButton.disabled = true;
+      buyManyUpgradesButton.title = "Not Yet...";
+      buyManyUpgradesDisplay.textContent = 0;
+      buyManyUpgradesButton.onclick = null;
+    }
+
     let availSubUpgradesAmount = 0;
     let cheapestSubUpgrades = [];
     subUpgradesContainer.querySelectorAll(".sub-upgrade").forEach((div) => {
       const u = subUpgrades.find((x) => x.id == div.dataset.id);
-      const afford = count >= u.cost && isSubUnlocked(u);
+      const afford = count.gte(u.cost) && isSubUnlocked(u);
       div.style.opacity = afford ? "1" : "0.4";
       div.style.pointerEvents = afford ? "auto" : "none";
       if (afford) {
@@ -487,14 +662,17 @@ document.addEventListener("DOMContentLoaded", async () => {
       : availSubUpgradesDisplay.classList.remove("positive");
     if (
       cheapestSubUpgrades.length >= 2 &&
-      count >= cheapestSubUpgrades[0].cost + cheapestSubUpgrades[1].cost
+      count.gte(
+        D(cheapestSubUpgrades[0].cost).plus(cheapestSubUpgrades[1].cost),
+      )
     ) {
-      let potentialSpend = 0;
+      let potentialSpend = D(0);
       let purchasableSubUpgrades = [];
 
       for (const u of cheapestSubUpgrades) {
-        if (count >= potentialSpend + u.cost) {
-          potentialSpend += u.cost;
+        const uCost = D(u.cost);
+        if (count.gte(potentialSpend.plus(uCost))) {
+          potentialSpend = potentialSpend.plus(uCost);
           purchasableSubUpgrades.push(u);
         } else {
           break;
@@ -508,6 +686,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             ? purchasableSubUpgrades.length
             : 99;
         autoBuySubUpgradeButton.onclick = () => {
+          if (isPaused) return;
           purchasableSubUpgrades.forEach(buySubUpgrade);
         };
       }
@@ -526,25 +705,98 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function saveMewnits() {
     storage.setMewnits(count);
-    counterDisplay.textContent = count.toLocaleString();
   }
 
   function syncBiscuitEfficiencies() {
     storage.setBiscuitEfficiency(storage.getBaseBiscuitEfficiency());
   }
 
-  // ? ---------------------------
-  // ? ONLY ON FIRST GAME LOAD
-  // ? ---------------------------
-  if (!storage.getGameStartTimeMs()) {
-    storage.setGameStartTime();
+  function Pause() {
+    if (isPaused) return;
+
+    isPaused = true;
+    pauseResumeButton.textContent = "▶️";
+
+    if (autoInterval) {
+      clearInterval(autoInterval);
+      autoInterval = null;
+    }
+
+    if (activeTimedBoostTimeout) {
+      clearTimeout(activeTimedBoostTimeout);
+      activeTimedBoostTimeout = null;
+    }
+
+    const numPauses = storage.getNumberOfPauses();
+    storage.setNumberOfPauses(numPauses.plus(1));
+
+    if (!pauseInterval) {
+      pauseInterval = setInterval(() => {
+        const current = storage.getTimeSpentPaused();
+        storage.setTimeSpentPaused(current.plus(MS_IN_A_SEC));
+      }, MS_IN_A_SEC);
+    }
+
+    console.log("⏸️ Game Paused");
+    window.dispatchEvent(new CustomEvent("pause"));
   }
 
-  console.log(storage.getGameStartTimeMs());
+  function Resume() {
+    if (!isPaused) return;
 
-  // -----------------------------
-  // INIT
-  // -----------------------------
+    isPaused = false;
+    pauseResumeButton.textContent = "⏸️";
+
+    updateAutoRate();
+    startAutoIncrement();
+
+    if (pauseInterval) {
+      clearInterval(pauseInterval);
+      pauseInterval = null;
+    }
+
+    console.log("▶️ Game Resumed");
+    window.dispatchEvent(new CustomEvent("resume"));
+  }
+
+  document.addEventListener("keypress", (e) => {
+    if (e.key.toLowerCase() === "p") {
+      !isPaused ? Pause() : Resume();
+    }
+  });
+
+  pauseResumeButton.addEventListener("click", () => {
+    !isPaused ? Pause() : Resume();
+  });
+
+  window.addEventListener("pause", Pause);
+  window.addEventListener("resume", Resume);
+
+  const gameStartTime = storage.getGameStartTimeMs();
+  if (gameStartTime.eq(0)) {
+    storage.setGameStartTime();
+    console.log("Game Started @: ", storage.getGameStartTimeMs());
+  }
+
+  if (autoRate.lte(0)) {
+    counterDisplay.textContent = formatNumber(count);
+  }
+
+  setInterval(() => {
+    checkForAchievements(achievements, upgrades, subUpgrades);
+  }, 1000);
+
+  window.addEventListener("numberFormatChanged", () => {
+    console.log("Number format changed, updating displays...");
+    // All displays that show numbers should be updated when the format changes
+    updateAutoRate();
+    updateClickPower();
+    renderUpgrades();
+    renderSubUpgrades();
+    updateBiscuitsDisplay();
+    updateBiscuitEfficiency();
+  });
+
   syncBiscuitEfficiencies();
   setLivingRoom();
   updateAutoRate();

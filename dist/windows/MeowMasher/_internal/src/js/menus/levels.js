@@ -1,12 +1,23 @@
-import { storage } from "../logic/storage.js";
+// import { storage } from "../logic/storage.js";
 import { updateBiscuitsDisplay } from "../helpers/updateBiscuitsDisplay.js";
 
 const levelsIcon = document.getElementById("levels-icon");
 const levelsDialog = document.getElementById("levels-dialog");
 const closeLevelsDialog = document.getElementById("close-levels-dialog");
 
+let isPaused = false;
+
+window.addEventListener("pause", () => {
+  isPaused = true;
+});
+
+window.addEventListener("resume", () => {
+  isPaused = false;
+});
+
 // Dialog open/close
 levelsIcon.addEventListener("click", () => {
+  if (isPaused) return;
   levelsDialog.classList.add("active");
   updateBiscuitsDisplay();
 });

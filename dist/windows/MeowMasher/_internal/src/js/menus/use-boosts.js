@@ -1,12 +1,17 @@
 import { storage } from "../logic/storage.js";
 import { createBoostIcon } from "../helpers/createBoostIcon.js";
+import { $ } from "../helpers/$.js";
+import { isPaused } from "../helpers/isPaused.js";
+import { D } from "../logic/decimalWrapper.js";
+import { giveSpecificAchievement } from "../logic/achievements.js";
 
-const useBoostsIcon = document.getElementById("use-boosts-icon");
-const useBoostsDialog = document.getElementById("use-boosts-dialog");
-const closeUseBoostsDialog = document.getElementById("close-use-boosts-dialog");
-const useBoostsContainer = document.getElementById("use-boosts-container");
+const useBoostsIcon = $("#use-boosts-icon");
+const useBoostsDialog = $("#use-boosts-dialog");
+const closeUseBoostsDialog = $("#close-use-boosts-dialog");
+const useBoostsContainer = $("#use-boosts-container");
 
 useBoostsIcon.addEventListener("click", () => {
+  if (isPaused) return;
   useBoostsDialog.classList.add("active");
   renderBoosts();
 });
@@ -35,6 +40,9 @@ function renderBoosts() {
     if (!boost["bonus-header"]) {
       const useBoostEl = document.createElement("div");
       useBoostEl.classList.add("boost-item");
+
+      const owned = storage.getBoostOwned(boost.id); // Decimal-safe
+
       useBoostEl.innerHTML = `
       <div class="boost-icon-and-text">
         ${createBoostIcon(boost.type, boost.time)}
@@ -45,9 +53,9 @@ function renderBoosts() {
       </div>
       <div class="owned-boosts">
         <span>Owned:</span>
-        <span class="owned-count">${storage.getBoostOwned(boost.id)}</span>
+        <span class="owned-count">${owned.toString()}</span>
       </div>
-        <button class="use-boost-button" ${storage.getBoostOwned(boost.id) < 1 ? "disabled" : ""}>
+        <button class="use-boost-button" ${owned.lt(1) ? "disabled" : ""}>
           Use!
         </button>
       `;
@@ -70,15 +78,16 @@ function renderBoosts() {
 }
 
 function useBoost(boostId) {
-  const owned = storage.getBoostOwned(boostId);
-  if (owned < 1) return;
+  const owned = storage.getBoostOwned(boostId); // Decimal-safe
+  if (owned.lt(1)) return;
 
   const boost = boostData.find((b) => b.id === boostId);
   if (!boost) return;
 
   window.dispatchEvent(new CustomEvent("boostUsed", { detail: boost }));
+  giveSpecificAchievement(310);
 
   useBoostsDialog.classList.remove("active");
-  storage.setBoostOwned(boostId, owned - 1);
+  storage.setBoostOwned(boostId, owned.minus(1)); // Decimal-safe subtraction
   renderBoosts();
 }

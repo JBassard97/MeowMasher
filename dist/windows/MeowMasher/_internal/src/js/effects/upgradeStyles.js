@@ -33,6 +33,14 @@ export const SUB_UPGRADE_STYLES = {
     backgroundColor: "rgba(255, 232, 131, 0.05)",
   },
 
+  goldenPaw: {
+    border: "2px solid rgba(255, 232, 131, 0.8)",
+    strongBackground:
+      "linear-gradient(to bottom, rgba(255, 232, 131, 0.8), rgba(255, 232, 131, 0.05))",
+    boxShadow: "0 0 6px 2px rgba(255, 232, 131, 0.6)",
+    backgroundColor: "rgba(255, 232, 131, 0.05)",
+  },
+
   percentOfMpsClickAdder: {
     border: "2px solid rgba(227, 47, 80, 0.8)",
     strongBackground:

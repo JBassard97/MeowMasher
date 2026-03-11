@@ -1,4 +1,6 @@
 import { storage, clearAll } from "../logic/storage.js";
+import { setNumberFormat } from "../helpers/formatNumber.js";
+import { giveSpecificAchievement } from "../logic/achievements.js";
 
 const settingsIcon = document.getElementById("settings-icon");
 const settingsDialog = document.getElementById("settings-dialog");
@@ -7,6 +9,7 @@ const resetGame = document.getElementById("reset-game");
 const flipUiCheckbox = document.getElementById("flip-ui");
 const colorblindModeCheckbox = document.getElementById("color-blind-mode");
 const fontSelect = document.getElementById("font-select");
+const numberFormatSelect = document.getElementById("number-format-select");
 const isMeowAudioOnCheckbox = document.getElementById("is-meow-on");
 const meowAudioVolumeSlider = document.getElementById("meow-audio-level");
 const meowLevelDisplay = document.getElementById("meow-level-display");
@@ -30,6 +33,7 @@ export const initSettings = () => {
   }
 
   fontSelect.value = storage.getCurrentFont();
+  numberFormatSelect.value = storage.getNumberFormat();
   isMeowAudioOnCheckbox.checked = storage.getIsMeowAudioOn();
 
   meowAudioVolumeSlider.disabled = !isMeowAudioOnCheckbox.checked;
@@ -62,6 +66,16 @@ fontSelect.addEventListener("change", () => {
   const selectedFont = fontSelect.value;
   bodyEl.style.fontFamily = selectedFont;
   storage.setCurrentFont(selectedFont);
+  giveSpecificAchievement(307);
+});
+
+// Number format
+numberFormatSelect.addEventListener("change", () => {
+  const selectedFormat = numberFormatSelect.value;
+  setNumberFormat(selectedFormat);
+  storage.setNumberFormat(selectedFormat);
+  window.dispatchEvent(new Event("numberFormatChanged"));
+  giveSpecificAchievement(308);
 });
 
 // Colorblind mode
@@ -70,12 +84,14 @@ colorblindModeCheckbox.addEventListener("change", () => {
   bodyEl.style.filter = colorblindModeCheckbox.checked
     ? "grayscale(100%) contrast(120%)"
     : "none";
+  giveSpecificAchievement(304); // Who turned out the lights?
 });
 
 // Flip UI
 flipUiCheckbox.addEventListener("change", () => {
   storage.setIsUiFlipped(flipUiCheckbox.checked);
   mainEl.style.flexDirection = flipUiCheckbox.checked ? "row-reverse" : "row";
+  giveSpecificAchievement(305); // Flip Out
 });
 
 // Meow audio toggle
@@ -85,12 +101,18 @@ isMeowAudioOnCheckbox.addEventListener("change", () => {
   meowLevelDisplay.textContent = isMeowAudioOnCheckbox.checked
     ? `${meowAudioVolumeSlider.value}0%`
     : "0%";
+  if (!isMeowAudioOnCheckbox.checked) {
+    giveSpecificAchievement(300); // Hush Little Kitten
+  }
 });
 
 // Meow volume
 meowAudioVolumeSlider.addEventListener("input", () => {
   storage.setMeowAudioLevel(meowAudioVolumeSlider.value);
   meowLevelDisplay.textContent = `${meowAudioVolumeSlider.value}0%`;
+  if (meowAudioVolumeSlider.value == 10) {
+    giveSpecificAchievement(301); // Crank it to 11
+  }
 });
 
 // SFX toggle
@@ -100,17 +122,24 @@ isSfxAudioOnCheckbox.addEventListener("change", () => {
   sfxLevelDisplay.textContent = isSfxAudioOnCheckbox.checked
     ? `${sfxAudioVolumeSlider.value}0%`
     : "0%";
+  if (!isSfxAudioOnCheckbox.checked) {
+    giveSpecificAchievement(302); // Did you hear something?
+  }
 });
 
 // SFX volume
 sfxAudioVolumeSlider.addEventListener("input", () => {
   storage.setSfxAudioLevel(sfxAudioVolumeSlider.value);
   sfxLevelDisplay.textContent = `${sfxAudioVolumeSlider.value}0%`;
+  if (sfxAudioVolumeSlider.value == 10) {
+    giveSpecificAchievement(303); // Can you hear that thunder?
+  }
 });
 
 // Dialog open/close
 settingsIcon.addEventListener("click", () => {
   settingsDialog.classList.add("active");
+  giveSpecificAchievement(5);
 });
 
 closeDialog.addEventListener("click", () => {

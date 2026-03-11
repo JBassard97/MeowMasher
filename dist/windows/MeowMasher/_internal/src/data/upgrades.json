@@ -22,7 +22,7 @@
   },
   {
     "id": 3,
-    "name": "Yogurt Tubes",
+    "name": "Treats",
     "baseCost": 12000,
     "rate": 47,
     "image": "./src/assets/images/upgrades/churu.png"

@@ -1,4 +1,5 @@
 import { storage } from "../logic/storage.js";
+import { D } from "../logic/decimalWrapper.js";
 
 export function computeThousandFingers(upgrades, subUpgrades) {
   const ownedTFs = subUpgrades.filter(
@@ -6,27 +7,28 @@ export function computeThousandFingers(upgrades, subUpgrades) {
   );
 
   if (!ownedTFs.length) {
-    upgrades.forEach((u) => (u.extraBonus = 0));
-    storage.setThousandFingersBonus(0);
-    return { total: 0, bonus: 0 };
+    storage.setThousandFingersBonus(D(0));
+    return { total: D(0), bonus: D(0), patsBonus: D(0) };
   }
 
   const nonPatsOwned = upgrades
     .filter((u) => u.name !== "Pats")
-    .reduce((sum, u) => sum + u.owned, 0);
+    .reduce((sum, u) => sum.plus(u.owned), D(0));
 
-  let bonus = 1; // "+n click power for every non-pats upgrade owned"
-
+  let bonus = D(1);
   let total = nonPatsOwned;
-  ownedTFs.forEach((tf) => {
-    total *= tf.bonus;
-    bonus *= tf.bonus;
-  });
 
-  upgrades.forEach((u) => {
-    u.extraBonus = u.name === "Pats" ? total : 0;
+  ownedTFs.forEach((tf) => {
+    total = total.times(tf.bonus);
+    bonus = bonus.times(tf.bonus);
   });
 
   storage.setThousandFingersBonus(total);
-  return { total: total, bonus: bonus };
+
+  // Return values - don't modify upgrade objects here
+  return {
+    total: total, // For click power
+    bonus: bonus, // For display
+    patsBonus: total, // For Pats MPS bonus
+  };
 }

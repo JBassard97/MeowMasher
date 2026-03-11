@@ -21,13 +21,15 @@ import { updateBiscuitsDisplay } from "./helpers/updateBiscuitsDisplay.js";
 import { $ } from "./helpers/$.js";
 import { D } from "./logic/decimalWrapper.js";
 import { formatNumber } from "./helpers/formatNumber.js";
-// import { checkForAchievements } from "./logic/achievements.js";
 // import { WebHaptics } from "web-haptics";
+import * as h from "https://cdn.jsdelivr.net/npm/web-haptics@0.0.6/+esm";
+
+
 const mode = "prod";
 const devBonus = D(50000);
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // const haptics = new WebHaptics();
+  const haptics = new h.WebHaptics();
 
   const counterDisplay = $("#counter");
   const rateDisplay = $("#rate");
@@ -547,7 +549,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     incrementCount: (amount) => {
       count = count.plus(amount);
       animateCounter(counterDisplay, count);
-      // haptics.trigger([{ duration: 15 }], { intensity: 0.3 });
+      haptics.trigger([{ duration: 15 }], { intensity: 0.3 });
     },
     saveMewnits,
     updateAffordability,

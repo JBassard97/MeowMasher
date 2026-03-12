@@ -1,5 +1,5 @@
 import * as h from "https://cdn.jsdelivr.net/npm/web-haptics@0.0.6/+esm";
-import { storage } from "../logic/storage";
+import { storage } from "../logic/storage.js";
 
 export const HapticsList = {
   LittlePulse: () => {

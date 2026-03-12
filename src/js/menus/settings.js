@@ -1,6 +1,8 @@
 import { storage, clearAll } from "../logic/storage.js";
 import { setNumberFormat } from "../helpers/formatNumber.js";
 import { giveSpecificAchievement } from "../logic/achievements.js";
+import { AudioList } from "../audio/audio.js";
+import { HapticsList } from "../effects/haptics.js";
 
 const settingsIcon = document.getElementById("settings-icon");
 const settingsDialog = document.getElementById("settings-dialog");
@@ -111,6 +113,9 @@ isMeowAudioOnCheckbox.addEventListener("change", () => {
   meowLevelDisplay.textContent = isMeowAudioOnCheckbox.checked
     ? `${meowAudioVolumeSlider.value}0%`
     : "0%";
+  if (isMeowAudioOnCheckbox.checked) {
+    AudioList.Meow();
+  }
   if (!isMeowAudioOnCheckbox.checked) {
     giveSpecificAchievement(300); // Hush Little Kitten
   }
@@ -119,6 +124,7 @@ isMeowAudioOnCheckbox.addEventListener("change", () => {
 // Meow volume
 meowAudioVolumeSlider.addEventListener("input", () => {
   storage.setMeowAudioLevel(meowAudioVolumeSlider.value);
+  AudioList.Meow();
   meowLevelDisplay.textContent = `${meowAudioVolumeSlider.value}0%`;
   if (meowAudioVolumeSlider.value == 10) {
     giveSpecificAchievement(301); // Crank it to 11
@@ -132,6 +138,9 @@ isSfxAudioOnCheckbox.addEventListener("change", () => {
   sfxLevelDisplay.textContent = isSfxAudioOnCheckbox.checked
     ? `${sfxAudioVolumeSlider.value}0%`
     : "0%";
+  if (isSfxAudioOnCheckbox.checked) {
+    AudioList.Click();
+  }
   if (!isSfxAudioOnCheckbox.checked) {
     giveSpecificAchievement(302); // Did you hear something?
   }
@@ -140,6 +149,7 @@ isSfxAudioOnCheckbox.addEventListener("change", () => {
 // SFX volume
 sfxAudioVolumeSlider.addEventListener("input", () => {
   storage.setSfxAudioLevel(sfxAudioVolumeSlider.value);
+  AudioList.Click();
   sfxLevelDisplay.textContent = `${sfxAudioVolumeSlider.value}0%`;
   if (sfxAudioVolumeSlider.value == 10) {
     giveSpecificAchievement(303); // Can you hear that thunder?
@@ -153,6 +163,9 @@ isHapticsOnCheckbox.addEventListener("change", () => {
   hapticsLevelDisplay.textContent = isHapticsOnCheckbox.checked
     ? `${hapticsLevelSlider.value}0%`
     : "0%";
+  if (isHapticsOnCheckbox.checked) {
+    HapticsList.LittlePulse();
+  }
   // if (!isSfxAudioOnCheckbox.checked) {
   //   giveSpecificAchievement(302); // Did you hear something?
   // }
@@ -161,6 +174,7 @@ isHapticsOnCheckbox.addEventListener("change", () => {
 // Haptics level
 hapticsLevelSlider.addEventListener("input", () => {
   storage.setHapticsLevel(hapticsLevelSlider.value);
+  HapticsList.LittlePulse();
   hapticsLevelDisplay.textContent = `${hapticsLevelSlider.value}0%`;
   // if (hapticsLevelSlider.value == 10) {
   //   giveSpecificAchievement(303); // Can you hear that thunder?

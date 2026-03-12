@@ -16,6 +16,9 @@ const meowLevelDisplay = document.getElementById("meow-level-display");
 const isSfxAudioOnCheckbox = document.getElementById("is-sfx-on");
 const sfxAudioVolumeSlider = document.getElementById("sfx-audio-level");
 const sfxLevelDisplay = document.getElementById("sfx-level-display");
+const isHapticsOnCheckbox = document.getElementById("is-haptics-on");
+const hapticsLevelSlider = document.getElementById("haptics-level");
+const hapticsLevelDisplay = document.getElementById("haptics-level-display");
 
 const bodyEl = document.querySelector("body");
 const mainEl = document.querySelector("main");
@@ -34,8 +37,8 @@ export const initSettings = () => {
 
   fontSelect.value = storage.getCurrentFont();
   numberFormatSelect.value = storage.getNumberFormat();
-  isMeowAudioOnCheckbox.checked = storage.getIsMeowAudioOn();
 
+  isMeowAudioOnCheckbox.checked = storage.getIsMeowAudioOn();
   meowAudioVolumeSlider.disabled = !isMeowAudioOnCheckbox.checked;
   meowAudioVolumeSlider.value = storage.getMeowAudioLevel();
   meowLevelDisplay.textContent = isMeowAudioOnCheckbox.checked
@@ -47,6 +50,13 @@ export const initSettings = () => {
   sfxAudioVolumeSlider.value = storage.getSfxAudioLevel();
   sfxLevelDisplay.textContent = isSfxAudioOnCheckbox.checked
     ? `${sfxAudioVolumeSlider.value}0%`
+    : "0%";
+
+  isHapticsOnCheckbox.checked = storage.getIsHapticsOn();
+  hapticsLevelSlider.disabled = !isHapticsOnCheckbox.checked;
+  hapticsLevelSlider.value = storage.getHapticsLevel();
+  hapticsLevelDisplay.textContent = isHapticsOnCheckbox.checked
+    ? `${hapticsLevelSlider.value}0%`
     : "0%";
 
   // --- Apply initial layout ---
@@ -134,6 +144,27 @@ sfxAudioVolumeSlider.addEventListener("input", () => {
   if (sfxAudioVolumeSlider.value == 10) {
     giveSpecificAchievement(303); // Can you hear that thunder?
   }
+});
+
+// Haptics toggle
+isHapticsOnCheckbox.addEventListener("change", () => {
+  storage.setIsHapticsOn(isHapticsOnCheckbox.checked);
+  hapticsLevelSlider.disabled = !isHapticsOnCheckbox.checked;
+  hapticsLevelDisplay.textContent = isHapticsOnCheckbox.checked
+    ? `${hapticsLevelSlider.value}0%`
+    : "0%";
+  // if (!isSfxAudioOnCheckbox.checked) {
+  //   giveSpecificAchievement(302); // Did you hear something?
+  // }
+});
+
+// Haptics level
+hapticsLevelSlider.addEventListener("input", () => {
+  storage.setHapticsLevel(hapticsLevelSlider.value);
+  hapticsLevelDisplay.textContent = `${hapticsLevelSlider.value}0%`;
+  // if (hapticsLevelSlider.value == 10) {
+  //   giveSpecificAchievement(303); // Can you hear that thunder?
+  // }
 });
 
 // Dialog open/close

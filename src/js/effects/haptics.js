@@ -1,9 +1,13 @@
 import * as h from "https://cdn.jsdelivr.net/npm/web-haptics@0.0.6/+esm";
+import { storage } from "../logic/storage";
 
 export const HapticsList = {
-  LitlePulse: () => {
+  LittlePulse: () => {
     if (!h) return;
+    if (!storage.getIsHapticsOn()) return;
     const haptics = new h.WebHaptics();
-    haptics.trigger([{ duration: 15 }], { intensity: 0.2 }); // Haptic
+    haptics.trigger([{ duration: 20 }], {
+      intensity: storage.getHapticsLevel() / 10,
+    }); // Haptic
   },
 };

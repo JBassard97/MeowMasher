@@ -135,6 +135,8 @@ export const storage = {
   getSfxAudioLevel: () => getItem("sfxAudioLevel") || "5",
   getIsInBiscuitsMode: () => JSON.parse(getItem("isInBiscuitsMode") ?? "false"),
   getNumberFormat: () => getItem("numberFormat") || "suffix",
+  getIsHapticsOn: () => JSON.parse(getItem("isHapticsOn") ?? "true"),
+  getHapticsLevel: () => getItem("hapticsLevel") || "4",
 
   // --- BIG NUMBER SETTERS (accept strings or Decimals) ---
   setMewnits: (value) => {
@@ -235,6 +237,8 @@ export const storage = {
   setIsSfxAudioOn: (value) => setItem("isSfxAudioOn", JSON.stringify(value)),
   setMeowAudioLevel: (level) => setItem("meowAudioLevel", level),
   setSfxAudioLevel: (level) => setItem("sfxAudioLevel", level),
+  setIsHapticsOn: (value) => setItem("isHapticsOn", JSON.stringify(value)),
+  setHapticsLevel: (level) => setItem("hapticsLevel", level),
 
   // --- Golden Pawprint ---
   addGoldenPawClick: () => {

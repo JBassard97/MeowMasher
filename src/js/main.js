@@ -459,7 +459,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     storage.setUpgradeOwned(u.id, u.owned);
 
     AudioList.Click();
-    HapticsList.LitlePulse();
+    HapticsList.LittlePulse();
 
     updateAutoRate();
     updateClickPower();
@@ -527,7 +527,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     AudioList.Click(); // Audio
-    HapticsList.LitlePulse() // Haptics
+    HapticsList.LittlePulse(); // Haptics
 
     updateAutoRate();
     updateClickPower();
@@ -547,7 +547,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     incrementCount: (amount) => {
       count = count.plus(amount);
       animateCounter(counterDisplay, count);
-      HapticsList.LitlePulse();
+      HapticsList.LittlePulse();
     },
     saveMewnits,
     updateAffordability,

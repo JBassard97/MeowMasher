@@ -157,5 +157,17 @@
     "name": "Do That Again!",
     "desc": "Use your 1st boost",
     "type": "misc"
+  },
+  {
+    "id": 311,
+    "name": "Hold Still",
+    "desc": "Set Haptic Taps to 0%",
+    "type": "misc"
+  },
+  {
+    "id": 312,
+    "name": "Magnitude 10",
+    "desc": "Set Haptic Taps to 100%",
+    "type": "misc"
   }
 ]

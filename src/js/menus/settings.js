@@ -78,7 +78,7 @@ fontSelect.addEventListener("change", () => {
   const selectedFont = fontSelect.value;
   bodyEl.style.fontFamily = selectedFont;
   storage.setCurrentFont(selectedFont);
-  giveSpecificAchievement(307);
+  giveSpecificAchievement(307); // Typographic Touches
 });
 
 // Number format
@@ -87,7 +87,7 @@ numberFormatSelect.addEventListener("change", () => {
   setNumberFormat(selectedFormat);
   storage.setNumberFormat(selectedFormat);
   window.dispatchEvent(new Event("numberFormatChanged"));
-  giveSpecificAchievement(308);
+  giveSpecificAchievement(308); // Who put letters in my numbers?
 });
 
 // Colorblind mode
@@ -166,9 +166,9 @@ isHapticsOnCheckbox.addEventListener("change", () => {
   if (isHapticsOnCheckbox.checked) {
     HapticsList.LittlePulse();
   }
-  // if (!isSfxAudioOnCheckbox.checked) {
-  //   giveSpecificAchievement(302); // Did you hear something?
-  // }
+  if (!isHapticsOnCheckbox.checked) {
+    giveSpecificAchievement(311); // Hold Still
+  }
 });
 
 // Haptics level
@@ -176,15 +176,15 @@ hapticsLevelSlider.addEventListener("input", () => {
   storage.setHapticsLevel(hapticsLevelSlider.value);
   HapticsList.LittlePulse();
   hapticsLevelDisplay.textContent = `${hapticsLevelSlider.value}0%`;
-  // if (hapticsLevelSlider.value == 10) {
-  //   giveSpecificAchievement(303); // Can you hear that thunder?
-  // }
+  if (hapticsLevelSlider.value == 10) {
+    giveSpecificAchievement(312); // Magnitude 10
+  }
 });
 
 // Dialog open/close
 settingsIcon.addEventListener("click", () => {
   settingsDialog.classList.add("active");
-  giveSpecificAchievement(5);
+  giveSpecificAchievement(5); // Setting things up
 });
 
 closeDialog.addEventListener("click", () => {

@@ -253,7 +253,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     storage.setMewnitsPerSecond(autoRate);
 
-    const yarnBonus = D(computeYarnBonus(subUpgrades).yarnBonus || 0);
+    const yarnBonus = D(
+      computeYarnBonus(subUpgrades, achievements).yarnBonus || 0,
+    );
     autoRate = autoRate.plus(yarnBonus);
 
     rateDisplay.textContent = formatNumber(autoRate);

@@ -7,19 +7,21 @@ import { formatNumber } from "../helpers/formatNumber.js";
 import { D } from "../logic/decimalWrapper.js";
 import { giveSpecificAchievement } from "../logic/achievements.js";
 
-// Load both JSON data files ONCE
 let allSubUpgrades = [];
 let allUpgrades = [];
 let versionNumber = "";
+let achievements = [];
 
 Promise.all([
   fetch("src/data/subUpgrades.json").then((r) => r.json()),
   fetch("src/data/upgrades.json").then((r) => r.json()),
   fetch("package.json").then((r) => r.json()),
-]).then(([subs, ups, pkg]) => {
+  fetch("src/data/achievements.json").then((r) => r.json()),
+]).then(([subs, ups, pkg, achs]) => {
   allSubUpgrades = subs;
   allUpgrades = ups;
   versionNumber = pkg.version;
+  achievements = achs;
 
   // CRITICAL: Initialize upgrades with Decimal properties just like main.js does
   allUpgrades.forEach((u) => {
@@ -71,7 +73,7 @@ setInterval(() => {
     document.getElementById("stats-base-mps-display").textContent =
       formatNumber(mps);
 
-    const yarnData = computeYarnBonus(allSubUpgrades);
+    const yarnData = computeYarnBonus(allSubUpgrades, achievements);
     const yarnBonus = D(yarnData.yarnBonus || 0); // Ensure it's Decimal
 
     document.getElementById("stats-current-mps-display").innerHTML =
@@ -103,7 +105,7 @@ setInterval(() => {
       formatNumber(storage.getNumberofGoldenPawClicks());
 
     // --- active bonuses ---
-    const yarn = computeYarnBonus(allSubUpgrades);
+    const yarn = computeYarnBonus(allSubUpgrades, achievements);
     const thousand = computeThousandFingers(allUpgrades, allSubUpgrades);
 
     document.getElementById("stats-yarn-display").innerHTML =

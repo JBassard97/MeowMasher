@@ -388,7 +388,7 @@ export const exportSave = (isJson = false) => {
   const encoded = btoa(JSON.stringify(data));
 
   const blob = new Blob([isJson ? JSON.stringify(data, null, 2) : encoded], {
-    type: "application/json",
+    type: "application/octet-stream",
   });
   const url = URL.createObjectURL(blob);
 

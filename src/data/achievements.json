@@ -169,5 +169,75 @@
     "name": "Magnitude 10",
     "desc": "Set Haptic Taps to 100%",
     "type": "misc"
+  },
+  {
+    "id": 200,
+    "name": "Nice Collection You've Got There!",
+    "desc": "Own 50 Upgrades",
+    "type": "number_of_upgrades",
+    "requirement": 50
+  },
+  {
+    "id": 201,
+    "name": "Don't Stop Till You Get Enough",
+    "desc": "Own 100 Upgrades",
+    "type": "number_of_upgrades",
+    "requirement": 100
+  },
+  {
+    "id": 202,
+    "name": "Your Cats Need ALL That?",
+    "desc": "Own 150 Upgrades",
+    "type": "number_of_upgrades",
+    "requirement": 150
+  },
+  {
+    "id": 203,
+    "name": "Upgrade Enthusiast",
+    "desc": "Own 200 Upgrades",
+    "type": "number_of_upgrades",
+    "requirement": 200
+  },
+  {
+    "id": 204,
+    "name": "Quarter Millennium of Upgrades",
+    "desc": "Own 250 Upgrades",
+    "type": "number_of_upgrades",
+    "requirement": 250
+  },
+  {
+    "id": 205,
+    "name": "Upgrade Hoarder",
+    "desc": "Own 300 Upgrades",
+    "type": "number_of_upgrades",
+    "requirement": 300
+  },
+  {
+    "id": 206,
+    "name": "Seriously, How Many Upgrades?",
+    "desc": "Own 350 Upgrades",
+    "type": "number_of_upgrades",
+    "requirement": 350
+  },
+  {
+    "id": 207,
+    "name": "The Upgrade Connoisseur",
+    "desc": "Own 400 Upgrades",
+    "type": "number_of_upgrades",
+    "requirement": 400
+  },
+  {
+    "id": 208,
+    "name": "Almost There, Upgrade Maniac",
+    "desc": "Own 450 Upgrades",
+    "type": "number_of_upgrades",
+    "requirement": 450
+  },
+  {
+    "id": 209,
+    "name": "The Whole Upgrade Enchilada",
+    "desc": "Own 500 Upgrades",
+    "type": "number_of_upgrades",
+    "requirement": 500
   }
 ]

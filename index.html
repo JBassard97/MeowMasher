@@ -674,8 +674,21 @@
             <div class="stats-card">
               <h3 class="golden">Golden Pawprints</h3>
               <p>
-                Golden Pawprints Clicked:<b style="margin-left: 5px"
-                  ><span id="stats-clicked-golden-display">Loading...</span></b
+                Golden Pawprints Clicked:
+                <b><span id="stats-clicked-golden-display">Loading...</span></b>
+              </p>
+              <p>
+                Screen Lifetime:
+                <b
+                  ><span id="stats-golden-lifetime-display">Loading...</span></b
+                >
+              </p>
+              <p>
+                Spawn Interval:
+                <b
+                  ><span id="stats-golden-spawn-int-display"
+                    >Loading...</span
+                  ></b
                 >
               </p>
             </div>
@@ -818,12 +831,24 @@
 
             <h3 class="settings-header">General</h3>
             <div class="reload-data">
-              <p>Reload game data:</p>
+              <p>Reload Game Data:</p>
               <button onclick="location.reload()">Reload Data</button>
             </div>
             <div class="reset-game">
               <p class="warning-text">This will delete all your progress:</p>
               <button id="reset-game" class="dialog-button">Reset Game</button>
+            </div>
+            <div class="export-save">
+              <p>Export Save File:</p>
+              <button id="export-save" class="dialog-button">
+                Export Save
+              </button>
+            </div>
+            <div class="import-save">
+              <p>Import Save File:</p>
+              <button id="import-save" class="dialog-button">
+                Import Save
+              </button>
             </div>
           </div>
         </div>

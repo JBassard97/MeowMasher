@@ -1,4 +1,4 @@
-import { storage, clearAll } from "../logic/storage.js";
+import { storage, clearAll, exportSave, importSave } from "../logic/storage.js";
 import { setNumberFormat } from "../helpers/formatNumber.js";
 import { giveSpecificAchievement } from "../logic/achievements.js";
 import { AudioList } from "../audio/audio.js";
@@ -21,6 +21,8 @@ const sfxLevelDisplay = document.getElementById("sfx-level-display");
 const isHapticsOnCheckbox = document.getElementById("is-haptics-on");
 const hapticsLevelSlider = document.getElementById("haptics-level");
 const hapticsLevelDisplay = document.getElementById("haptics-level-display");
+const exportSaveBtn = document.getElementById("export-save");
+const importSaveBtn = document.getElementById("import-save");
 
 const bodyEl = document.querySelector("body");
 const mainEl = document.querySelector("main");
@@ -201,4 +203,14 @@ settingsDialog.addEventListener("click", (e) => {
 resetGame.addEventListener("click", () => {
   clearAll();
   location.reload();
+});
+
+// Export Save
+exportSaveBtn.addEventListener("click", () => {
+  exportSave();
+});
+
+// Import Save
+importSaveBtn.addEventListener("click", () => {
+  importSave();
 });

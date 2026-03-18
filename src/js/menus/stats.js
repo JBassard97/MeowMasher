@@ -100,9 +100,25 @@ setInterval(() => {
     document.getElementById("stats-current-clickpower-display").innerHTML =
       `${formatNumber(totalClickPower)} <span class="details">${baseText}${tfText}${mpsText}</span>`;
 
-    // --- golden pawprints clicked ---
+    // --- golden pawprints ---
     document.getElementById("stats-clicked-golden-display").textContent =
       formatNumber(storage.getNumberofGoldenPawClicks());
+
+    function msToTime(ms) {
+      const seconds = Math.floor(ms / 1000) % 60;
+      const minutes = Math.floor(ms / 60000);
+      return {
+        minutes,
+        seconds,
+        formatted: `${minutes ? minutes + "m" : ""} ${seconds ? seconds + "s" : ""}`,
+      };
+    }
+
+    document.getElementById("stats-golden-lifetime-display").textContent =
+      msToTime(storage.getGoldenPawSpawnLifetime()).formatted;
+
+    document.getElementById("stats-golden-spawn-int-display").textContent =
+      "~" + msToTime(storage.getGoldenPawSpawnInterval()).formatted;
 
     // --- active bonuses ---
     const yarn = computeYarnBonus(allSubUpgrades, achievements);

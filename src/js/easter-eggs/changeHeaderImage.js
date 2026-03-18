@@ -1,4 +1,4 @@
-import { storage } from "../logic/storage.js";
+// import { storage } from "../logic/storage.js";
 import { giveSpecificAchievement } from "../logic/achievements.js";
 
 const header = document.querySelector(".image-header");
@@ -29,15 +29,15 @@ function changeHeaderImage() {
     target.style.backgroundImage = `url(${images[index]})`;
   }
 
-  giveSpecificAchievement(100); // Easter Egg #1
+  giveSpecificAchievement(100); // Easter Egg #1: Fresh Coat of Paint
 
   // Dev Easter Egg
   if (index === 3) {
-    storage.setBoostOwned(0, 5);
-    storage.setBiscuits(300);
-    for (let i = 0; i < 7; i++) {
-      storage.addGoldenPawClick();
-    }
+    // storage.setBoostOwned(0, 5);
+    // storage.setBiscuits(300);
+    // for (let i = 0; i < 7; i++) {
+    //   storage.addGoldenPawClick();
+    // }
   }
 }
 

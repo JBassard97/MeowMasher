@@ -374,3 +374,61 @@ export const storage = {
   // --- Number Format ---
   setNumberFormat: (format) => setItem("numberFormat", format),
 };
+
+export const exportSave = (isJson = false) => {
+  const data = isDesktop()
+    ? { ...desktopCache }
+    : Object.fromEntries(
+        Object.keys(localStorage).map((key) => [
+          key,
+          localStorage.getItem(key),
+        ]),
+      );
+
+  const encoded = btoa(JSON.stringify(data));
+
+  const blob = new Blob([isJson ? JSON.stringify(data, null, 2) : encoded], {
+    type: "application/json",
+  });
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "save.meow";
+  a.click();
+
+  URL.revokeObjectURL(url);
+};
+
+export const importSave = () => {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = ".meow";
+
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Double-check extension (accept isn't foolproof)
+    if (!file.name.endsWith(".meow")) {
+      alert("Invalid file type. Please select a .meow save file.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const decoded = JSON.parse(atob(e.target.result));
+        console.log(decoded); // your save data as an object
+        // do whatever you need with it here
+        // TODO: IF DESKTOP, REWRITE THE SAVE.JSON FILE, ELSE REWRITE LOCALSTORAGE
+      } catch (error) {
+        alert("Corrupted or invalid save file.");
+        console.error(error);
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  input.click();
+};

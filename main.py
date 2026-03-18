@@ -40,6 +40,10 @@ class Storage:
         self._data = {}
         self._save()
 
+    def replaceAll(self, new_data):
+        self._data = new_data
+        self._save()
+
 
 # --- Use save.json in root ---
 if getattr(sys, "frozen", False):
@@ -72,6 +76,25 @@ class API:
         print("JS requested clearAll")
         storage.clear()
         return True
+
+    def replaceAll(self, new_data):
+        print("JS requested replaceAll")
+        storage.replaceAll(new_data)
+        return True
+
+    def exportSave(self, data):
+        save_path = window.create_file_dialog(
+            webview.SAVE_DIALOG,
+            save_filename="Meow_File.json",
+            file_types=("JSON File(*.json)",),
+        )
+        if save_path:
+            if isinstance(save_path, tuple):
+                save_path = save_path[0]
+            with open(save_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2)
+            return True
+        return False
 
 
 api = API()

@@ -385,42 +385,64 @@ export const exportSave = () => {
         ]),
       );
 
+  data.saveHasBeenExported = "true";
+
+  if (isDesktop()) {
+    window.pywebview.api.exportSave(data);
+    return;
+  }
 
   const blob = new Blob([JSON.stringify(data, null, 2)], {
-    type: "application/octet-stream",
+    type: "application/json",
   });
   const url = URL.createObjectURL(blob);
-
   const a = document.createElement("a");
   a.href = url;
-  a.download = "save.meow";
+  a.download = "Meow_File.json";
   a.click();
-
   URL.revokeObjectURL(url);
 };
 
 export const importSave = () => {
   const input = document.createElement("input");
   input.type = "file";
-  input.accept = ".meow";
+  input.accept = ".json";
 
   input.onchange = (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Double-check extension (accept isn't foolproof)
-    if (!file.name.includes(".meow")) {
-      alert("Invalid file type. Please select a .meow save file.");
+    if (!file.name.startsWith("Meow_File")) {
+      alert("Please provide a valid Meow_File.json");
+      return;
+    }
+
+    if (!file.name.endsWith(".json")) {
+      alert("Please provide a valid Meow_File.json");
       return;
     }
 
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       try {
-        const decoded = JSON.parse(atob(e.target.result));
-        console.log(decoded); // your save data as an object
-        // do whatever you need with it here
-        // TODO: IF DESKTOP, REWRITE THE SAVE.JSON FILE, ELSE REWRITE LOCALSTORAGE
+        const decoded = JSON.parse(e.target.result);
+        if (decoded.saveHasBeenExported !== "true") {
+          alert("Invalid save file.");
+          return;
+        }
+
+        const { saveHasBeenExported, ...saveData } = decoded;
+
+        if (isDesktop()) {
+          await window.pywebview.api.replaceAll(saveData);
+          location.reload();
+        } else {
+          localStorage.clear();
+          Object.entries(saveData).forEach(([key, value]) => {
+            localStorage.setItem(key, value);
+          });
+          location.reload();
+        }
       } catch (error) {
         alert("Corrupted or invalid save file.");
         console.error(error);
@@ -429,5 +451,13 @@ export const importSave = () => {
     reader.readAsText(file);
   };
 
-  input.click();
+  if (
+    !confirm(
+      "Are you sure you want to import a save? Doing so will rewrite storage and end your current game...",
+    )
+  ) {
+    return;
+  } else {
+    input.click();
+  }
 };

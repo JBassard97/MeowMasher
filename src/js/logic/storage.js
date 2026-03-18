@@ -375,7 +375,7 @@ export const storage = {
   setNumberFormat: (format) => setItem("numberFormat", format),
 };
 
-export const exportSave = (isJson = false) => {
+export const exportSave = () => {
   const data = isDesktop()
     ? { ...desktopCache }
     : Object.fromEntries(
@@ -385,10 +385,8 @@ export const exportSave = (isJson = false) => {
         ]),
       );
 
-  const encoded = btoa(JSON.stringify(data));
-
-  const blob = new Blob([isJson ? JSON.stringify(data, null, 2) : encoded], {
-    type: "application/json",
+  const blob = new Blob([JSON.stringify(data, null, 2)], {
+    type: "application/octet-stream",
   });
   const url = URL.createObjectURL(blob);
 
@@ -410,7 +408,7 @@ export const importSave = () => {
     if (!file) return;
 
     // Double-check extension (accept isn't foolproof)
-    if (!file.name.endsWith(".meow")) {
+    if (!file.name.includes(".meow")) {
       alert("Invalid file type. Please select a .meow save file.");
       return;
     }

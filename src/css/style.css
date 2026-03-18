@@ -867,7 +867,7 @@ header .header-icons #achievements-icon svg:hover g path {
   padding-bottom: 0.75rem;
   box-sizing: border-box;
   width: 100%;
-  word-break: break-all;
+  word-break: break-word;
 }
 #right-side .sub-upgrades .sub-upgrade div {
   height: 100%;
@@ -899,17 +899,20 @@ header .header-icons #achievements-icon svg:hover g path {
   cursor: pointer;
 }
 #right-side .draggable::after {
-  content: "";
+  color: white;
+  font-style: normal;
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+  content: "↕️";
   position: absolute;
-  height: 90%;
-  aspect-ratio: 1;
+  height: 100%;
+  width: fit-content;
   top: 0;
   right: 0;
-  background-image: url("../assets/images/vert-resize.svg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 80% 80%;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
 }
 #right-side .upgrades {
   display: flex;
@@ -945,8 +948,10 @@ header .header-icons #achievements-icon svg:hover g path {
   transform: translateX(60%);
 }
 #right-side .upgrades .upgrade img {
+  min-height: 80px;
   height: 80px;
   max-height: 80px;
+  min-width: 80px;
   width: 80px;
   max-width: 80px;
   padding-top: 9px;
@@ -1371,6 +1376,38 @@ header .header-icons #achievements-icon svg:hover g path {
   position: absolute;
   animation: clickFlash 1s infinite;
 }
+.dialog-content .dialog-body .stats-section .biscuits-header {
+  text-decoration: none;
+  max-height: 23px;
+}
+.dialog-content .dialog-body .stats-section .biscuits-header .bis {
+  color: maroon;
+  text-decoration: underline;
+  animation: press 2s infinite;
+  transition: scale 1s ease;
+  transform: scale(1);
+}
+.dialog-content .dialog-body .stats-section .biscuits-header .cuits {
+  color: tan;
+  text-decoration: underline;
+  animation: press 2s infinite;
+  animation-delay: 1s;
+  font-size: inherit;
+}
+@keyframes press {
+  0% {
+    color: maroon;
+    font-size: inherit;
+  }
+  50% {
+    color: tan;
+    font-size: 1.3rem;
+  }
+  100% {
+    color: maroon;
+    font-size: inherit;
+  }
+}
 .dialog-content .dialog-body .stats-section .money-header,
 .dialog-content .dialog-body .stats-section .no-before {
   width: fit-content;
@@ -1408,9 +1445,9 @@ header .header-icons #achievements-icon svg:hover g path {
   gap: 0.6rem;
 }
 .earned-achievements .earned-achievement {
-  width: 42%;
+  width: 43%;
   min-height: 80px;
-  padding: 10px 10px;
+  padding: 5px;
   border: 2px solid rgb(170, 166, 166);
   border-radius: 20px;
   opacity: 0;

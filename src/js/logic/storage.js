@@ -134,7 +134,7 @@ export const storage = {
   getMeowAudioLevel: () => getItem("meowAudioLevel") || "5",
   getSfxAudioLevel: () => getItem("sfxAudioLevel") || "5",
   getIsInBiscuitsMode: () => JSON.parse(getItem("isInBiscuitsMode") ?? "false"),
-  getNumberFormat: () => getItem("numberFormat") || "suffix",
+  getNumberFormat: () => getItem("numberFormat") || "standard",
   getIsHapticsOn: () => JSON.parse(getItem("isHapticsOn") ?? "true"),
   getHapticsLevel: () => getItem("hapticsLevel") || "4",
 

@@ -305,7 +305,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       updateAffordability();
-      renderSubUpgrades();
+      // calling this here makes it so that it's more reactive, but ruins the hover effect
+      // renderSubUpgrades();
     };
 
     tick();

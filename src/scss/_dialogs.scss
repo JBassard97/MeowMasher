@@ -327,6 +327,43 @@
         }
       }
 
+      .biscuits-header {
+        $darkColor: maroon;
+        $lightColor: tan;
+
+        text-decoration: none;
+        max-height: 23px;
+        .bis {
+          color: $darkColor;
+          text-decoration: underline;
+          animation: press 2s infinite;
+          transition: scale 1s ease;
+          transform: scale(1);
+        }
+        .cuits {
+          color: $lightColor;
+          text-decoration: underline;
+          animation: press 2s infinite;
+          animation-delay: 1s;
+          font-size: inherit;
+        }
+
+        @keyframes press {
+          0% {
+            color: $darkColor;
+            font-size: inherit;
+          }
+          50% {
+            color: $lightColor;
+            font-size: 1.3rem;
+          }
+          100% {
+            color: $darkColor;
+            font-size: inherit;
+          }
+        }
+      }
+
       .money-header,
       .no-before {
         width: fit-content;
@@ -375,9 +412,9 @@
   flex-wrap: wrap;
   gap: 0.6rem;
   .earned-achievement {
-    width: 42%;
+    width: 43%;
     min-height: 80px;
-    padding: 10px 10px;
+    padding: 5px;
     border: 2px solid rgb(170, 166, 166);
     border-radius: 20px;
     opacity: 0;

@@ -1384,8 +1384,7 @@ header .header-icons #achievements-icon svg:hover g path {
   color: maroon;
   text-decoration: underline;
   animation: press 2s infinite;
-  transition: scale 1s ease;
-  transform: scale(1);
+  font-size: inherit;
 }
 .dialog-content .dialog-body .stats-section .biscuits-header .cuits {
   color: tan;

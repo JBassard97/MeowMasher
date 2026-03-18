@@ -337,8 +337,7 @@
           color: $darkColor;
           text-decoration: underline;
           animation: press 2s infinite;
-          transition: scale 1s ease;
-          transform: scale(1);
+          font-size: inherit;
         }
         .cuits {
           color: $lightColor;

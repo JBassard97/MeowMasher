@@ -519,12 +519,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (u.type === "goldenPaw") {
       if (u.twiceAsOften) {
         const current = storage.getGoldenPawSpawnInterval();
-        storage.setGoldenPawSpawnInterval(current.dv(2));
+        storage.setGoldenPawSpawnInterval(current / 2);
         console.log("new spawn interval:", storage.getGoldenPawSpawnInterval());
       }
       if (u.twiceAsLong) {
         const current = storage.getGoldenPawSpawnLifetime();
-        storage.setGoldenPawSpawnLifetime(current.times(2));
+        storage.setGoldenPawSpawnLifetime(current * 2);
         console.log("new spawn lifetime:", storage.getGoldenPawSpawnLifetime());
       }
     }

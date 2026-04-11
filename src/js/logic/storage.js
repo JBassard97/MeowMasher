@@ -6,12 +6,10 @@ import { giveSpecificAchievement } from "./achievements.js";
 const waitForPywebview = (maxWait = 2000) => {
   return new Promise((resolve) => {
     if (window.pywebview?.api) {
-      console.log("pywebview already present");
       return resolve(true);
     }
 
     const onReady = () => {
-      console.log("pywebviewready event received");
       cleanup();
       resolve(true);
     };
@@ -24,7 +22,6 @@ const waitForPywebview = (maxWait = 2000) => {
     window.addEventListener("pywebviewready", onReady);
 
     const timeoutId = setTimeout(() => {
-      console.log("pywebview not found after waiting");
       cleanup();
       resolve(false);
     }, maxWait);
@@ -38,14 +35,11 @@ export const isDesktop = () => _isDesktop === true;
 let desktopCache = null;
 
 export const initStorage = async () => {
-  console.log("Waiting for pywebview...");
-
   _isDesktop = await waitForPywebview();
 
   if (_isDesktop) {
     try {
       desktopCache = await window.pywebview.api.getAll();
-      console.log("Desktop mode detected, cache loaded:", desktopCache);
     } catch (error) {
       console.error("Failed to load desktop cache:", error);
       _isDesktop = false;

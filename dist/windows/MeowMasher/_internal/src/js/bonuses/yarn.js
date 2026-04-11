@@ -1,20 +1,27 @@
 import { storage, getItem } from "../logic/storage.js";
 import { D } from "../logic/decimalWrapper.js";
 
-export function computeYarnBonus(subUpgrades) {
+export function computeYarnBonus(subUpgrades, achievements) {
   let yarnPercent = 0;
   let yarnBonus = D(0);
 
-  const totalSubUpgrades = subUpgrades.length;
-  const owned = subUpgrades.filter(
+  const ownedSubUpgrades = subUpgrades.filter(
     (u) => getItem(`subUpgrade_${u.id}_owned`) === "true",
   );
 
-  yarnPercent = Math.floor((owned.length / totalSubUpgrades) * 100);
+  const ownedAchievements = achievements.filter(
+    (a) => getItem(`achievement_${a.id}_owned`) === "true",
+  );
 
-  // FIXED: Use Decimal operations
-  const mewnitsPerSecond = storage.getMewnitsPerSecond(); // Already returns Decimal
+  const totalItems = subUpgrades.length + achievements.length;
+  const ownedItems = ownedSubUpgrades.length + ownedAchievements.length;
+
+  if (totalItems > 0) {
+    yarnPercent = Math.floor((ownedItems / totalItems) * 100);
+  }
+
+  const mewnitsPerSecond = storage.getMewnitsPerSecond();
   yarnBonus = mewnitsPerSecond.times(yarnPercent).div(100).floor();
 
-  return { yarnBonus: yarnBonus, yarnPercent: yarnPercent };
+  return { yarnBonus, yarnPercent };
 }

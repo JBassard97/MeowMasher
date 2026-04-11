@@ -52,7 +52,7 @@
     "name": "90s of Mewnits",
     "desc": "Gain the Mewnits you'd make in 90 seconds",
     "time": 90,
-    "price": 30000,
+    "price": 300,
     "type": "mew"
   },
   {

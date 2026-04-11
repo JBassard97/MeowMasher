@@ -7,19 +7,21 @@ import { formatNumber } from "../helpers/formatNumber.js";
 import { D } from "../logic/decimalWrapper.js";
 import { giveSpecificAchievement } from "../logic/achievements.js";
 
-// Load both JSON data files ONCE
 let allSubUpgrades = [];
 let allUpgrades = [];
 let versionNumber = "";
+let achievements = [];
 
 Promise.all([
   fetch("src/data/subUpgrades.json").then((r) => r.json()),
   fetch("src/data/upgrades.json").then((r) => r.json()),
   fetch("package.json").then((r) => r.json()),
-]).then(([subs, ups, pkg]) => {
+  fetch("src/data/achievements.json").then((r) => r.json()),
+]).then(([subs, ups, pkg, achs]) => {
   allSubUpgrades = subs;
   allUpgrades = ups;
   versionNumber = pkg.version;
+  achievements = achs;
 
   // CRITICAL: Initialize upgrades with Decimal properties just like main.js does
   allUpgrades.forEach((u) => {
@@ -71,7 +73,7 @@ setInterval(() => {
     document.getElementById("stats-base-mps-display").textContent =
       formatNumber(mps);
 
-    const yarnData = computeYarnBonus(allSubUpgrades);
+    const yarnData = computeYarnBonus(allSubUpgrades, achievements);
     const yarnBonus = D(yarnData.yarnBonus || 0); // Ensure it's Decimal
 
     document.getElementById("stats-current-mps-display").innerHTML =
@@ -98,12 +100,28 @@ setInterval(() => {
     document.getElementById("stats-current-clickpower-display").innerHTML =
       `${formatNumber(totalClickPower)} <span class="details">${baseText}${tfText}${mpsText}</span>`;
 
-    // --- golden pawprints clicked ---
+    // --- golden pawprints ---
     document.getElementById("stats-clicked-golden-display").textContent =
       formatNumber(storage.getNumberofGoldenPawClicks());
 
+    function msToTime(ms) {
+      const seconds = Math.floor(ms / 1000) % 60;
+      const minutes = Math.floor(ms / 60000);
+      return {
+        minutes,
+        seconds,
+        formatted: `${minutes ? minutes + "m" : ""} ${seconds ? seconds + "s" : ""}`,
+      };
+    }
+
+    document.getElementById("stats-golden-lifetime-display").textContent =
+      msToTime(storage.getGoldenPawSpawnLifetime()).formatted;
+
+    document.getElementById("stats-golden-spawn-int-display").textContent =
+      "~" + msToTime(storage.getGoldenPawSpawnInterval()).formatted;
+
     // --- active bonuses ---
-    const yarn = computeYarnBonus(allSubUpgrades);
+    const yarn = computeYarnBonus(allSubUpgrades, achievements);
     const thousand = computeThousandFingers(allUpgrades, allSubUpgrades);
 
     document.getElementById("stats-yarn-display").innerHTML =

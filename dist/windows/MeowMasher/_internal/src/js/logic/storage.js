@@ -6,12 +6,10 @@ import { giveSpecificAchievement } from "./achievements.js";
 const waitForPywebview = (maxWait = 2000) => {
   return new Promise((resolve) => {
     if (window.pywebview?.api) {
-      console.log("pywebview already present");
       return resolve(true);
     }
 
     const onReady = () => {
-      console.log("pywebviewready event received");
       cleanup();
       resolve(true);
     };
@@ -24,7 +22,6 @@ const waitForPywebview = (maxWait = 2000) => {
     window.addEventListener("pywebviewready", onReady);
 
     const timeoutId = setTimeout(() => {
-      console.log("pywebview not found after waiting");
       cleanup();
       resolve(false);
     }, maxWait);
@@ -38,14 +35,11 @@ export const isDesktop = () => _isDesktop === true;
 let desktopCache = null;
 
 export const initStorage = async () => {
-  console.log("Waiting for pywebview...");
-
   _isDesktop = await waitForPywebview();
 
   if (_isDesktop) {
     try {
       desktopCache = await window.pywebview.api.getAll();
-      console.log("Desktop mode detected, cache loaded:", desktopCache);
     } catch (error) {
       console.error("Failed to load desktop cache:", error);
       _isDesktop = false;
@@ -134,7 +128,9 @@ export const storage = {
   getMeowAudioLevel: () => getItem("meowAudioLevel") || "5",
   getSfxAudioLevel: () => getItem("sfxAudioLevel") || "5",
   getIsInBiscuitsMode: () => JSON.parse(getItem("isInBiscuitsMode") ?? "false"),
-  getNumberFormat: () => getItem("numberFormat") || "suffix",
+  getNumberFormat: () => getItem("numberFormat") || "standard",
+  getIsHapticsOn: () => JSON.parse(getItem("isHapticsOn") ?? "true"),
+  getHapticsLevel: () => getItem("hapticsLevel") || "4",
 
   // --- BIG NUMBER SETTERS (accept strings or Decimals) ---
   setMewnits: (value) => {
@@ -235,6 +231,8 @@ export const storage = {
   setIsSfxAudioOn: (value) => setItem("isSfxAudioOn", JSON.stringify(value)),
   setMeowAudioLevel: (level) => setItem("meowAudioLevel", level),
   setSfxAudioLevel: (level) => setItem("sfxAudioLevel", level),
+  setIsHapticsOn: (value) => setItem("isHapticsOn", JSON.stringify(value)),
+  setHapticsLevel: (level) => setItem("hapticsLevel", level),
 
   // --- Golden Pawprint ---
   addGoldenPawClick: () => {
@@ -369,4 +367,91 @@ export const storage = {
 
   // --- Number Format ---
   setNumberFormat: (format) => setItem("numberFormat", format),
+};
+
+export const exportSave = () => {
+  const data = isDesktop()
+    ? { ...desktopCache }
+    : Object.fromEntries(
+        Object.keys(localStorage).map((key) => [
+          key,
+          localStorage.getItem(key),
+        ]),
+      );
+
+  data.saveHasBeenExported = "true";
+
+  if (isDesktop()) {
+    window.pywebview.api.exportSave(data);
+    return;
+  }
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], {
+    type: "application/json",
+  });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "Meow_File.json";
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
+export const importSave = () => {
+  const input = document.createElement("input");
+  input.type = "file";
+  input.accept = ".json";
+
+  input.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    if (!file.name.startsWith("Meow_File")) {
+      alert("Please provide a valid Meow_File.json");
+      return;
+    }
+
+    if (!file.name.endsWith(".json")) {
+      alert("Please provide a valid Meow_File.json");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      try {
+        const decoded = JSON.parse(e.target.result);
+        if (decoded.saveHasBeenExported !== "true") {
+          alert("Invalid save file.");
+          return;
+        }
+
+        const { saveHasBeenExported, ...saveData } = decoded;
+
+        if (isDesktop()) {
+          await window.pywebview.api.replaceAll(saveData);
+          location.reload();
+        } else {
+          localStorage.clear();
+          Object.entries(saveData).forEach(([key, value]) => {
+            localStorage.setItem(key, value);
+          });
+          location.reload();
+        }
+      } catch (error) {
+        alert("Corrupted or invalid save file.");
+        console.error(error);
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  if (
+    !confirm(
+      "Are you sure you want to import a save? Doing so will rewrite storage and end your current game...",
+    )
+  ) {
+    return;
+  } else {
+    input.click();
+  }
 };

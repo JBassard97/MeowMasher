@@ -1,7 +1,9 @@
 import json
 import sys
+from platformdirs import user_data_dir
 from pathlib import Path
 import webview
+import os
 
 
 # --- Simple Storage class ---
@@ -46,12 +48,20 @@ class Storage:
 
 
 # --- Use save.json in root ---
-if getattr(sys, "frozen", False):
-    BASE_DIR = Path(sys._MEIPASS)
-else:
-    BASE_DIR = Path(__file__).parent.resolve()
+def get_base_dir():
+    if getattr(sys, "frozen", False):
+        return Path(sys._MEIPASS)  # for bundled assets
+    return Path(__file__).parent.resolve()
 
-SAVE_FILE = BASE_DIR / "save.json"
+
+def get_save_path():
+    data_dir = Path(user_data_dir("MeowMasher", "Meow Labs"))
+    data_dir.mkdir(parents=True, exist_ok=True)
+    return data_dir / "save.json"
+
+
+BASE_DIR = get_base_dir()
+SAVE_FILE = get_save_path()
 
 storage = Storage(SAVE_FILE)
 

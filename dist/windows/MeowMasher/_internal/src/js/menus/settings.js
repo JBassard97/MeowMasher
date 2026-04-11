@@ -1,6 +1,8 @@
-import { storage, clearAll } from "../logic/storage.js";
+import { storage, clearAll, exportSave, importSave } from "../logic/storage.js";
 import { setNumberFormat } from "../helpers/formatNumber.js";
 import { giveSpecificAchievement } from "../logic/achievements.js";
+import { AudioList } from "../audio/audio.js";
+import { HapticsList } from "../effects/haptics.js";
 
 const settingsIcon = document.getElementById("settings-icon");
 const settingsDialog = document.getElementById("settings-dialog");
@@ -16,6 +18,11 @@ const meowLevelDisplay = document.getElementById("meow-level-display");
 const isSfxAudioOnCheckbox = document.getElementById("is-sfx-on");
 const sfxAudioVolumeSlider = document.getElementById("sfx-audio-level");
 const sfxLevelDisplay = document.getElementById("sfx-level-display");
+const isHapticsOnCheckbox = document.getElementById("is-haptics-on");
+const hapticsLevelSlider = document.getElementById("haptics-level");
+const hapticsLevelDisplay = document.getElementById("haptics-level-display");
+const exportSaveBtn = document.getElementById("export-save");
+const importSaveBtn = document.getElementById("import-save");
 
 const bodyEl = document.querySelector("body");
 const mainEl = document.querySelector("main");
@@ -34,8 +41,8 @@ export const initSettings = () => {
 
   fontSelect.value = storage.getCurrentFont();
   numberFormatSelect.value = storage.getNumberFormat();
-  isMeowAudioOnCheckbox.checked = storage.getIsMeowAudioOn();
 
+  isMeowAudioOnCheckbox.checked = storage.getIsMeowAudioOn();
   meowAudioVolumeSlider.disabled = !isMeowAudioOnCheckbox.checked;
   meowAudioVolumeSlider.value = storage.getMeowAudioLevel();
   meowLevelDisplay.textContent = isMeowAudioOnCheckbox.checked
@@ -47,6 +54,13 @@ export const initSettings = () => {
   sfxAudioVolumeSlider.value = storage.getSfxAudioLevel();
   sfxLevelDisplay.textContent = isSfxAudioOnCheckbox.checked
     ? `${sfxAudioVolumeSlider.value}0%`
+    : "0%";
+
+  isHapticsOnCheckbox.checked = storage.getIsHapticsOn();
+  hapticsLevelSlider.disabled = !isHapticsOnCheckbox.checked;
+  hapticsLevelSlider.value = storage.getHapticsLevel();
+  hapticsLevelDisplay.textContent = isHapticsOnCheckbox.checked
+    ? `${hapticsLevelSlider.value}0%`
     : "0%";
 
   // --- Apply initial layout ---
@@ -66,7 +80,7 @@ fontSelect.addEventListener("change", () => {
   const selectedFont = fontSelect.value;
   bodyEl.style.fontFamily = selectedFont;
   storage.setCurrentFont(selectedFont);
-  giveSpecificAchievement(307);
+  giveSpecificAchievement(307); // Typographic Touches
 });
 
 // Number format
@@ -75,7 +89,7 @@ numberFormatSelect.addEventListener("change", () => {
   setNumberFormat(selectedFormat);
   storage.setNumberFormat(selectedFormat);
   window.dispatchEvent(new Event("numberFormatChanged"));
-  giveSpecificAchievement(308);
+  giveSpecificAchievement(308); // Who put letters in my numbers?
 });
 
 // Colorblind mode
@@ -101,6 +115,9 @@ isMeowAudioOnCheckbox.addEventListener("change", () => {
   meowLevelDisplay.textContent = isMeowAudioOnCheckbox.checked
     ? `${meowAudioVolumeSlider.value}0%`
     : "0%";
+  if (isMeowAudioOnCheckbox.checked) {
+    AudioList.Meow();
+  }
   if (!isMeowAudioOnCheckbox.checked) {
     giveSpecificAchievement(300); // Hush Little Kitten
   }
@@ -109,6 +126,7 @@ isMeowAudioOnCheckbox.addEventListener("change", () => {
 // Meow volume
 meowAudioVolumeSlider.addEventListener("input", () => {
   storage.setMeowAudioLevel(meowAudioVolumeSlider.value);
+  AudioList.Meow();
   meowLevelDisplay.textContent = `${meowAudioVolumeSlider.value}0%`;
   if (meowAudioVolumeSlider.value == 10) {
     giveSpecificAchievement(301); // Crank it to 11
@@ -122,6 +140,9 @@ isSfxAudioOnCheckbox.addEventListener("change", () => {
   sfxLevelDisplay.textContent = isSfxAudioOnCheckbox.checked
     ? `${sfxAudioVolumeSlider.value}0%`
     : "0%";
+  if (isSfxAudioOnCheckbox.checked) {
+    AudioList.Click();
+  }
   if (!isSfxAudioOnCheckbox.checked) {
     giveSpecificAchievement(302); // Did you hear something?
   }
@@ -130,16 +151,42 @@ isSfxAudioOnCheckbox.addEventListener("change", () => {
 // SFX volume
 sfxAudioVolumeSlider.addEventListener("input", () => {
   storage.setSfxAudioLevel(sfxAudioVolumeSlider.value);
+  AudioList.Click();
   sfxLevelDisplay.textContent = `${sfxAudioVolumeSlider.value}0%`;
   if (sfxAudioVolumeSlider.value == 10) {
     giveSpecificAchievement(303); // Can you hear that thunder?
   }
 });
 
+// Haptics toggle
+isHapticsOnCheckbox.addEventListener("change", () => {
+  storage.setIsHapticsOn(isHapticsOnCheckbox.checked);
+  hapticsLevelSlider.disabled = !isHapticsOnCheckbox.checked;
+  hapticsLevelDisplay.textContent = isHapticsOnCheckbox.checked
+    ? `${hapticsLevelSlider.value}0%`
+    : "0%";
+  if (isHapticsOnCheckbox.checked) {
+    HapticsList.LittlePulse();
+  }
+  if (!isHapticsOnCheckbox.checked) {
+    giveSpecificAchievement(311); // Hold Still
+  }
+});
+
+// Haptics level
+hapticsLevelSlider.addEventListener("input", () => {
+  storage.setHapticsLevel(hapticsLevelSlider.value);
+  HapticsList.LittlePulse();
+  hapticsLevelDisplay.textContent = `${hapticsLevelSlider.value}0%`;
+  if (hapticsLevelSlider.value == 10) {
+    giveSpecificAchievement(312); // Magnitude 10
+  }
+});
+
 // Dialog open/close
 settingsIcon.addEventListener("click", () => {
   settingsDialog.classList.add("active");
-  giveSpecificAchievement(5);
+  giveSpecificAchievement(5); // Setting things up
 });
 
 closeDialog.addEventListener("click", () => {
@@ -156,4 +203,14 @@ settingsDialog.addEventListener("click", (e) => {
 resetGame.addEventListener("click", () => {
   clearAll();
   location.reload();
+});
+
+// Export Save
+exportSaveBtn.addEventListener("click", () => {
+  exportSave();
+});
+
+// Import Save
+importSaveBtn.addEventListener("click", () => {
+  importSave();
 });

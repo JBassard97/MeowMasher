@@ -21,14 +21,12 @@ import { updateBiscuitsDisplay } from "./helpers/updateBiscuitsDisplay.js";
 import { $ } from "./helpers/$.js";
 import { D } from "./logic/decimalWrapper.js";
 import { formatNumber } from "./helpers/formatNumber.js";
-// import { checkForAchievements } from "./logic/achievements.js";
-import { WebHaptics } from "web-haptics";
+import { HapticsList } from "./effects/haptics.js";
+
 const mode = "prod";
 const devBonus = D(50000);
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const haptics = new WebHaptics();
-
   const counterDisplay = $("#counter");
   const rateDisplay = $("#rate");
   const clickRateDisplay = $("#click-rate");
@@ -255,7 +253,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     storage.setMewnitsPerSecond(autoRate);
 
-    const yarnBonus = D(computeYarnBonus(subUpgrades).yarnBonus || 0);
+    const yarnBonus = D(
+      computeYarnBonus(subUpgrades, achievements).yarnBonus || 0,
+    );
     autoRate = autoRate.plus(yarnBonus);
 
     rateDisplay.textContent = formatNumber(autoRate);
@@ -305,7 +305,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
 
       updateAffordability();
-      renderSubUpgrades();
+      // calling this here makes it so that it's more reactive, but ruins the hover effect
+      // renderSubUpgrades();
     };
 
     tick();
@@ -461,6 +462,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     storage.setUpgradeOwned(u.id, u.owned);
 
     AudioList.Click();
+    HapticsList.LittlePulse();
 
     updateAutoRate();
     updateClickPower();
@@ -517,17 +519,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else if (u.type === "goldenPaw") {
       if (u.twiceAsOften) {
         const current = storage.getGoldenPawSpawnInterval();
-        storage.setGoldenPawSpawnInterval(current.dv(2));
+        storage.setGoldenPawSpawnInterval(current / 2);
         console.log("new spawn interval:", storage.getGoldenPawSpawnInterval());
       }
       if (u.twiceAsLong) {
         const current = storage.getGoldenPawSpawnLifetime();
-        storage.setGoldenPawSpawnLifetime(current.times(2));
+        storage.setGoldenPawSpawnLifetime(current * 2);
         console.log("new spawn lifetime:", storage.getGoldenPawSpawnLifetime());
       }
     }
 
-    AudioList.Click();
+    AudioList.Click(); // Audio
+    HapticsList.LittlePulse(); // Haptics
 
     updateAutoRate();
     updateClickPower();
@@ -547,7 +550,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     incrementCount: (amount) => {
       count = count.plus(amount);
       animateCounter(counterDisplay, count);
-      haptics.trigger(5);
+      HapticsList.LittlePulse();
     },
     saveMewnits,
     updateAffordability,
@@ -782,12 +785,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     counterDisplay.textContent = formatNumber(count);
   }
 
+  // ? OTHER THINGS THAT NEED TO RUN ON A 1S TIMER
   setInterval(() => {
     checkForAchievements(achievements, upgrades, subUpgrades);
+    const ownedUpgrades = upgrades.reduce((sum, u) => sum.plus(u.owned), D(0));
+    $("#stats-total-upgrades-display").textContent =
+      formatNumber(ownedUpgrades);
   }, 1000);
 
   window.addEventListener("numberFormatChanged", () => {
-    console.log("Number format changed, updating displays...");
     // All displays that show numbers should be updated when the format changes
     updateAutoRate();
     updateClickPower();

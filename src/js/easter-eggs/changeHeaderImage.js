@@ -30,15 +30,6 @@ function changeHeaderImage() {
   }
 
   giveSpecificAchievement(100); // Easter Egg #1: Fresh Coat of Paint
-
-  // Dev Easter Egg
-  if (index === 3) {
-    // storage.setBoostOwned(0, 5);
-    // storage.setBiscuits(300);
-    // for (let i = 0; i < 7; i++) {
-    //   storage.addGoldenPawClick();
-    // }
-  }
 }
 
 header.addEventListener("click", changeHeaderImage);

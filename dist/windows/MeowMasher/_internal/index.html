@@ -441,11 +441,17 @@
               </div>
               <div class="paws">
                 <div class="left-paw" id="left-paw">
-                  <img src="src/assets/images/goldenPawprint.svg" alt="" />
+                  <img
+                    src="src/assets/images/goldenPawprint.svg"
+                    alt="Left Paw Button"
+                  />
                   <span>Or press <kbd>G</kbd></span>
                 </div>
                 <div class="right-paw" id="right-paw">
-                  <img src="src/assets/images/goldenPawprint.svg" alt="" />
+                  <img
+                    src="src/assets/images/goldenPawprint.svg"
+                    alt="Right Paw Button"
+                  />
                   <span>Or press <kbd>H</kbd></span>
                 </div>
               </div>
@@ -666,17 +672,37 @@
               </p>
             </div>
             <div class="stats-card">
+              <h3>Upgrades & Sub-Upgrades</h3>
+              <p>
+                Total Upgrades Owned:
+                <b><span id="stats-total-upgrades-display">Loading...</span></b>
+              </p>
+            </div>
+            <div class="stats-card">
               <h3 class="golden">Golden Pawprints</h3>
               <p>
-                Golden Pawprints Clicked:<b style="margin-left: 5px"
-                  ><span id="stats-clicked-golden-display">Loading...</span></b
+                Golden Pawprints Clicked:
+                <b><span id="stats-clicked-golden-display">Loading...</span></b>
+              </p>
+              <p>
+                Screen Lifetime:
+                <b
+                  ><span id="stats-golden-lifetime-display">Loading...</span></b
+                >
+              </p>
+              <p>
+                Spawn Interval:
+                <b
+                  ><span id="stats-golden-spawn-int-display"
+                    >Loading...</span
+                  ></b
                 >
               </p>
             </div>
             <div class="stats-card">
               <h3 class="rainbow-header">Active Bonuses</h3>
               <p>
-                Yarn:
+                Yarn<span id="yarn-detail-button">❓</span>:
                 <b><span id="stats-yarn-display">Loading...</span></b>
               </p>
               <p>
@@ -758,8 +784,8 @@
             <div class="set-number-format">
               <p>Set Number Format:</p>
               <select id="number-format-select">
-                <option value="suffix">Suffix</option>
                 <option value="standard">Standard</option>
+                <option value="suffix">Suffix</option>
                 <option value="scientific">Scientific</option>
               </select>
             </div>
@@ -795,14 +821,41 @@
               <span id="sfx-level-display"></span>
             </div>
 
+            <h3 class="settings-header">Vibration</h3>
+            <div class="haptics">
+              <p>Haptic Taps:</p>
+              <input type="checkbox" id="is-haptics-on" />
+              <input
+                type="range"
+                min="1"
+                max="10"
+                value="5"
+                step="1"
+                id="haptics-level"
+              />
+              <span id="haptics-level-display"></span>
+            </div>
+
             <h3 class="settings-header">General</h3>
             <div class="reload-data">
-              <p>Reload game data:</p>
+              <p>Reload Game Data:</p>
               <button onclick="location.reload()">Reload Data</button>
             </div>
             <div class="reset-game">
               <p class="warning-text">This will delete all your progress:</p>
               <button id="reset-game" class="dialog-button">Reset Game</button>
+            </div>
+            <div class="export-save">
+              <p>Export Save File:</p>
+              <button id="export-save" class="dialog-button">
+                Export Save
+              </button>
+            </div>
+            <div class="import-save">
+              <p>Import Save File:</p>
+              <button id="import-save" class="dialog-button">
+                Import Save
+              </button>
             </div>
           </div>
         </div>
@@ -912,6 +965,7 @@
     ></script>
     <script type="module" src="src/js/effects/draggableEl.js"></script>
     <script type="module" src="src/js/effects/toast.js"></script>
+    <script type="module" src="src/js/effects/haptics.js"></script>
     <script type="module" src="src/js/biscuits/biscuits.js"></script>
     <script type="module" src="src/js/helpers/isPaused.js"></script>
     <script type="module" src="src/js/helpers/formatNumber.js"></script>

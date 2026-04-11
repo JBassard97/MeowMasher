@@ -785,12 +785,15 @@ document.addEventListener("DOMContentLoaded", async () => {
     counterDisplay.textContent = formatNumber(count);
   }
 
+  // ? OTHER THINGS THAT NEED TO RUN ON A 1S TIMER
   setInterval(() => {
     checkForAchievements(achievements, upgrades, subUpgrades);
+    const ownedUpgrades = upgrades.reduce((sum, u) => sum.plus(u.owned), D(0));
+    $("#stats-total-upgrades-display").textContent =
+      formatNumber(ownedUpgrades);
   }, 1000);
 
   window.addEventListener("numberFormatChanged", () => {
-    console.log("Number format changed, updating displays...");
     // All displays that show numbers should be updated when the format changes
     updateAutoRate();
     updateClickPower();

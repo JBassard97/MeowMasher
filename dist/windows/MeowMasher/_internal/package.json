@@ -1,6 +1,6 @@
 {
   "name": "meowmasher",
-  "version": "1.15.25",
+  "version": "1.17.0",
   "description": "The clicker game all about cats",
   "main": "index.js",
   "scripts": {
@@ -13,8 +13,8 @@
     "build-css": "sass src/scss:src/css",
     "sass-watch": "sass --watch src/scss:src/css",
     "pywebview": "py main.py",
-    "build-exe:windows": "python -m PyInstaller main.py --name MeowMasher --add-data \"index.html;.\" --add-data \"package.json;.\" --add-data \"save.json;.\" --add-data \"src;src\" --icon favicon.ico --windowed --distpath dist/windows",
-    "build-exe:unix": "python3 -m PyInstaller main.py --name MeowMasher --add-data index.html:. --add-data package.json:. --add-data save.json:. --add-data src:src --icon favicon.ico --windowed --distpath dist/unix",
+    "build-exe:windows": "python -m PyInstaller main.py --name MeowMasher --add-data \"index.html;.\" --add-data \"package.json;.\" --add-data \"src;src\" --collect-all platformdirs --icon favicon.ico --windowed --distpath dist/windows",
+    "build-exe:unix": "python3 -m PyInstaller main.py --name MeowMasher --add-data index.html:. --add-data package.json:. --add-data src:src --collect-all platformdirs --icon favicon.ico --windowed --distpath dist/unix",
     "start:exe-windows": "cd dist/windows/MeowMasher && MeowMasher.exe",
     "start:exe-unix": "cd dist/unix/MeowMasher && ./MeowMasher"
   },
@@ -68,8 +68,5 @@
     "sass": "^1.93.2",
     "vite": "^7.3.1",
     "yaml": "^2.8.2"
-  },
-  "dependencies": {
-    "web-haptics": "^0.0.6"
   }
 }

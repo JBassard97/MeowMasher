@@ -1452,16 +1452,21 @@ header .header-icons #achievements-icon svg:hover g path {
 }
 .dialog-content .dialog-body .stats-section #yarn-detail-button:hover::after {
   content: "(totalAchievements + totalSubUpgrades) / (earnedAchievements + ownedSubUpgrades)";
-  height: fit-content;
-  width: 220px;
+  min-height: fit-content;
+  height: 75px;
+  min-width: fit-content;
+  width: 175px;
+  display: flex;
+  align-items: center;
+  text-align: center;
   position: absolute;
-  top: -225%;
+  top: 0%;
   left: 50%;
   background-color: rgb(6, 6, 6);
   color: rgb(244, 244, 244);
   padding: 0.3rem 0.3rem;
   border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   font-style: italic;
 }

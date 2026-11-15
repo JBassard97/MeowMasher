@@ -169,8 +169,12 @@
     user-select: none;
     cursor: row-resize;
     position: relative;
-    height: 3rem;
+    min-height: fit-content;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
 
     button {
       pointer-events: auto;
@@ -189,7 +193,7 @@
       width: fit-content;
       // border: 1px solid lime;
       top: 0;
-      right: 0;
+      right: 0.25rem;
       box-sizing: border-box;
       display: flex;
       align-items: center;

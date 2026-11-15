@@ -409,7 +409,7 @@
                     </svg>
                     Buy Boosts
                   </div>
-                  <div id="levels-icon">
+                  <!-- <div id="levels-icon">
                     <svg
                       fill="lightgray"
                       height="20px"
@@ -436,7 +436,7 @@
                       </g>
                     </svg>
                     Level Up
-                  </div>
+                  </div> -->
                 </div>
               </div>
               <div class="paws">
@@ -460,27 +460,38 @@
         </div>
       </div>
       <div id="right-side">
-        <h5 class="image-text image-header-target">
-          <span id="available-sub-upgrades-display">0</span>
-          <span style="text-decoration: underline; font-size: 0.7rem"
-            >Sub-Upgrades</span
-          >
-          <button id="auto-buy-sub-upgrade" class="buy-many-button">
-            Buy Many (<span id="buy-many-display">0</span>)
-          </button>
+        <h5
+          class="image-text image-header-target"
+          style="display: flex; flex-direction: column; align-items: flex-start"
+        >
+          <div style="display: flex; align-items: center; gap: 0.25rem">
+            <span id="available-sub-upgrades-display">0</span>
+            <span style="text-decoration: underline; font-size: 0.7rem"
+              >Sub-Upgrades</span
+            >
+          </div>
+          <div style="display: flex">
+            <button id="auto-buy-sub-upgrade" class="buy-many-button">
+              Buy Many (<span id="buy-many-display">0</span>)
+            </button>
+          </div>
         </h5>
         <div class="sub-upgrades"></div>
         <h5 class="image-text image-header-target draggable">
-          <span id="available-upgrades-display">0</span>
-          <span style="text-decoration: underline; font-size: 0.7rem"
-            >Upgrades</span
-          >
-          <button id="auto-buy-upgrade" class="buy-cheap-button">
-            Buy <span style="line-height: 0">⬇</span>$
-          </button>
-          <button id="buy-many-upgrades" class="buy-many-button">
-            Buy Many (<span id="buy-many-upgrades-display">0</span>)
-          </button>
+          <div style="display: flex; align-items: center; gap: 0.25rem">
+            <span id="available-upgrades-display">0</span>
+            <span style="text-decoration: underline; font-size: 0.7rem"
+              >Upgrades</span
+            >
+          </div>
+          <div>
+            <button id="auto-buy-upgrade" class="buy-cheap-button">
+              Buy Cheapest <span style="line-height: 0">⬇</span>$
+            </button>
+            <button id="buy-many-upgrades" class="buy-many-button">
+              Buy Many (<span id="buy-many-upgrades-display">0</span>)
+            </button>
+          </div>
         </h5>
         <div class="upgrades"></div>
       </div>
@@ -841,10 +852,7 @@
               <p>Reload Game Data:</p>
               <button onclick="location.reload()">Reload Data</button>
             </div>
-            <div class="reset-game">
-              <p class="warning-text">This will delete all your progress:</p>
-              <button id="reset-game" class="dialog-button">Reset Game</button>
-            </div>
+
             <div class="export-save">
               <p>Export Save File:</p>
               <button id="export-save" class="dialog-button">
@@ -856,6 +864,16 @@
               <button id="import-save" class="dialog-button">
                 Import Save
               </button>
+            </div>
+            <div
+              class="reset-game"
+              style="display: flex; flex-direction: column; align-items: center; gap: 0;"
+            >
+              <p>Erase Game Data?</p>
+              <p class="warning-text" style="color: red">
+                Warning: This will delete all your progress!
+              </p>
+              <button id="reset-game" class="dialog-button">Go Ahead</button>
             </div>
           </div>
         </div>

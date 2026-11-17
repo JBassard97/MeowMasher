@@ -201,8 +201,15 @@ settingsDialog.addEventListener("click", (e) => {
 
 // Reset
 resetGame.addEventListener("click", () => {
-  clearAll();
-  location.reload();
+  window.dispatchEvent(new CustomEvent("pause"));
+  if (
+    window.confirm(
+      "Are you absolutely positive? We recommend exporting a save file just in case!",
+    )
+  ) {
+    clearAll();
+  }
+  return;
 });
 
 // Export Save

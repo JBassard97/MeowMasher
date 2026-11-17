@@ -10,17 +10,17 @@ footer {
   display: flex;
   justify-content: space-between;
 
-  a {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    text-decoration: none;
-    svg {
-      width: 15px;
-      height: 15px;
-      * {
-        fill: gray;
-      }
-    }
-  }
+  // a {
+  //   display: flex;
+  //   align-items: center;
+  //   gap: 0.25rem;
+  //   text-decoration: none;
+  //   svg {
+  //     width: 15px;
+  //     height: 15px;
+  //     * {
+  //       fill: gray;
+  //     }
+  //   }
+  // }
 }

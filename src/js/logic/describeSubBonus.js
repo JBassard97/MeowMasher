@@ -9,7 +9,7 @@ export function describeSubBonus(u, upgrades) {
       }
       return `${u.bonus}× Base Click Power`;
     case "upgradeMultiplier":
-      return `${u.bonus}x ${t?.name || "Upgrade"}`;
+      return `${u.bonus}x ${t?.name || "Upgrade"} Output`;
     case "thousandFingers":
       return u.name !== "Thousand Pats"
         ? `${u.bonus}x Thousand Pats Bonus`

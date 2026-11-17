@@ -807,7 +807,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   setLivingRoom();
   updateAutoRate();
   updateClickPower();
-  saveMewnits();
+  // if (storage.getMewnits().gt(0)) saveMewnits();
   renderUpgrades();
   startAutoIncrement();
   renderSubUpgrades();

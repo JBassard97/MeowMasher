@@ -33,7 +33,19 @@
         <p class="toast-content">Toast Content</p>
         <p class="toast-desc">Toast Description</p>
       </div>
-      <span id="desktop-or-web-display">(Loading...)</span>
+      <p
+        class="version-and-platform"
+        style="
+          position: fixed;
+          top: -1rem;
+          left: 1px;
+          display: flex;
+          gap: 0.25rem;
+        "
+      >
+        <span id="desktop-or-web-display">(Loading...) </span
+        ><span id="version-number">1.0.0</span>
+      </p>
 
       <h1 class="image-header">Meow Masher</h1>
 
@@ -498,15 +510,8 @@
     </main>
 
     <footer>
-      <script type="module">
-        fetch("package.json")
-          .then((res) => res.json())
-          .then((pkg) => {
-            document.getElementById("version-number").textContent = pkg.version;
-          });
-      </script>
       <p>© 2025-2026 Meow Masher</p>
-      <a target="_blank" href="https://github.com/JBassard97/MeowMasher">
+      <!-- <a target="_blank" href="https://github.com/JBassard97/MeowMasher">
         <p>v<span id="version-number">1.0.0</span></p>
         <svg
           width="10px"
@@ -549,7 +554,7 @@
             </g>
           </g>
         </svg>
-      </a>
+      </a> -->
     </footer>
 
     <!-- STATS -->
@@ -867,7 +872,12 @@
             </div>
             <div
               class="reset-game"
-              style="display: flex; flex-direction: column; align-items: center; gap: 0;"
+              style="
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+              "
             >
               <p>Erase Game Data?</p>
               <p class="warning-text" style="color: red">
@@ -961,7 +971,6 @@
 
     <div class="loading-spinner"><p>Loading...</p></div>
 
-    <!-- <script src="src/js/logic/decimalWrapper.js"></script> -->
     <script type="module" src="src/js/logic/storage.js"></script>
     <script type="module" src="src/js/main.js"></script>
     <script type="module" src="src/js/menus/settings.js"></script>
@@ -996,6 +1005,14 @@
           .then((reg) => console.log("SW registered:", reg.scope))
           .catch((err) => console.error("SW error:", err));
       }
+    </script>
+
+    <script type="module">
+      fetch("package.json")
+        .then((res) => res.json())
+        .then((pkg) => {
+          document.getElementById("version-number").textContent = pkg.version;
+        });
     </script>
   </body>
 </html>

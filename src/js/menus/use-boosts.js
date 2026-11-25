@@ -2,7 +2,7 @@ import { storage } from "../logic/storage.js";
 import { createBoostIcon } from "../helpers/createBoostIcon.js";
 import { $ } from "../helpers/$.js";
 import { isPaused } from "../helpers/isPaused.js";
-import { D } from "../logic/decimalWrapper.js";
+// import { D } from "../logic/decimalWrapper.js";
 import { giveSpecificAchievement } from "../logic/achievements.js";
 
 const useBoostsIcon = $("#use-boosts-icon");
@@ -14,6 +14,7 @@ useBoostsIcon.addEventListener("click", () => {
   if (isPaused) return;
   useBoostsDialog.classList.add("active");
   renderBoosts();
+  window.dispatchEvent(new Event("dialogueOpen"));
 });
 useBoostsDialog.addEventListener("click", (e) => {
   if (e.target === useBoostsDialog) {
@@ -22,6 +23,7 @@ useBoostsDialog.addEventListener("click", (e) => {
 });
 closeUseBoostsDialog.addEventListener("click", () => {
   useBoostsDialog.classList.remove("active");
+  window.dispatchEvent(new Event("dialogueClose"));
 });
 
 let boostData;
@@ -88,6 +90,7 @@ function useBoost(boostId) {
   giveSpecificAchievement(310);
 
   useBoostsDialog.classList.remove("active");
+  window.dispatchEvent(new Event("dialogueClose"));
   storage.setBoostOwned(boostId, owned.minus(1)); // Decimal-safe subtraction
   renderBoosts();
 }

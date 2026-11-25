@@ -187,10 +187,12 @@ hapticsLevelSlider.addEventListener("input", () => {
 settingsIcon.addEventListener("click", () => {
   settingsDialog.classList.add("active");
   giveSpecificAchievement(5); // Setting things up
+  window.dispatchEvent(new Event("dialogueOpen"));
 });
 
 closeDialog.addEventListener("click", () => {
   settingsDialog.classList.remove("active");
+  window.dispatchEvent(new Event("dialogueClose"));
 });
 
 settingsDialog.addEventListener("click", (e) => {

@@ -1,0 +1,72 @@
+{
+  "name": "meowmasher",
+  "version": "1.17.4",
+  "description": "The clicker game all about cats",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm i && vite build",
+    "dev": "concurrently \"vite\" \"npm run sass-watch\"",
+    "dev-funcs": "cd dev/scripts && node yamlToJson.js && node subUpgradePdf.js && node loc.js && py loc_pie_charts.py && cd ../..",
+    "subUpgradePdf": "cd dev/scripts && node subUpgradePdf.js && cd ../..",
+    "yamlToJson": "cd dev/scripts && node yamlToJson.js && cd ../..",
+    "loc": "cd dev/scripts && node loc.js && cd ../..",
+    "build-css": "sass src/scss:src/css",
+    "sass-watch": "sass --watch src/scss:src/css",
+    "pywebview": "py main.py",
+    "build-exe:windows": "python -m PyInstaller main.py --name MeowMasher --add-data \"index.html;.\" --add-data \"package.json;.\" --add-data \"src;src\" --collect-all platformdirs --icon favicon.ico --windowed --distpath dist/windows",
+    "build-exe:unix": "python3 -m PyInstaller main.py --name MeowMasher --add-data index.html:. --add-data package.json:. --add-data src:src --collect-all platformdirs --icon favicon.ico --windowed --distpath dist/unix",
+    "start-exe:windows": "cd dist/windows/MeowMasher && MeowMasher.exe",
+    "start-exe:unix": "cd dist/unix/MeowMasher && ./MeowMasher"
+  },
+  "keywords": [],
+  "author": "JBassard97",
+  "license": "ISC",
+  "type": "commonjs",
+  "loc": {
+    "ignoreDirs": [
+      "node_modules",
+      ".git",
+      "dist",
+      "build",
+      "assets",
+      "outputs"
+    ],
+    "ignoreFiles": [
+      "save.json",
+      "package-lock.json"
+    ],
+    "allowedExts": [
+      ".js",
+      ".html",
+      ".css",
+      ".scss",
+      ".py",
+      ".json",
+      ".sh",
+      ".yml"
+    ],
+    "devExts": [
+      ".html",
+      ".scss",
+      ".js",
+      ".py",
+      ".json",
+      ".sh",
+      ".yml"
+    ],
+    "prodExts": [
+      ".html",
+      ".css",
+      ".js",
+      ".json"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "jbassard97nodecolors": "^3.1.0",
+    "pdfkit": "^0.17.2",
+    "sass": "^1.93.2",
+    "vite": "^7.3.1",
+    "yaml": "^2.8.2"
+  }
+}

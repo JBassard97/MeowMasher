@@ -39,10 +39,12 @@ const closeStatsDialog = document.getElementById("close-stats-dialog");
 statsIcon.addEventListener("click", () => {
   statsDialog.classList.add("active");
   giveSpecificAchievement(6);
+  window.dispatchEvent(new Event("dialogueOpen"));
 });
 
 closeStatsDialog.addEventListener("click", () => {
   statsDialog.classList.remove("active");
+  window.dispatchEvent(new Event("dialogueClose"));
 });
 
 // Close dialog when clicking outside

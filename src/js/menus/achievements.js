@@ -46,10 +46,12 @@ achievementsIcon.addEventListener("click", () => {
     achievementsContent.scrollTop = 0;
   });
   giveSpecificAchievement(7);
+  window.dispatchEvent(new Event("dialogueOpen"));
 });
 
 closeDialog.addEventListener("click", () => {
   achievementsDialog.classList.remove("active");
+  window.dispatchEvent(new Event("dialogueClose"));
 });
 
 // Close when clicking backdrop

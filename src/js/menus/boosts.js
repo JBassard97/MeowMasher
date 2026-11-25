@@ -15,6 +15,7 @@ boostsIcon.addEventListener("click", () => {
   boostsDialog.classList.add("active");
   updateBiscuitsDisplay();
   renderBoosts();
+  window.dispatchEvent(new Event("dialogueOpen"));
 });
 boostsDialog.addEventListener("click", (e) => {
   if (e.target === boostsDialog) {
@@ -23,6 +24,7 @@ boostsDialog.addEventListener("click", (e) => {
 });
 closeBoostsDialog.addEventListener("click", () => {
   boostsDialog.classList.remove("active");
+  window.dispatchEvent(new Event("dialogueClose"));
 });
 
 let boostData;

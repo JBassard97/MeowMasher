@@ -136,6 +136,7 @@ export const storage = {
   getNumberFormat: () => getItem("numberFormat") || "standard",
   getIsHapticsOn: () => JSON.parse(getItem("isHapticsOn") ?? "true"),
   getHapticsLevel: () => getItem("hapticsLevel") || "4",
+  getIsDialogueOpen: () => JSON.parse(getItem("isDialogueOpen") ?? "false"),
 
   // --- BIG NUMBER SETTERS (accept strings or Decimals) ---
   setMewnits: (value) => {
@@ -238,6 +239,10 @@ export const storage = {
   setSfxAudioLevel: (level) => setItem("sfxAudioLevel", level),
   setIsHapticsOn: (value) => setItem("isHapticsOn", JSON.stringify(value)),
   setHapticsLevel: (level) => setItem("hapticsLevel", level),
+
+  // --- Dialogue Opening ---
+  setIsDialogueOpen: (value) =>
+    setItem("isDialogueOpen", JSON.stringify(value)),
 
   // --- Golden Pawprint ---
   addGoldenPawClick: () => {

@@ -1,0 +1,51 @@
+// effects/goldenPawprint.js
+import { storage } from "../logic/storage.js";
+import { isPaused } from "../helpers/isPaused.js";
+
+export function startGoldenPawprintSpawner(clickerButton, onClick) {
+  const SPAWN_INTERVAL = storage.getGoldenPawSpawnInterval(); // 9 minutes
+  const LIFETIME = storage.getGoldenPawSpawnLifetime(); // 4.5 seconds
+
+  function spawnGoldenPawprint() {
+    if (isPaused) return;
+    const el = document.createElement("img");
+    el.className = "golden-pawprint";
+    el.src = "src/assets/images/goldenPawprint.svg";
+
+    // Position it randomly inside the clicker area
+    const rect = clickerButton.getBoundingClientRect();
+    el.style.position = "absolute";
+    el.style.left = Math.random() * (rect.width - 60) + "px";
+    el.style.top = Math.random() * (rect.height - 60) + "px";
+    el.style.width = "75px";
+    el.style.pointerEvents = "auto";
+    el.style.cursor = "pointer";
+    el.style.zIndex = 7;
+
+    clickerButton.appendChild(el);
+
+    // Remove after 9 seconds unless clicked
+    const timeout = setTimeout(() => {
+      if (el.isConnected) el.remove();
+    }, LIFETIME);
+
+    // Clicking removes & rewards
+    el.onclick = () => {
+      clearTimeout(timeout);
+      if (onClick) onClick(); // give reward
+      storage.addGoldenPawClick();
+      updateGoldenPawprintClicksDisplay();
+      el.remove();
+    };
+  }
+
+  // Start interval
+  updateGoldenPawprintClicksDisplay();
+  // spawnGoldenPawprint(); // ! DEV optional immediate first spawn
+  setInterval(spawnGoldenPawprint, SPAWN_INTERVAL);
+}
+
+function updateGoldenPawprintClicksDisplay() {
+  const display = document.getElementById("golden-paws-clicked-number");
+  display.textContent = storage.getNumberofGoldenPawClicks().toLocaleString();
+}

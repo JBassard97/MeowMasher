@@ -1,9 +1,14 @@
+import { storage } from "../logic/storage.js";
+
 (() => {
   const bgm = new Audio("src/assets/music/resonance.mp3");
 
   bgm.loop = true;
   bgm.preload = "auto";
-  bgm.volume = 0.3;
+
+  // Initial settings
+  bgm.volume = storage.getBgmAudioLevel() / 10;
+  bgm.muted = !storage.getIsBgmAudioOn();
 
   // Audio processing
   const audioContext = new AudioContext();
@@ -22,7 +27,10 @@
   const startMusic = async () => {
     try {
       await audioContext.resume();
-      await bgm.play();
+
+      if (storage.getIsBgmAudioOn()) {
+        await bgm.play();
+      }
 
       console.log("BGM Started");
 
@@ -38,26 +46,47 @@
     document.addEventListener(event, startMusic, { once: true }),
   );
 
-  // Dialogue audio effects
+  // Dialogue effects
   window.addEventListener("dialogueOpen", () => {
-    filter.frequency.setTargetAtTime(600, audioContext.currentTime, 0.15);
+    filter.frequency.setValueAtTime(600, audioContext.currentTime);
   });
 
   window.addEventListener("dialogueClose", () => {
-    filter.frequency.setTargetAtTime(22000, audioContext.currentTime, 0.15);
+    filter.frequency.setValueAtTime(22000, audioContext.currentTime);
   });
 
   // Pause and resume
-  window.addEventListener("pause", () => {
-    bgm.pause();
-  });
+  window.addEventListener("pause", () => bgm.pause());
 
   window.addEventListener("resume", async () => {
+    if (!storage.getIsBgmAudioOn()) return;
+
     try {
       await audioContext.resume();
       await bgm.play();
     } catch (err) {
       console.warn("BGM resume failed:", err);
     }
+  });
+
+  // BGM toggle
+  window.addEventListener("bgmToggle", async () => {
+    const enabled = storage.getIsBgmAudioOn();
+
+    bgm.muted = !enabled;
+
+    if (enabled) {
+      try {
+        await audioContext.resume();
+        await bgm.play();
+      } catch (err) {
+        console.warn("BGM toggle playback failed:", err);
+      }
+    }
+  });
+
+  // Volume adjustment
+  window.addEventListener("bgmVolumeChange", () => {
+    bgm.volume = storage.getBgmAudioLevel() / 10;
   });
 })();

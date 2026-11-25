@@ -836,6 +836,19 @@
               />
               <span id="sfx-level-display"></span>
             </div>
+            <div class="bgm-audio">
+              <p>BGM:</p>
+              <input type="checkbox" id="is-bgm-on" />
+              <input
+                type="range"
+                min="1"
+                max="10"
+                value="5"
+                step="1"
+                id="bgm-audio-level"
+              />
+              <span id="bgm-level-display"></span>
+            </div>
 
             <h3 class="settings-header">Vibration</h3>
             <div class="haptics">
@@ -880,7 +893,10 @@
               "
             >
               <p>Erase Game Data?</p>
-              <p class="warning-text" style="color: red; font-size: 0.75rem; margin-bottom: 0.25rem;">
+              <p
+                class="warning-text"
+                style="color: red; font-size: 0.75rem; margin-bottom: 0.25rem"
+              >
                 Warning: This will permanently delete all of your progress!
               </p>
               <button id="reset-game" class="dialog-button">Go Ahead</button>

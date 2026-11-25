@@ -18,6 +18,9 @@ const meowLevelDisplay = document.getElementById("meow-level-display");
 const isSfxAudioOnCheckbox = document.getElementById("is-sfx-on");
 const sfxAudioVolumeSlider = document.getElementById("sfx-audio-level");
 const sfxLevelDisplay = document.getElementById("sfx-level-display");
+const isBgmAudioOnCheckbox = document.getElementById("is-bgm-on");
+const bgmAudioVolumeSlider = document.getElementById("bgm-audio-level");
+const bgmLevelDisplay = document.getElementById("bgm-level-display");
 const isHapticsOnCheckbox = document.getElementById("is-haptics-on");
 const hapticsLevelSlider = document.getElementById("haptics-level");
 const hapticsLevelDisplay = document.getElementById("haptics-level-display");
@@ -54,6 +57,13 @@ export const initSettings = () => {
   sfxAudioVolumeSlider.value = storage.getSfxAudioLevel();
   sfxLevelDisplay.textContent = isSfxAudioOnCheckbox.checked
     ? `${sfxAudioVolumeSlider.value}0%`
+    : "0%";
+
+  isBgmAudioOnCheckbox.checked = storage.getIsBgmAudioOn();
+  bgmAudioVolumeSlider.disabled = !isBgmAudioOnCheckbox.checked;
+  bgmAudioVolumeSlider.value = storage.getBgmAudioLevel();
+  bgmLevelDisplay.textContent = isBgmAudioOnCheckbox.checked
+    ? `${bgmAudioVolumeSlider.value}0%`
     : "0%";
 
   isHapticsOnCheckbox.checked = storage.getIsHapticsOn();
@@ -156,6 +166,30 @@ sfxAudioVolumeSlider.addEventListener("input", () => {
   if (sfxAudioVolumeSlider.value == 10) {
     giveSpecificAchievement(303); // Can you hear that thunder?
   }
+});
+
+// BGM toggle
+isBgmAudioOnCheckbox.addEventListener("change", () => {
+  storage.setIsBgmAudioOn(isBgmAudioOnCheckbox.checked);
+  bgmAudioVolumeSlider.disabled = !isBgmAudioOnCheckbox.checked;
+  bgmLevelDisplay.textContent = isBgmAudioOnCheckbox.checked
+    ? `${bgmAudioVolumeSlider.value}0%`
+    : "0%";
+
+  window.dispatchEvent(new Event("bgmToggle"));
+  // if (!isBgmAudioOnCheckbox.checked) {
+  // TODO: MAKE ACHIEVEMENT FOR THIS
+  // }
+});
+
+// BGM volume
+bgmAudioVolumeSlider.addEventListener("input", () => {
+  storage.setBgmAudioLevel(bgmAudioVolumeSlider.value);
+  bgmLevelDisplay.textContent = `${bgmAudioVolumeSlider.value}0%`;
+  window.dispatchEvent(new Event("bgmVolumeChange"));
+  // if (bgmAudioVolumeSlider.value == 10) {
+  // TODO: MAKE ACHIEVEMENT FOR THIS
+  // }
 });
 
 // Haptics toggle

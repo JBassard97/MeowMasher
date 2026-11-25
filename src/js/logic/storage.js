@@ -130,13 +130,14 @@ export const storage = {
   getCurrentFont: () => getItem("currentFont") || "Finger Paint",
   getIsMeowAudioOn: () => JSON.parse(getItem("isMeowAudioOn") ?? "true"),
   getIsSfxAudioOn: () => JSON.parse(getItem("isSfxAudioOn") ?? "true"),
+  getIsBgmAudioOn: () => JSON.parse(getItem("isBgmAudioOn") ?? "true"),
   getMeowAudioLevel: () => getItem("meowAudioLevel") || "5",
   getSfxAudioLevel: () => getItem("sfxAudioLevel") || "5",
+  getBgmAudioLevel: () => getItem("bgmAudioLevel") || "3",
   getIsInBiscuitsMode: () => JSON.parse(getItem("isInBiscuitsMode") ?? "false"),
   getNumberFormat: () => getItem("numberFormat") || "standard",
   getIsHapticsOn: () => JSON.parse(getItem("isHapticsOn") ?? "true"),
   getHapticsLevel: () => getItem("hapticsLevel") || "4",
-  getIsDialogueOpen: () => JSON.parse(getItem("isDialogueOpen") ?? "false"),
 
   // --- BIG NUMBER SETTERS (accept strings or Decimals) ---
   setMewnits: (value) => {
@@ -235,14 +236,12 @@ export const storage = {
   setCurrentFont: (fontName) => setItem("currentFont", fontName),
   setIsMeowAudioOn: (value) => setItem("isMeowAudioOn", JSON.stringify(value)),
   setIsSfxAudioOn: (value) => setItem("isSfxAudioOn", JSON.stringify(value)),
+  setIsBgmAudioOn: (value) => setItem("isBgmAudioOn", JSON.stringify(value)),
   setMeowAudioLevel: (level) => setItem("meowAudioLevel", level),
   setSfxAudioLevel: (level) => setItem("sfxAudioLevel", level),
+  setBgmAudioLevel: (level) => setItem("bgmAudioLevel", level),
   setIsHapticsOn: (value) => setItem("isHapticsOn", JSON.stringify(value)),
   setHapticsLevel: (level) => setItem("hapticsLevel", level),
-
-  // --- Dialogue Opening ---
-  setIsDialogueOpen: (value) =>
-    setItem("isDialogueOpen", JSON.stringify(value)),
 
   // --- Golden Pawprint ---
   addGoldenPawClick: () => {

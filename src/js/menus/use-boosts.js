@@ -19,6 +19,7 @@ useBoostsIcon.addEventListener("click", () => {
 useBoostsDialog.addEventListener("click", (e) => {
   if (e.target === useBoostsDialog) {
     useBoostsDialog.classList.remove("active");
+    window.dispatchEvent(new Event("dialogueClose"));
   }
 });
 closeUseBoostsDialog.addEventListener("click", () => {

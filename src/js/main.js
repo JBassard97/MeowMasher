@@ -788,6 +788,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // ? OTHER THINGS THAT NEED TO RUN ON A 1S TIMER
   setInterval(() => {
     checkForAchievements(achievements, upgrades, subUpgrades);
+    // Leave this here
     const ownedUpgrades = upgrades.reduce((sum, u) => sum.plus(u.owned), D(0));
     $("#stats-total-upgrades-display").textContent =
       formatNumber(ownedUpgrades);

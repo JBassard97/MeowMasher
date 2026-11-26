@@ -20,6 +20,7 @@ boostsIcon.addEventListener("click", () => {
 boostsDialog.addEventListener("click", (e) => {
   if (e.target === boostsDialog) {
     boostsDialog.classList.remove("active");
+    window.dispatchEvent(new Event("dialogueClose"));
   }
 });
 closeBoostsDialog.addEventListener("click", () => {

@@ -1629,10 +1629,13 @@ footer {
   text-align: center;
   font-size: 0.8rem;
   color: lightgray;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   background-image: radial-gradient(ellipse 80% 65% at top, rgba(255, 255, 255, 0.1921568627), rgba(208, 208, 208, 0.0392156863));
   display: flex;
   justify-content: space-between;
+}
+footer p {
+  margin: 0;
 }
 
 .loading-spinner {

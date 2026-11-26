@@ -38,6 +38,9 @@ export const checkForAchievements = (achievements, upgrades, subUpgrades) => {
     console.warn("No achievements data available to check.");
     return;
   }
+
+  const ownedUpgrades = upgrades.reduce((sum, u) => sum.plus(u.owned), D(0));
+
   achievements.forEach((a) => {
     // Only check achievements that are not yet owned
     if (!storage.getAchievementOwned(a.id)) {
@@ -48,11 +51,16 @@ export const checkForAchievements = (achievements, upgrades, subUpgrades) => {
           }
           break;
         case "number_of_upgrades":
-          const ownedUpgrades = upgrades.reduce(
-            (sum, u) => sum.plus(u.owned),
-            D(0),
-          );
           if (ownedUpgrades.gte(D(a.requirement))) {
+            giveSpecificAchievement(a.id);
+          }
+          break;
+        case "number_of_specific_upgrade":
+          const specificUpgrade = upgrades.find((u) => u.id === a.upgrade_id);
+          if (
+            specificUpgrade &&
+            D(specificUpgrade.owned).gte(D(a.requirement))
+          ) {
             giveSpecificAchievement(a.id);
           }
           break;

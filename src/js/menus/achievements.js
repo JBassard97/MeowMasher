@@ -58,6 +58,7 @@ closeDialog.addEventListener("click", () => {
 achievementsDialog.addEventListener("click", (e) => {
   if (e.target === achievementsDialog) {
     achievementsDialog.classList.remove("active");
+    window.dispatchEvent(new Event("dialogueClose"));
   }
 });
 

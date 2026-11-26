@@ -177,9 +177,9 @@ isBgmAudioOnCheckbox.addEventListener("change", () => {
     : "0%";
 
   window.dispatchEvent(new Event("bgmToggle"));
-  // if (!isBgmAudioOnCheckbox.checked) {
-  // TODO: MAKE ACHIEVEMENT FOR THIS
-  // }
+  if (!isBgmAudioOnCheckbox.checked) {
+    giveSpecificAchievement(313); // Shhhhh
+  }
 });
 
 // BGM volume
@@ -187,9 +187,9 @@ bgmAudioVolumeSlider.addEventListener("input", () => {
   storage.setBgmAudioLevel(bgmAudioVolumeSlider.value);
   bgmLevelDisplay.textContent = `${bgmAudioVolumeSlider.value}0%`;
   window.dispatchEvent(new Event("bgmVolumeChange"));
-  // if (bgmAudioVolumeSlider.value == 10) {
-  // TODO: MAKE ACHIEVEMENT FOR THIS
-  // }
+  if (bgmAudioVolumeSlider.value == 10) {
+    giveSpecificAchievement(314); // You must REALLY like this song!
+  }
 });
 
 // Haptics toggle
@@ -232,6 +232,7 @@ closeDialog.addEventListener("click", () => {
 settingsDialog.addEventListener("click", (e) => {
   if (e.target === settingsDialog) {
     settingsDialog.classList.remove("active");
+    window.dispatchEvent(new Event("dialogueClose"));
   }
 });
 

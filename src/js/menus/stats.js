@@ -1,5 +1,5 @@
 import { computeYarnBonus } from "../bonuses/yarn.js";
-import { storage } from "../logic/storage.js";
+import { storage, getItem } from "../logic/storage.js";
 import { computeThousandFingers } from "../bonuses/thousandFingers.js";
 import { isDesktop } from "../logic/storage.js";
 import { isPaused } from "../helpers/isPaused.js";
@@ -51,6 +51,7 @@ closeStatsDialog.addEventListener("click", () => {
 statsDialog.addEventListener("click", (e) => {
   if (e.target === statsDialog) {
     statsDialog.classList.remove("active");
+    window.dispatchEvent(new Event("dialogueClose"));
   }
 });
 
@@ -177,4 +178,19 @@ setInterval(() => {
     document.getElementById("stats-current-efficiency-display").textContent =
       formatNumber(storage.getBiscuitEfficiency());
   }
+
+  // --- Collectables ---
+  const ownedSubUpgrades = allSubUpgrades.filter(
+    (u) => getItem(`subUpgrade_${u.id}_owned`) === "true",
+  );
+
+  document.getElementById("stats-total-sub-upgrades-display").textContent =
+    `${formatNumber(ownedSubUpgrades.length)}/${formatNumber(allSubUpgrades.length)}`;
+
+  const ownedAchievements = achievements.filter(
+    (a) => getItem(`achievement_${a.id}_owned`) === "true",
+  );
+
+  document.getElementById("stats-total-achievements-display").textContent =
+    `${formatNumber(ownedAchievements.length)}/${formatNumber(achievements.length)}`;
 }, 1000);

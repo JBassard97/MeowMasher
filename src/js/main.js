@@ -14,7 +14,6 @@ import { setupClickHandler } from "./logic/handleClick.js";
 import { toggleGoldenPawMode } from "./effects/goldenPawMode.js";
 import { chooseWeighted } from "./logic/chooseWeighted.js";
 import { setLivingRoom } from "./effects/setLivingRoom.js";
-// import { upgradeObserver } from "./effects/upgradesIntersectionObserver.js";
 import { AudioList } from "./audio/audio.js";
 import { updateBiscuitEfficiency } from "./helpers/updateBiscuitEfficiency.js";
 import { updateBiscuitsDisplay } from "./helpers/updateBiscuitsDisplay.js";
@@ -22,9 +21,6 @@ import { $ } from "./helpers/$.js";
 import { D } from "./logic/decimalWrapper.js";
 import { formatNumber } from "./helpers/formatNumber.js";
 import { HapticsList } from "./effects/haptics.js";
-
-const mode = "prod";
-const devBonus = D(50000);
 
 document.addEventListener("DOMContentLoaded", async () => {
   const counterDisplay = $("#counter");
@@ -221,8 +217,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     clickPower = baseClickPower.plus(tf).plus(mpsBonus);
 
-    if (mode === "dev") clickPower = clickPower.plus(devBonus);
-
+    console.log({
+      baseClickPower: baseClickPower.toString(),
+      baseAutoRate: baseAutoRate.toString(),
+      percent: percent,
+      mpsBonus: mpsBonus.toString(),
+      tf: tf.toString(),
+      finalClickPower: clickPower.toString(),
+    });
+    
     clickRateDisplay.textContent = formatNumber(clickPower);
   }
 

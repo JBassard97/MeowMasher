@@ -61,7 +61,7 @@ export const getItem = (key) => {
 
 const setItem = (key, value) => {
   const v = String(value);
-  console.trace(`[STORAGE WRITE] ${key}: ${v}`);
+  // console.trace(`[STORAGE WRITE] ${key}: ${v}`);
   if (isDesktop()) {
     desktopCache = desktopCache || {};
     desktopCache[key] = v;

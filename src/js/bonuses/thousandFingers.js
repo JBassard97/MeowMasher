@@ -23,12 +23,18 @@ export function computeThousandFingers(upgrades, subUpgrades) {
     bonus = bonus.times(tf.bonus);
   });
 
+  // console.log("[TF CALC]", {
+  //   nonPatsOwned: nonPatsOwned.toString(),
+  //   bonus: bonus.toString(),
+  //   total: total.toString(),
+  //   storedBeforeWrite: storage.getThousandFingersBonus().toString(),
+  // });
+
   storage.setThousandFingersBonus(total);
 
-  // Return values - don't modify upgrade objects here
   return {
-    total: total, // For click power
-    bonus: bonus, // For display
-    patsBonus: total, // For Pats MPS bonus
+    total: total,
+    bonus: bonus,
+    patsBonus: total,
   };
 }

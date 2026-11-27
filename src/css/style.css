@@ -1514,6 +1514,9 @@ header .header-icons #achievements-icon svg:hover g path {
   font-size: 0.7rem;
   opacity: 0.8;
 }
+.earned-achievements .earned-achievement .earned-achievement-details img.ach-icon {
+  max-height: 50px;
+}
 
 .owned-ratio,
 .earned-ratio {

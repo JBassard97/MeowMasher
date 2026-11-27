@@ -2,12 +2,12 @@ const CACHE_NAME = "meow-masher-v1";
 
 const catImages = Array.from(
   { length: 23 },
-  (_, i) => `/MeowMasher/src/assets/images/clickable-cats/${i}.png`
+  (_, i) => `/MeowMasher/src/assets/images/clickable-cats/${i}.png`,
 );
 
 const livingRoomImages = Array.from(
   { length: 4 },
-  (_, i) => `/MeowMasher/src/assets/images/living-rooms/${i}.jpg`
+  (_, i) => `/MeowMasher/src/assets/images/living-rooms/${i}.jpg`,
 );
 
 const upgradeImages = [
@@ -54,6 +54,7 @@ const ASSETS_TO_CACHE = [
   "/MeowMasher/src/assets/sounds/gary_meow.mp3",
   "/MeowMasher/src/assets/sounds/mario-meow.mp3",
   "/MeowMasher/src/assets/sounds/meow_1.mp3",
+  "/MeowMasher/src/assets/music/resonance.mp3",
   "/MeowMasher/src/data/upgrades.json",
   "/MeowMasher/src/data/subUpgrades.json",
   "/MeowMasher/src/js/audio/audio.js",
@@ -81,7 +82,7 @@ const ASSETS_TO_CACHE = [
 // ---------------------------
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS_TO_CACHE)),
   );
   self.skipWaiting(); // activate immediately
   console.log("Service Worker installed");
@@ -99,10 +100,10 @@ self.addEventListener("activate", (event) => {
               console.log("Deleting old cache:", key);
               return caches.delete(key);
             }
-          })
-        )
+          }),
+        ),
       )
-      .then(() => self.clients.claim())
+      .then(() => self.clients.claim()),
   );
   console.log("Service Worker activated");
 });
@@ -126,7 +127,7 @@ self.addEventListener("fetch", (event) => {
 
         // Return cached immediately if exists, else wait for network
         return cachedResponse || fetchPromise;
-      })
-    )
+      }),
+    ),
   );
 });

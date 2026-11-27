@@ -255,6 +255,7 @@
   {
     "id": 500,
     "name": "1st Pats Purchased",
+    "icon": "src/assets/images/upgrades/pats.png",
     "desc": "Purchase your 1st Pats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 0,
@@ -263,6 +264,7 @@
   {
     "id": 500000,
     "name": "50th Pats Purchased",
+    "icon": "src/assets/images/upgrades/pats.png",
     "desc": "Purchase your 50th Pats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 0,
@@ -271,6 +273,7 @@
   {
     "id": 500001,
     "name": "100th Pats Purchased",
+    "icon": "src/assets/images/upgrades/pats.png",
     "desc": "Purchase your 100th Pats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 0,
@@ -279,6 +282,7 @@
   {
     "id": 500002,
     "name": "150th Pats Purchased",
+    "icon": "src/assets/images/upgrades/pats.png",
     "desc": "Purchase your 150th Pats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 0,
@@ -287,6 +291,7 @@
   {
     "id": 500003,
     "name": "200th Pats Purchased",
+    "icon": "src/assets/images/upgrades/pats.png",
     "desc": "Purchase your 200th Pats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 0,
@@ -295,6 +300,7 @@
   {
     "id": 500004,
     "name": "250th Pats Purchased",
+    "icon": "src/assets/images/upgrades/pats.png",
     "desc": "Purchase your 250th Pats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 0,
@@ -303,6 +309,7 @@
   {
     "id": 500005,
     "name": "300th Pats Purchased",
+    "icon": "src/assets/images/upgrades/pats.png",
     "desc": "Purchase your 300th Pats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 0,
@@ -311,6 +318,7 @@
   {
     "id": 500006,
     "name": "350th Pats Purchased",
+    "icon": "src/assets/images/upgrades/pats.png",
     "desc": "Purchase your 350th Pats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 0,
@@ -319,6 +327,7 @@
   {
     "id": 500007,
     "name": "400th Pats Purchased",
+    "icon": "src/assets/images/upgrades/pats.png",
     "desc": "Purchase your 400th Pats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 0,
@@ -327,6 +336,7 @@
   {
     "id": 500008,
     "name": "450th Pats Purchased",
+    "icon": "src/assets/images/upgrades/pats.png",
     "desc": "Purchase your 450th Pats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 0,
@@ -335,6 +345,7 @@
   {
     "id": 500009,
     "name": "500th Pats Purchased",
+    "icon": "src/assets/images/upgrades/pats.png",
     "desc": "Purchase your 500th Pats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 0,
@@ -343,6 +354,7 @@
   {
     "id": 501,
     "name": "1st (Dry) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/drycatfood.png",
     "desc": "Purchase your 1st (Dry) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 1,
@@ -351,6 +363,7 @@
   {
     "id": 501000,
     "name": "50th (Dry) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/drycatfood.png",
     "desc": "Purchase your 50th (Dry) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 1,
@@ -359,6 +372,7 @@
   {
     "id": 501001,
     "name": "100th (Dry) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/drycatfood.png",
     "desc": "Purchase your 100th (Dry) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 1,
@@ -367,6 +381,7 @@
   {
     "id": 501002,
     "name": "150th (Dry) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/drycatfood.png",
     "desc": "Purchase your 150th (Dry) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 1,
@@ -375,6 +390,7 @@
   {
     "id": 501003,
     "name": "200th (Dry) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/drycatfood.png",
     "desc": "Purchase your 200th (Dry) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 1,
@@ -383,6 +399,7 @@
   {
     "id": 501004,
     "name": "250th (Dry) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/drycatfood.png",
     "desc": "Purchase your 250th (Dry) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 1,
@@ -391,6 +408,7 @@
   {
     "id": 501005,
     "name": "300th (Dry) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/drycatfood.png",
     "desc": "Purchase your 300th (Dry) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 1,
@@ -399,6 +417,7 @@
   {
     "id": 501006,
     "name": "350th (Dry) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/drycatfood.png",
     "desc": "Purchase your 350th (Dry) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 1,
@@ -407,6 +426,7 @@
   {
     "id": 501007,
     "name": "400th (Dry) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/drycatfood.png",
     "desc": "Purchase your 400th (Dry) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 1,
@@ -415,6 +435,7 @@
   {
     "id": 501008,
     "name": "450th (Dry) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/drycatfood.png",
     "desc": "Purchase your 450th (Dry) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 1,
@@ -423,6 +444,7 @@
   {
     "id": 501009,
     "name": "500th (Dry) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/drycatfood.png",
     "desc": "Purchase your 500th (Dry) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 1,
@@ -431,6 +453,7 @@
   {
     "id": 502,
     "name": "1st (Wet) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/wetcatfood.png",
     "desc": "Purchase your 1st (Wet) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 2,
@@ -439,6 +462,7 @@
   {
     "id": 502000,
     "name": "50th (Wet) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/wetcatfood.png",
     "desc": "Purchase your 50th (Wet) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 2,
@@ -447,6 +471,7 @@
   {
     "id": 502001,
     "name": "100th (Wet) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/wetcatfood.png",
     "desc": "Purchase your 100th (Wet) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 2,
@@ -455,6 +480,7 @@
   {
     "id": 502002,
     "name": "150th (Wet) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/wetcatfood.png",
     "desc": "Purchase your 150th (Wet) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 2,
@@ -463,6 +489,7 @@
   {
     "id": 502003,
     "name": "200th (Wet) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/wetcatfood.png",
     "desc": "Purchase your 200th (Wet) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 2,
@@ -471,6 +498,7 @@
   {
     "id": 502004,
     "name": "250th (Wet) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/wetcatfood.png",
     "desc": "Purchase your 250th (Wet) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 2,
@@ -479,6 +507,7 @@
   {
     "id": 502005,
     "name": "300th (Wet) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/wetcatfood.png",
     "desc": "Purchase your 300th (Wet) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 2,
@@ -487,6 +516,7 @@
   {
     "id": 502006,
     "name": "350th (Wet) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/wetcatfood.png",
     "desc": "Purchase your 350th (Wet) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 2,
@@ -495,6 +525,7 @@
   {
     "id": 502007,
     "name": "400th (Wet) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/wetcatfood.png",
     "desc": "Purchase your 400th (Wet) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 2,
@@ -503,6 +534,7 @@
   {
     "id": 502008,
     "name": "450th (Wet) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/wetcatfood.png",
     "desc": "Purchase your 450th (Wet) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 2,
@@ -511,6 +543,7 @@
   {
     "id": 502009,
     "name": "500th (Wet) Cat Food Purchased",
+    "icon": "src/assets/images/upgrades/wetcatfood.png",
     "desc": "Purchase your 500th (Wet) Cat Food",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 2,
@@ -519,6 +552,7 @@
   {
     "id": 503,
     "name": "1st Treats Purchased",
+    "icon": "src/assets/images/upgrades/churu.png",
     "desc": "Purchase your 1st Treats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 3,
@@ -527,6 +561,7 @@
   {
     "id": 503000,
     "name": "50th Treats Purchased",
+    "icon": "src/assets/images/upgrades/churu.png",
     "desc": "Purchase your 50th Treats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 3,
@@ -535,6 +570,7 @@
   {
     "id": 503001,
     "name": "100th Treats Purchased",
+    "icon": "src/assets/images/upgrades/churu.png",
     "desc": "Purchase your 100th Treats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 3,
@@ -543,6 +579,7 @@
   {
     "id": 503002,
     "name": "150th Treats Purchased",
+    "icon": "src/assets/images/upgrades/churu.png",
     "desc": "Purchase your 150th Treats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 3,
@@ -551,6 +588,7 @@
   {
     "id": 503003,
     "name": "200th Treats Purchased",
+    "icon": "src/assets/images/upgrades/churu.png",
     "desc": "Purchase your 200th Treats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 3,
@@ -559,6 +597,7 @@
   {
     "id": 503004,
     "name": "250th Treats Purchased",
+    "icon": "src/assets/images/upgrades/churu.png",
     "desc": "Purchase your 250th Treats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 3,
@@ -567,6 +606,7 @@
   {
     "id": 503005,
     "name": "300th Treats Purchased",
+    "icon": "src/assets/images/upgrades/churu.png",
     "desc": "Purchase your 300th Treats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 3,
@@ -575,6 +615,7 @@
   {
     "id": 503006,
     "name": "350th Treats Purchased",
+    "icon": "src/assets/images/upgrades/churu.png",
     "desc": "Purchase your 350th Treats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 3,
@@ -583,6 +624,7 @@
   {
     "id": 503007,
     "name": "400th Treats Purchased",
+    "icon": "src/assets/images/upgrades/churu.png",
     "desc": "Purchase your 400th Treats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 3,
@@ -591,6 +633,7 @@
   {
     "id": 503008,
     "name": "450th Treats Purchased",
+    "icon": "src/assets/images/upgrades/churu.png",
     "desc": "Purchase your 450th Treats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 3,
@@ -599,6 +642,7 @@
   {
     "id": 503009,
     "name": "500th Treats Purchased",
+    "icon": "src/assets/images/upgrades/churu.png",
     "desc": "Purchase your 500th Treats",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 3,
@@ -607,6 +651,7 @@
   {
     "id": 504,
     "name": "1st Water Bowl Purchased",
+    "icon": "src/assets/images/upgrades/waterbowl.png",
     "desc": "Purchase your 1st Water Bowl",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 4,
@@ -615,6 +660,7 @@
   {
     "id": 504000,
     "name": "50th Water Bowl Purchased",
+    "icon": "src/assets/images/upgrades/waterbowl.png",
     "desc": "Purchase your 50th Water Bowl",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 4,
@@ -623,6 +669,7 @@
   {
     "id": 504001,
     "name": "100th Water Bowl Purchased",
+    "icon": "src/assets/images/upgrades/waterbowl.png",
     "desc": "Purchase your 100th Water Bowl",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 4,
@@ -631,6 +678,7 @@
   {
     "id": 504002,
     "name": "150th Water Bowl Purchased",
+    "icon": "src/assets/images/upgrades/waterbowl.png",
     "desc": "Purchase your 150th Water Bowl",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 4,
@@ -639,6 +687,7 @@
   {
     "id": 504003,
     "name": "200th Water Bowl Purchased",
+    "icon": "src/assets/images/upgrades/waterbowl.png",
     "desc": "Purchase your 200th Water Bowl",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 4,
@@ -647,6 +696,7 @@
   {
     "id": 504004,
     "name": "250th Water Bowl Purchased",
+    "icon": "src/assets/images/upgrades/waterbowl.png",
     "desc": "Purchase your 250th Water Bowl",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 4,
@@ -655,6 +705,7 @@
   {
     "id": 504005,
     "name": "300th Water Bowl Purchased",
+    "icon": "src/assets/images/upgrades/waterbowl.png",
     "desc": "Purchase your 300th Water Bowl",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 4,
@@ -663,6 +714,7 @@
   {
     "id": 504006,
     "name": "350th Water Bowl Purchased",
+    "icon": "src/assets/images/upgrades/waterbowl.png",
     "desc": "Purchase your 350th Water Bowl",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 4,
@@ -671,6 +723,7 @@
   {
     "id": 504007,
     "name": "400th Water Bowl Purchased",
+    "icon": "src/assets/images/upgrades/waterbowl.png",
     "desc": "Purchase your 400th Water Bowl",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 4,
@@ -679,6 +732,7 @@
   {
     "id": 504008,
     "name": "450th Water Bowl Purchased",
+    "icon": "src/assets/images/upgrades/waterbowl.png",
     "desc": "Purchase your 450th Water Bowl",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 4,
@@ -687,6 +741,7 @@
   {
     "id": 504009,
     "name": "500th Water Bowl Purchased",
+    "icon": "src/assets/images/upgrades/waterbowl.png",
     "desc": "Purchase your 500th Water Bowl",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 4,
@@ -695,6 +750,7 @@
   {
     "id": 505,
     "name": "1st Water Fountain Purchased",
+    "icon": "src/assets/images/upgrades/waterfountain.png",
     "desc": "Purchase your 1st Water Fountain",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 5,
@@ -703,6 +759,7 @@
   {
     "id": 505000,
     "name": "50th Water Fountain Purchased",
+    "icon": "src/assets/images/upgrades/waterfountain.png",
     "desc": "Purchase your 50th Water Fountain",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 5,
@@ -711,6 +768,7 @@
   {
     "id": 505001,
     "name": "100th Water Fountain Purchased",
+    "icon": "src/assets/images/upgrades/waterfountain.png",
     "desc": "Purchase your 100th Water Fountain",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 5,
@@ -719,6 +777,7 @@
   {
     "id": 505002,
     "name": "150th Water Fountain Purchased",
+    "icon": "src/assets/images/upgrades/waterfountain.png",
     "desc": "Purchase your 150th Water Fountain",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 5,
@@ -727,6 +786,7 @@
   {
     "id": 505003,
     "name": "200th Water Fountain Purchased",
+    "icon": "src/assets/images/upgrades/waterfountain.png",
     "desc": "Purchase your 200th Water Fountain",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 5,
@@ -735,6 +795,7 @@
   {
     "id": 505004,
     "name": "250th Water Fountain Purchased",
+    "icon": "src/assets/images/upgrades/waterfountain.png",
     "desc": "Purchase your 250th Water Fountain",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 5,
@@ -743,6 +804,7 @@
   {
     "id": 505005,
     "name": "300th Water Fountain Purchased",
+    "icon": "src/assets/images/upgrades/waterfountain.png",
     "desc": "Purchase your 300th Water Fountain",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 5,
@@ -751,6 +813,7 @@
   {
     "id": 505006,
     "name": "350th Water Fountain Purchased",
+    "icon": "src/assets/images/upgrades/waterfountain.png",
     "desc": "Purchase your 350th Water Fountain",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 5,
@@ -759,6 +822,7 @@
   {
     "id": 505007,
     "name": "400th Water Fountain Purchased",
+    "icon": "src/assets/images/upgrades/waterfountain.png",
     "desc": "Purchase your 400th Water Fountain",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 5,
@@ -767,6 +831,7 @@
   {
     "id": 505008,
     "name": "450th Water Fountain Purchased",
+    "icon": "src/assets/images/upgrades/waterfountain.png",
     "desc": "Purchase your 450th Water Fountain",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 5,
@@ -775,6 +840,7 @@
   {
     "id": 505009,
     "name": "500th Water Fountain Purchased",
+    "icon": "src/assets/images/upgrades/waterfountain.png",
     "desc": "Purchase your 500th Water Fountain",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 5,
@@ -783,6 +849,7 @@
   {
     "id": 506,
     "name": "1st Mouse Toy Purchased",
+    "icon": "src/assets/images/upgrades/mousetoy.png",
     "desc": "Purchase your 1st Mouse Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 6,
@@ -791,6 +858,7 @@
   {
     "id": 506000,
     "name": "50th Mouse Toy Purchased",
+    "icon": "src/assets/images/upgrades/mousetoy.png",
     "desc": "Purchase your 50th Mouse Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 6,
@@ -799,6 +867,7 @@
   {
     "id": 506001,
     "name": "100th Mouse Toy Purchased",
+    "icon": "src/assets/images/upgrades/mousetoy.png",
     "desc": "Purchase your 100th Mouse Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 6,
@@ -807,6 +876,7 @@
   {
     "id": 506002,
     "name": "150th Mouse Toy Purchased",
+    "icon": "src/assets/images/upgrades/mousetoy.png",
     "desc": "Purchase your 150th Mouse Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 6,
@@ -815,6 +885,7 @@
   {
     "id": 506003,
     "name": "200th Mouse Toy Purchased",
+    "icon": "src/assets/images/upgrades/mousetoy.png",
     "desc": "Purchase your 200th Mouse Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 6,
@@ -823,6 +894,7 @@
   {
     "id": 506004,
     "name": "250th Mouse Toy Purchased",
+    "icon": "src/assets/images/upgrades/mousetoy.png",
     "desc": "Purchase your 250th Mouse Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 6,
@@ -831,6 +903,7 @@
   {
     "id": 506005,
     "name": "300th Mouse Toy Purchased",
+    "icon": "src/assets/images/upgrades/mousetoy.png",
     "desc": "Purchase your 300th Mouse Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 6,
@@ -839,6 +912,7 @@
   {
     "id": 506006,
     "name": "350th Mouse Toy Purchased",
+    "icon": "src/assets/images/upgrades/mousetoy.png",
     "desc": "Purchase your 350th Mouse Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 6,
@@ -847,6 +921,7 @@
   {
     "id": 506007,
     "name": "400th Mouse Toy Purchased",
+    "icon": "src/assets/images/upgrades/mousetoy.png",
     "desc": "Purchase your 400th Mouse Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 6,
@@ -855,6 +930,7 @@
   {
     "id": 506008,
     "name": "450th Mouse Toy Purchased",
+    "icon": "src/assets/images/upgrades/mousetoy.png",
     "desc": "Purchase your 450th Mouse Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 6,
@@ -863,6 +939,7 @@
   {
     "id": 506009,
     "name": "500th Mouse Toy Purchased",
+    "icon": "src/assets/images/upgrades/mousetoy.png",
     "desc": "Purchase your 500th Mouse Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 6,
@@ -871,6 +948,7 @@
   {
     "id": 507,
     "name": "1st Crinkle Ball Purchased",
+    "icon": "src/assets/images/upgrades/crinkleballs.png",
     "desc": "Purchase your 1st Crinkle Ball",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 7,
@@ -879,6 +957,7 @@
   {
     "id": 507000,
     "name": "50th Crinkle Ball Purchased",
+    "icon": "src/assets/images/upgrades/crinkleballs.png",
     "desc": "Purchase your 50th Crinkle Ball",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 7,
@@ -887,6 +966,7 @@
   {
     "id": 507001,
     "name": "100th Crinkle Ball Purchased",
+    "icon": "src/assets/images/upgrades/crinkleballs.png",
     "desc": "Purchase your 100th Crinkle Ball",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 7,
@@ -895,6 +975,7 @@
   {
     "id": 507002,
     "name": "150th Crinkle Ball Purchased",
+    "icon": "src/assets/images/upgrades/crinkleballs.png",
     "desc": "Purchase your 150th Crinkle Ball",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 7,
@@ -903,6 +984,7 @@
   {
     "id": 507003,
     "name": "200th Crinkle Ball Purchased",
+    "icon": "src/assets/images/upgrades/crinkleballs.png",
     "desc": "Purchase your 200th Crinkle Ball",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 7,
@@ -911,6 +993,7 @@
   {
     "id": 507004,
     "name": "250th Crinkle Ball Purchased",
+    "icon": "src/assets/images/upgrades/crinkleballs.png",
     "desc": "Purchase your 250th Crinkle Ball",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 7,
@@ -919,6 +1002,7 @@
   {
     "id": 507005,
     "name": "300th Crinkle Ball Purchased",
+    "icon": "src/assets/images/upgrades/crinkleballs.png",
     "desc": "Purchase your 300th Crinkle Ball",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 7,
@@ -927,6 +1011,7 @@
   {
     "id": 507006,
     "name": "350th Crinkle Ball Purchased",
+    "icon": "src/assets/images/upgrades/crinkleballs.png",
     "desc": "Purchase your 350th Crinkle Ball",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 7,
@@ -935,6 +1020,7 @@
   {
     "id": 507007,
     "name": "400th Crinkle Ball Purchased",
+    "icon": "src/assets/images/upgrades/crinkleballs.png",
     "desc": "Purchase your 400th Crinkle Ball",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 7,
@@ -943,6 +1029,7 @@
   {
     "id": 507008,
     "name": "450th Crinkle Ball Purchased",
+    "icon": "src/assets/images/upgrades/crinkleballs.png",
     "desc": "Purchase your 450th Crinkle Ball",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 7,
@@ -951,6 +1038,7 @@
   {
     "id": 507009,
     "name": "500th Crinkle Ball Purchased",
+    "icon": "src/assets/images/upgrades/crinkleballs.png",
     "desc": "Purchase your 500th Crinkle Ball",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 7,
@@ -959,6 +1047,7 @@
   {
     "id": 508,
     "name": "1st Wand Toy Purchased",
+    "icon": "src/assets/images/upgrades/wandtoy.png",
     "desc": "Purchase your 1st Wand Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 8,
@@ -967,6 +1056,7 @@
   {
     "id": 508000,
     "name": "50th Wand Toy Purchased",
+    "icon": "src/assets/images/upgrades/wandtoy.png",
     "desc": "Purchase your 50th Wand Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 8,
@@ -975,6 +1065,7 @@
   {
     "id": 508001,
     "name": "100th Wand Toy Purchased",
+    "icon": "src/assets/images/upgrades/wandtoy.png",
     "desc": "Purchase your 100th Wand Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 8,
@@ -983,6 +1074,7 @@
   {
     "id": 508002,
     "name": "150th Wand Toy Purchased",
+    "icon": "src/assets/images/upgrades/wandtoy.png",
     "desc": "Purchase your 150th Wand Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 8,
@@ -991,6 +1083,7 @@
   {
     "id": 508003,
     "name": "200th Wand Toy Purchased",
+    "icon": "src/assets/images/upgrades/wandtoy.png",
     "desc": "Purchase your 200th Wand Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 8,
@@ -999,6 +1092,7 @@
   {
     "id": 508004,
     "name": "250th Wand Toy Purchased",
+    "icon": "src/assets/images/upgrades/wandtoy.png",
     "desc": "Purchase your 250th Wand Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 8,
@@ -1007,6 +1101,7 @@
   {
     "id": 508005,
     "name": "300th Wand Toy Purchased",
+    "icon": "src/assets/images/upgrades/wandtoy.png",
     "desc": "Purchase your 300th Wand Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 8,
@@ -1016,6 +1111,7 @@
     "id": 508006,
     "name": "350th Wand Toy Purchased",
     "desc": "Purchase your 350th Wand Toy",
+    "icon": "src/assets/images/upgrades/wandtoy.png",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 8,
     "requirement": 350
@@ -1023,6 +1119,7 @@
   {
     "id": 508007,
     "name": "400th Wand Toy Purchased",
+    "icon": "src/assets/images/upgrades/wandtoy.png",
     "desc": "Purchase your 400th Wand Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 8,
@@ -1031,6 +1128,7 @@
   {
     "id": 508008,
     "name": "450th Wand Toy Purchased",
+    "icon": "src/assets/images/upgrades/wandtoy.png",
     "desc": "Purchase your 450th Wand Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 8,
@@ -1039,6 +1137,7 @@
   {
     "id": 508009,
     "name": "500th Wand Toy Purchased",
+    "icon": "src/assets/images/upgrades/wandtoy.png",
     "desc": "Purchase your 500th Wand Toy",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 8,
@@ -1047,6 +1146,7 @@
   {
     "id": 509,
     "name": "1st Laser Pointer Purchased",
+    "icon": "src/assets/images/upgrades/laserpointer.png",
     "desc": "Purchase your 1st Laser Pointer",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 9,
@@ -1055,6 +1155,7 @@
   {
     "id": 509000,
     "name": "50th Laser Pointer Purchased",
+    "icon": "src/assets/images/upgrades/laserpointer.png",
     "desc": "Purchase your 50th Laser Pointer",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 9,
@@ -1063,6 +1164,7 @@
   {
     "id": 509001,
     "name": "100th Laser Pointer Purchased",
+    "icon": "src/assets/images/upgrades/laserpointer.png",
     "desc": "Purchase your 100th Laser Pointer",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 9,
@@ -1072,6 +1174,7 @@
     "id": 509002,
     "name": "150th Laser Pointer Purchased",
     "desc": "Purchase your 150th Laser Pointer",
+    "icon": "src/assets/images/upgrades/laserpointer.png",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 9,
     "requirement": 150
@@ -1079,6 +1182,7 @@
   {
     "id": 509003,
     "name": "200th Laser Pointer Purchased",
+    "icon": "src/assets/images/upgrades/laserpointer.png",
     "desc": "Purchase your 200th Laser Pointer",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 9,
@@ -1087,6 +1191,7 @@
   {
     "id": 509004,
     "name": "250th Laser Pointer Purchased",
+    "icon": "src/assets/images/upgrades/laserpointer.png",
     "desc": "Purchase your 250th Laser Pointer",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 9,
@@ -1095,6 +1200,7 @@
   {
     "id": 509005,
     "name": "300th Laser Pointer Purchased",
+    "icon": "src/assets/images/upgrades/laserpointer.png",
     "desc": "Purchase your 300th Laser Pointer",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 9,
@@ -1103,6 +1209,7 @@
   {
     "id": 509006,
     "name": "350th Laser Pointer Purchased",
+    "icon": "src/assets/images/upgrades/laserpointer.png",
     "desc": "Purchase your 350th Laser Pointer",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 9,
@@ -1111,6 +1218,7 @@
   {
     "id": 509007,
     "name": "400th Laser Pointer Purchased",
+    "icon": "src/assets/images/upgrades/laserpointer.png",
     "desc": "Purchase your 400th Laser Pointer",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 9,
@@ -1119,6 +1227,7 @@
   {
     "id": 509008,
     "name": "450th Laser Pointer Purchased",
+    "icon": "src/assets/images/upgrades/laserpointer.png",
     "desc": "Purchase your 450th Laser Pointer",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 9,
@@ -1127,6 +1236,7 @@
   {
     "id": 509009,
     "name": "500th Laser Pointer Purchased",
+    "icon": "src/assets/images/upgrades/laserpointer.png",
     "desc": "Purchase your 500th Laser Pointer",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 9,
@@ -1135,6 +1245,7 @@
   {
     "id": 510,
     "name": "1st Cat Bed Purchased",
+    "icon": "src/assets/images/upgrades/catbed.png",
     "desc": "Purchase your 1st Cat Bed",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 10,
@@ -1143,6 +1254,7 @@
   {
     "id": 510000,
     "name": "50th Cat Bed Purchased",
+    "icon": "src/assets/images/upgrades/catbed.png",
     "desc": "Purchase your 50th Cat Bed",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 10,
@@ -1151,6 +1263,7 @@
   {
     "id": 510001,
     "name": "100th Cat Bed Purchased",
+    "icon": "src/assets/images/upgrades/catbed.png",
     "desc": "Purchase your 100th Cat Bed",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 10,
@@ -1159,6 +1272,7 @@
   {
     "id": 510002,
     "name": "150th Cat Bed Purchased",
+    "icon": "src/assets/images/upgrades/catbed.png",
     "desc": "Purchase your 150th Cat Bed",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 10,
@@ -1167,6 +1281,7 @@
   {
     "id": 510003,
     "name": "200th Cat Bed Purchased",
+    "icon": "src/assets/images/upgrades/catbed.png",
     "desc": "Purchase your 200th Cat Bed",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 10,
@@ -1175,6 +1290,7 @@
   {
     "id": 510004,
     "name": "250th Cat Bed Purchased",
+    "icon": "src/assets/images/upgrades/catbed.png",
     "desc": "Purchase your 250th Cat Bed",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 10,
@@ -1183,6 +1299,7 @@
   {
     "id": 510005,
     "name": "300th Cat Bed Purchased",
+    "icon": "src/assets/images/upgrades/catbed.png",
     "desc": "Purchase your 300th Cat Bed",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 10,
@@ -1191,6 +1308,7 @@
   {
     "id": 510006,
     "name": "350th Cat Bed Purchased",
+    "icon": "src/assets/images/upgrades/catbed.png",
     "desc": "Purchase your 350th Cat Bed",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 10,
@@ -1199,6 +1317,7 @@
   {
     "id": 510007,
     "name": "400th Cat Bed Purchased",
+    "icon": "src/assets/images/upgrades/catbed.png",
     "desc": "Purchase your 400th Cat Bed",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 10,
@@ -1207,6 +1326,7 @@
   {
     "id": 511,
     "name": "1st Scratching Post Purchased",
+    "icon": "src/assets/images/upgrades/scratchingpost.png",
     "desc": "Purchase your 1st Scratching Post",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 11,
@@ -1215,6 +1335,7 @@
   {
     "id": 511000,
     "name": "50th Scratching Post Purchased",
+    "icon": "src/assets/images/upgrades/scratchingpost.png",
     "desc": "Purchase your 50th Scratching Post",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 11,
@@ -1223,6 +1344,7 @@
   {
     "id": 511001,
     "name": "100th Scratching Post Purchased",
+    "icon": "src/assets/images/upgrades/scratchingpost.png",
     "desc": "Purchase your 100th Scratching Post",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 11,
@@ -1231,6 +1353,7 @@
   {
     "id": 511002,
     "name": "150th Scratching Post Purchased",
+    "icon": "src/assets/images/upgrades/scratchingpost.png",
     "desc": "Purchase your 150th Scratching Post",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 11,
@@ -1239,6 +1362,7 @@
   {
     "id": 511003,
     "name": "200th Scratching Post Purchased",
+    "icon": "src/assets/images/upgrades/scratchingpost.png",
     "desc": "Purchase your 200th Scratching Post",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 11,
@@ -1247,6 +1371,7 @@
   {
     "id": 511004,
     "name": "250th Scratching Post Purchased",
+    "icon": "src/assets/images/upgrades/scratchingpost.png",
     "desc": "Purchase your 250th Scratching Post",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 11,
@@ -1255,6 +1380,7 @@
   {
     "id": 511005,
     "name": "300th Scratching Post Purchased",
+    "icon": "src/assets/images/upgrades/scratchingpost.png",
     "desc": "Purchase your 300th Scratching Post",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 11,
@@ -1263,6 +1389,7 @@
   {
     "id": 511006,
     "name": "350th Scratching Post Purchased",
+    "icon": "src/assets/images/upgrades/scratchingpost.png",
     "desc": "Purchase your 350th Scratching Post",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 11,
@@ -1271,6 +1398,7 @@
   {
     "id": 511007,
     "name": "400th Scratching Post Purchased",
+    "icon": "src/assets/images/upgrades/scratchingpost.png",
     "desc": "Purchase your 400th Scratching Post",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 11,
@@ -1279,6 +1407,7 @@
   {
     "id": 512,
     "name": "1st Cat Tree Purchased",
+    "icon": "src/assets/images/upgrades/cattree.png",
     "desc": "Purchase your 1st Cat Tree",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 12,
@@ -1287,6 +1416,7 @@
   {
     "id": 512000,
     "name": "50th Cat Tree Purchased",
+    "icon": "src/assets/images/upgrades/cattree.png",
     "desc": "Purchase your 50th Cat Tree",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 12,
@@ -1295,6 +1425,7 @@
   {
     "id": 512001,
     "name": "100th Cat Tree Purchased",
+    "icon": "src/assets/images/upgrades/cattree.png",
     "desc": "Purchase your 100th Cat Tree",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 12,
@@ -1303,6 +1434,7 @@
   {
     "id": 512002,
     "name": "150th Cat Tree Purchased",
+    "icon": "src/assets/images/upgrades/cattree.png",
     "desc": "Purchase your 150th Cat Tree",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 12,
@@ -1311,6 +1443,7 @@
   {
     "id": 512003,
     "name": "200th Cat Tree Purchased",
+    "icon": "src/assets/images/upgrades/cattree.png",
     "desc": "Purchase your 200th Cat Tree",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 12,
@@ -1319,6 +1452,7 @@
   {
     "id": 512004,
     "name": "250th Cat Tree Purchased",
+    "icon": "src/assets/images/upgrades/cattree.png",
     "desc": "Purchase your 250th Cat Tree",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 12,
@@ -1327,6 +1461,7 @@
   {
     "id": 512005,
     "name": "300th Cat Tree Purchased",
+    "icon": "src/assets/images/upgrades/cattree.png",
     "desc": "Purchase your 300th Cat Tree",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 12,
@@ -1335,6 +1470,7 @@
   {
     "id": 512006,
     "name": "350th Cat Tree Purchased",
+    "icon": "src/assets/images/upgrades/cattree.png",
     "desc": "Purchase your 350th Cat Tree",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 12,
@@ -1343,6 +1479,7 @@
   {
     "id": 512007,
     "name": "400th Cat Tree Purchased",
+    "icon": "src/assets/images/upgrades/cattree.png",
     "desc": "Purchase your 400th Cat Tree",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 12,
@@ -1351,6 +1488,7 @@
   {
     "id": 513,
     "name": "1st Catio Purchased",
+    "icon": "src/assets/images/upgrades/catio.png",
     "desc": "Purchase your 1st Catio",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 13,
@@ -1359,6 +1497,7 @@
   {
     "id": 513000,
     "name": "50th Catio Purchased",
+    "icon": "src/assets/images/upgrades/catio.png",
     "desc": "Purchase your 50th Catio",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 13,
@@ -1367,6 +1506,7 @@
   {
     "id": 513001,
     "name": "100th Catio Purchased",
+    "icon": "src/assets/images/upgrades/catio.png",
     "desc": "Purchase your 100th Catio",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 13,
@@ -1375,6 +1515,7 @@
   {
     "id": 513002,
     "name": "150th Catio Purchased",
+    "icon": "src/assets/images/upgrades/catio.png",
     "desc": "Purchase your 150th Catio",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 13,
@@ -1383,6 +1524,7 @@
   {
     "id": 513003,
     "name": "200th Catio Purchased",
+    "icon": "src/assets/images/upgrades/catio.png",
     "desc": "Purchase your 200th Catio",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 13,
@@ -1391,6 +1533,7 @@
   {
     "id": 513004,
     "name": "250th Catio Purchased",
+    "icon": "src/assets/images/upgrades/catio.png",
     "desc": "Purchase your 250th Catio",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 13,
@@ -1399,6 +1542,7 @@
   {
     "id": 513005,
     "name": "300th Catio Purchased",
+    "icon": "src/assets/images/upgrades/catio.png",
     "desc": "Purchase your 300th Catio",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 13,
@@ -1407,6 +1551,7 @@
   {
     "id": 514,
     "name": "1st Litter Box Purchased",
+    "icon": "src/assets/images/upgrades/litterbox.png",
     "desc": "Purchase your 1st Litter Box",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 14,
@@ -1415,6 +1560,7 @@
   {
     "id": 514000,
     "name": "50th Litter Box Purchased",
+    "icon": "src/assets/images/upgrades/litterbox.png",
     "desc": "Purchase your 50th Litter Box",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 14,
@@ -1423,6 +1569,7 @@
   {
     "id": 514001,
     "name": "100th Litter Box Purchased",
+    "icon": "src/assets/images/upgrades/litterbox.png",
     "desc": "Purchase your 100th Litter Box",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 14,
@@ -1431,6 +1578,7 @@
   {
     "id": 514002,
     "name": "150th Litter Box Purchased",
+    "icon": "src/assets/images/upgrades/litterbox.png",
     "desc": "Purchase your 150th Litter Box",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 14,
@@ -1439,6 +1587,7 @@
   {
     "id": 514003,
     "name": "200th Litter Box Purchased",
+    "icon": "src/assets/images/upgrades/litterbox.png",
     "desc": "Purchase your 200th Litter Box",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 14,
@@ -1447,6 +1596,7 @@
   {
     "id": 514004,
     "name": "250th Litter Box Purchased",
+    "icon": "src/assets/images/upgrades/litterbox.png",
     "desc": "Purchase your 250th Litter Box",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 14,
@@ -1455,6 +1605,7 @@
   {
     "id": 514005,
     "name": "300th Litter Box Purchased",
+    "icon": "src/assets/images/upgrades/litterbox.png",
     "desc": "Purchase your 300th Litter Box",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 14,
@@ -1463,6 +1614,7 @@
   {
     "id": 515,
     "name": "1st Litter Robot Purchased",
+    "icon": "src/assets/images/upgrades/robot.png",
     "desc": "Purchase your 1st Litter Robot",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 15,
@@ -1471,6 +1623,7 @@
   {
     "id": 515000,
     "name": "50th Litter Robot Purchased",
+    "icon": "src/assets/images/upgrades/robot.png",
     "desc": "Purchase your 50th Litter Robot",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 15,
@@ -1479,6 +1632,7 @@
   {
     "id": 515001,
     "name": "100th Litter Robot Purchased",
+    "icon": "src/assets/images/upgrades/robot.png",
     "desc": "Purchase your 100th Litter Robot",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 15,
@@ -1487,6 +1641,7 @@
   {
     "id": 515002,
     "name": "150th Litter Robot Purchased",
+    "icon": "src/assets/images/upgrades/robot.png",
     "desc": "Purchase your 150th Litter Robot",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 15,
@@ -1495,6 +1650,7 @@
   {
     "id": 515003,
     "name": "200th Litter Robot Purchased",
+    "icon": "src/assets/images/upgrades/robot.png",
     "desc": "Purchase your 200th Litter Robot",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 15,
@@ -1503,6 +1659,7 @@
   {
     "id": 515004,
     "name": "250th Litter Robot Purchased",
+    "icon": "src/assets/images/upgrades/robot.png",
     "desc": "Purchase your 250th Litter Robot",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 15,
@@ -1511,6 +1668,7 @@
   {
     "id": 515005,
     "name": "300th Litter Robot Purchased",
+    "icon": "src/assets/images/upgrades/robot.png",
     "desc": "Purchase your 300th Litter Robot",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 15,
@@ -1519,6 +1677,7 @@
   {
     "id": 516,
     "name": "1st Catnip Purchased",
+    "icon": "src/assets/images/upgrades/catnip.png",
     "desc": "Purchase your 1st Catnip",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 16,
@@ -1527,6 +1686,7 @@
   {
     "id": 516000,
     "name": "50th Catnip Purchased",
+    "icon": "src/assets/images/upgrades/catnip.png",
     "desc": "Purchase your 50th Catnip",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 16,
@@ -1535,6 +1695,7 @@
   {
     "id": 516001,
     "name": "100th Catnip Purchased",
+    "icon": "src/assets/images/upgrades/catnip.png",
     "desc": "Purchase your 100th Catnip",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 16,
@@ -1543,6 +1704,7 @@
   {
     "id": 516002,
     "name": "150th Catnip Purchased",
+    "icon": "src/assets/images/upgrades/catnip.png",
     "desc": "Purchase your 150th Catnip",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 16,
@@ -1551,6 +1713,7 @@
   {
     "id": 516003,
     "name": "200th Catnip Purchased",
+    "icon": "src/assets/images/upgrades/catnip.png",
     "desc": "Purchase your 200th Catnip",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 16,
@@ -1559,6 +1722,7 @@
   {
     "id": 517,
     "name": "1st Paper Bag Purchased",
+    "icon": "src/assets/images/upgrades/paperbag.png",
     "desc": "Purchase your 1st Paper Bag",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 17,
@@ -1567,6 +1731,7 @@
   {
     "id": 517000,
     "name": "50th Paper Bag Purchased",
+    "icon": "src/assets/images/upgrades/paperbag.png",
     "desc": "Purchase your 50th Paper Bag",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 17,
@@ -1575,6 +1740,7 @@
   {
     "id": 517001,
     "name": "100th Paper Bag Purchased",
+    "icon": "src/assets/images/upgrades/paperbag.png",
     "desc": "Purchase your 100th Paper Bag",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 17,
@@ -1583,6 +1749,7 @@
   {
     "id": 517002,
     "name": "150th Paper Bag Purchased",
+    "icon": "src/assets/images/upgrades/paperbag.png",
     "desc": "Purchase your 150th Paper Bag",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 17,
@@ -1591,6 +1758,7 @@
   {
     "id": 517003,
     "name": "200th Paper Bag Purchased",
+    "icon": "src/assets/images/upgrades/paperbag.png",
     "desc": "Purchase your 200th Paper Bag",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 17,
@@ -1599,6 +1767,7 @@
   {
     "id": 518,
     "name": "1st Human Bed Purchased",
+    "icon": "src/assets/images/upgrades/humanbed.png",
     "desc": "Purchase your 1st Human Bed",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 18,
@@ -1607,6 +1776,7 @@
   {
     "id": 518000,
     "name": "50th Human Bed Purchased",
+    "icon": "src/assets/images/upgrades/humanbed.png",
     "desc": "Purchase your 50th Human Bed",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 18,
@@ -1615,6 +1785,7 @@
   {
     "id": 518001,
     "name": "100th Human Bed Purchased",
+    "icon": "src/assets/images/upgrades/humanbed.png",
     "desc": "Purchase your 100th Human Bed",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 18,
@@ -1623,6 +1794,7 @@
   {
     "id": 519,
     "name": "1st Cardboard Box Purchased",
+    "icon": "src/assets/images/upgrades/cardboardbox.png",
     "desc": "Purchase your 1st Cardboard Box",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 19,
@@ -1631,6 +1803,7 @@
   {
     "id": 519000,
     "name": "50th Cardboard Box Purchased",
+    "icon": "src/assets/images/upgrades/cardboardbox.png",
     "desc": "Purchase your 50th Cardboard Box",
     "type": "number_of_specific_upgrade",
     "upgrade_id": 19,

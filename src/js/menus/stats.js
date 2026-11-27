@@ -38,6 +38,11 @@ const closeStatsDialog = document.getElementById("close-stats-dialog");
 
 statsIcon.addEventListener("click", () => {
   statsDialog.classList.add("active");
+  allUpgrades.forEach((u) => {
+    u.owned = storage.getUpgradeOwned(u.id); // Returns Decimal
+    u.multiplier = storage.getUpgradeMultiplier(u.id); // Returns Decimal
+    u.extraBonus = D(0);
+  });
   giveSpecificAchievement(6);
   window.dispatchEvent(new Event("dialogueOpen"));
 });
@@ -59,12 +64,21 @@ setInterval(() => {
   if (statsDialog && statsDialog.classList.contains("active")) {
     // --- numeric values using Decimals ---
     const base = storage.getClickPower(); // Already Decimal
-    const tf = storage.getThousandFingersBonus(); // Already Decimal
+    const tf = computeThousandFingers(allUpgrades, allSubUpgrades).total; // Already Decimal
     const percent = storage.getPercentOfMpsClickAdder(); // Regular number (small percentage)
     const mps = storage.getMewnitsPerSecond(); // Already Decimal
     const mpsBonus = mps.times(percent).floor();
 
     const totalClickPower = base.plus(tf).plus(mpsBonus);
+
+    console.log({
+      base: base.toString(),
+      mps: mps.toString(),
+      percent: percent,
+      mpsBonus: mpsBonus.toString(),
+      tf: tf.toString(),
+      totalClickPower: totalClickPower.toString(),
+    });
 
     // --- display basic stats ---
     document.getElementById("stats-lifetime-mewnits-display").textContent =
@@ -196,4 +210,7 @@ setInterval(() => {
 
   document.getElementById("stats-total-cats-adopted-display").textContent =
     formatNumber(storage.getAdoptedCatsNumber());
+
+  document.getElementById("stats-total-living-rooms-display").textContent =
+    formatNumber(storage.getNumberOfLivingRooms());
 }, 1000);

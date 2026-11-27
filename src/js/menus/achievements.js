@@ -93,7 +93,7 @@ function renderEarnedAchievements() {
     outerDiv.style.animationDelay = `${i * 0.05}s`;
     const innerDiv = document.createElement("div");
     innerDiv.className = "earned-achievement-details";
-    innerDiv.innerHTML = `<p><strong>#${a.id}: ${a.name}</strong></p><p class="ach-desc">${a.desc}</p>`;
+    innerDiv.innerHTML = `<p><strong>${a.name}</strong></p><p class="ach-desc">${a.desc}</p>`;
     outerDiv.appendChild(innerDiv);
     earnedAchievementsContainer.appendChild(outerDiv);
   });
@@ -148,7 +148,6 @@ function renderOwnedSubUpgrades() {
           u,
           allUpgrades,
         )}</b></li>
-        <span id="id">ID: ${u.id}</span>
       </ul>
     `;
 

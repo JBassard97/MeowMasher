@@ -193,4 +193,7 @@ setInterval(() => {
 
   document.getElementById("stats-total-achievements-display").textContent =
     `${formatNumber(ownedAchievements.length)}/${formatNumber(achievements.length)}`;
+
+  document.getElementById("stats-total-cats-adopted-display").textContent =
+    formatNumber(storage.getAdoptedCatsNumber());
 }, 1000);

@@ -8,6 +8,7 @@
   {
     "id": 1,
     "name": "See? He Won't Bite.",
+    "icon": "src/assets/images/pointer.svg",
     "desc": "Click the cat for the 1st time",
     "type": "number_of_clicks",
     "requirement": 1
@@ -28,7 +29,8 @@
   },
   {
     "id": 4,
-    "name": "Stop",
+    "name": "Pawse",
+    "icon": "src/assets/images/pause.png",
     "desc": "Pause the game for the 1st time",
     "type": "number_of_pauses",
     "requirement": 1
@@ -36,18 +38,21 @@
   {
     "id": 5,
     "name": "Setting Things Up...",
+    "icon": "src/assets/svg/settings.svg",
     "desc": "Open 'Settings' for the 1st time",
     "type": "misc"
   },
   {
     "id": 6,
     "name": "Numbers Go BRRR",
+    "icon": "src/assets/svg/stats.svg",
     "desc": "Open 'Stats' for the 1st time",
     "type": "misc"
   },
   {
     "id": 7,
     "name": "Trophy Room",
+    "icon": "src/assets/svg/trophy.svg",
     "desc": "Open 'Achievements' for the 1st time",
     "type": "misc"
   },
@@ -61,6 +66,7 @@
   {
     "id": 901,
     "name": "He likes You!",
+    "icon": "src/assets/images/cursor.png",
     "desc": "Click the cat 100 times",
     "type": "number_of_clicks",
     "requirement": 100
@@ -68,6 +74,7 @@
   {
     "id": 902,
     "name": "Petting Enthusiast",
+    "icon": "src/assets/images/cursor.png",
     "desc": "Click the cat 1K times",
     "type": "number_of_clicks",
     "requirement": 1000
@@ -75,6 +82,7 @@
   {
     "id": 903,
     "name": "Petting Maniac",
+    "icon": "src/assets/images/cursor.png",
     "desc": "Click the cat 10K times",
     "type": "number_of_clicks",
     "requirement": 10000
@@ -82,6 +90,7 @@
   {
     "id": 904,
     "name": "Petting Addict",
+    "icon": "src/assets/images/cursor.png",
     "desc": "Click the cat 100K times",
     "type": "number_of_clicks",
     "requirement": 100000
@@ -95,54 +104,77 @@
   {
     "id": 300,
     "name": "Hush Little Kitten",
+    "icon": "src/assets/images/volume.png",
     "desc": "Set Meow/Purr Volume to 0%",
     "type": "misc"
   },
   {
     "id": 301,
     "name": "Crank It To 11",
+    "icon": "src/assets/images/volume.png",
     "desc": "Set Meow/Purr Volume to 100%",
     "type": "misc"
   },
   {
     "id": 302,
     "name": "Did You Hear Something?",
+    "icon": "src/assets/images/volume.png",
     "desc": "Set SFX Volume to 0%",
     "type": "misc"
   },
   {
     "id": 303,
     "name": "Can You Hear That Thunder?",
+    "icon": "src/assets/images/volume.png",
     "desc": "Set SFX Volume to 100%",
+    "type": "misc"
+  },
+  {
+    "id": 313,
+    "name": "Shhhhh!",
+    "icon": "src/assets/images/volume.png",
+    "desc": "Set BGM Volume to 0%",
+    "type": "misc"
+  },
+  {
+    "id": 314,
+    "name": "You must REALLY like this song!",
+    "icon": "src/assets/images/volume.png",
+    "desc": "Set BGM Volume to 100%",
     "type": "misc"
   },
   {
     "id": 304,
     "name": "Who Turned Out The Lights?",
+    "icon": "src/assets/svg/video.svg",
     "desc": "Toggle Color-Blind Mode",
     "type": "misc"
   },
   {
     "id": 305,
     "name": "Flip Out",
+    "icon": "src/assets/svg/video.svg",
     "desc": "Flip the Left and Right sides",
     "type": "misc"
   },
   {
     "id": 306,
     "name": "Open a Window",
+    "icon": "src/assets/images/pointer.svg",
     "desc": "Drag the Upgrades Bar",
     "type": "misc"
   },
   {
     "id": 307,
     "name": "Typographic Touches",
+    "icon": "src/assets/svg/settings.svg",
     "desc": "Change the Game's Font",
     "type": "misc"
   },
   {
     "id": 308,
     "name": "Who put Letters in my Numbers?",
+    "icon": "src/assets/svg/settings.svg",
     "desc": "Change the Game's Number Format",
     "type": "misc"
   },
@@ -161,30 +193,22 @@
   {
     "id": 311,
     "name": "Hold Still",
+    "icon": "src/assets/svg/vibrate.svg",
     "desc": "Set Haptic Taps to 0%",
     "type": "misc"
   },
   {
     "id": 312,
     "name": "Magnitude 10",
+    "icon": "src/assets/svg/vibrate.svg",
     "desc": "Set Haptic Taps to 100%",
     "type": "misc"
   },
-  {
-    "id": 313,
-    "name": "Shhhhh!",
-    "desc": "Set BGM Volume to 0%",
-    "type": "misc"
-  },
-  {
-    "id": 314,
-    "name": "You must REALLY like this song!",
-    "desc": "Set BGM Volume to 100%",
-    "type": "misc"
-  },
+
   {
     "id": 200,
     "name": "Nice Collection You've Got There!",
+    "icon": "src/assets/svg/trophy.svg",
     "desc": "Own 50 Upgrades",
     "type": "number_of_upgrades",
     "requirement": 50
@@ -192,6 +216,7 @@
   {
     "id": 201,
     "name": "Don't Stop Till You Get Enough",
+    "icon": "src/assets/svg/trophy.svg",
     "desc": "Own 100 Upgrades",
     "type": "number_of_upgrades",
     "requirement": 100
@@ -199,6 +224,7 @@
   {
     "id": 202,
     "name": "Your Cats Need ALL That?",
+    "icon": "src/assets/svg/trophy.svg",
     "desc": "Own 150 Upgrades",
     "type": "number_of_upgrades",
     "requirement": 150
@@ -206,6 +232,7 @@
   {
     "id": 203,
     "name": "Upgrade Enthusiast",
+    "icon": "src/assets/svg/trophy.svg",
     "desc": "Own 200 Upgrades",
     "type": "number_of_upgrades",
     "requirement": 200
@@ -213,6 +240,7 @@
   {
     "id": 204,
     "name": "Quarter Millennium of Upgrades",
+    "icon": "src/assets/svg/trophy.svg",
     "desc": "Own 250 Upgrades",
     "type": "number_of_upgrades",
     "requirement": 250
@@ -220,6 +248,7 @@
   {
     "id": 205,
     "name": "Upgrade Hoarder",
+    "icon": "src/assets/svg/trophy.svg",
     "desc": "Own 300 Upgrades",
     "type": "number_of_upgrades",
     "requirement": 300
@@ -227,6 +256,7 @@
   {
     "id": 206,
     "name": "Seriously, How Many Upgrades?",
+    "icon": "src/assets/svg/trophy.svg",
     "desc": "Own 350 Upgrades",
     "type": "number_of_upgrades",
     "requirement": 350
@@ -234,6 +264,7 @@
   {
     "id": 207,
     "name": "The Upgrade Connoisseur",
+    "icon": "src/assets/svg/trophy.svg",
     "desc": "Own 400 Upgrades",
     "type": "number_of_upgrades",
     "requirement": 400
@@ -241,6 +272,7 @@
   {
     "id": 208,
     "name": "Almost There, Upgrade Maniac",
+    "icon": "src/assets/svg/trophy.svg",
     "desc": "Own 450 Upgrades",
     "type": "number_of_upgrades",
     "requirement": 450
@@ -248,6 +280,7 @@
   {
     "id": 209,
     "name": "The Whole Upgrade Enchilada",
+    "icon": "src/assets/svg/trophy.svg",
     "desc": "Own 500 Upgrades",
     "type": "number_of_upgrades",
     "requirement": 500

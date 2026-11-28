@@ -444,9 +444,9 @@
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  gap: 0.6rem;
+  gap: 0.4rem;
   .earned-achievement {
-    width: 43%;
+    width: 25%;
     min-height: 80px;
     padding: 5px;
     border: 2px solid rgb(170, 166, 166);
@@ -464,6 +464,7 @@
 
       p {
         strong {
+          font-size: 0.9rem;
           text-decoration: underline;
           margin-bottom: 10px;
         }
@@ -472,13 +473,14 @@
           margin-top: 5px;
           color: lightblue;
           font-style: italic;
-          font-size: 0.7rem;
-          opacity: 0.8;
+          font-size: 0.6rem;
+          opacity: 0.9;
         }
       }
 
       img.ach-icon {
         max-height: 50px;
+        margin-top: 0.25rem;
       }
     }
   }

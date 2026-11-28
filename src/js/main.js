@@ -217,15 +217,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     clickPower = baseClickPower.plus(tf).plus(mpsBonus);
 
-    console.log({
-      baseClickPower: baseClickPower.toString(),
-      baseAutoRate: baseAutoRate.toString(),
-      percent: percent,
-      mpsBonus: mpsBonus.toString(),
-      tf: tf.toString(),
-      finalClickPower: clickPower.toString(),
-    });
-    
     clickRateDisplay.textContent = formatNumber(clickPower);
   }
 
